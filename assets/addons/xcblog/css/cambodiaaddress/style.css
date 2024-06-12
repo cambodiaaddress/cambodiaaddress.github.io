@@ -1051,7 +1051,7 @@ Shortcode Content
  *----------------------------------------------- */
 
 .single-page-title {
-    background  : url(/assets/addons/xcblog/img/nexthiddify/img-page-title.jpg) no-repeat bottom;
+    background  : url(/assets/addons/xcblog/img/cambodiaaddress/img-page-title.jpg) no-repeat bottom;
     background-size       : cover;
     width                 : 100%;
     background-attachment : fixed;
@@ -1607,7 +1607,7 @@ icon-style
 
 #status,
 .status-mes {
-    background-image: url(/assets/addons/xcblog/img/nexthiddify/preloader.gif);
+    background-image: url(/assets/addons/xcblog/img/cambodiaaddress/preloader.gif);
     background-position: center;
     background-repeat: no-repeat;
     height: 200px;
