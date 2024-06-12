@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-887.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>C#多态性02 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>C#多态性02</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body"> <p><font face="Arial">首先理解一下什么叫多态。同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果，这就是<span class="hilite1">多态性</span>。</font></p> <p><font face="Arial"><span class="hilite1">多态性</span>通过派生类覆写基类中的虚函数型方法来实现。</font></p> <p><font face="Arial">&nbsp;</font></p> <p><font face="Arial"><span class="hilite1">多态性</span>分为两种，一种是编译时的<span class="hilite1">多态性</span>，一种是运行时的<span class="hilite1">多态性</span>。</font></p> <p><font face="Arial">编译时的<span class="hilite1">多态性</span>：编译时的<span class="hilite1">多态性</span>是通过重载来实现的。对于非虚的成员来说，系统在编译时，根据传递的参数、返回的类型等信息决定实现何种操作。</font></p> <p><font face="Arial">运行时的<span class="hilite1">多态性</span>：运行时的<span class="hilite1">多态性</span>就是指直到系统运行时，才根据实际情况决定实现何种操作。C#中运行时的<span class="hilite1">多态性</span>是通过覆写虚成员实现。</font></p> <p><font face="Arial">&nbsp;</font></p> <p><font face="Arial">下面我们来分别说明一下多态中涉及到的四个概念：重载，覆写，虚方法和抽象方法。</font></p> <p><font face="Arial"><strong>重载和覆写的区别：</strong></font></p> <p><font face="Arial"><strong style="color:#FF0000;"><u>重载</u></strong></font></p> <p><font face="Arial">类中定义的方法的不同版本</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public int Calculate(int x, int y)</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public double Calculate(double x, double y)</font></p> <p><font face="Arial">特点（两必须一可以）</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 方法名必须相同</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 参数列表必须不相同</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 返回值类型可以不相同</font></p> <p><font face="Arial"><strong style="color:#FF0000;"><u>覆写</u></strong></font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 子类中为满足自己的需要来重复定义某个方法的不同实现。</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 通过使用override关键字来实现覆写。</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 只有虚方法和抽象方法才能被覆写。</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 要求（三相同）</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 相同的方法名称</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 相同的参数列表</font></p> <p><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 相同的返回值类型</font></p> <p><font face="Arial">最后再来介绍一下虚方法和抽象方法</font></p> <p><font face="Arial">虚方法:</font></p> <p><font face="Arial">声明使用virtual关键字。</font></p> <p><font face="Arial">调用虚方法，运行时将确定调用对象是什么类的实例，并调用适当的覆写的方法。</font></p> <p><font face="Arial">虚方法可以有实现体。</font></p> <p> <font face="Arial"> </font></p> <p>抽象方法:</p> <p>必须被派生类覆写的方法。</p> <p>可以看成是没有实现体的虚方法。</p> <p>如果类中包含抽象方法，那么类就必须定义为抽象类，不论是否还包含其他一般方法。</p> <p>注意：</p> <p>昨天突然发现c＃，和c＋＋俩种语言在<span class="hilite1">多态性</span>的 实现机制 上面的细微差别。<br />&nbsp;&nbsp;&nbsp; <br />如果是C＋＋，在基类的构造函数里面调用虚函数的话，会调用本类的不会调用派生类的，原因是基类构造的时候，虚表还没有被派生类继承和修改。</p> <p>&nbsp;&nbsp;&nbsp; 但如果是C＃，那就不同了，在基类的构造函数里面照样调用派生类的。不知道有谁知道c＃它的这种底层机制是怎样的？<br />-------是这样的，C++会先初始化基类，然后逐级初始化派生类型。C#则是一开始就把对象创建好了，然后逐个调用构造函数。本质区别在于C++的构造函数的任务是初始化，C#则不然，C#的类型的任何字段不必初始化，均有默认值，所以C#在调用构造函数之前就已经将对象初始化完毕了。</p> <p>通过继承，一个类可以用作多种类型：可以用作它自己的类型、任何基类型，或者在实现接口时用作任何接口类型。这称为<span class="hilite1">多态性</span>。C#中的每种类型都是多态的。类型可用作它们自己的类型或用作Object实例，因为任何类型都自动将Object当作基类型。&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; <br />&nbsp; <span class="hilite1">多态性</span>不仅对派生类很重要，对基类也很重要。任何情况下，使用基类实际上都可能是在使用已强制转换为基类类型的派生类对象。基类的设计者可以预测到其基类中可能会在派生类中发生更改的方面。例如，表示汽车的基类可能包含这样的行为：当考虑的汽车为小型货车或敞篷汽车时，这些行为将会改变。基类可以将这些类成员标记为虚拟的，从而允许表示敞篷汽车和小型货车的派生类重写该行为。</p> </div></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-886.htm">pyspark从hive导出数据到clickhouse</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-888.htm">搭建vue2.x开发环境的步骤与方式</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1013.htm" title="【译】defer-panic-and-recover_在线工具">【译】defer-panic-and-recover_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

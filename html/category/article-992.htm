@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-992.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>[Kafka错误：window下运行一段时间后自动挂掉/宕机]&#8212;&#8211;kafka在window下出现另一个程序正在使用此文件,进程无法访问的错误 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>[Kafka错误：window下运行一段时间后自动挂掉/宕机]&#8212;&#8211;kafka在window下出现另一个程序正在使用此文件,进程无法访问的错误</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><strong>前言------对于只想解决这个问题的程序猿们，可以直接跳到"</strong><strong>解决"</strong></p> <p>对于只想解决这个问题的程序猿们，可以直接跳到"<strong>解决"</strong></p> <p>对于只想解决这个问题的程序猿们，可以直接跳到"<strong>解决"</strong></p> <p>对于只想解决这个问题的程序猿们，可以直接跳到"<strong>解决"</strong></p> <h1 id="1.%E8%83%8C%E6%99%AF"><a name="t1" rel="nofollow"></a>1.背景</h1> <p>之前使用kafka都是在Linux环境下的，没有出现什么kafka本身的问题。但是，目前在做的一个项目需要兼容Window和Linux，在Window环境下使用Kafka时才发现kafka本身对于window的兼容不如Linux。</p> <h1 id="2.%E9%97%AE%E9%A2%98"><a name="t2" rel="nofollow"></a>2.问题</h1> <p>window下对kafka进行测试的时候，发现kafka在上线一段时间之后，出现了错误：</p> <p>另一个程序正在使用文件，进程无法访问。</p> <p><img fetchpriority="high" decoding="async" alt="" height="92" src="http://img.555519.xyz/uploads3/20220824/9201feede8bb6512810f3305d0c2bf15.jpg"></p> <h1 id="3.%E5%8E%9F%E5%9B%A0"><a name="t3" rel="nofollow"></a>3.原因</h1> <p>kafka日志清理策略触发，在window环境下，在打开需要清理的日志的同时，<strong>对该文件进行重命名操作是不被允许的</strong>（linux环境下可以），从而导致kafka宕机。</p> <p>网上的解决方案最多的就是“<strong>清空kafka的日志文件然后重启kafka</strong>”，这种解决方式在生产环境下显然是不现实的。所以在一开始我又针对情况得出以下两种解决方案：</p> <p>方案一：修改日志清理策略，将日志清理时间修改为无穷（-1），使kafka数据日志永久存储<br /> 缺点：（1）磁盘空间会不断增大<br /> 方案二：在window上搭建虚拟机（docker同理，且更麻烦），然后在虚拟机中部署kafka<br /> 缺点：（1）运维人员需要懂点linux运维知识（2）增加内存消耗</p> <p><strong>显然，这两种方案的缺点都让我无法忍受，所以我把视线转向kafka社区寻求帮助</strong>。<u><strong><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/apache/kafka/pull/6329"  rel="nofollow">点击此处膜拜大神们的探讨</a></strong></u></p> <p>据了解，原来kafka在window下的这个问题，还并不没有想象中的那么容易，官方目前为止也没有解决方案。换句话说（你们就不要在window下使用kafka啦！）</p> <p>方案三：不过即便如此，在window下使用kafka的需求还是存在的，所以还是有很多大神们在关注并提出一些解决方案的。其中就有一位大神针对这个问题对kafka源码进行了二次开发。经过测试，他的这个方案在window下确实解决了问题，使得kafka可以在window下使用。但是对于这个方案，kafka的contributor说可能不太安全（就是不能将该补丁整合到官方中）。</p> <h1 id="4.%E8%A7%A3%E5%86%B3%EF%BC%88%E5%B0%BE%E9%83%A8%E6%9C%89%E6%8F%90%E4%BE%9B%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84kafka%E5%8C%85%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5%EF%BC%89"><a name="t4" rel="nofollow"></a>4.解决（尾部有提供编译好的kafka包下载链接）</h1> <p>虽然kafka官方说该补丁不太安全，但是官方在目前为止又没有什么作为。而需求确是实实在在存在的，所以在一番考虑之下，我还是打算采用方案三的方式，一劳永逸的解决问题，所以接下来我们就要将该补丁打进，并重新编译kafka。</p> <h2 id="4.1kafka%E8%A1%A5%E4%B8%81%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD"><a name="t5" rel="nofollow"></a>4.1kafka补丁版本下载</h2> <p>下载该作者的kafka补丁版本</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/apache/kafka/tree/0baf9c158b5681a55df4de3a0e6193d32b1433ff"  rel="nofollow">https://github.com/apache/kafka/tree/0baf9c158b5681a55df4de3a0e6193d32b1433ff</a></p> <h2 id="4.2%E7%BC%96%E8%AF%91kafka%E8%A1%A5%E4%B8%81%E7%89%88%E6%9C%AC"><a name="t6" rel="nofollow"></a>4.2编译kafka补丁版本</h2> <p>由于kafka编译是通过gradle的，所以需要先配置好gradle</p> <p>关于如何配置gradle可以参考这篇文章（转载来的，侵权即删）------<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/zhaokai0130/article/details/81008719"  rel="nofollow">Windows下gradle的安装与配置</a></p> <p>关于如何编译kafka，可以参考github------<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/apache/kafka/tree/0baf9c158b5681a55df4de3a0e6193d32b1433ff"  rel="nofollow">如何使用gradle编译kafka</a></p> <p>编译完之后，就可以得到一个可以在window下使用的kafka包了。</p> <p>本着“复制-粘贴“的理念（毕竟编译源码还是挺耗时间的），这里提供一个我编译好的kafka包下载链接，下载直接使用即可</p> <h1 id="5.%E6%87%92%E4%BA%BA%E7%A6%8F%E9%9F%B3"><a name="t7" rel="nofollow"></a><strong>5.懒人福音</strong></h1> <p><strong>下载链接：https://pan.baidu.com/s/1loRZdolXE48Ugn4t7sEphg<br /> 提取码：90xz</strong></p> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-991.htm">Golang 实现 Redis(10): 本地原子性事务_在线工具</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-993.htm">骨架屏技术讲解以及如何在Vue中实现骨架屏</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-996.htm" title="js穿梭框；将两个table中的数据选中移动">js穿梭框；将两个table中的数据选中移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1013.htm" title="【译】defer-panic-and-recover_在线工具">【译】defer-panic-and-recover_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1019.htm" title="网络层-IP地址详解&amp;Linux配置IP地址（centos7）">网络层-IP地址详解&amp;Linux配置IP地址（centos7）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

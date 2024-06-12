@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-804.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Spring boot整合JPA - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Spring boot整合JPA</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p>1.pom.xml添加jpa和数据库依赖包</p> <pre><code class="language-html">&lt;dependency&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;com.oracle&lt;/groupId&gt;     &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;     &lt;version&gt;11.2.0.3&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>2.application.properties配置数据库连接池</p> <pre><code class="language-html">spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl spring.datasource.username=jdjk spring.datasource.password=jdjk spring.datasource.initialSize=20   spring.datasource.minIdle=20   spring.datasource.maxActive=100     spring.datasource.maxWait=60000 spring.jpa.database-platform=org.hibernate.dialect.OracleDialect</code></pre> <p>3.创建表映射实体类</p> <pre><code class="language-html">import javax.persistence.Entity; import javax.persistence.Id; import javax.persistence.Table;  @Entity @Table(name="t_sys_jkconfig") public class T_SYS_JKCONFIG{  	private String xh; 	private String server_ip; 	private String server_name; 	private String server_action; 	 	@Id 	public String getXh() { 		return xh; 	} 	public void setXh(String xh) { 		this.xh = xh; 	} 	public String getServer_ip() { 		return server_ip; 	} 	public void setServer_ip(String server_ip) { 		this.server_ip = server_ip; 	} 	public String getServer_name() { 		return server_name; 	} 	public void setServer_name(String server_name) { 		this.server_name = server_name; 	} 	public String getServer_action() { 		return server_action; 	} 	public void setServer_action(String server_action) { 		this.server_action = server_action; 	} }</code></pre> <p>4.创建接口继承JpaRepository</p> <pre><code class="language-html">import java.util.List; import java.util.Map;  import org.springframework.data.jpa.repository.JpaRepository; import org.springframework.data.jpa.repository.Modifying; import org.springframework.data.jpa.repository.Query; import org.springframework.data.repository.query.Param; import org.springframework.stereotype.Repository; import org.springframework.transaction.annotation.Transactional;  import cn.com.highset.goexpo.bqd.bean.T_SYS_JKCONFIG;  @Repository @Transactional public interface IBaseDao extends JpaRepository&lt;T_SYS_JKCONFIG, String&gt; {  	 	T_SYS_JKCONFIG findByXh(String xh); 	 	//返回对象 	@Query(value = "select * from t_sys_jkconfig where server_ip = :ip", nativeQuery = true) 	List&lt;T_SYS_JKCONFIG&gt; getByIp(@Param("ip") String ip); 	 	//返回map 	@Query(value = "select server_ip from t_sys_jkconfig where server_ip = :ip", nativeQuery = true) 	List&lt;Map&gt; getMapByIp(@Param("ip") String ip);  	@Modifying 	@Query(value = "update t_sys_jkconfig set server_ip = :ip where xh = :xh", nativeQuery = true) 	void updateByXh(@Param("ip") String ip,@Param("xh") String xh); }</code></pre> <p>5.在Controller中调用方法</p> <pre><code class="language-html">import java.util.List; import java.util.Map;  import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Controller; import org.springframework.ui.Model; import org.springframework.web.bind.annotation.RequestMapping;  import cn.com.highset.goexpo.dao.IBaseDao;  @Controller public class IndexController { 	 	@Autowired 	private IBaseDao baseDao; 	 	@RequestMapping("/") 	public String root(Model model) { 		//新增 		T_SYS_JKCONFIG t = new T_SYS_JKCONFIG(); 		t.setXh("111"); 		t.setServer_ip("222"); 		t.setServer_name("333"); 		t.setServer_action("444"); 		baseDao.save(t); 		//删除 		T_SYS_JKCONFIG jkconfig = baseDao.findByXh("111"); 		baseDao.delete(jkconfig); 		//修改 		baseDao.updateByXh("12345", "1"); 		//查询 		List&lt;Map&gt; list =  baseDao.getMapByIp("192.168.1.120"); 		for(Map t : list){ 			System.out.println(t.get("xh")); 		} 		model.addAttribute("list", list); 		return "home"; 	} }</code></pre> <p>6.在启动类Application中添加扫描注解</p> <pre><code class="language-html">import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.boot.autoconfigure.domain.EntityScan; import org.springframework.data.jpa.repository.config.EnableJpaRepositories; import org.springframework.web.bind.annotation.RestController;  @RestController @SpringBootApplication @EnableJpaRepositories(basePackages = "xxx.xxx.dao") @EntityScan("xxx.xxx.bean") public class Application {  	public static void main(String[] args) { 		SpringApplication.run(Application.class, args); 	} }</code></pre> <p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-803.htm">Python里的引用与拷贝规律</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-805.htm">Java 线程池四种拒绝策略</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1005.htm" title="集成神经网络的缺点是,各种神经网络的优缺点">集成神经网络的缺点是,各种神经网络的优缺点</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1003.htm" title="Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控">Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-964.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Java 方法的重载与参数传递详解_java - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Java 方法的重载与参数传递详解_java</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">方法重载概述</a></li> <li><a href="#_label1" rel="nofollow">方法重载特特点</a></li> <li><a href="#_label2" rel="nofollow">方法重载练习</a></li> <li><a href="#_label3" rel="nofollow">方法参数传递</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_3_0" rel="nofollow">方法参数传递（基本类型）</a></li> <li><a href="#_lab2_3_1" rel="nofollow">方法参数传递（引用类型）</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>方法重载概述</h2> <p>方法重载指同一个类中定义的多个方法之间的关系，满足下列条件的多个方法互相构成重载</p> <p>* 多个方法在同一个类中</p> <p>* 多个放方法具有相同方法名</p> <p>* 多个方法的参数不相同，类型不同或数量不同</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>方法重载特特点</h2> <p>* 重载仅对应方法的定义，与方法的调用无关，调用方法参照标准格式</p> <p>* 重载仅针对同一个类中方法的名称与参数进行识别，与返回值无关，换句话说不能通过返回值来判断两个方法是否构成重载</p> <p>示例：</p> <div class="ay1code"> <pre class="brush:java;"> public class MethodDemo{           public static float  fn（int a）{              //方法体           }   public static int  fn（int a，int b）{              //方法体            }   }</pre> </div> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>方法重载练习</h2> <p>需求：使用方法重载的思想，设计比较两个整数是否相同的方法，兼容全整数类型（byte，short，int，long）</p> <p>思路：</p> <p>1.定义比较两个数字的是否相同的方法compare()方法，参数选择两个int型参数</p> <div class="ay1code"> <pre class="brush:java;">public static boolean compare（int a,int b）{            return a==b;  }</pre> </div> <p>2.定义对应的重载方法，变更对应的参数类型，参数变更为两个long型参数</p> <div class="ay1code"> <pre class="brush:java;">public static boolean compare（long a,long b）{            return a==b;  }</pre> </div> <p>3.定义所有重载方法，两个byte类型与两个short类型参数</p> <div class="ay1code"> <pre class="brush:java;">public static boolean compare（byte a,byte b）{           //代码片段  }  public static boolean compare（short a,short b）{            //代码片段  }</pre> </div> <p>4. 完成方法调用，运行测试结果</p> <div class="ay1code"> <pre class="brush:java;">public static void main（String args[ ]）{         system.out.println(cpmpare(10,20));  }</pre> </div> <p>示例代码：</p> <div class="ay1code"> <pre class="brush:java;">   public class hmm081 {      public static void main(String[] args) {          //调用方法          System.out.println(compare(10,20));          //强转          System.out.println(compare((byte)10,(byte)20));          System.out.println(compare((long)10,(long)10));      }      public static boolean compare(int a,int b){          System.out.println("int");          return a==b;      }      public static boolean compare(long a,long b){          System.out.println("long");          return a==b;      }      public static boolean compare(byte a,byte b){          System.out.println("byte");          return a==b;      }      public static boolean compare(short a,short b){          System.out.println("short");          return a==b;      }  }</pre> </div> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>方法参数传递</h2> <p class="maodian"><a name="_lab2_3_0" rel="nofollow"></a></p> <h3>方法参数传递（基本类型）</h3> <p>对于基本数据类型参数，形式参数的改变，不影响实际参数的值</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220416/2a20444b9e20eebc0aabb95c67a4e048.jpg"></p> <p> 虽然形参change（）内的number改变，但main（）参数不变，不影响实际参数值，所以第二次输出结果还是100</p> <p class="maodian"><a name="_lab2_3_1" rel="nofollow"></a></p> <h3>方法参数传递（引用类型）</h3> <p>对于引用类型的参数，形式参数的改变，影响实际参数的值，如数组。</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220416/88c02cec61cf9ec78679e3a1ff795783.jpg"></p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220416/6aed29bad16f1a1e8a53dfe5eb1b61f3.jpg"></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-963.htm">SpringBoot(39) —— Shiro实现登陆拦截</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-965.htm">@PathVariable接收两个参数</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1000.htm" title="@RequestBody接受参数报415错误">@RequestBody接受参数报415错误</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1052.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Spring AOP打通两个切面之间的通信详解 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Spring AOP打通两个切面之间的通信详解</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h3 id="场景描述">场景描述</h3> <p>在秒杀微服务中，笔者在需要各种校验前端传来的参数后，通过 Redis 加锁限流（切面A）并返回，最后封装订单数据推送到 RabbitMQ 消息队列（切面B）做善后工作。</p> <p>问题：如何将 切面 A 的数据传递 给切面B 处理呢？</p> <pre><code class="language-java">/**  * 添加到秒杀流程  *  * @param killId 秒杀商品缓存键 sessionId_skuId  * @param key    随机码 randomCode  * @param num    数量  * @return {@link R}  */ @GetMapping("/kill") public R addToSeckill(         @RequestParam("killId") String killId,         @RequestParam("key") String key,         @RequestParam("num") Integer num) {     // 实现类只是带有两个注解方法，返回 null（因为全部交给切面托管了）     String orderSn = seckillService.kill(killId, key, num);     if (StringUtils.isEmpty(orderSn)) {         return R.error();     }     return R.ok().setData(orderSn); }</code></pre> <h3 id="解决方案">解决方案</h3> <p>通过参数传递数据，通过捕获异常保证业务逻辑（离谱但有用） ????</p> <pre><code class="language-java">// 强制修改参数，通过异常返回正常流程，而通过AOP消息队列处理收尾动作 try {     return pjp.proceed(new Object[]{orderTo, null, null}); } catch (Throwable e) {     return orderSn; }</code></pre> <p>注意事项：</p> <ol> <li> <p>参数一致性：必须伪造和方法签名的<strong>数量相等</strong>的参数 ⇒ 否则线程会抛出异常 I 就返回了，无法执行<code>pjp.proceed</code> 原始方法 ⇒ 无法跳转第二个切面<br /><code>java.lang.IllegalArgumentException: Expecting 3 arguments to proceed, but was passed 1 arguments</code></p> </li> <li> <p>捕获异常不抛出，直接执行正常业务逻辑 ⇒ 否则线程将吞没异常 II<br /><code>cn.miozus.gulimall.common.to.mq.SeckillOrderTo cannot be cast to java.lang.String</code></p> </li> </ol> <p>3.虽然两个切面都返回了<code>orderSn</code> ，实际最终只有切面A传递到了控制层和前端， 切面B的返回值成了摆设。</p> <h3 id="跳转过程">跳转过程</h3> <p>打断点查看两个切面的跳转过程。</p> <p>切面A：准备跳转第二个切面</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/efb74164f89abe7e257ea98171039d08.jpg" alt="Spring AOP打通两个切面之间的通信详解"></p> <p>切面B：发送消息完成</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9845db59d43c7dc2ab69121c99b45333.jpg" alt="Spring AOP打通两个切面之间的通信详解"></p> <p>打印日志，可见场景需求，已经满足了。</p> <pre><code class="language-bash">2022-03-29 17:32:56.521  INFO 7904 --- [io-25000-exec-8] c.m.g.s.aspect.SeckillRabbitMqAspect     : 快速创建订单：发送消息创建完成: 202203291732444881508738921192005634 2022-03-29 17:33:01.526  INFO 7904 --- [io-25000-exec-8] c.m.g.s.controller.SeckillController     : 秒杀创建订单用时：28778 ???? seckill orderSn = 202203291732444881508738921192005634 2022-03-29 17:33:01.527  INFO 7904 --- [nectionFactory5] c.m.g.s.config.RabbitMqSeckillConfig     : ???? 消息已发送, params: correlationData:null,ack:true,cause:null</code></pre> <h3 id="其他方案">其他方案</h3> <p>最简单的办法，不切了，两个切面耦合在一起。注入和调用方法。</p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1051.htm">FeignClient参数</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1006.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

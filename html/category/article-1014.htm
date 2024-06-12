@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1014.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>EFCore 的 DbFirst 模式 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>EFCore 的 DbFirst 模式</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h2 id="1-前言">1 前言</h2> <p>EF6 时代，可以通过界面操作，添加数据库实体。</p> <p>EF Core 需要通过 CLI 来进行该操作，具体请参考<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/ef/core/managing-schemas/scaffolding?tabs=dotnet-core-cli"  target="_blank" rel="nofollow">EF Core官方文档：反向工程</a>。</p> <p>当然，EF Core 也有界面化操作的工具，EF Core Power Tools，具体请见最后介绍。</p> <p></p> <h2 id="2-前置条件">2 前置条件</h2> <ul> <li> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/ef/core/cli/powershell"  target="_blank" rel="nofollow">PMC 工具</a>（仅限 Visual Studio）或<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/ef/core/cli/dotnet"  target="_blank" rel="nofollow">CLI 工具</a>。</p> </li> <li> <p>核心 NuGet 包：Microsoft.EntityFrameworkCore.Design</p> </li> <li> <p>还需要为要进行反向工程的数据库架构安装适当的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/ef/core/providers/"  target="_blank" rel="nofollow">数据库提供程序</a></p> </li> </ul> <p></p> <h2 id="3-主命令">3 主命令</h2> <pre><code class="language-bash">dotnet ef dbcontext scaffold "[数据库连接串]" [提供程序]</code></pre> <p>如：</p> <pre><code class="language-bash">dotnet ef dbcontext scaffold "server=localhost;database=efcore;uid=sa;pwd=Qwe123456;" Microsoft.EntityFrameworkCore.SqlServer</code></pre> <p></p> <h2 id="4-命令参数">4 命令参数</h2> <h4 id="41-生成指定表--table">4.1 生成指定表（--table）</h4> <p>上述命令，会生成整个数据库的表，如果需要指定特定的表，需要使用如下：</p> <pre><code class="language-bash">dotnet ef dbcontext scaffold "[数据库连接串]" [提供程序] --table table_name1 --table table_name2</code></pre> <h4 id="42-保留数据库名称--use-database-names">4.2 保留数据库名称（--use-database-names）</h4> <p>默认情况会修正表/列名，使用该参数尽量保留原名称。</p> <pre><code class="language-bash">-UseDatabaseNames    #PMC --use-database-names #.NET Core CLI</code></pre> <h4 id="43-fluent-api-和数据注释--data-annotations">4.3 Fluent API 和数据注释（--data-annotations）</h4> <p>默认情况下，使用 Fluent API 配置实体类型。使用下面的命令，可以改为使用数据注释。</p> <pre><code class="language-bash">-DataAnnotations   #PMC --data-annotations #.NET Core CLI</code></pre> <p>Fluent API</p> <pre><code class="language-csharp">entity.Property(e =&gt; e.Title)     .IsRequired()     .HasMaxLength(160);</code></pre> <p>数据注释</p> <pre><code class="language-csharp">[Required] [StringLength(160)] public string Title { get; set; }</code></pre> <h4 id="44-指定-dbcontext-名称--context">4.4 指定 DbContext 名称（--context）</h4> <p>指定将生成的 DbContext 类的名称</p> <pre><code class="language-bash">-Context  #PMC --context #.NET Core CLI</code></pre> <h4 id="45-指定保存目录--context-dir-和---output-dir">4.5 指定保存目录（--context-dir 和 --output-dir）</h4> <pre><code class="language-bash">-ContextDir Data -OutputDir Models     #PMC --context-dir Data --output-dir Models #.NET Core CLI</code></pre> <h4 id="46-指定命名空间--namespace-和---context-namespace">4.6 指定命名空间（--namespace 和 --context-namespace）</h4> <pre><code class="language-bash">-Namespace Your.Namespace -ContextNamespace Your.DbContext.Namespace    #PMC --namespace Your.Namespace --context-namespace Your.DbContext.Namespace #.NET Core CLI</code></pre> <p></p> <h2 id="5-测试">5 测试</h2> <h3 id="51-数据库准备">5.1 数据库准备</h3> <p>由于是 DbFirst，所以这里我们先创建一个数据库，名为 efcore</p> <p>新建一张表 Test</p> <pre><code class="language-sql">CREATE TABLE [dbo].[Test]( 	[Id] [uniqueidentifier] NOT NULL, 	[Name] [nvarchar](128) NULL,  CONSTRAINT [PK_Test] PRIMARY KEY CLUSTERED  ( 	[Id] ASC )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY] ) ON [PRIMARY]</code></pre> <h3 id="52-新建一个控制台程序">5.2 新建一个控制台程序</h3> <p>这里命名为：DbFirstTest</p> <pre><code class="language-bash">mkdir DbFirstTest &amp; cd DbFirstTest #新建文件夹DbFirstTest并切换至该目录下 dotnet new console -f net6.0       #新建.NET6.0控制台程序</code></pre> <h3 id="53-引入-nuget-包">5.3 引入 Nuget 包</h3> <pre><code class="language-bash"># 引入 EF Core 核心包 dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.4 # 引入 SQL Server 提供程序 dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 6.0.4</code></pre> <h3 id="54-执行-scaffold-命令">5.4 执行 Scaffold 命令</h3> <p>在控制台程序的根目录下，执行命令（连接串请自行修改成自己的）：</p> <pre><code class="language-bash">dotnet ef dbcontext scaffold "server=localhost;database=efcore;uid=sa;pwd=Qwe123456;" Microsoft.EntityFrameworkCore.SqlServer --data-annotations --context EfCoreContext --context-dir Data --output-dir Models</code></pre> <p>--data-annotations：数据注释在实体上</p> <p>--context EfCoreContext：上下文指定命名为 EfCoreContext</p> <p>--context-dir Data：上下文保存在根目录的 Data 文件夹下</p> <p>--output-dir Models：实体保存在根目录的 Models 文件夹下</p> <h3 id="55-测试源码">5.5 测试源码</h3> <p>在 Program.cs 添加测试代码：</p> <pre><code class="language-csharp">using DbFirstTest.Data; using DbFirstTest.Models;  EfCoreContext db = new EfCoreContext(); Test test = new Test() {     Id = Guid.NewGuid(),     Name = "Add" }; db.Tests.Add(test); db.SaveChanges(); Console.WriteLine("Add Successful！");</code></pre> <p>在项目根目录下，执行：</p> <pre><code class="language-bash">dotnet build #编译 dotnet run   #运行</code></pre> <p>执行以后，可以看到，数据库中添加了相应的记录。</p> <h3 id="56-源码">5.6 源码</h3> <p>Gitee：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/lisheng741/testnetcore/tree/master/EFCore/DbFirstTest"  target="_blank" rel="nofollow">https://gitee.com/lisheng741/testnetcore/tree/master/EFCore/DbFirstTest</a></p> <p>Github：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/lisheng741/testnetcore/tree/master/EFCore/DbFirstTest"  target="_blank" rel="nofollow">https://github.com/lisheng741/testnetcore/tree/master/EFCore/DbFirstTest</a></p> <p></p> <h2 id="6-ef-core-power-tools">6 EF Core Power Tools</h2> <p>开源的 EF Core 界面工具，可以作为一个 vs 的插件，在 vs 里运作。</p> <p>项目 Github 地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/ErikEJ/EFCorePowerTools/"  target="_blank" rel="nofollow">https://github.com/ErikEJ/EFCorePowerTools/</a></p> <p>VS 插件下载：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools"  target="_blank" rel="nofollow">https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools</a></p> <p>在 VS 插件市场下载以后，安装即可。</p> <p>本人的 vs 版本是 vs2022，安装以后，右键项目多了一个选项【EF Core工具】，点击【反向工程】即可进行 DbFirst 的相关操作了。</p> <p>界面化操作比较直观，这里不在赘述。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/772b3d39e98935996529d89282839081.jpg" alt="EFCore 的 DbFirst 模式"></p> <p></p> <h2 id="参考来源">参考来源</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/ef/core/managing-schemas/scaffolding?tabs=dotnet-core-cli"  target="_blank" rel="nofollow">EF Core官方文档：反向工程</a></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1013.htm">【译】defer-panic-and-recover_在线工具</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1015.htm">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1012.htm" title="【ASP.NET Core】自己编程来生成自签名的服务器证书">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></li>
+                        <li class="py-2"><a href="/html/category/article-1000.htm" title="@RequestBody接受参数报415错误">@RequestBody接受参数报415错误</a></li>
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

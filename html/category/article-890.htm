@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-890.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Spring Boot 将第三方依赖和配置文件打包在jar外部并引用 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Spring Boot 将第三方依赖和配置文件打包在jar外部并引用</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>pom.xml文件中添加</p> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">build</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">plugins</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">plugin</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>maven-jar-plugin<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>2.6<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">configuration</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">archive</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">mainClass</span>&gt;</span>com.esbk.isp.ISPApplication<span class="hljs-tag">&lt;/<span class="hljs-title">mainClass</span>&gt;</span> //指定Springboot程序启动类<span class="hljs-tag">&lt;<span class="hljs-title">addClasspath</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">addClasspath</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">classpathPrefix</span>&gt;</span>lib/<span class="hljs-tag">&lt;/<span class="hljs-title">classpathPrefix</span>&gt;</span> //指定依赖的jar包相对于本程序jar的位置<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">manifestEntries</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">Class-Path</span>&gt;</span>./<span class="hljs-tag">&lt;/<span class="hljs-title">Class-Path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">manifestEntries</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">archive</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">excludes</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">exclude</span>&gt;</span>application*.yml<span class="hljs-tag">&lt;/<span class="hljs-title">exclude</span>&gt;</span> //指定打包时要排除的文件,支持正则<span class="hljs-tag">&lt;/<span class="hljs-title">excludes</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">configuration</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">plugin</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">plugins</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">build</span>&gt;</span></code></pre> <blockquote> <p>把依赖的jar包–&gt;放到和项目打成的jar包同级的lib文件夹下<br /> 把配置文件–&gt;放到和项目打成的jar包同级的文件夹下( 或者统计的config命名的文件夹下 )</p> </blockquote> <p>如果懒得手动把那么多的依赖拷贝出来的话,可以用maven命令导出:DoutputDirectory指定就行</p> <pre class="prettyprint"><code class="hljs tex">mvn dependency:copy-dependencies -DoutputDirectory=C:<span class="hljs-command">\Users</span><span class="hljs-command">\esbk</span><span class="hljs-command">\Desktop</span><span class="hljs-command">\lib</span>  -DincludeScope=runtime</code></pre> <p>最终目录结果<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221201/c7c9e71d27d6fb1dbaf929412a3d327b.jpg" alt="Spring Boot 将第三方依赖和配置文件打包在jar外部并引用"><br /> lib中是第三方依赖的jar,config中是配置文件.而且可执行的程序jar正常运行</p> <p>如果只想排除配置文件或只想配出第三方jar,删除pom中相应的配置即可</p> <p>参考文章:<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://www.cnblogs.com/xiaoqi/p/6955288.html"  rel="nofollow">http://www.cnblogs.com/xiaoqi/p/6955288.html</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.csdn.net/liangwenmail/article/details/72528496"  rel="nofollow">http://blog.csdn.net/liangwenmail/article/details/72528496</a><br /> 感谢以上作者的分享</p> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-889.htm">如何阅读一份源代码</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-891.htm">设计模式学习笔记原型模式以及深浅拷贝的区别</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1006.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1005.htm" title="集成神经网络的缺点是,各种神经网络的优缺点">集成神经网络的缺点是,各种神经网络的优缺点</a></li>
+                        <li class="py-2"><a href="/html/category/article-1030.htm" title="vue-element-admin模板，点击跳转到另一个页面传参">vue-element-admin模板，点击跳转到另一个页面传参</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

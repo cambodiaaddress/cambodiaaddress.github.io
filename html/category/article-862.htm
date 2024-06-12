@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-862.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>基于RestTemplate扩展，支持Get请求传递javaBean参数 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>基于RestTemplate扩展，支持Get请求传递javaBean参数</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p>项目中使用了RestTemplate来对第三方接口进行请求。</p> <p>使用get方式请求查询接口时，需要将参数拼接到url中，不支持使用JavaBean传参，编写代码不友好。</p> <p>一般需要这么写：</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230217/96632c56d2b86f729cb61db1e47cece8.jpg"></p> <p>如果不使用占位符的写法，服务端将收不到参数。</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230217/a15de9876b7fbfca48f37ff4659b313f.jpg"></p> <p>服务端接口定义如下，请求结果是参数解析失败，返回400错误码</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230217/c7c8f58f9b811d84e2f948126d20edcc.jpg"></p> <p>这个时候就想，能不能直接传map，或者一个JavaBean来实现传参数呢？</p> <p>于是查看源码，发现RestTemplate有扩展点可以进行扩展，下面就开始扩展之路了。</p> <p>RestTemplate有一个接口，专门处理请求url的，</p> <pre><code class="language-java">public interface UriTemplateHandler {  //这个方法就是我们传入的参数map  URI expand(String uriTemplate, Map&lt;String, ?&gt; uriVariables);  URI expand(String uriTemplate, Object... uriVariables);  }</code></pre> <p>于是自定义一个UriTemplateHandler，来对请求url进行处理。</p> <p>代码如下：</p> <pre><code class="language-java">public class GetUriTemplateHandler implements UriTemplateHandler {  private UriTemplateHandler uriTemplateHandler = new DefaultUriBuilderFactory();  @Override  public URI expand(String uriTemplate, Map&lt;String, ?&gt; uriVariables) {  //利用UriComponentsBuilder将请求参数追加到url，GetParamMultiValueMap是自定义的一个map  uriTemplate = UriComponentsBuilder  .fromHttpUrl(uriTemplate)  .queryParams(new GetParamMultiValueMap(uriVariables)).toUriString();  log.info("处理之后的url ==&gt; {}", uriTemplate);  return uriTemplateHandler.expand(uriTemplate, uriVariables);  }  @Override  public URI expand(String uriTemplate, Object... uriVariables) {  return uriTemplateHandler.expand(uriTemplate, uriVariables);  }  }</code></pre> <p>GetParamMultiValueMap实现如下:</p> <pre><code class="language-java">public class GetParamMultiValueMap&lt;K,V&gt; implements MultiValueMap&lt;K, V&gt; {  private final Map&lt;K, List&lt;V&gt;&gt; map;  public GetParamMultiValueMap(Map&lt;K, V&gt; paramMap) {  Assert.notNull(paramMap, "'map' must not be null");  //将请求参数转换成MultiValueMap  this.map = new HashMap&lt;&gt;();  paramMap.forEach((k, v) -&gt; {  if (v instanceof List) {  map.put(k, (List&lt;V&gt;) v);  } else {  map.put(k, Lists.newArrayList(v));  }  });  }  }</code></pre> <p>GetUriTemplateHandler实现好之后，只需要在RestTemplate实例化之后将默认的UriTemplateHandler替换就可以使用自己实现的功能了</p> <pre><code class="language-java">@Configuration  public class RestTemplateConfig {  @ConditionalOnClass(value = RestTemplate.class)  @Bean  public RestTemplate restTemplate() {  RestTemplate restTemplate = new RestTemplate();  //默认使用的jdk的http请求组件 替换成okhttp3  restTemplate.setRequestFactory(new OkHttp3ClientHttpRequestFactory());  //使用自定义的uri处理器，实现参数追加到url的功能  restTemplate.setUriTemplateHandler(new GetUriTemplateHandler());  return restTemplate;  }  }</code></pre> <p>下面再看测试结果：</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230217/ded030a8340bb232c91f17b342ecd8a8.jpg"></p> <p>收到了服务端的正确返回。</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230217/5d6a69ec9fca46e7c6f6bc2e60967a45.jpg"></p> <p>现在还是传递的map,能不能直接传一个JavaBean呢？</p> <p>答案是可以的，通过对RestTemplate进行包装，</p> <p>借助apache-commont包将JavaBean转换成map</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230217/75da9049c001ceb7b0ee9cfb5dea0c56.jpg"></p> <p>注入到Spring容器</p> <pre><code class="language-java">@Bean  public RestTemplateWrapper restTemplateWrapper(RestTemplate restTemplate) {  return new RestTemplateWrapper(restTemplate);  }</code></pre> <p>测试使用bean可以使用可以成功传递参数。</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230217/1247eeccbf06de8253c6c7a05ed6f894.jpg"></p> <p>成功接收服务的响应</p> <pre><code class="language-Go">ok receive message ===&gt; test</code></pre> <p>上面内容就是基于RestTemplate对Get请求参数扩展的处理了，如果有更多的实践方案欢迎一起探讨。</p> <p>&nbsp;</p> </p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-861.htm">python操作HDFS：pyhdfs</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-863.htm">Python笔记，内存管理（2）&#8212;-垃圾回收</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                        <li class="py-2"><a href="/html/category/article-993.htm" title="骨架屏技术讲解以及如何在Vue中实现骨架屏">骨架屏技术讲解以及如何在Vue中实现骨架屏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

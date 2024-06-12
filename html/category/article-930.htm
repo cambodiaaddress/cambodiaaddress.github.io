@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-930.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>测试es from size error，from + size must be less than or equal to: [10000]异常问题 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>测试es from size error，from + size must be less than or equal to: [10000]异常问题</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <h3>测试案例</h3> <p>1，查询第三页每页3334</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":3,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":3334<br /> }</p> <p>2，查询第一页，每页100001</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":1,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":100001<br /> }</p> <p>3，查询第26页，每页200条</p> <p>{<!-- --><br /> &nbsp;&nbsp;&nbsp;&nbsp;"page":26,<br /> &nbsp;&nbsp;&nbsp;&nbsp;"size":200<br /> }</p> <p>以上查询都会报异常。</p> <h3>控制方案</h3> <p>如何控制发生异常，常见如</p> <p>控制每页数量不大于10000，但是如情况1，3还是会发生异常。</p> <p>1，可能会问，es默认最大查询量10000，每页小于10000啊。但是es分页，会首先取到所有数据，再分页</p> <p>总量3*3334和26*200，总量都大于10000，所以异常。</p> <p>2，虽然实际情况每页不会3334这么大，会像第3种，每页会查询200，然后前端对20条数据再次分页，当翻页总量大于200，后台es才会查询下一页。实际的操作也不会翻这么多页（前端分页200/size*26）。但是还是存在异常的可能性。以上两种只是控制</p> <p>每页数据量10000以内，不能避免发生异常的可能性。</p> <p>3，控制查询总量，有没有意义，比如我只限制查询总量5000条或者10000条</p> <p>我觉得没意义，首先比如查询到100万条数据，返回总量肯定100万，你告诉查询5000条或者10000条肯定是错的；其次你也没法保证查询的总量是5000或1万。</p> <p>推荐：使用search_after进行分页，参考：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.csdn.net/console/editor/html/106314361"  rel="nofollow">https://mp.csdn.net/console/editor/html/106314361</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/zzh920625/article/details/84593590"  rel="nofollow">https://blog.csdn.net/zzh920625/article/details/84593590</a></p> <h3>代码如下</h3> <pre><code> @Override   public Rpage&lt;ResShopProductExtensionInfoDataVO&gt; selectList(ReqShopProductExtensionInfoSearchVO req) {     try {       SearchRequest searchRequest = new SearchRequest(EsOperateTables.SHOP_PRODUCT_EXTENSION_INFO.getAlias());       SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();       List&lt;String&gt; fields = Arrays.stream(ResShopProductExtensionInfoVO.class.getDeclaredFields())           /*将类属性名转为es中带下划线的字段名*/           .map(field -&gt; BizStringUtils.humpToLine(field.getName()))           .collect(Collectors.toList());       sourceBuilder.fetchSource(fields.toArray(new String[fields.size()]), null);       BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();       ShopProductExtensionInfoConverter.setSomeCondition(req, sourceBuilder, boolQueryBuilder);       sourceBuilder.size(req.getSize() &gt; 10000 ? 10000 : req.getSize());       sourceBuilder.from((req.getPage() - 1) * req.getSize());       searchRequest.source(sourceBuilder);       log.info("terms查询DSL语句：" + searchRequest.toString());       SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);       long totalHits = 0L;       if (searchResponse != null) {         totalHits = searchResponse.getHits().getTotalHits();       }       long maxCount = new Long(ConstantsUtils.QueryPartams.MAX_RESULT_COUNT).intValue();//100000       long totalCount = totalHits;       totalHits = totalHits &lt;= maxCount ? totalHits : maxCount;       List&lt;Map&lt;String, Object&gt;&gt; mapList = Lists.newArrayListWithCapacity(searchResponse.getHits().getHits().length);//每页200实际查询的量       Arrays.stream(searchResponse.getHits().getHits()).forEach(hit -&gt; mapList.add(hit.getSourceAsMap()));       YhPageBase page = new YhPageBase(mapList, totalHits, req.getSize().longValue(), req.getPage().longValue());       List&lt;ResShopProductExtensionInfoVO&gt; resList = new ArrayList&lt;&gt;();       if (CollectionUtils.isNotEmpty(page.getList())) {         resList = JSONObject.parseArray(JSONObject.toJSONString(page.getList()), ResShopProductExtensionInfoVO.class);       }       Page rpage = new Page();       rpage.setTotalNum((int) totalCount);//总量       rpage.setPageSize(req.getSize());       rpage.setPageNo(req.getPage());       rpage.setResult(adapter(resList, req));//每页实际查询量       return Rpage.success(rpage);     } catch (Exception e) {       log.error("查询出单方式配置es信息出错", e);     }     return Rpage.success(new Page&lt;&gt;());   }</code></pre> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-929.htm">Spring Security核心类详解</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-931.htm">Oracle模糊查询，不区分大小写</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1003.htm" title="Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控">Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1002.htm" title="前端【参考】文字过长显示省略号">前端【参考】文字过长显示省略号</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

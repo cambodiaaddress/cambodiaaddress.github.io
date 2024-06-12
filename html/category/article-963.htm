@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-963.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SpringBoot(39) —— Shiro实现登陆拦截 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>SpringBoot(39) —— Shiro实现登陆拦截</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="1_1" rel="nofollow"></a>1.实现登陆拦截</h2> <ul> <li> <p>实现登陆拦截其实就是使用shiro拦截没有经过认证的用户的请求，当用户在没有认证的情况下就请求资源时，就将其重定向到登陆认证页面，这一点和spring security一样</p> </li> <li> <p>要实现认证+授权，本质上还是在使用过滤器/拦截器，而spring security只是把这些都封装好了，我们直接调用封装之后的方法就可以使用；而Shiro对于过滤器/拦截器的封装没有spring security那么彻底，所以我们需要在刚刚创建的config中的ShiroFilterFactoryBean中配置我们要加上的过滤器/拦截器来实现认证+授权</p> </li> <li> <p>shiro中有如下5种常用过滤器(<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_37840993/article/details/107693337?utm_medium=distribute.pc_relevant.none-task-blog-title-1&amp;spm=1001.2101.3001.4242"  rel="nofollow">shiro常用过滤器</a>)</p> <ul> <li>anon：无需认证即可访问</li> <li>authc：必须认证才能访问</li> <li>user：必须有"记住我"功能才能访问【几乎不用】</li> <li>perms：拥有对某个资源的访问权限才能访问【比如某系资源只有管理员可以访问】</li> <li>role：拥有某个角色才能访问</li> </ul> </li> <li> <p><mark>shiro中过滤器的使用语法：map集合.put(“需要过滤的URL”,“要使用的过滤器”)</mark></p> </li> <li> <p>配置过滤器</p> <pre><code class="prism language-java"><span class="token comment">//这是上一篇博客写好的装配到spring容器中的ShiroFilterFactoryBean</span> <span class="token annotation punctuation">@Bean</span> <span class="token keyword">public</span> ShiroFilterFactoryBean <span class="token function">shiroFilterFactoryBean</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"securityManager"</span><span class="token punctuation">)</span> DefaultWebSecurityManager securityManager<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>     ShiroFilterFactoryBean bean <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ShiroFilterFactoryBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//设置安全管理器</span>     bean<span class="token punctuation">.</span><span class="token function">setSecurityManager</span><span class="token punctuation">(</span>securityManager<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token keyword">return</span> bean<span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> </li> <li> <p>配置我们指定的过滤器需要调用bean.setFilterChainDefinitionMap()，即为设置过滤器链需要向这个方法中传入一个Map集合，我们可以查看这个方法的定义</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setFilterChainDefinitionMap</span><span class="token punctuation">(</span>Map<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span> String<span class="token punctuation">&gt;</span></span> filterChainDefinitionMap<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">this</span><span class="token punctuation">.</span>filterChainDefinitionMap <span class="token operator">=</span> filterChainDefinitionMap<span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> </li> <li> <p>可见确实需要传入一个Map集合，所以在shiroFilterFactoryBean()中定义一个Map集合，将我们要设置的过滤器装入，并传入方法setFilterChainDefinitionMap()中</p> <pre><code class="prism language-java"><span class="token comment">//3、装配realm实例到spring容器中 ShiroFilterFactoryBean,这个实例要关联我们装配到spring容器中的DefaultWebSecurityManager实例，所以它最后写</span> <span class="token annotation punctuation">@Bean</span> <span class="token keyword">public</span> ShiroFilterFactoryBean <span class="token function">shiroFilterFactoryBean</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"securityManager"</span><span class="token punctuation">)</span> DefaultWebSecurityManager securityManager<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>     ShiroFilterFactoryBean bean <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ShiroFilterFactoryBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//设置安全管理器</span>     bean<span class="token punctuation">.</span><span class="token function">setSecurityManager</span><span class="token punctuation">(</span>securityManager<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">/*     * - anon：无需认证即可访问     * - authc：必须认证才能访问     * - user：必须有"记住我"功能才能访问【几乎不用】     * - perms：拥有对某个资源的访问权限才能访问【比如某系资源只有管理员可以访问】     * - role：拥有某个角色才能访问     * */</span>     Map<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span> String<span class="token punctuation">&gt;</span></span> filterMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span> String<span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     filterMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"/user/add"</span><span class="token punctuation">,</span><span class="token string">"authc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     filterMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"/user/update"</span><span class="token punctuation">,</span><span class="token string">"authc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//配置过滤器</span>     bean<span class="token punctuation">.</span><span class="token function">setFilterChainDefinitionMap</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token keyword">return</span> bean<span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> </li> <li> <p>可以发现我们做的事情很简单</p> <ul> <li>定义一个map</li> <li>向map中存值，其中key为需要拦截的请求，value为放行的条件，需要条件什么请求的拦截直接put进去即可</li> <li>将map集合作为参数传入setFilterChainDefinitionMap()</li> </ul> </li> <li> <p>测试<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230112/5f694e2c10a2d27364ccd3a6698d12e9.jpg" alt="SpringBoot(39) —— Shiro实现登陆拦截"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230112/7cdc2f4dd91333315a0a23e0f3a690e2.jpg" alt="SpringBoot(39) —— Shiro实现登陆拦截"><br /> 但是只有第一次点击链接的时候会传递sessionid，后面直接重定向到login.jsp<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230112/22b02528ab6f4376d28ca8ed709ecb7f.jpg" alt="SpringBoot(39) —— Shiro实现登陆拦截"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230112/1c776a21f3aca231813f931c6384a500.jpg" alt="SpringBoot(39) —— Shiro实现登陆拦截"></p> </li> <li> <p>由于shiro没有自带一个登陆页面可以给我们测试，所以我们需要自己写一个登陆页面</p> <pre><code class="prism language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>th</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.thymeleaf.org<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>登陆<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>用户名：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>密<span class="token entity" title="&nbsp;">&amp;nbsp;</span>码：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span> </code></pre> </li> <li> <p>为这个登陆页写上controller视图跳转方法</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"toLogin"</span><span class="token punctuation">)</span> <span class="token keyword">public</span> String <span class="token function">loginPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>     <span class="token keyword">return</span> <span class="token string">"login"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> </li> <li> <p>设置拦截未登录的用户之后自动跳转登录页，刚刚确实是自动跳转了login.jsp，但是我们现在不使用jsp了，所以我们需要指定自动跳转我们刚刚创建的登陆页面；直接在我们创建的ShiroConfig中的shiroFilterFactoryBean()中添加一条ShiroFilterFactoryBean对象的配置</p> <pre><code class="prism language-java"> ShiroFilterFactoryBean bean <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ShiroFilterFactoryBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//设置安全管理器</span>  bean<span class="token punctuation">.</span><span class="token function">setSecurityManager</span><span class="token punctuation">(</span>securityManager<span class="token punctuation">)</span><span class="token punctuation">;</span>  bean<span class="token punctuation">.</span><span class="token function">setLoginUrl</span><span class="token punctuation">(</span><span class="token string">"/toLogin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> </li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230112/d5813072a0e516bc632e952b74c3a1f1.jpg" alt="SpringBoot(39) —— Shiro实现登陆拦截"></p> <hr/> <h2><a id="_100" rel="nofollow"></a></h2> <ul> <li>注意：上面只是实现了登陆拦截，form表单的提交地址还没有填写，在写一篇博客中实现</li> <li>再来就是为什么我们没有创建登陆页面的时候，被拦截之后会被重定向到"/login.jsp"呢？看ShiroFilterFactoryBean源码即可了解</li> <li>这个类有一个方法叫applyLoginUrlIfNecessary()，源码如下 <pre><code class="prism language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">applyLoginUrlIfNecessary</span><span class="token punctuation">(</span>Filter filter<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     String loginUrl <span class="token operator">=</span> <span class="token function">getLoginUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token keyword">if</span> <span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">hasText</span><span class="token punctuation">(</span>loginUrl<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>filter <span class="token keyword">instanceof</span> <span class="token class-name">AccessControlFilter</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         AccessControlFilter acFilter <span class="token operator">=</span> <span class="token punctuation">(</span>AccessControlFilter<span class="token punctuation">)</span> filter<span class="token punctuation">;</span>         <span class="token comment">//only apply the login url if they haven't explicitly configured one already:</span>         <span class="token comment">//仅在尚未显式配置登录url的情况下应用登录url</span>         String existingLoginUrl <span class="token operator">=</span> acFilter<span class="token punctuation">.</span><span class="token function">getLoginUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">if</span> <span class="token punctuation">(</span>AccessControlFilter<span class="token punctuation">.</span>DEFAULT_LOGIN_URL<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>existingLoginUrl<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             acFilter<span class="token punctuation">.</span><span class="token function">setLoginUrl</span><span class="token punctuation">(</span>loginUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> </li> <li>从设置方法我们可以发现，当我们没有显式的配置一个登陆页面的url的时候，它就会将登陆页面的url默认的设置为AccessControlFilter.DEFAULT_LOGIN_URL，我们可以去看看这个常量的值 <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String DEFAULT_LOGIN_URL <span class="token operator">=</span> <span class="token string">"/login.jsp"</span><span class="token punctuation">;</span> </code></pre> </li> <li>可见，默认设置的登陆页面URL就是"/login.jsp"，所以我们没有显式的配置登陆页面的url的时候会被重定向到"/login.jsp"</li> </ul> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-962.htm">nginx+tomcat负载均衡集群</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-964.htm">Java 方法的重载与参数传递详解_java</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
+                        <li class="py-2"><a href="/html/category/article-1034.htm" title="java.sql.ResultSet">java.sql.ResultSet</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

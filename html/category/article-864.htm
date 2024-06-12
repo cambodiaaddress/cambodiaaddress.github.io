@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-864.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>C语言中的零长度数组使用说明 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>C语言中的零长度数组使用说明</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views">                     C语言中的零长度数组用法详解<br /> <br /> &nbsp;&nbsp;&nbsp; 在C语言中允许在结构体和联合体中定义零长度的数组，写法可以是以下两种：<br /> <br /> char p[]或者char p[0]，这个数组定义在结构体或者联合体中，不占用空间大小。<br /> <br /> 这是个广泛使用的常见技巧，常用来构成缓冲区。比起指针，用空数组有这样的优势： &nbsp;<br /> <br /> 1.不需要初始化，数组名直接就是所在的偏移； &nbsp;<br /> <br /> 2.不占任何空间，指针需要占用int长度空间，空数组不占任何空间。 &nbsp;<br /> <br /> &nbsp;&nbsp;&nbsp;&nbsp; “这个数组不占用任何内存”，意味着这样的结构节省空间；“该数组的内存地址就和他后面的元素的地址相同”，意味着无需初始化，数组名就是后面元素的地址，直接就能当做指针使用。<br /> <br /> 这样的写法最适合制作动态buffer。因为可以这样分配空间： &nbsp;<br /> <br /> malloc（sizeof(struct&nbsp; XXX）＋&nbsp; buff_len）； &nbsp;<br /> <br /> 看出来好处没有？直接就把buffer的结构体和缓冲区一块分配了。用起来也非常方便，因为现在kongsuzu其实变成了buff_len长度的数组了。 &nbsp;<br /> <br /> 这样的好处有两点： &nbsp;<br /> <br /> &nbsp;&nbsp;&nbsp; 一次分配解决问题，省了不少麻烦。大家知道为了防止内存泄漏，如果是分两次分配（结构体和缓冲区），那么要是第二次malloc失败了，必须回滚释放第一个分配的结构体。这样带来了编码麻烦。其次，分配了第二个缓冲区以后，如果结构里面用的是指针，还要为这个指针赋值。同样，在free这个buffer的时候，用指针也要两次free。如果用空数组，所有问题一次解决。<br /> <br /> &nbsp;&nbsp;&nbsp; 其次，大家知道小内存的管理是非常困难的，如果用指针，这个malloc分配出来的空间中的struct部分就是小内存了，在系统内存在多了势必严重影响内存管理的性能。要是用空数组把struct和实际数据缓冲区一次分配大块问题，就没有这个问题。 &nbsp;</p> <p> 即使零长度数组的优点如此之多，但是使用的时候也是要倍加小心：<br /> <br /> 1.零长度数组不是所有的c标准都支持，gnu c支持，ANSI C不支持，C++不支持。<br /> <br /> 2.如果某种情况下出现了这个结构体中只有零长度数组一个元素，这个可能会就会导致错误降临。<br /> <br /> 3.零长度数组需要放于结构体的结尾处。                 </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-863.htm">Python笔记，内存管理（2）&#8212;-垃圾回收</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-865.htm">支持向量机之线性可分向量机_在线工具</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1000.htm" title="@RequestBody接受参数报415错误">@RequestBody接受参数报415错误</a></li>
+                        <li class="py-2"><a href="/html/category/article-996.htm" title="js穿梭框；将两个table中的数据选中移动">js穿梭框；将两个table中的数据选中移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

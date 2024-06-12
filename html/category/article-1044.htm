@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1044.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>C ++程序，实现布斯的乘法算法来对两个有符号数相乘 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>C ++程序，实现布斯的乘法算法来对两个有符号数相乘</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<p>Booth的算法是一种乘法算法，将两个有符号的二进制数乘以2的恭维表示法。Booth使用的台式计算器在转换时比添加时要快，并创建了算法来提高速度。</p> <h2>算法</h2> <pre>Begin &nbsp;&nbsp;&nbsp;Put&nbsp;multiplicand&nbsp;in&nbsp;BR&nbsp;and&nbsp;multiplier&nbsp;in&nbsp;QR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;then&nbsp;the&nbsp;algorithm&nbsp;works&nbsp;as&nbsp;per&nbsp;the&nbsp;following&nbsp;conditions: &nbsp;&nbsp;&nbsp;1.&nbsp;If&nbsp;Qn&nbsp;and&nbsp;Qn+1&nbsp;are&nbsp;same&nbsp;i.e.&nbsp;00&nbsp;or&nbsp;11&nbsp;perform&nbsp;arithmetic&nbsp;shift&nbsp;by&nbsp;1&nbsp;bit. &nbsp;&nbsp;&nbsp;2.&nbsp;If&nbsp;Qn&nbsp;Qn+1&nbsp;=&nbsp;10&nbsp;do&nbsp;A=&nbsp;A&nbsp;+&nbsp;BR&nbsp;and&nbsp;perform&nbsp;arithmetic&nbsp;shift&nbsp;by&nbsp;1&nbsp;bit. &nbsp;&nbsp;&nbsp;3.&nbsp;If&nbsp;Qn&nbsp;Qn+1&nbsp;=&nbsp;01&nbsp;do&nbsp;A=&nbsp;A&nbsp;–&nbsp;BR&nbsp;and&nbsp;perform&nbsp;arithmetic&nbsp;shift&nbsp;by&nbsp;1&nbsp;bit. End</pre> <h2>范例程式码</h2> <pre>#include&lt;iostream&gt; using&nbsp;namespace&nbsp;std; void&nbsp;add(int&nbsp;a[],&nbsp;int&nbsp;x[],&nbsp;int&nbsp;q); void&nbsp;complement(int&nbsp;a[],&nbsp;int&nbsp;n)&nbsp;{ &nbsp;&nbsp;&nbsp;int&nbsp;i; &nbsp;&nbsp;&nbsp;int&nbsp;x[8]&nbsp;=&nbsp;{&nbsp;NULL&nbsp;}; &nbsp;&nbsp;&nbsp;x[0]&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;n;&nbsp;i++)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[i]&nbsp;=&nbsp;(a[i]&nbsp;+&nbsp;1)&nbsp;%&nbsp;2; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;add(a,&nbsp;x,&nbsp;n); } void&nbsp;add(int&nbsp;ac[],&nbsp;int&nbsp;x[],&nbsp;int&nbsp;q)&nbsp;{ &nbsp;&nbsp;&nbsp;int&nbsp;i,&nbsp;c&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;q;&nbsp;i++)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ac[i]&nbsp;=&nbsp;ac[i]&nbsp;+&nbsp;x[i]&nbsp;+&nbsp;c; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(ac[i]&nbsp;&gt;&nbsp;1)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ac[i]&nbsp;=&nbsp;ac[i]&nbsp;%&nbsp;2; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;void&nbsp;ashr(int&nbsp;ac[],&nbsp;int&nbsp;qr[],&nbsp;int&nbsp;&amp;qn,&nbsp;int&nbsp;q)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;temp,&nbsp;i; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp&nbsp;=&nbsp;ac[0]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qn&nbsp;=&nbsp;qr[0]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\tashr\t\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;q&nbsp;-&nbsp;1;&nbsp;i++)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ac[i]&nbsp;=&nbsp;ac[i&nbsp;+&nbsp;1]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qr[i]&nbsp;=&nbsp;qr[i&nbsp;+&nbsp;1]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qr[q&nbsp;-&nbsp;1]&nbsp;=&nbsp;temp; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;void&nbsp;display(int&nbsp;ac[],&nbsp;int&nbsp;qr[],&nbsp;int&nbsp;qrn)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;i; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;ac[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"&nbsp;"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;qr[i]; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;int&nbsp;main(int&nbsp;argc,&nbsp;char&nbsp;**argv)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;mt[10],&nbsp;br[10],&nbsp;qr[10],&nbsp;sc,&nbsp;ac[10]&nbsp;=&nbsp;{&nbsp;0&nbsp;}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;brn,&nbsp;qrn,&nbsp;i,&nbsp;qn,&nbsp;temp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\n--Enter&nbsp;the&nbsp;multiplicand&nbsp;and&nbsp;multipier&nbsp;in&nbsp;signed&nbsp;2's &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;complement&nbsp;form&nbsp;if&nbsp;negative--"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\n&nbsp;Number&nbsp;of&nbsp;multiplicand&nbsp;bit="; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cin&nbsp;&gt;&gt;&nbsp;brn; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\nmultiplicand="; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;brn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cin&nbsp;&gt;&gt;&nbsp;br[i];&nbsp;//multiplicand &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;brn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mt[i]&nbsp;=&nbsp;br[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;complement(mt,&nbsp;brn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\nNo.&nbsp;of&nbsp;multiplier&nbsp;bit="; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cin&nbsp;&gt;&gt;&nbsp;qrn; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sc&nbsp;=&nbsp;qrn; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"Multiplier="; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cin&nbsp;&gt;&gt;&nbsp;qr[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qn&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"qn\tq[n+1]\t\tBR\t\tAC\tQR\t\tsc\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\t\tinitial\t\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display(ac,&nbsp;qr,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\t"&nbsp;&lt;&lt;&nbsp;sc&nbsp;&lt;&lt;&nbsp;"\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(sc&nbsp;!=&nbsp;0)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;qr[0]&nbsp;&lt;&lt;&nbsp;"\t"&nbsp;&lt;&lt;&nbsp;qn; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;((qn&nbsp;+&nbsp;qr[0])&nbsp;==&nbsp;1)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(temp&nbsp;==&nbsp;0)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add(ac,&nbsp;mt,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\tsubtracting&nbsp;BR\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;ac[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if&nbsp;(temp&nbsp;==&nbsp;1)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add(ac,&nbsp;br,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\tadding&nbsp;BR\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;ac[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\n\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ashr(ac,&nbsp;qr,&nbsp;qn,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if&nbsp;(qn&nbsp;-&nbsp;qr[0]&nbsp;==&nbsp;0) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ashr(ac,&nbsp;qr,&nbsp;qn,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display(ac,&nbsp;qr,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sc--; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t"&nbsp;&lt;&lt;&nbsp;sc&nbsp;&lt;&lt;&nbsp;"\n"; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"Result="; &nbsp;&nbsp;&nbsp;display(ac,&nbsp;qr,&nbsp;qrn); }</pre> <p>输出结果</p> <pre>--Enter&nbsp;the&nbsp;multiplicand&nbsp;and&nbsp;multipier&nbsp;in&nbsp;signed&nbsp;2's&nbsp;complement&nbsp;form&nbsp;if negative-- Number&nbsp;of&nbsp;multiplicand&nbsp;bit=5 multiplicand=0&nbsp;1&nbsp;1&nbsp;1&nbsp;1 No.&nbsp;of&nbsp;multiplier&nbsp;bit=5 Multiplier=1&nbsp;0&nbsp;1&nbsp;1&nbsp;1 qn&nbsp;q[n+1]&nbsp;BR&nbsp;AC&nbsp;QR&nbsp;sc initial&nbsp;00000&nbsp;10111&nbsp;5 1&nbsp;0&nbsp;subtracting&nbsp;BR&nbsp;10001 ashr&nbsp;11000&nbsp;11011&nbsp;4 1&nbsp;1&nbsp;ashr&nbsp;11100&nbsp;01101&nbsp;3 1&nbsp;1&nbsp;ashr&nbsp;11110&nbsp;00110&nbsp;2 0&nbsp;1&nbsp;adding&nbsp;BR&nbsp;01101 ashr&nbsp;00110&nbsp;10011&nbsp;1 1&nbsp;0&nbsp;subtracting&nbsp;BR&nbsp;10111 ashr&nbsp;11011&nbsp;11001&nbsp;0 Result=11011&nbsp;11001</pre> <div></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1043.htm">springsecurity 中 核心过滤器和请求</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1045.htm">Spring中@Scheduled功能的使用方法详解_java</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1012.htm" title="【ASP.NET Core】自己编程来生成自签名的服务器证书">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-993.htm" title="骨架屏技术讲解以及如何在Vue中实现骨架屏">骨架屏技术讲解以及如何在Vue中实现骨架屏</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

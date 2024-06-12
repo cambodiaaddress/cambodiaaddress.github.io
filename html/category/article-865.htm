@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-865.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>支持向量机之线性可分向量机_在线工具 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>支持向量机之线性可分向量机_在线工具</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<p>一、支持向量机简介</p> <p>支持向量机（support vector machines，SVM）是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。当训练数据线性可分时，通过硬间隔最大化（hard margin maximization），学习一个线性的分类器，即线性可分支持向量机，又称为硬间隔支持向量机；当训练数据近似线性可分时，通过软间隔最大化（soft margin maximization），也学习一个线性的分类器，即线性支持向量机，又称为软间隔支持向量机；当训练数据线性不可分时，通过使用核技巧（kernel trick）及软间隔最大化，学习非线性支持向量机。</p> <p>二、函数间隔和集合间隔</p> <p>支持向量机通过样本距离超平面的距离来衡量预测的确定性或者准确性；例如下边的图中，A点预测的确信度相对B和C更大；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/cfb987b180211d6d5890b69a8d8d247f.jpg" alt="支持向量机之线性可分向量机_在线工具"></p> <p>我们设最终确定的分离超平面为</p> </p> <div class="math display">\[wx+b = 0<br /> \]</div> </p> <p>我们设 <span class="math inline">\(y = 1\)</span> 表示正类， $ y = -1 $ 表示负类，相应的分类决策函数为</p> </p> <div class="math display">\[f(x)=\operatorname{sign}\left(w^{*} \cdot x+b^{*}\right)<br /> \]</div> </p> <p>则样本点 $(x_{i}, y_{i}) $ 到分割超平面的距离称为函数距离</p> </p> <div class="math display">\[\hat{\gamma}_{i}=y_{i}\left(w \cdot x_{i}+b\right)<br /> \]</div> </p> <p>则训练集关于超平面的函数间隔为所有样本点中函数间隔最小的值</p> </p> <div class="math display">\[\hat{\gamma}=\min _{i=1, \cdots, N} \hat{\gamma}_{i}<br /> \]</div> </p> <p>虽然函数间隔可以表征分类预测的正确性和确认度，但是由于同一个超平面存在不同的参数组合，导致函数距离不唯一，所以我们需要对超平面的法向量进行归一化，从而得到几何间隔</p> </p> <div class="math display">\[\gamma_{i}=y_{i}\left(\frac{w}{\|w\|} \cdot x_{i}+\frac{b}{\|w\|}\right)<br /> \]</div> </p> <p>同样训练集关于超平面的几何间隔为所有样本点中几何间隔最小的值</p> </p> <div class="math display">\[\gamma=\min _{i=1, \cdots, N} \gamma_{i}<br /> \]</div> </p> <p>三、几何间隔最大化</p> <p>对训练数据集找到几何间隔最大的超平面意味着以充分大的确信度对训练数据进行分类。也就是说，不仅将正负实例点分开，而且对最难分的实例点（离超平面最近的点）也有足够大的确信度将它们分开。这样的超平面应该对未知的新实例有很好的分类预测能力。</p> <p>几何间隔最大化，即我们希望最大化超平面 $ (w, b) $ 关于训练数据集的几何间隔 $ \gamma $ ，约束条件表示的是超平面$ (w, b) <span class="math inline">\(关于每个训练样本点的几何间隔至少是\)</span> \gamma $</p> </p> <div class="math display">\[\begin{array}{ll}<br /> \max _{w, b} &amp; \gamma \\<br /> \text { s.t. } &amp; y_{i}\left(\frac{w}{\|w\|} \cdot x_{i}+\frac{b}{\|w\|}\right) \geqslant \gamma, \quad i=1,2, \cdots, N<br /> \end{array}<br /> \]</div> </p> <p>使用函数距离替换集合距离</p> </p> <div class="math display">\[\begin{array}{ll}<br /> \max _{w, b} &amp; \frac{\hat{\gamma}}{\|w\|} \\<br /> \text { s.t. } &amp; y_{i}\left(w \cdot x_{i}+b\right) \geqslant \hat{\gamma}, \quad i=1,2, \cdots, N<br /> \end{array}<br /> \]</div> </p> <p>由于超平面的两个参数可以成比例的随意变化，导致函数距离可以取任何值，但是最终结果并不影响约束条件和目标函数，故我们直接取 <span class="math inline">\(\hat{\gamma} = 1\)</span>，同时将最大化改为最小化，则最优化问题变为</p> </p> <div class="math display">\[\begin{array}{ll}<br /> \min _{w, b} &amp; \frac{1}{2}\|w\|^{2} \\<br /> \text { s.t. } &amp; y_{i}\left(w \cdot x_{i}+b\right)-1 \geqslant 0, \quad i=1,2, \cdots, N<br /> \end{array}<br /> \]</div> </p> <p>如果我们计算得到这个最优化问题的解 $ w<sup>*,b</sup>* $,那么我们就得到了分离超平面和分类决策函数；</p> <p>四、支持向量</p> <p>在线性可分情况下，训练数据集的样本点中与分离超平面距离最近的样本点的实例称为支持向量（support vector）。在决定分离超平面时只有支持向量起作用，而其他实例点并不起作用。如果移动支持向量将改变所求的解；但是如果在间隔边界以外移动其他实例点，甚至去掉这些点，则解是不会改变的。由于支持向量在确定分离超平面中起着决定性作用，所以将这种分类模型称为支持向量机。支持向量的个数一般很少，所以支持向量机由很少的“重要的”训练样本确定。</p> <p>五、通过对偶算法求解最大化间隔</p> <p>为了求解线性可分支持向量机的最优化问题，将它作为原始最优化问题，应用拉格朗日对偶性原始问题的最优解，这就是线性可分支持向量机的对偶算法（dual algorithm）。</p> <p>通过引入拉格朗日乘子构建拉格朗日函数</p> </p> <div class="math display">\[L(w, b, \alpha)=\frac{1}{2}\|w\|^{2}-\sum_{i=1}^{N} \alpha_{i} y_{i}\left(w \cdot x_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i}<br /> \]</div> </p> <p>根据拉格朗日对偶性，原始问题的对偶问题是极大极小问题</p> </p> <div class="math display">\[\max _{\alpha} \min _{w, b} L(w, b, \alpha)<br /> \]</div> </p> <p>分别对两个参数计算偏导计算极小值</p> </p> <div class="math display">\[\begin{array}{l}<br /> \nabla_{w} L(w, b, \alpha)=w-\sum_{i=1}^{N} \alpha_{i} y_{i} x_{i}=0 \\<br /> \nabla_{b} L(w, b, \alpha)=-\sum_{i=1}^{N} \alpha_{i} y_{i}=0<br /> \end{array}<br /> \]</div> </p> <p>计算得到</p> </p> <div class="math display">\[\begin{array}{l}<br /> w=\sum_{i=1}^{N} \alpha_{i} y_{i} x_{i} \\<br /> \sum_{i=1}^{N} \alpha_{i} y_{i}=0<br /> \end{array}<br /> \]</div> </p> <p>将其带入上边构建的拉格朗日函数</p> </p> <div class="math display">\[\begin{aligned}<br /> L(w, b, \alpha) &amp;=\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j}\left(x_{i} \cdot x_{j}\right)-\sum_{i=1}^{N} \alpha_{i} y_{i}\left(\left(\sum_{j=1}^{N} \alpha_{j} y_{j} x_{j}\right) \cdot x_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i} \\<br /> &amp;=-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j}\left(x_{i} \cdot x_{j}\right)+\sum_{i=1}^{N} \alpha_{i}<br /> \end{aligned}<br /> \]</div> </p> <p>接下来计算最大值部分</p> </p> <div class="math display">\[\begin{array}{ll}<br /> \max _{\alpha} &amp; -\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j}\left(x_{i} \cdot x_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \\<br /> \text { s.t. } &amp; \sum_{i=1}^{N} \alpha_{i} y_{i}=0 \\<br /> &amp; \alpha_{i} \geqslant 0, \quad i=1,2, \cdots, N<br /> \end{array}<br /> \]</div> </p> <p>转化为等效的计算极小问题</p> </p> <div class="math display">\[\begin{array}{ll}<br /> \min _{\alpha} &amp; \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j}\left(x_{i} \cdot x_{j}\right)-\sum_{i=1}^{N} \alpha_{i} \\<br /> \text { s.t. } \quad \sum_{i=1} \alpha_{i} y_{i}=0 \\<br /> \alpha_{i} \geqslant 0, \quad i=1,2, \cdots, N<br /> \end{array}<br /> \]</div> </p> <p>对线性可分训练数据集，假设对偶最优化问题对α的解为</p> </p> <div class="math display">\[\alpha^{*}=\left(\alpha_{1}^{*}, \alpha_{2}^{*}, \cdots, \alpha_{l}^{*}\right)^{\mathrm{T}}<br /> \]</div> </p> <p>则存在下标j，使得 $ \alpha_{j}^{<em>}&gt;0 $ ，并可按下式求得原始最优化问题的解 $ w^{</em>}, b^{*} $</p> </p> <div class="math display">\[\begin{array}{l}<br /> w^{*}=\sum_{i=1}^{N} \alpha_{i}^{*} y_{i} x_{i} \\<br /> b^{*}=y_{j}-\sum_{i=1}^{N} \alpha_{i}^{*} y_{i}\left(x_{i} \cdot x_{j}\right)<br /> \end{array}<br /> \]</div> </p> <p>由此可得分离超平面</p> </p> <div class="math display">\[\sum_{i=1}^{N} \alpha_{i}^{*} y_{i}\left(x \cdot x_{i}\right)+b^{*}=0<br /> \]</div> </p> <p>可得分类决策函数</p> </p> <div class="math display">\[f(x)=\operatorname{sign}\left(\sum_{i=1}^{N} \alpha_{i}^{*} y_{i}\left(x \cdot x_{i}\right)+b^{*}\right)<br /> \]</div> </p> <p>可以看到线性可分支持向量机的对偶形式只依赖于输入x和训练样本输入的内积。通过上边$ w^{<em>}, b^{</em>} <span class="math inline">\(的表达式，可以看到两个参数只依赖\)</span> \alpha_{j}^{*}&gt;0 $ 对应的训练样本点，这些样本点就是支持向量；</p> <p>六、算法示例</p> <pre><code>from sklearn.datasets import load_iris from sklearn.svm import LinearSVC from sklearn.pipeline import Pipeline from sklearn.preprocessing import StandardScaler  x, y = load_iris(return_X_y= True) svc = Pipeline([     ('scaler',StandardScaler()),     ('linear_svc', LinearSVC(C=float('inf'), loss='hinge')) ]) svc = svc.fit(x, y) print(svc.predict(x)) print(svc.score(x, y))  # [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 #  0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 #  1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 #  2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 #  2 2] # 0.9866666666666667 </code></pre> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-864.htm">C语言中的零长度数组使用说明</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-866.htm">SpringBoot AutoConfiguration</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1031.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-998.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                        <li class="py-2"><a href="/html/category/article-1012.htm" title="【ASP.NET Core】自己编程来生成自签名的服务器证书">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

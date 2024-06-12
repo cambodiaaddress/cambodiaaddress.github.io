@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-957.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>计算机网络 | TCP 连接的建立 和 TCP 连接的断开 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>计算机网络 | TCP 连接的建立 和 TCP 连接的断开</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h1 id="tcp-连接的建立过程">TCP 连接的建立过程</h1> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/61fb42dff46b1f2161d659f80837fbfa.jpg" alt="计算机网络 | TCP 连接的建立 和 TCP 连接的断开"></p> <p>一开始，客户端和服务端都处于 close 状态。</p> <p>先是服务端监听某个端口，此时服务端处于 listen 状态。</p> <p>这个时候客户端就可以发送连接请求报文了。</p> <hr/> <p><strong>第一次握手</strong></p> <p>客户端会主动发送连接请求报文，随机初始化序列号为 x，并把 SYN 标志位设置为 1，表示 SYN 报文。</p> <p>客户端发送 SYN 报文后，客户端进入 syn_sent 状态。</p> <hr/> <p><strong>第二次握手</strong></p> <p>服务端收到 SYN 报文后，服务端会发送 SYN-ACK 报文，用于「对客户端发送的 SYN 报文进行应答」和「服务端被动请求建立连接」。</p> <p>服务端会随机初始化序列号为 y，确认序列号设置为 x + 1，并把 SYN 标志位、ACK 标志位设置为 1。</p> <p>服务端发送 SYN-ACK 报文后，服务端进入 syn_receive 状态。</p> <hr/> <p><strong>第三次握手</strong></p> <p>客户端收到 SYN-ACK 报文后，客户端会发送 ACK 报文，用于对服务端发送的报文进行应答。</p> <p>客户端会将序列号设置为 x + 1，确认序列号设置为 y + 1，ACK 标志位设置为 1。</p> <p>客户端发送 ACK 报文后，客户端处于 established 状态。</p> <p>当服务端收到 ACK 报文后，服务端进入 established 状态。</p> <hr/> <p>此时 TCP 连接就建立完成了，客户端和服务端就可以相互发送数据了。</p> <h1 id="tcp-连接的断开过程">TCP 连接的断开过程</h1> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/c155cb7da8885c84589271b978ff8ca7.jpg" alt="计算机网络 | TCP 连接的建立 和 TCP 连接的断开"></p> <p>双方都可以主动请求断开连接，断开连接后，主机中的资源将被释放。</p> <p>一开始，客户端和服务端都处于 established 状态。</p> <hr/> <p><strong>第一次挥手</strong></p> <p>如果客户端打算断开连接，那么客户端会发送一个 FIN 标志位为 1 的报文，即 FIN 报文。</p> <p>客户端发送 FIN 报文后，客户端进入 finish_wait_1 状态。</p> <hr/> <p><strong>第二次挥手</strong></p> <p>服务端收到 FIN 报文后，服务端会发送 ACK 应答报文，用于对客户端发送的 FIN 报文进行应答。</p> <p>服务端发送 ACK 应答报文后，服务端进入 close_wait 状态。</p> <p>客户端收到 ACK 应答报文后，客户端进入 finish_wait_2 状态。</p> <hr/> <p><strong>第三次挥手</strong></p> <p>等待服务端处理完数据，服务端被动请求断开连接。</p> <p>服务端发送 FIN 报文后，服务端进入 last_ack 状态。</p> <hr/> <p><strong>第四次挥手</strong></p> <p>客户端收到 FIN 报文后，客户端会发送 ACK 应答报文，用于对服务端发送的 FIN 报文进行应答。</p> <p>客户端发送 ACK 报文后，客户端进入 time_wait 状态。</p> <p>当服务端收到 ACK 报文后，服务端进入 close 状态，至此服务端已经完成连接的关闭。</p> <p>客户端在经过 2MSL 时间后，自动进入 close 状态，至此客户端也完成了连接的关闭。</p> <blockquote> <p>MSL 是 Maximum Segment Lifetime 英文的缩写，中文可以译为“报文最大生存时间”。</p> </blockquote> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-956.htm">vue中巧用三元表达式解析_vue.js</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-958.htm">解决antdv的table因数据量过大导致的卡顿问题</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1012.htm" title="【ASP.NET Core】自己编程来生成自签名的服务器证书">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

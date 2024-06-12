@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-920.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>python实现基于smtp发送邮件_在线工具 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>python实现基于smtp发送邮件_在线工具</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h2 id="前言">【前言】</h2> <blockquote> <p>在某些项目中，我们需要实现发送邮件的功能，比如：</p> <ol> <li>爬虫结束后，发送邮件通知</li> <li>定时发送邮件提醒待办事项</li> <li>某项业务逻辑触发邮件通知</li> </ol> </blockquote> <p>今天我们就分享如何基于smtp借助163邮箱来发送邮件</p> <h2 id="实现过程">【实现过程】</h2> <h4 id="163邮箱配置">163邮箱配置</h4> <p>首先登录163邮箱进行配置（没有请先注册）：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://email.163.com/"  target="_blank" rel="nofollow">https://email.163.com/</a></p> <p>配置SMTP服务开启（需要发送短信验证码进行开通）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/964fa3aa4b29cdd00e25de2cf0c74c32.jpg" alt="python实现基于smtp发送邮件_在线工具"></p> <h4 id="开始编写脚本">开始编写脚本</h4> <p>新建python脚本 email_163.py<br /> 添加 smtp 模块</p> <pre><code class="language-python">import smtplib from email.mime.text import MIMEText</code></pre> <h4 id="编写代码实现">编写代码实现</h4> <pre><code class="language-python">from datetime import datetime import smtplib from email.mime.text import MIMEText from config import settings as st  def send_mail_plain(receivers, subject, content):     #163邮箱服务器地址     mail_host = 'smtp.163.com'     #163用户名     mail_user = st.mail_user_163     #密码(部分邮箱为授权码)     mail_pass = st.mail_password_163     #邮件发送方邮箱地址     sender = st.mail_sender_163     #邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发     receivers = receivers     #邮件内容设置     message = MIMEText(content, 'plain', 'utf-8')     #邮件主题     message['Subject'] = subject     #发送方信息     message['From'] = sender     #接收方信息     message['To'] = receivers[0]      #登录并发送邮件     smtpObj = smtplib.SMTP()     #连接到服务器     smtpObj.connect(mail_host, 25)     #登录到服务器     smtpObj.login(mail_user, mail_pass)     #发送     smtpObj.sendmail(sender, receivers, message.as_string())     #退出     smtpObj.quit()   if __name__ == '__main__':     receivers = ['xxxxx@qq.com']     subject = 'SevenTiny通知'     content = f'这是邮件主体内容！发送时间:{datetime.now()}'     send_mail_plain(receivers, subject, content)     print('Sent successfully!')</code></pre> <p>说明：</p> <blockquote> <p>我这里采用了配置文件的方式填充账号密码，这样可以避免在项目中硬编码造成泄露风险<br /> 如果需要了解配置文件的使用方式，请参考：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/7tiny/p/16211724.html"  target="_blank" rel="nofollow">https://www.cnblogs.com/7tiny/p/16211724.html</a></p> </blockquote> <p>我们需要配置如下几个关键参数：</p> <ul> <li>163用户名<br /> mail_user = "xxxxx@163.com"</li> <li>密码(部分邮箱为授权码)<br /> mail_pass = "开通smtp服务时，163邮箱设置弹出的授权码（只会弹出一次，如果忘记重新配置）"</li> <li>邮件发送方邮箱地址<br /> sender = "xxxxx@163.com"</li> </ul> <p>然后填写接收邮箱，主题，内容即可（这部分参考代码参数传递即可，非常简单）</p> <h2 id="测试">【测试】</h2> <p>我们运行脚本，可以看到收到发送成功的日志</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/d5e65f3c797130531d36db039550c21a.jpg" alt="python实现基于smtp发送邮件_在线工具"></p> <p>我们打开163邮箱查看已发送邮箱，可以已发送邮箱中有我们刚才发送的邮件</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a0745a9e705412864205fd7bc52969a4.jpg" alt="python实现基于smtp发送邮件_在线工具"></p> <p>打开接收方qq邮箱（也可以是其他邮箱）查看是否正确收到邮件</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b828be745a205012d6ec531962e72906.jpg" alt="python实现基于smtp发送邮件_在线工具"></p> <p>可以看到我们已经正确收到了刚才发送的邮件！</p> <h2 id="总结">【总结】</h2> <p>我们已经通过 python smtp 模块借助163邮箱实现简单的邮件发送，如果是自建邮箱服务器，需要自行将163邮箱服务器地址替换成自己邮箱服务器地址：mail_host = 'smtp.163.com'</p> <p>注意：<strong>163服务器作为发送方，每天有50封邮件上限！</strong> 如果超出数量会发送失败。</p> <h2 id="源码地址">【源码地址】</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/sevenTiny/CodeArts/blob/master/Python/Mail/email_163.py"  target="_blank" rel="nofollow">https://github.com/sevenTiny/CodeArts/blob/master/Python/Mail/email_163.py</a></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-919.htm">微信小程序，自定义导航栏组件</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-921.htm">MM32F0140 UART1硬件自动波特率校准功能的使用</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-996.htm" title="js穿梭框；将两个table中的数据选中移动">js穿梭框；将两个table中的数据选中移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                        <li class="py-2"><a href="/html/category/article-1030.htm" title="vue-element-admin模板，点击跳转到另一个页面传参">vue-element-admin模板，点击跳转到另一个页面传参</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-993.htm" title="骨架屏技术讲解以及如何在Vue中实现骨架屏">骨架屏技术讲解以及如何在Vue中实现骨架屏</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1019.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>网络层-IP地址详解&amp;Linux配置IP地址（centos7） - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>网络层-IP地址详解&amp;Linux配置IP地址（centos7）</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <h1>IP地址的分类</h1> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20221117/c9dabc204f497f8105b61f23442d27a2.jpg"></p> <h1>子网掩码</h1> <p><strong>网络号全部为1，主机号全部为0就是子网掩码</strong></p> <h2>例如</h2> <pre><code>IP：10.10.10.10  二进制： 00001010.00001010.00001010.00001010 子网掩码：11111111.00000000.00000000.00000000	转二进制：255.0.0.0</code></pre> <h1>&nbsp;IP地址的结构</h1> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20221117/b4faa73e73ac311b3d281edf1b72a5fd.jpg"></p> <h1>网络号的计算 -- 判断是否能通信，网络号相同才能通信</h1> <p>&nbsp;要判断俩IP能否通信，首先要检查他们俩是否在同一个网络里面，也就是说网络号必须一致，如何判断他们俩的网络号是否一致？</p> <p><strong>用IP地址和自己的子网掩码做位与运算，运算结果就是此IP的网络号</strong></p> <pre><code>            PC1										PC2 192.168.20.20/255.255.255.0              192.168.20.30/255.255.255  PC1:     IP：    11000000.10101000.00010100.00010100     MASK：  11111111.11111111.11111111.00000000    ---------------------------------------------             11000000.10101000.00010100.00000000             转换为十进制     网络号        192.168.20.0           PC2：       再计算PC2的网络号     IP：  11000000.10101000.00010100.00011110     MASK：11111111.11111111.11111111.00000000     -----------------------------------------           11000000.10101000.00010100.00000000           转换为十进制     网络号：      192.168.20.0                ----------------------------------------------------------- 因为两个IP地址的网络号相同，所以能通信</code></pre> <h1>二进制位的对应数</h1> <p><img fetchpriority="high" decoding="async" alt="" height="150" src="http://img.555519.xyz/uploads/20221117/70d57b4e167d7c4a1fe61a27504aeafb.jpg"></p> <p><strong>当二级制位为0的时候，对应10进制位也为0</strong></p> <h1>&nbsp;centos静态IP的配置</h1> <pre><code># 查看IP地址的命令 ip add  # 查看网关 ip route  # 网卡的配置文件所在位置 /etc/sysconfig/network-scripts/ # ifcfg-ens33   是网卡配置文件，如果自己添加了一块网卡，默认是没有配置文件的，需要自己手动添加，例如：在下面的图中标记的一个ens36的网卡，就需要添加一个名为ifcfg-ens36的网卡配置文件</code></pre> <p><img decoding="async" alt="" height="498" src="http://img.555519.xyz/uploads/20221117/1b305e84bbf8ad740adeed89f3bba9f0.jpg"></p> <p><img decoding="async" alt="" height="155" src="http://img.555519.xyz/uploads/20221117/4f6d7b2737ea6f70381a7b07812bd5ec.jpg"></p> <p>&nbsp;注：因为我自己添加了一块网卡，默认只有一块网卡，centos7的默认网卡的ens33，配置只对默认网卡（ens33）</p> <h2>编辑ificg-ens33网卡的配置文件</h2> <p>必要的配置选项</p> <pre><code>[root@localhost network-scripts]# cat ifcfg-ens33  BOOTPROTO=none   #设置网卡静态配置ip地址  none 静态配置（手工指定ip，无不指定（r））  dhcp 表示虚拟机动态获得ip地址   static  静态IP NAME=ens33       #网卡的设备名为ens33 DEVICE=ens33     #网卡的设备名为ens33 ONBOOT=yes       #开机自动启用网卡--》自动激活网卡 IPADDR=192.168.237.129   #ip地址 PREFIX=24        #子网掩码 #NETMASK=255.255.255.0  #子网掩码 GATEWAY=192.168.237.2     #网关 DNS1=114.114.114.114   #指定首选DNS服务器，DNS可以有多个</code></pre> <h2>&nbsp;刷新网络</h2> <pre><code>---》centos7：    service  network  restart  ---》centos8:       使用ifup  ens33</code></pre> <p>在此运行<strong>ip add&nbsp; 查看IP地址是否配置成功</strong></p> <p>网络配置文件会影响到的配置文件</p> <pre><code> ifcfg-ens33 文件里的DNS1=114.114.114.114  会修改/etc/resolv.conf文件里的nameserver的配置  ifcfg-ens33 文件决定了/etc/resolv.conf文件里的ip地址</code></pre> <h2>&nbsp;可能会遇到的一个大坑</h2> <p>可能是network和NetworkManager服务同时启动了，导致两个服务冲突，无法启动网卡，关闭到其中的一个服务就可以正常启动网卡</p> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1018.htm">GIT 中如何打标签（git tag）</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1020.htm">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1005.htm" title="集成神经网络的缺点是,各种神经网络的优缺点">集成神经网络的缺点是,各种神经网络的优缺点</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

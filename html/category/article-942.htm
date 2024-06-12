@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-942.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SpringBoot程序预装载数据 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>SpringBoot程序预装载数据</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h1 id="简介">简介</h1> <p>在项目实际的开发过程中，有时候会遇到需要在应用程序启动完毕对外提供服务之前预先将部分数据装载到缓存的需求。本文就总结了常见的数据预装载方式及其实践。</p> <h2 id="适用场景">适用场景</h2> <ul> <li>预装载应用级别数据到缓存：如字典数据、公共的业务数据</li> <li>系统预热</li> <li>心跳检测：如在系统启动完毕访问一个外服务接口等场景</li> </ul> <h2 id="常见方式">常见方式</h2> <ul> <li>ApplicationEvent</li> <li>CommandLineRunner</li> <li>ApplicationRunner</li> </ul> <h1 id="applicationevent">ApplicationEvent</h1> <p>应用程序事件，就是发布订阅模式。在系统启动完毕，向应用程序注册一个事件，监听者一旦监听到了事件的发布，就可以做一些业务逻辑的处理了。</p> <p>既然是发布-订阅模式，那么订阅者既可以是一个，也可以是多个。</p> <h2 id="定义event">定义event</h2> <pre><code> import org.springframework.context.ApplicationEvent; public class CacheEvent &nbsp; extends ApplicationEvent { &nbsp; &nbsp; public CacheEvent(Object source) { &nbsp; &nbsp; &nbsp; &nbsp; super(source); &nbsp; &nbsp; } }</code></pre> <h2 id="定义listener">定义listener</h2> <pre><code> import lombok.extern.slf4j.Slf4j; import org.apache.commons.lang3.StringUtils; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.context.ApplicationListener; import org.springframework.stereotype.Component; import org.springframework.util.CollectionUtils; import java.util.List; import java.util.Map; import java.util.stream.Collectors; @Slf4j @Component public class CacheEventListener implements ApplicationListener&lt;CacheEvent&gt; { &nbsp; &nbsp; @Autowired &nbsp; &nbsp; private MaskingService maskingService; &nbsp; &nbsp; @Autowired &nbsp; &nbsp; private RedisCache redisCache; &nbsp; &nbsp; @Override &nbsp; &nbsp; public void onApplicationEvent(CacheEvent cacheEvent) { &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheEventListener-start"); &nbsp; &nbsp; &nbsp; &nbsp; List&lt;SysMasking&gt; maskings = maskingService.selectAllSysMaskings(); &nbsp; &nbsp; &nbsp; &nbsp; if (!CollectionUtils.isEmpty(maskings)) { &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheEventListener-data-not-empty"); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Map&lt;String, List&lt;SysMasking&gt;&gt; cacheMap = maskings.stream().collect(Collectors.groupingBy(SysMasking::getFieldKey)); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cacheMap.keySet().forEach(x -&gt; { &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (StringUtils.isNotEmpty(x)) { &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheEventListener-x={}", x); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; List&lt;SysMasking&gt; list = cacheMap.get(x); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; long count = redisCache.setCacheList(RedisKeyPrefix.MASKING.getPrefix() + x, list); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheEventListener-count={}", count); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } else { &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheEventListener-x-is-empty"); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }); &nbsp; &nbsp; &nbsp; &nbsp; } else { &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheEventListener-data-is-empty"); &nbsp; &nbsp; &nbsp; &nbsp; } &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheEventListener-end"); &nbsp; &nbsp; } }</code></pre> <h2 id="注册event">注册event</h2> <pre><code> @Slf4j @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}) public class BAMSApplication { &nbsp; &nbsp; public static void main(String[] args) { &nbsp; &nbsp; &nbsp; &nbsp; ConfigurableApplicationContext context = SpringApplication.run(BAMSApplication.class, args); &nbsp; &nbsp; &nbsp; &nbsp; log.debug("app-started"); &nbsp; &nbsp; &nbsp; &nbsp; context.publishEvent(new CacheEvent("处理缓存事件")); &nbsp; &nbsp; } }</code></pre> <h1 id="commandlinerunner">CommandLineRunner</h1> <p>通过实现 CommandLineRunner 接口，可以在应用程序启动完毕，回调到指定的方法中。</p> <pre><code> package com.ramble.warmupservice.runner; import lombok.extern.slf4j.Slf4j; import org.springframework.boot.CommandLineRunner; import org.springframework.stereotype.Component; @Slf4j @Component public class CacheCommandLineRunner implements CommandLineRunner { &nbsp; &nbsp; @Override &nbsp; &nbsp; public void run(String... args) throws Exception { &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheCommandLineRunner-start"); &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheCommandLineRunner-参数={}", args); &nbsp; &nbsp; &nbsp; &nbsp; // 注入业务 service ，获取需要缓存的数据 &nbsp; &nbsp; &nbsp; &nbsp; // 注入 redisTemplate ，将需要缓存的数据存放到 redis 中 &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheCommandLineRunner-end"); &nbsp; &nbsp; } }</code></pre> <h1 id="applicationrunner">ApplicationRunner</h1> <p>同CommandLineRunner 类似，区别在于，对参数做了封装。</p> <pre><code> package com.ramble.warmupservice.runner; import com.alibaba.fastjson.JSON; import lombok.extern.slf4j.Slf4j; import org.springframework.boot.ApplicationArguments; import org.springframework.boot.ApplicationRunner; import org.springframework.stereotype.Component; @Slf4j @Component public class CacheApplicationRunner implements ApplicationRunner { &nbsp; &nbsp; @Override &nbsp; &nbsp; public void run(ApplicationArguments args) throws Exception { &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheApplicationRunner-start"); &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheApplicationRunner-参数={}", JSON.toJSONString(args)); &nbsp; &nbsp; &nbsp; &nbsp; // 注入业务 service ，获取需要缓存的数据 &nbsp; &nbsp; &nbsp; &nbsp; // 注入 redisTemplate ，将需要缓存的数据存放到 redis 中 &nbsp; &nbsp; &nbsp; &nbsp; log.debug("CacheApplicationRunner-end"); &nbsp; &nbsp; } }</code></pre> <h1 id="测试">测试</h1> <p>上述代码在idea中启动，若不带参数，输出如下：</p> <pre><code> 2022-04-28 15:44:00.981 &nbsp;INFO 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.WarmupServiceApplication &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : Started WarmupServiceApplication in 1.335 seconds (JVM running for 2.231) 2022-04-28 15:44:00.982 DEBUG 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheApplicationRunner &nbsp; &nbsp; &nbsp;: CacheApplicationRunner-start 2022-04-28 15:44:01.025 DEBUG 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheApplicationRunner &nbsp; &nbsp; &nbsp;: CacheApplicationRunner-参数={"nonOptionArgs":[],"optionNames":[],"sourceArgs":[]} 2022-04-28 15:44:01.025 DEBUG 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheApplicationRunner &nbsp; &nbsp; &nbsp;: CacheApplicationRunner-end 2022-04-28 15:44:01.025 DEBUG 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheCommandLineRunner &nbsp; &nbsp; &nbsp;: CacheCommandLineRunner-start 2022-04-28 15:44:01.026 DEBUG 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheCommandLineRunner &nbsp; &nbsp; &nbsp;: CacheCommandLineRunner-参数={} 2022-04-28 15:44:01.026 DEBUG 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheCommandLineRunner &nbsp; &nbsp; &nbsp;: CacheCommandLineRunner-end 2022-04-28 15:44:01.026 DEBUG 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.listener.CacheEventListener &nbsp; &nbsp; &nbsp; &nbsp;: CacheEventListener-start 2022-04-28 15:44:01.026 DEBUG 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.listener.CacheEventListener &nbsp; &nbsp; &nbsp; &nbsp;: CacheEventListener-参数=ApplicationEvent--&gt;缓存系统数据 2022-04-28 15:44:01.029 DEBUG 1160 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.listener.CacheEventListener &nbsp; &nbsp; &nbsp; &nbsp;: CacheEventListener-end Disconnected from the target VM, address: '127.0.0.1:61320', transport: 'socket' Process finished with exit code 130</code></pre> <p>若使用 java  -jar  xxx.jar    --server.port=9009 启动，则输入如下：</p> <pre><code> 2022-04-28 16:02:05.327 &nbsp;INFO 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.WarmupServiceApplication &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : Started WarmupServiceApplication in 1.78 seconds (JVM running for 2.116) 2022-04-28 16:02:05.329 DEBUG 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheApplicationRunner &nbsp; &nbsp; &nbsp;: CacheApplicationRunner-start 2022-04-28 16:02:05.393 DEBUG 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheApplicationRunner &nbsp; &nbsp; &nbsp;: CacheApplicationRunner-参数={"nonOptionArgs":[],"optionNames":["server.port"],"sourceArgs":["--server.port=9009"]} 2022-04-28 16:02:05.395 DEBUG 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheApplicationRunner &nbsp; &nbsp; &nbsp;: CacheApplicationRunner-end 2022-04-28 16:02:05.395 DEBUG 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheCommandLineRunner &nbsp; &nbsp; &nbsp;: CacheCommandLineRunner-start 2022-04-28 16:02:05.395 DEBUG 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheCommandLineRunner &nbsp; &nbsp; &nbsp;: CacheCommandLineRunner-参数=--server.port=9009 2022-04-28 16:02:05.395 DEBUG 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.runner.CacheCommandLineRunner &nbsp; &nbsp; &nbsp;: CacheCommandLineRunner-end 2022-04-28 16:02:05.395 DEBUG 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.listener.CacheEventListener &nbsp; &nbsp; &nbsp; &nbsp;: CacheEventListener-start 2022-04-28 16:02:05.396 DEBUG 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.listener.CacheEventListener &nbsp; &nbsp; &nbsp; &nbsp;: CacheEventListener- 参数=ApplicationEvent--&gt;缓存系统数据 2022-04-28 16:02:05.396 DEBUG 9916 --- [ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; main] c.r.w.listener.CacheEventListener &nbsp; &nbsp; &nbsp; &nbsp;: CacheEventListener-end</code></pre> <h1 id="执行顺序">执行顺序</h1> <p>从上面测试的输出，可以看到三种方式执行的顺序为：<br /> ApplicationRunner---&gt;CommandLineRunner---&gt;ApplicationEvent</p> <p>另外，若同时定义多个runner，可以通过order来指定他们的优先级。</p> <h1 id="代码">代码</h1> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/naylor_personal/ramble-spring-cloud/tree/master/warmup-service"  target="_blank" rel="nofollow">https://gitee.com/naylor_personal/ramble-spring-cloud/tree/master/warmup-service</a></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-941.htm">keras实现多gpu训练，单gpu保存模型，单gpu预测</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-943.htm">Halo 开源项目学习发布文章与页面</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1002.htm" title="前端【参考】文字过长显示省略号">前端【参考】文字过长显示省略号</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1006.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1000.htm" title="@RequestBody接受参数报415错误">@RequestBody接受参数报415错误</a></li>
+                        <li class="py-2"><a href="/html/category/article-1019.htm" title="网络层-IP地址详解&amp;Linux配置IP地址（centos7）">网络层-IP地址详解&amp;Linux配置IP地址（centos7）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

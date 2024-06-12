@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-949.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>设计模式学习笔记（十九）观察者模式及应用场景 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>设计模式学习笔记（十九）观察者模式及应用场景</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<p>观察者模式（Observer Design Pattern）,也叫做发布订阅模式（Publish-Subscribe Design Pattern）、模型-视图（Model-View）模式、源-监听器（Source-Listener）模式、从属者（Dependents）模式。指在对象之间定义一个一对多的依赖，当一个对象状态改变的时候，所有依赖的对象都会自动收到通知。</p> <p>比如说Redis 中的基于频道的发布订阅就是观察者模式的应用：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ace62fd29769d7e31730bc768adc990a.jpg" alt="设计模式学习笔记（十九）观察者模式及应用场景"></p> <h2 id="一观察者模式的介绍">一、观察者模式的介绍</h2> <p>观察者模式是一种对象行为型模式，下面就来看看观察者模式的结构及其实现：</p> <h3 id="11-观察者模式的结构">1.1 观察者模式的结构</h3> <p>观察者模式结构中主要包括观察目标（Object）和观察者（Observer）主要结构：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/baab3bb3166ee0a5e5f183afb6a34d47.jpg" alt="设计模式学习笔记（十九）观察者模式及应用场景"></p> <ul> <li><code>Subject</code>：主题抽象类，提供一系列观察者对象，以及对这些对象的增加、删除和通知的方法</li> <li><code>ConcreteSubject</code>：主题具体实现类，实现抽象主题中的通知方法，通知所有注册过的观察者对象</li> <li><code>Observer</code>：观察者抽象类，包含一个通知响应抽象方法</li> <li><code>ConcreteObserver1、ConcreteObserver2</code>：观察者实现类，实现抽象观察者中的方法，以便在得到目标的更改通知时更新自身的状态</li> <li><code>Client</code>：客户端，对主题及观察者进行调用</li> </ul> <h3 id="12-观察者模式的实现">1.2 观察者模式的实现</h3> <p>根据上面的类图，我们可以实现对应的代码。</p> <p>首先定义一个抽象目标类<code>Subject</code>，其中包括增加、注销和通知观察者方法</p> <pre><code class="language-java">public abstract class Subject {      protected List&lt;Observer&gt; observerList = new ArrayList&lt;Observer&gt;();      /**      * 增加观察者      * @param observer 观察者      */     public void add(Observer observer) {         observerList.add(observer);     }      /**      * 注销观察者，从观察者集合中删除一个观察者      * @param observer 观察者      */     public void remove(Observer observer) {         observerList.remove(observer);     }      /**通知观察者*/     public abstract void notifyObserver(); }</code></pre> <p>对应具体的目标类<code>ConcreteSubject</code></p> <pre><code class="language-java">public class ConcreteSubject extends Subject{      @Override     public void notifyObserver() {         System.out.println("遍历观察者：");         for (Observer observer : observerList) {             observer.response();         }     } }</code></pre> <p>此外需要定义抽象观察者<code>Observer</code>，它一般定义为一个接口，声明一个<code>response()</code>方法，为不同观察者的响应行为定义相同的接口：</p> <pre><code class="language-java">public interface Observer {     /**声明响应方法*/     void response(); }</code></pre> <p>具体的观察者实现：</p> <pre><code class="language-java">public class ConcreteObserver1 implements Observer{      @Override     public void response() {         System.out.println("我是具体观察者ConcreteObserver1");     } }  public class ConcreteObserver2 implements Observer{      @Override     public void response() {         System.out.println("我是具体观察者ConcreteObserver2");     } }</code></pre> <p>最后是客户端测试：</p> <pre><code class="language-java">public class Client {     public static void main(String[] args) {         Subject concreteSubject = new ConcreteSubject();         //具体观察者         Observer concreteObserver1 = new ConcreteObserver1();         Observer concreteObserver2 = new ConcreteObserver2();         concreteSubject.add(concreteObserver1);         concreteSubject.add(concreteObserver2);                  concreteSubject.notifyObserver();     } }</code></pre> <p>测试结果：</p> <pre><code>遍历观察者： 我是具体观察者ConcreteObserver1 我是具体观察者ConcreteObserver2</code></pre> <h2 id="二观察者模式的应用场景">二、观察者模式的应用场景</h2> <p>在以下情况就可以考虑使用观察者模式：</p> <ol> <li>一个对象的改变会导致一个或多个对象发生改变，而并不知道具体有多少对象将会发生改变，也不知道这些对象是谁</li> <li>当一个抽象模型有两个方面，其中的一个方面依赖于另一个方面时，可将这两者封装在独立的对象中以使他们可以各自独立地改变和复用</li> <li>需要在系统中创建一个触发链，使得事件拥有跨域通知（跨越两种观察者的类型）</li> </ol> <h3 id="21-观察者模式在javautil包中的应用">2.1 观察者模式在<code>java.util</code>包中的应用</h3> <p>观察者模式在JDK中就有典型应用，比如<code>java.util.Observable</code>和<code>java.util.Observer</code>类。结构如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9f6ae47eace15ebb5809004b01d3b2df.jpg" alt="设计模式学习笔记（十九）观察者模式及应用场景"></p> <p>我们可以通过实现具体的<code>ConcreteObserver</code>和具体的<code>ConcreteObservable</code>完成观察者模式流程</p> <h3 id="22-观察者模式在mvc中的应用">2.2 观察者模式在MVC中的应用</h3> <p>MVC(Modew-View-Controller)架构中也应用了观察者模式，其中模型（Model）可以对应观察者模式中的观察目标，而视图（View）对应于观察者，控制器（Controller）就是中介者模式的应用：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a77f89bcba41a661a929b83411c562a4.jpg" alt="设计模式学习笔记（十九）观察者模式及应用场景"></p> <h2 id="三观察者模式实战">三、观察者模式实战</h2> <p>在本案例中模拟北京小客车指标摇号事件的通知场景（来源于《重学Java设计模式》）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/4727d2c221d2d65f8fca6fce57ddcc3a.jpg" alt="设计模式学习笔记（十九）观察者模式及应用场景"></p> <p>对于通知事件，可以将其分成三个部分：<strong>事件监听</strong>、<strong>事件处理</strong>和<strong>具体的业务流程</strong>，如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/87cbb2ea87edffdf0d60695d52bbdf85.jpg" alt="设计模式学习笔记（十九）观察者模式及应用场景"></p> <p>对于和核心流程和非核心流程的结构，非核心流程可以是异步的，在MQ以及定时任务的处理下，能够最终保证一致性。</p> <h3 id="具体代码实现">具体代码实现</h3> <ol> <li><strong>事件监听接口及具体实现</strong></li> </ol> <p>这个部分就相当于观察者（Observer）的角色</p> <p>在接口中定义基本事件类方法<code>doEvent()</code></p> <pre><code class="language-java">public interface EventListener {      void doEvent(LotteryResult result);  }</code></pre> <p>监听事件的具体实现<code>MessageEventListener</code>（短消息事件）和<code>MQEventListener</code>（MQ发送事件）</p> <pre><code class="language-java">public class MessageEventListener implements EventListener{      private Logger logger = LoggerFactory.getLogger(MessageEventListener.class);      @Override     public void doEvent(LotteryResult result) {         logger.info("给用户 {} 发送短信通知(短信)：{}", result.getuId(), result.getMsg());     } }  public class MQEventListener implements EventListener{      private Logger logger = LoggerFactory.getLogger(MQEventListener.class);      @Override     public void doEvent(LotteryResult result) {         logger.info("记录用户 {} 摇号结果(MQ)：{}", result.getuId(), result.getMsg());     } }</code></pre> <ol start="2"> <li><strong>事件处理类</strong></li> </ol> <p>该部分就相当于主题（Object）部分</p> <p>对于不同的事件类型（MQ和Message）进行枚举处理，并提供三个方法：<code>subscribe()</code>、<code>unsubscribe()</code>和<code>notify()</code>用于对监听事件的注册和使用：</p> <pre><code class="language-java">public class EventManager {      Map&lt;Enum&lt;EventType&gt;, List&lt;EventListener&gt;&gt; listeners = new HashMap&lt;&gt;();      public EventManager(Enum&lt;EventType&gt;... operations) {         for (Enum&lt;EventType&gt; operation : operations) {             listeners.put(operation, new ArrayList&lt;&gt;());         }     }      public enum EventType {         MQ,         Message     }      /**      * 订阅      * @param eventType 事件类型      * @param listener  监听      */     public void subscribe(Enum&lt;EventType&gt; eventType, EventListener listener) {         List&lt;EventListener&gt; eventListeners = listeners.get(eventType);         eventListeners.add(listener);     }      /**      * 取消订阅      * @param eventType 事件类型      * @param listener 监听      */     public void unsubscribe(Enum&lt;EventType&gt; eventType, EventListener listener) {         List&lt;EventListener&gt; eventListeners = listeners.get(eventType);         eventListeners.remove(listener);     }      /**      * 通知      * @param eventType 事件类型      * @param result    结果      */     public void notify(Enum&lt;EventType&gt; eventType, LotteryResult result) {         List&lt;EventListener&gt; eventListeners = listeners.get(eventType);         for (EventListener eventListener : eventListeners) {             eventListener.doEvent(result);         }     } }</code></pre> <ol start="3"> <li><strong>业务抽象类接口及其实现</strong></li> </ol> <p>使用抽象类的方式实现方法，好处是可以在方法中扩展额外的调用，并提供抽象方法<code>doDraw</code>，让继承者去实现具体逻辑</p> <pre><code class="language-java">public abstract class LotteryService {      private EventManager eventManager;      public LotteryService() {         eventManager = new EventManager(EventManager.EventType.MQ, EventManager.EventType.Message);         eventManager.subscribe(EventManager.EventType.MQ, new MQEventListener());         eventManager.subscribe(EventManager.EventType.Message, new MessageEventListener());     }      public LotteryResult draw(String uId) {         LotteryResult lotteryResult = doDraw(uId);         eventManager.notify(EventManager.EventType.MQ, lotteryResult);         eventManager.notify(EventManager.EventType.Message, lotteryResult);         return lotteryResult;     }      protected abstract LotteryResult doDraw(String uId); }  public class LotteryServiceImpl extends LotteryService{      private MinibusTargetService minibusTargetService = new MinibusTargetService();      @Override     protected LotteryResult doDraw(String uId) {         //摇号测试         String lottery = minibusTargetService.lottery(uId);         return new LotteryResult(uId, lottery, new Date());     } }</code></pre> <ol start="4"> <li><strong>其他的类</strong></li> </ol> <p>摇号服务接口：</p> <pre><code class="language-java">/**  * 小客车指标调控服务  */ public class MinibusTargetService {      /**      * 模拟摇号，但不是摇号算法      *      * @param uId 用户编号      * @return 结果      */     public String lottery(String uId) {         return Math.abs(uId.hashCode()) % 2 == 0 ? "恭喜你，编码".concat(uId).concat("在本次摇号中签") : "很遗憾，编码".concat(uId).concat("在本次摇号未中签或摇号资格已过期");     }  }</code></pre> <p>事件信息返回类：</p> <pre><code class="language-java">public class LotteryResult {      private String uId;     private String msg;     private Date dateTime;      //get set constructor...  }</code></pre> <ol start="5"> <li><strong>测试类</strong></li> </ol> <pre><code class="language-java">public class ApiTest {      private Logger logger = LoggerFactory.getLogger(ApiTest.class);      @Test     public void test() {         LotteryServiceImpl lotteryService = new LotteryServiceImpl();         LotteryResult result = lotteryService.draw("1234567");         logger.info("摇号结果：{}", JSON.toJSONString(result));     } }</code></pre> <p>测试结果：</p> <pre><code>11:43:09.284 [main] INFO  c.e.d.event.listener.MQEventListener - 记录用户 1234567 摇号结果(MQ)：恭喜你，编码1234567在本次摇号中签 11:43:09.288 [main] INFO  c.e.d.e.l.MessageEventListener - 给用户 1234567 发送短信通知(短信)：恭喜你，编码1234567在本次摇号中签 11:43:09.431 [main] INFO  ApiTest - 摇号结果：{"dateTime":1649475789279,"msg":"恭喜你，编码1234567在本次摇号中签","uId":"1234567"}</code></pre> <h2 id="参考资料">参考资料</h2> <p>《重学Java设计模式》</p> <p>《设计模式》</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://c.biancheng.net/view/1390.html"  target="_blank" rel="nofollow">http://c.biancheng.net/view/1390.html</a></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-948.htm">layer-layui的select更改选项后使用form.render()并没能够刷新所选择的元素</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-950.htm">使用Android实现一个悬浮在软键盘上的输入栏_Android</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                        <li class="py-2"><a href="/html/category/article-1013.htm" title="【译】defer-panic-and-recover_在线工具">【译】defer-panic-and-recover_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-998.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

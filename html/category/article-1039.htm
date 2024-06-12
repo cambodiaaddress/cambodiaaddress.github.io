@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1039.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>使用Kotlin实现百思不得姐弹出菜单 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>使用Kotlin实现百思不得姐弹出菜单</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-dracula"> <p>最近学习kotlin ,kotlin 确实是一门非常nice的语言，从它的书写到它的语法，都有吸引人的地方，学习一门新的语言最好的方法就是运用这门语言了，为了学习kotlin ，仿写百思不得 姐 ，今天将不得姐的弹出菜单记录一下，先看一下效果<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/f7d5d67d06db62fb41e5baa92d299c55.jpg" alt="使用Kotlin实现百思不得姐弹出菜单"></p> <p>好了 下面使用kotlin 完成一下</p> <hr/> <h3 id="一实现思路">一、实现思路</h3> <p>就使用最简单的思路，首先将它用普通布局搭建出来，在加入动画，就可以完成了，OK ，kotlin 基本上百分之九十和Java相似，很好理解的一门语言，在Android开发中呢，它是完全兼容的，并且为适配程序员的过渡期，做了和Java的调用，也就是说，我们这些没有很多时间来学习kotlin 的人来说，兼容开发是最好的选择，说多了，，，，嗯嗯，布局搭建是和Java开发的时候一样的，</p> <h3 id="二实现过程">二、实现过程</h3> <pre class="prettyprint"><code class="hljs xml">下面是布局<span class="hljs-tag">&lt;<span class="hljs-title">RelativeLayout</span><span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span><span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/contentView"</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span><span class="hljs-attribute">android:layout_centerHorizontal</span>=<span class="hljs-value">"true"</span><span class="hljs-attribute">android:alpha</span>=<span class="hljs-value">"0.9"</span><span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center_horizontal"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span><span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/ll_close"</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"48dp"</span><span class="hljs-attribute">android:layout_alignParentBottom</span>=<span class="hljs-value">"true"</span><span class="hljs-attribute">android:background</span>=<span class="hljs-value">"@android:color/white"</span><span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">TextView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_gravity</span>=<span class="hljs-value">"center"</span><span class="hljs-attribute">android:padding</span>=<span class="hljs-value">"8dp"</span><span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/send_cancel"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span><span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/voice_window"</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_above</span>=<span class="hljs-value">"@+id/ll_close"</span><span class="hljs-attribute">android:layout_alignLeft</span>=<span class="hljs-value">"@+id/video_window"</span><span class="hljs-attribute">android:layout_centerHorizontal</span>=<span class="hljs-value">"true"</span><span class="hljs-attribute">android:layout_marginBottom</span>=<span class="hljs-value">"80dp"</span><span class="hljs-attribute">android:layout_marginTop</span>=<span class="hljs-value">"40dp"</span><span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span><span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/send_voice"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">TextView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_marginTop</span>=<span class="hljs-value">"10dp"</span><span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/send_voice"</span><span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#606060"</span><span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"15sp"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span><span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/link_window"</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_above</span>=<span class="hljs-value">"@+id/ll_close"</span><span class="hljs-attribute">android:layout_centerHorizontal</span>=<span class="hljs-value">"true"</span><span class="hljs-attribute">android:layout_marginBottom</span>=<span class="hljs-value">"80dp"</span><span class="hljs-attribute">android:layout_marginTop</span>=<span class="hljs-value">"40dp"</span><span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span><span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/send_link"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">TextView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_marginTop</span>=<span class="hljs-value">"10dp"</span><span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/send_link"</span><span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#606060"</span><span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"15sp"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span><span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/music_window"</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_above</span>=<span class="hljs-value">"@+id/ll_close"</span><span class="hljs-attribute">android:layout_centerHorizontal</span>=<span class="hljs-value">"true"</span><span class="hljs-attribute">android:layout_marginBottom</span>=<span class="hljs-value">"80dp"</span><span class="hljs-attribute">android:layout_marginLeft</span>=<span class="hljs-value">"40dp"</span><span class="hljs-attribute">android:layout_toRightOf</span>=<span class="hljs-value">"@id/link_window"</span><span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span><span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/send_music_album"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">TextView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_marginTop</span>=<span class="hljs-value">"10dp"</span><span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/send_music"</span><span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#606060"</span><span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"15sp"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span><span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/photo_window"</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_above</span>=<span class="hljs-value">"@+id/voice_window"</span><span class="hljs-attribute">android:layout_centerHorizontal</span>=<span class="hljs-value">"true"</span><span class="hljs-attribute">android:layout_marginLeft</span>=<span class="hljs-value">"40dp"</span><span class="hljs-attribute">android:layout_marginRight</span>=<span class="hljs-value">"40dp"</span><span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span><span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/send_picture"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">TextView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_marginTop</span>=<span class="hljs-value">"10dp"</span><span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/send_pic"</span><span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#606060"</span><span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"15sp"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span><span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/video_window"</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_above</span>=<span class="hljs-value">"@+id/voice_window"</span><span class="hljs-attribute">android:layout_centerHorizontal</span>=<span class="hljs-value">"true"</span><span class="hljs-attribute">android:layout_toLeftOf</span>=<span class="hljs-value">"@+id/photo_window"</span><span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span><span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/send_video_uninstall"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">TextView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_marginTop</span>=<span class="hljs-value">"10dp"</span><span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/send_video"</span><span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#606060"</span><span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"15sp"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span><span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/satin_window"</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_above</span>=<span class="hljs-value">"@+id/voice_window"</span><span class="hljs-attribute">android:layout_centerHorizontal</span>=<span class="hljs-value">"true"</span><span class="hljs-attribute">android:layout_toRightOf</span>=<span class="hljs-value">"@+id/photo_window"</span><span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span><span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"60dp"</span><span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/send_text"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">TextView</span><span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span><span class="hljs-attribute">android:layout_marginTop</span>=<span class="hljs-value">"10dp"</span><span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/send_satin"</span><span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#606060"</span><span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"15sp"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">RelativeLayout</span>&gt;</span></code></pre> <hr/> <p>OK ，布局完了之后，我们在分析一下，上面UI中的中间的按钮，出发事件之后，是弹出来了一个布局，覆盖整体UI的布局，那他是什么呢？PopupWindow ，对没错 就是PopupWindow ，那我们要怎么写呢？<br /> 看代码</p> <pre class="prettyprint"><code class="hljs avrasm"><span class="hljs-comment">/**  * Created by mr.kong on 2017/11/17.  */</span> class WritePostsPopWindow : PopupWindow, View<span class="hljs-preprocessor">.OnClickListener</span> {     private lateinit var rootView: View     private lateinit var contentView: RelativeLayout     private lateinit var mContext: Activity      constructor(mContext: Activity) : super() {         this<span class="hljs-preprocessor">.mContext</span> = mContext     }      fun showMoreWindow(anchor: View) {         //获取LayoutInflater 对象 在kotlin中优点之一，不用指定定义的变量的类型，运行代码         //的时候，代码会更具其值确定其类型         val inflater = mContext<span class="hljs-preprocessor">.getSystemService</span>(Context<span class="hljs-preprocessor">.LAYOUT</span>_INFLATER_SERVICE) as LayoutInflater         rootView = inflater<span class="hljs-preprocessor">.inflate</span>(R<span class="hljs-preprocessor">.layout</span><span class="hljs-preprocessor">.fragment</span>_write_posts, null)         //获取屏幕的宽高         val height = mContext<span class="hljs-preprocessor">.windowManager</span><span class="hljs-preprocessor">.defaultDisplay</span><span class="hljs-preprocessor">.height</span>         val width = mContext<span class="hljs-preprocessor">.windowManager</span><span class="hljs-preprocessor">.defaultDisplay</span><span class="hljs-preprocessor">.width</span>         //PopupWindow设置布局         setContentView(rootView)         this<span class="hljs-preprocessor">.width</span> = width         //高度使用减掉状态栏的高度         this<span class="hljs-preprocessor">.height</span> = (height - ScreenUtils<span class="hljs-preprocessor">.getStatusHeight</span>(mContext))<span class="hljs-preprocessor">.toInt</span>()         //找到我们的根布局节点         contentView = rootView<span class="hljs-preprocessor">.findViewById</span>(R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.contentView</span>)         //取消按钮         val close = rootView<span class="hljs-preprocessor">.findViewById</span>&lt;LinearLayout&gt;(R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.ll</span>_close)         close<span class="hljs-preprocessor">.setBackgroundColor</span>(<span class="hljs-number">0xFFFFFFFF</span><span class="hljs-preprocessor">.toInt</span>())         close<span class="hljs-preprocessor">.setOnClickListener</span>(this)         showAnimation(contentView)         setBackgroundDrawable(mContext<span class="hljs-preprocessor">.resources</span><span class="hljs-preprocessor">.getDrawable</span>(R<span class="hljs-preprocessor">.drawable</span><span class="hljs-preprocessor">.translucence</span>_with_white))         isOutsideTouchable = true         isFocusable = true         showAtLocation(anchor, Gravity<span class="hljs-preprocessor">.BOTTOM</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)      }      private fun showAnimation(contentView: ViewGroup) {         //contentView 是我们刚才获得的根节点 获取在这个节点中的所有的 子节点的个数         var childCount: Int = contentView<span class="hljs-preprocessor">.childCount</span>         KLogger<span class="hljs-preprocessor">.i</span>(<span class="hljs-string">"view"</span>,<span class="hljs-string">"    "</span> + childCount)         //kotlin 的循环的一种方法（有好几种，每一种都有对应的优点和不足）         for (i<span class="hljs-keyword">in</span><span class="hljs-number">0.</span><span class="hljs-preprocessor">.childCount</span>) {             val view = contentView<span class="hljs-preprocessor">.getChildAt</span>(i)             if (view != null) {                 if (view<span class="hljs-preprocessor">.id</span> == R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.ll</span>_close) { //忽略取消控件                     continue                 }                 //设置所有一级菜单的点击事件                 view<span class="hljs-preprocessor">.setOnClickListener</span>(this)                 view<span class="hljs-preprocessor">.visibility</span> = View<span class="hljs-preprocessor">.INVISIBLE</span>                 //延迟显示每个子视图                 //使用rxjava和rxAndroid 完成延迟操作 在不同时间中开始动画 出现弹出时先后的效果                 Observable<span class="hljs-preprocessor">.timer</span>(i *<span class="hljs-number">50.</span>toLong(), TimeUnit<span class="hljs-preprocessor">.MILLISECONDS</span>)<span class="hljs-preprocessor">.subscribeOn</span>(Schedulers<span class="hljs-preprocessor">.newThread</span>())<span class="hljs-preprocessor">.observeOn</span>(AndroidSchedulers<span class="hljs-preprocessor">.mainThread</span>())<span class="hljs-preprocessor">.subscribe</span> {                             view<span class="hljs-preprocessor">.visibility</span> = View<span class="hljs-preprocessor">.VISIBLE</span><span class="hljs-comment">/**                              * ofFloat()                              * arg1:view 对象                              * arg2:动画改变的类型                              * arg3:args4: 依次是开始透明度和结束透明度                              */</span>                             val fadeAnim: ValueAnimator = ObjectAnimator<span class="hljs-preprocessor">.ofFloat</span>(view,<span class="hljs-string">"translationY"</span>,<span class="hljs-number">600</span>F,<span class="hljs-number">0</span>F)                             //设置动画的时间                             fadeAnim<span class="hljs-preprocessor">.duration</span> =<span class="hljs-number">300</span>                             fadeAnim<span class="hljs-preprocessor">.start</span>()                         }             }          }      }      override fun onClick(v: View?) {         when (v?<span class="hljs-preprocessor">.id</span>) {             R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.video</span>_window -&gt; {                 Toast<span class="hljs-preprocessor">.makeText</span>(mContext,<span class="hljs-string">"video_window"</span>, Toast<span class="hljs-preprocessor">.LENGTH</span>_LONG)<span class="hljs-preprocessor">.show</span>()             }             R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.link</span>_window -&gt; {                 Toast<span class="hljs-preprocessor">.makeText</span>(mContext,<span class="hljs-string">"video_window"</span>, Toast<span class="hljs-preprocessor">.LENGTH</span>_LONG)<span class="hljs-preprocessor">.show</span>()             }             R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.voice</span>_window -&gt; {                 Toast<span class="hljs-preprocessor">.makeText</span>(mContext,<span class="hljs-string">"video_window"</span>, Toast<span class="hljs-preprocessor">.LENGTH</span>_LONG)<span class="hljs-preprocessor">.show</span>()             }             R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.photo</span>_window -&gt; {                 Toast<span class="hljs-preprocessor">.makeText</span>(mContext,<span class="hljs-string">"video_window"</span>, Toast<span class="hljs-preprocessor">.LENGTH</span>_LONG)<span class="hljs-preprocessor">.show</span>()             }             R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.satin</span>_window -&gt; {                 Toast<span class="hljs-preprocessor">.makeText</span>(mContext,<span class="hljs-string">"video_window"</span>, Toast<span class="hljs-preprocessor">.LENGTH</span>_LONG)<span class="hljs-preprocessor">.show</span>()             }             R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.music</span>_window -&gt; {                 Toast<span class="hljs-preprocessor">.makeText</span>(mContext,<span class="hljs-string">"video_window"</span>, Toast<span class="hljs-preprocessor">.LENGTH</span>_LONG)<span class="hljs-preprocessor">.show</span>()             }             R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.ll</span>_close -&gt; {                 if (isShowing) {                     closeAnimation(contentView)                 }             }         }     }<span class="hljs-comment">/**      * 关闭动画      */</span>     private fun closeAnimation(contentView: RelativeLayout) {         for (i<span class="hljs-keyword">in</span><span class="hljs-number">0.</span><span class="hljs-preprocessor">.contentView</span><span class="hljs-preprocessor">.childCount</span>) {             val view = contentView<span class="hljs-preprocessor">.getChildAt</span>(i)             if (view != null) {                 if (view<span class="hljs-preprocessor">.id</span> == R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.ll</span>_close) { //忽略取消控件                     continue                 }                 //设置所有一级菜单的点击事件                 view<span class="hljs-preprocessor">.setOnClickListener</span>(this)                 view<span class="hljs-preprocessor">.visibility</span> = View<span class="hljs-preprocessor">.INVISIBLE</span>                  //延迟显示每个子视图                 Observable<span class="hljs-preprocessor">.timer</span>(((contentView<span class="hljs-preprocessor">.childCount</span> - i -<span class="hljs-number">1</span>) *<span class="hljs-number">30</span>)<span class="hljs-preprocessor">.toLong</span>(), TimeUnit<span class="hljs-preprocessor">.MILLISECONDS</span>)<span class="hljs-preprocessor">.subscribeOn</span>(Schedulers<span class="hljs-preprocessor">.newThread</span>())<span class="hljs-preprocessor">.observeOn</span>(AndroidSchedulers<span class="hljs-preprocessor">.mainThread</span>())<span class="hljs-preprocessor">.subscribe</span> {                             view<span class="hljs-preprocessor">.visibility</span> = View<span class="hljs-preprocessor">.VISIBLE</span>                             val fadeAnim: ValueAnimator = ObjectAnimator<span class="hljs-preprocessor">.ofFloat</span>(view,<span class="hljs-string">"translationY"</span>,<span class="hljs-number">0</span>F,<span class="hljs-number">600</span>F)                             fadeAnim<span class="hljs-preprocessor">.duration</span> =<span class="hljs-number">200</span>                              fadeAnim<span class="hljs-preprocessor">.run</span> {                                 start()                                 addListener(object : Animator<span class="hljs-preprocessor">.AnimatorListener</span> {                                     override fun onAnimationRepeat(animation: Animator?) {                                         //动画循环播放的时候                                     }                                      override fun onAnimationEnd(animation: Animator?) {                                         //动画结束的时候                                         view<span class="hljs-preprocessor">.visibility</span> = View<span class="hljs-preprocessor">.INVISIBLE</span>                                     }                                      override fun onAnimationCancel(animation: Animator?) {                                         //动画被取消的时候                                     }                                      override fun onAnimationStart(animation: Animator?) {                                         //动画开始的时候调用                                     }                                  })                             }                          }                 //将个别的取出来 再延时显示 制造效果                 if (view<span class="hljs-preprocessor">.id</span> == R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.video</span>_window) {                     Observable<span class="hljs-preprocessor">.timer</span>(((contentView<span class="hljs-preprocessor">.childCount</span> - i) *<span class="hljs-number">30</span> +<span class="hljs-number">80</span>)<span class="hljs-preprocessor">.toLong</span>(), TimeUnit<span class="hljs-preprocessor">.MILLISECONDS</span>)<span class="hljs-preprocessor">.subscribeOn</span>(Schedulers<span class="hljs-preprocessor">.newThread</span>())<span class="hljs-preprocessor">.observeOn</span>(AndroidSchedulers<span class="hljs-preprocessor">.mainThread</span>())<span class="hljs-preprocessor">.subscribe</span>({                                 dismiss()                             })                 }             }        }     } }</code></pre> <hr/> <p>使用</p> <pre class="prettyprint"><code class="hljs avrasm"> R<span class="hljs-preprocessor">.id</span><span class="hljs-preprocessor">.main</span>_writ_posts_btu -&gt; {                 val writePostsPopWindow = WritePostsPopWindow(this)                 writePostsPopWindow<span class="hljs-preprocessor">.showMoreWindow</span>(v)             }</code></pre> <p>上面代码中的注释很详细，至此 完成了不得姐的弹出菜单的效果 ，其实kotlin 语言最后方式就是在边写边学中学习</p> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1038.htm">spring boot 导入导出</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1040.htm">Hbase(四)：Hbase原理</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

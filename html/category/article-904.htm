@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-904.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SpringAop实现原理及代理模式 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>SpringAop实现原理及代理模式</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h1 id="spring-aop的原理">Spring Aop的原理</h1> <pre><code>Spring的AOP就是通过动态代理实现的。当为某个Bean或者某些Bean配置切面时，Spring会为其创建代理对象，当调用该对象的某个方法时，实际是调用生成的代理类的对象方法。Spring的Aop主要是使用了两个动态代理，分别是JDK的动态代理和CGLIB动态代理。</code></pre> <h2 id="1-jdk动态代理">1. JDK动态代理</h2> <pre><code> 如果代理类实现了接口，Spring默认会使用JDK动态代理。JDK的动态代理是基于反射实现。JDK通过反射，生成一个代理类，这个代理类实现了原来那个类的全部接口，并对接口中定义的所有方法进行了代理。当我们通过代理对象执行原来那个类的方法时，代理类底层会通过反射机制，调用我们实现的InvocationHandler接口的invoke方法。</code></pre> <details> <summary>点击查看代码</summary> <pre><code>/*  *  接口类  */ public interface Person {      void say(); }  /*  *  接口实现类  */ public class Man implements Person {      private String word;      public Man(String word){          this.word = word;     }      public Man(){      }      public void say(){          System.out.println("Man Can Say " + word);     } }  public class ManJDKProxy implements InvocationHandler {      /**      * 需要的代理对象      */     private Object o;      public Object bind(Object o){          this.o = o;         return Proxy.newProxyInstance(o.getClass().getClassLoader(), o.getClass().getInterfaces(), this);     }      @Override     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {          System.out.println("JDK Proxy Design");         return method.invoke(o, args);     } }  /**  * JDK动态代理  */ public class ProxyDesign_2 {      public static void main(String[] args) {          Man man = new Man("Hello");          Person p = (Person)new ManJDKProxy().bind(man);          p.say();     } }</code></pre> </details> <h3 id="-jdk动态代理的优缺点">* JDK动态代理的优缺点</h3> <pre><code>优点：     1. JDK动态代理是JDK原生的，不需要任何依赖即可使用     2. 通过反射机制生成代理类的速度要比CGLib操作字节码生成代理类的速度更快 缺点：     1. 如果要使用JDK动态代理，被代理的类必须实现了接口，否则无法代理(InvocationHandler)     2. JDK动态代理无法为没有在接口中定义的方法实现代理     3. JDK动态代理执行代理方法时，需要通过反射机制进行回调，此时方法执行的效率比较低</code></pre> <h2 id="2-cglib动态代理">2. CGLIB动态代理</h2> <pre><code> 若需要代理的类没有实现接口，JDK的动态代理就无法使用，Spring会使用CGLiB动态代理来生成代理对象。CGLiB直接操作字节码，生成类的子类，重写类的方法完成代理。</code></pre> <details> <summary>点击查看代码</summary> <pre><code>/*  *  接口类  */ public interface Person {      void say(); }  /*  *  接口实现类  */ public class Man implements Person {      private String word;      public Man(String word){          this.word = word;     }      public Man(){      }      public void say(){          System.out.println("Man Can Say " + word);     } }  public class ManCGLIBProxy {      public Object bind(Object target){          Enhancer enhancer = new Enhancer();         enhancer.setSuperclass(target.getClass());          enhancer.setCallback(new MethodInterceptor() {             @Override             public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {                  System.out.println("CGLIB Proxy Design");                 return method.invoke(target, objects);             }         });          return enhancer.create();     } }  /**  * CGLIB动态代理  */ public class ProxyDesign_3 {      public static void main(String[] args) {          Man man = new Man("Hello");          Person p = (Person)new ManCGLIBProxy().bind(man);          p.say();     } }</code></pre> </details> <h3 id="-cglib动态代理的优缺点">* CGLiB动态代理的优缺点</h3> <pre><code>优点：     1. 使用CGLIB代理的类，不需要实现接口，因为CGLIB生成的代理类是直接继承自需要被代理的类     2. CGLIB是通过修改字节码生成的代理类，所以CGLIB执行代理方法的效率要高于JDK的动态代理 缺点：     1. 因为CGLIB实现方式是重写父类的方法，所以对final方法，或者private方法是没有办法代理的     2. 因为CGLIB生成代理类的方式是通过操作字节码(asm工具包)，这种生成的代理类的方式比JDK通过反射生成代理类的方式的效率低</code></pre> <h2 id="3-spring项目中如何强制使用cglib代理方式">3. Spring项目中如何强制使用CGLIB代理方式</h2> <h3 id="-xml方式">* xml方式</h3> <pre><code>&lt;!-- aop:config用来在xml中配置切面，指定proxy-target-class="true" --&gt; &lt;aop:config proxy-target-class="true"&gt; 	&lt;!-- AOP相关配置 --&gt; &lt;/aop:config&gt;</code></pre> <h3 id="-aspect注解方式">* @Aspect注解方式</h3> <pre><code>&lt;!-- 将proxy-target-class配置设置为true --&gt; &lt;aop:aspectj-autoproxy proxy-target-class="true"/&gt;</code></pre> <h3 id="-配置类注解方式">* 配置类注解方式</h3> <pre><code>添加@EnableAspectJAutoProxy(proxyTargetClass = true)</code></pre> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-903.htm">vue实现暗黑模式</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-905.htm">Laravel学习三：路由以及跳转和重定向用法总结</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

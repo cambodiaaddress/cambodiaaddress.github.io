@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-863.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Python笔记，内存管理（2）&#8212;-垃圾回收 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Python笔记，内存管理（2）&#8212;-垃圾回收</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p><strong>垃圾回收</strong><br /> 当python的某个对象的引用计数降为0时，可以，被垃圾回收</p> <p><strong>gc机制</strong></p> <pre><code>    1.GC作为现代编程语言的自动内存管理机制，专注干两件事       （1），找到内存中无用的垃圾资源       （2），清除这些理解并把内存让出来给其他对象使用             GC彻底把程序员熊资源管理的重担中解放出来，让他们有更多的时间放在业务逻辑上，     单着并不意味着码农就可以不去了解GC，毕竟多了解GC知识还是有利于我们写出更健壮的代码     </code></pre> <p>效率问题</p> <pre><code>         1.垃圾回收时，python不能进行其他的任务，          频繁的立即回收将大大简单地python的工作效率           2.当python运行时，会记录其中分配对象(object allocation)          和取消分配对象(abject deallocation)的次数，          当两者的差值高于某个阈值的时候，垃圾回收才会启动 </code></pre> <pre><code class="prism language-python"> <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> gc 				<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">print</span><span class="token punctuation">(</span>gc<span class="token punctuation">.</span>get_threshold<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 				<span class="token punctuation">(</span><span class="token number">700</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> 				<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>   <span class="token comment">#700 代表新创建的对象减去从新创建的对象中回收的数量的差值大于700</span>  <span class="token comment">#就进行一次0代回收当0代回收进行10次的时候就进行一代回收</span>  <span class="token comment">#（并且一代回收的时候也进行0代回收），同理，当一代回收进行10次的时候就进行2代回收</span>  <span class="token comment">#并且二代回收的时候也进行0代回收和一代回收）</span> </code></pre> <p><strong>启动垃圾回收三种情况</strong><br /> 1.调用gc.collect()的时候<br /> 2.GC达到阈值的时候<br /> 3.程序退出的时候</p> <pre><code class="prism language-python">            <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> x <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"x"</span><span class="token punctuation">]</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> y <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"y"</span><span class="token punctuation">]</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> x<span class="token punctuation">.</span>append<span class="token punctuation">(</span>y<span class="token punctuation">)</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> y<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> gc 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">print</span><span class="token punctuation">(</span>gc<span class="token punctuation">.</span>get_threshold<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 			<span class="token punctuation">(</span><span class="token number">700</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> gc<span class="token punctuation">.</span>collect<span class="token punctuation">(</span><span class="token punctuation">)</span> 			<span class="token number">0</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">del</span> x 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">del</span> y 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> gc<span class="token punctuation">.</span>collect<span class="token punctuation">(</span><span class="token punctuation">)</span> 			<span class="token number">2</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a<span class="token operator">=</span><span class="token string">"x1 xx"</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> b<span class="token operator">=</span><span class="token string">"x1 xx"</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a <span class="token operator">=</span> <span class="token number">1</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> b <span class="token operator">=</span> <span class="token number">2</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> gc<span class="token punctuation">.</span>collect<span class="token punctuation">(</span><span class="token punctuation">)</span> 			<span class="token number">0</span> 			<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>    </code></pre> <p><strong>垃圾回收的两种方法：</strong></p> <p>1.分代回收(generation)回收：<br /> 这一策略的基本假设是：存活时间越久的对象，<br /> 越不可能在后面的程序中变成垃圾</p> <pre><code>         1.python将所有的对象分为0.1.2三代          2.所有的新建对象均是0代对象          3.当某一代对象经过来及回收，依然存活，那么它就被归入下一代对象          4.；垃圾回收启动时，一定会扫描所有的0代对象          5.如果0代经过一定次数的垃圾回收，那么就启动对0代和1代的扫描清理          6.当1代也经历了一定次数的垃圾回收后，那么会启动对0.1.2，             即对所有的对象进行扫描 </code></pre> <p>2.标记清除：<br /> 标记——清除机制，顾名思义，首先标记对象（垃圾检测），<br /> 然后清除垃圾（垃圾回收），主要用于解决循环引用。</p> <pre><code>        1.标记：活动（有被引用），非活动（可被删除）         2.清除：清除所有非活动的对象 </code></pre> </p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-862.htm">基于RestTemplate扩展，支持Get请求传递javaBean参数</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-864.htm">C语言中的零长度数组使用说明</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-998.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

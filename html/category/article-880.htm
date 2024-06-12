@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-880.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>架构设计基础设施保障IaaS之计算篇 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>架构设计基础设施保障IaaS之计算篇</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/5fb6ce59920bb53a7a8c1ea9ff008075.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <h2><a id="IaaS_1" rel="nofollow"></a>IaaS之计算</h2> <h3><a id="11__IaaS_3" rel="nofollow"></a>1.1 IaaS概述</h3> <p>IaaS（Infrastructure as a Service ）提供托管的 IT 基础架构，供用户调配处理能力、存储、网络和其他基础计算资源。IaaS 提供商运行并管理此基础架构，用户可以在此基础架构上运行选择的操作系统和应用程序软件。</p> <p>在云平台中还会涉及以下概念：</p> <ol> <li>PaaS：平台即服务。对应于上面所说的提供常用的技术组件方便系统的开发和维护；</li> <li>SaaS：软件即服务。对应于上面所说的提供开发好的应用或服务，按功能或性能要求付费。</li> <li>Faas：函数即服务。服务商提供一个平台，允许客户开发、运行和管理应用程序功能，而无需构建和维护通常与开发和启动应用程序相关的基础架构。</li> </ol> <h3><a id="12___17" rel="nofollow"></a>1.2 服务部署演进历程</h3> <ol> <li><strong>应用拆分</strong></li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/dd3df1c5c0b3c898da43fab2afb38315.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <p>按照业务功能来划分应用服务，整个职责更清晰，相互之间可以做到独立升级迭代。应用之间可能会涉及到一些公共配置，可以通过分布式配置中心Zookeeper来解决。</p> <p>架构瓶颈：</p> <p>不同应用服务之间存在共用的组件，会导致相同代码存在多份，公共功能升级时全部应用代码都要跟着升级。</p> <p>比如说JSON字符串处理组件， 加密处理组件等。</p> <ol start="2"> <li><strong>微服务应用</strong></li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/3e3ab33b9b51cb8a68ee87ec9b98f16f.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <p>如用户管理、订单、支付、鉴权等功能在多个应用中都存在，那么可以把这些功能的代码单独抽取出来形成一个单独的服务来管理， 比如说加密封装，鉴权处理接口等。</p> <p>微服务架构，应用和服务之间通过HTTP、TCP或RPC请求等多种方式来访问公共服务，每个单独的服务都可以由单独的团队来管理。</p> <p>在服务治理层面， 可以通过SpringCloud等框架实现服务治理、限流、熔断、降级等功能，提高服务的稳定性和可用性。</p> <p>架构瓶颈：</p> <p>不同服务的接口访问方式不同，应用服务可能需要适配多种访问方式， 才能使用服务，应用服务之间也可能相互访问，调用链将会变得非常复杂冗长，逻辑变得混乱。</p> <ol start="3"> <li><strong>企业服务总线ESB</strong></li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/90b2293805335967f42ffaf4243c815d.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <p>应用统一通过ESB来访问后端服务，服务与服务之间也通过ESB来相互调用，以此降低系统的耦合程度。</p> <p>使用企业消息总线来解除服务之间耦合问题的架构，就是所谓的SOA（面向服务）架构，这种架构与微服务架构容易混淆，因为表现形式比较相似。</p> <p>微服务架构更多是指把系统里的公共服务抽取出来单独运维管理的思想，而SOA架构则是指一种拆分服务并使服务接口访问变得统一的架构思想，SOA架构中包含了微服务的思想。</p> <p>架构瓶颈：</p> <p>业务不断发展，应用和服务都会不断变多，应用和服务的部署变得复杂，同一台服务器上部署多个服务还要解决运行环境冲突的问题。</p> <p>对于如大促这类需要动态扩缩容的场景，需要水平扩展服务的性能，就需要在新增的服务上准备运行环境，部署服务等，运维将变得十分困难。</p> <ol start="4"> <li><strong>容器化技术</strong></li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/8cb29929906ee1f0502fe18a610fc124.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <p>目前最流行的容器化技术是Docker，最流行的容器管理服务是Kubernetes(K8S)，应用/服务可以打包为Docker镜像，通过K8S来动态分发和部署镜像。</p> <p>Docker镜像可理解为一个能运行你的应用/服务的最小的操作系统，里面放着应用/服务的运行代码，运行环境根据实际的需要设置好。</p> <p>把整个“操作系统”打包为一个镜像后，就可以分发到需要部署相关服务的机器上，直接启动Docker镜像就可以把服务起起来，使服务的部署和运维变得简单。</p> <p>架构瓶颈：</p> <p>使用容器化技术后服务动态扩缩容问题得以解决，但是机器还是需要公司自身来管理，在非大促的时候，还是需要闲置着大量的机器资源来应对大促，机器自身成本和运维成本都极高，资源利用率低。</p> <ol start="5"> <li><strong>云平台</strong></li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/cb19b82ab641ffec2e8af24763ec1f28.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <p>系统可部署到公有云上，利用公有云的海量机器资源，解决动态硬件资源的问题</p> <p>在大促的时间段里，在云平台中临时申请更多的资源，结合Docker和K8S来快速部署服务，在大促结束后释放资源，真正做到按需付费，资源利用率大大提高，同时大大降低了运维成本。</p> <p>所谓的云平台，就是把海量机器资源，通过统一的资源管理，抽象为一个资源整体</p> <p>在云平台上可按需动态申请硬件资源（如CPU、内存、网络等），并且之上提供通用的操作系统，提供常用的技术组件（如Hadoop技术栈，MPP数据库等）供用户使用，甚至提供开发好的应用</p> <p>用户不需要关心应用内部使用了什么技术，就能够解决需求（如音视频转码服务、邮件服务、个人博客等）。</p> <h3><a id="13___97" rel="nofollow"></a>1.3 云虚拟机</h3> <ul> <li><strong>介绍</strong></li> </ul> <ol> <li> <p>阿里云ECS</p> <p>ECS（Elastic Compute Service）是阿里云提供的性能卓越、稳定可靠、弹性扩展的IaaS（Infrastructure as a Service）级别云计算服务。</p> </li> <li> <p>亚马逊EC2</p> <p>EC2（Amazon Elastic Compute Cloud），是一种 Web 服务，能在云中提供安全且可调整大小的计算能力。该服务旨在让开发人员能够更轻松地进行 Web 规模的云计算。</p> </li> <li> <p>腾讯云CVM</p> <p>CVM（Cloud Virtual Machine），提供安全可靠的弹性计算服务，可以在云端获取和启用 CVM，来实现计算需求。随着业务需求的变化，可以实时扩展或缩减计算资源。</p> </li> </ol> <ul> <li><strong>云虚拟机对比</strong></li> </ul> <ol> <li>性能评测：</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/6e7b5c5a398473f351ef01b871e873ad.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <p>（累计值越小， 综合排名越高。）</p> <ol start="2"> <li>成本对比：</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/97fdb896a822bfbcbc3a5d286c73e47b.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <h3><a id="14___130" rel="nofollow"></a>1.4 云虚拟机如何选型</h3> <ol> <li> <p>虚拟机类型</p> <p>主要类型对比：</p> <table> <thead> <tr> <th>类型</th> <th>AWS代号</th> <th>阿里云代号</th> <th>腾讯云代号</th> </tr> </thead> <tbody> <tr> <td>通用型</td> <td>M</td> <td>G</td> <td>S</td> </tr> <tr> <td>计算型</td> <td>C</td> <td>C</td> <td>C、CN</td> </tr> <tr> <td>内存型</td> <td>R</td> <td>R</td> <td>M</td> </tr> <tr> <td>GPU计算型</td> <td>P</td> <td>GN</td> <td>AMD、NVIDIA</td> </tr> <tr> <td>存储型</td> <td>I、D</td> <td>I、D</td> <td>D</td> </tr> </tbody> </table> <p>阿里云还包含： 本地SSD型、高主频型、FPGA计算型、NPU计算型、超级计算集群（SCC）、弹性裸金属服务器(自研新一代云服务器)等。</p> </li> </ol> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://help.aliyun.com/document_detail/108490.html?spm=a2c4g.11186623.6.604.999e6f0f0b2lAc"  rel="nofollow">官方参考</a></p> <p>腾讯云还包含： 高 IO 型实例族、批量型实例族等。</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://cloud.tencent.com/product/cvm/instances"  rel="nofollow">官方参考</a></p> <ol start="2"> <li> <p>代别更新</p> <p>随着虚拟化技术不断发展， 云厂商需要不断地对虚拟机进行更新：</p> <ol> <li> <p>硬件方面， 比如CPU的换代， 内存升级等；</p> </li> <li> <p>软件层面，比如内核的改进，虚拟化技术的提升等。</p> </li> </ol> </li> <li> <p>实例配置</p> <p>实例按业界标准划分为micro、small、medium、large、xlarge。</p> <table> <thead> <tr> <th>类型</th> <th>vCPU</th> <th>内存</th> </tr> </thead> <tbody> <tr> <td>micro</td> <td>1</td> <td>1</td> </tr> <tr> <td>small</td> <td>1</td> <td>2</td> </tr> <tr> <td>medium</td> <td>2</td> <td>4</td> </tr> <tr> <td>large</td> <td>2</td> <td>8</td> </tr> <tr> <td>xlarge</td> <td>4</td> <td>16</td> </tr> <tr> <td>2xlarge</td> <td>8</td> <td>32</td> </tr> </tbody> </table> </li> </ol> <h3><a id="15___177" rel="nofollow"></a>1.5 云虚拟机的创建操作</h3> <ol> <li>选择虚拟机类型</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/3a7d2ded06dd2e4db6d9c43417552517.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <p>如果测试， 可以选取抢占实例， 节省成本。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/db46667e0eff88439af7839721ab0459.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <ol start="2"> <li> <p>网路和安全组配置</p> <p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-UE2xoy6O-1660718280551)(images/image-20201112150546245.png)]</p> </li> <li> <p>系统配置</p> </li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/a44df20d34e4ef1de3b7de8de5b92b11.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <ol start="4"> <li>分组设置</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/c97f876721ec0d94f52c0cf23422b218.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <ol start="5"> <li>远程连接</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/fb7367309ef9607d3e8324e104bbfe1c.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <p>通过远程连接可以直接进行操作， 一般会采用远程连接工具进行管理， 比如VNC或SSH连接工具。</p> <p>如果需要节省成本， 可以选择“停机不收费”， 但不能保障稳定性。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/bc5c267c41c70fdf1e60eac041ba20ed.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <h3><a id="16___220" rel="nofollow"></a>1.6 服务部署访问</h3> <ol> <li> <p>开通80端口访问权限</p> <p>在网络与安全 -&gt; 安全组里面， 新增配置：</p> </li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/4cd9204921c35b16f79b13837e968299.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <ol start="2"> <li> <p>安装JDK</p> <pre><code class="prism language-sh">yum -y install java-1.8.0-openjdk.x86_64</code></pre> </li> <li> <p>打包服务</p> <pre><code class="prism language-sh">maven clean install</code></pre> </li> <li> <p>配置服务器连接</p> <p>直接通过外网IP访问：</p> </li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/805acd63a6c9d6eb8afe3239670eff88.jpg" alt="架构设计基础设施保障IaaS之计算篇"></p> <ol start="5"> <li> <p>运行服务</p> <pre><code class="prism language-sh">java -jar app-basic.jar</code></pre> </li> <li> <p>访问验证</p> <p>http://47.104.9.75:10692/getOrder</p> </li> </ol> <blockquote> <p>专注Java技术干货分享，欢迎志同道合的小伙伴，一起交流学习</p> </blockquote> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-879.htm"></a></p>
+                                                                        <p>下一个：<a href="/html/category/article-881.htm">Runtime: Input type (torch.FloatTensor) and weight type (torch.cuda.FloatTensor) should be the same</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
+                        <li class="py-2"><a href="/html/category/article-993.htm" title="骨架屏技术讲解以及如何在Vue中实现骨架屏">骨架屏技术讲解以及如何在Vue中实现骨架屏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1003.htm" title="Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控">Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

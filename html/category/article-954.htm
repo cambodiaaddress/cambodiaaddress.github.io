@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-954.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Spring Boot 集成Swagger - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Spring Boot 集成Swagger</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-kimbie-light"> <p>Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。总体目标是使客户端和文件系统作为服务器以同样的速度来更新。文件的方法，参数和模型紧密集成到服务器端的代码，允许API来始终保持同步。Swagger 让部署管理和使用功能强大的API从未如此简单。</p> <p>更多关于Swagger的作用，相信大家百度一下能了解的更全面，本文以SpringBoot中集成Swagger为例做介绍说明。</p> <p><strong>一、修改pom.xml，添加maven依赖</strong></p> <pre class="prettyprint"><code class="hljs xml">        <span class="hljs-comment">&lt;!-- Swagger --&gt;</span>         <span class="hljs-tag">&lt;<span class="hljs-title">dependency</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>springfox-swagger2<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>2.6.1<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span>         <span class="hljs-tag">&lt;/<span class="hljs-title">dependency</span>&gt;</span>          <span class="hljs-tag">&lt;<span class="hljs-title">dependency</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>springfox-swagger-ui<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>2.6.1<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span>         <span class="hljs-tag">&lt;/<span class="hljs-title">dependency</span>&gt;</span></code></pre> <p><strong>二、添加Swagger配置类</strong></p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-keyword">package</span> com.example.swaggerdemo;  <span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> com.google.common.base.Predicates.or; <span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> springfox.documentation.builders.PathSelectors.regex;  <span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean; <span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration; <span class="hljs-keyword">import</span> org.springframework.web.context.request.async.DeferredResult;  <span class="hljs-keyword">import</span> springfox.documentation.service.ApiInfo; <span class="hljs-keyword">import</span> springfox.documentation.spi.DocumentationType; <span class="hljs-keyword">import</span> springfox.documentation.spring.web.plugins.Docket; <span class="hljs-keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;  <span class="hljs-javadoc">/**  * SwaggerConfig  */</span> <span class="hljs-annotation">@Configuration</span> <span class="hljs-annotation">@EnableSwagger</span>2 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> {<!-- --></span>      <span class="hljs-javadoc">/**      * SpringBoot默认已经将classpath:/META-INF/resources/和classpath:/META-INF/resources/webjars/映射      * 所以该方法不需要重写，如果在SpringMVC中，可能需要重写定义（我没有尝试）      * 重写该方法需要 extends WebMvcConfigurerAdapter      *       */</span> <span class="hljs-comment">//    @Override</span> <span class="hljs-comment">//    public void addResourceHandlers(ResourceHandlerRegistry registry) {<!-- --></span> <span class="hljs-comment">//        registry.addResourceHandler("swagger-ui.html")</span> <span class="hljs-comment">//                .addResourceLocations("classpath:/META-INF/resources/");</span> <span class="hljs-comment">//</span> <span class="hljs-comment">//        registry.addResourceHandler("/webjars/**")</span> <span class="hljs-comment">//                .addResourceLocations("classpath:/META-INF/resources/webjars/");</span> <span class="hljs-comment">//    }</span>      <span class="hljs-javadoc">/**      * 可以定义多个组，比如本类中定义把test和demo区分开了      * （访问页面就可以看到效果了）       *      */</span>     <span class="hljs-annotation">@Bean</span>     <span class="hljs-keyword">public</span> Docket <span class="hljs-title">testApi</span>() {         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2)                 .groupName(<span class="hljs-string">"test"</span>)                 .genericModelSubstitutes(DeferredResult.class) <span class="hljs-comment">//                .genericModelSubstitutes(ResponseEntity.class)</span>                 .useDefaultResponseMessages(<span class="hljs-keyword">false</span>)                 .forCodeGeneration(<span class="hljs-keyword">true</span>)                 .pathMapping(<span class="hljs-string">"/"</span>)<span class="hljs-comment">// base，最终调用接口后会和paths拼接在一起</span>                 .select()                 .paths(or(regex(<span class="hljs-string">"/api/.*"</span>)))<span class="hljs-comment">//过滤的接口</span>                 .build()                 .apiInfo(testApiInfo());     }      <span class="hljs-annotation">@Bean</span>     <span class="hljs-keyword">public</span> Docket <span class="hljs-title">demoApi</span>() {         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2)                 .groupName(<span class="hljs-string">"demo"</span>)                 .genericModelSubstitutes(DeferredResult.class) <span class="hljs-comment">//              .genericModelSubstitutes(ResponseEntity.class)</span>                 .useDefaultResponseMessages(<span class="hljs-keyword">false</span>)                 .forCodeGeneration(<span class="hljs-keyword">false</span>)                 .pathMapping(<span class="hljs-string">"/"</span>)                 .select()                 .paths(or(regex(<span class="hljs-string">"/demo/.*"</span>)))<span class="hljs-comment">//过滤的接口</span>                 .build()                 .apiInfo(demoApiInfo());     }      <span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title">testApiInfo</span>() {         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ApiInfoBuilder()             .title(<span class="hljs-string">"Electronic Health Record(EHR) Platform API"</span>)<span class="hljs-comment">//大标题</span>             .description(<span class="hljs-string">"EHR Platform's REST API, all the applications could access the Object model data via JSON."</span>)<span class="hljs-comment">//详细描述</span>             .version(<span class="hljs-string">"1.0"</span>)<span class="hljs-comment">//版本</span>             .termsOfServiceUrl(<span class="hljs-string">"NO terms of service"</span>)             .contact(<span class="hljs-keyword">new</span> Contact(<span class="hljs-string">"小单"</span>, <span class="hljs-string">"http://blog.csdn.net/catoop"</span>, <span class="hljs-string">"365384722@qq.com"</span>))<span class="hljs-comment">//作者</span>             .license(<span class="hljs-string">"The Apache License, Version 2.0"</span>)             .licenseUrl(<span class="hljs-string">"http://www.apache.org/licenses/LICENSE-2.0.html"</span>)             .build();     }      <span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title">demoApiInfo</span>() {         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ApiInfoBuilder()             .title(<span class="hljs-string">"Electronic Health Record(EHR) Platform API"</span>)<span class="hljs-comment">//大标题</span>             .description(<span class="hljs-string">"EHR Platform's REST API, all the applications could access the Object model data via JSON."</span>)<span class="hljs-comment">//详细描述</span>             .version(<span class="hljs-string">"1.0"</span>)<span class="hljs-comment">//版本</span>             .termsOfServiceUrl(<span class="hljs-string">"NO terms of service"</span>)             .contact(<span class="hljs-keyword">new</span> Contact(<span class="hljs-string">"小单"</span>, <span class="hljs-string">"http://blog.csdn.net/catoop"</span>, <span class="hljs-string">"365384722@qq.com"</span>))<span class="hljs-comment">//作者</span>             .license(<span class="hljs-string">"The Apache License, Version 2.0"</span>)             .licenseUrl(<span class="hljs-string">"http://www.apache.org/licenses/LICENSE-2.0.html"</span>)             .build();          <span class="hljs-keyword">return</span> apiInfo;     } } </code></pre> <p>经过这2步配置后，我们启动服务后，访问：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8080/swagger-ui.html"  rel="nofollow">http://localhost:8080/swagger-ui.html</a> 就完成了集成。</p> <p>Swagger会默认把所有Controller中的RequestMapping方法都生成API出来，实际上我们一般只需要标准接口的（像返回页面的那种Controller方法我们并不需要），所有你可以按下面的方法来设定要生成API的方法的要求。 <br /> 如下我针对RestController注解的类和ResponseBody注解的方法才生成Swaager的API，并且排除了特定的类，代码如下：</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-annotation">@Configuration</span> <span class="hljs-annotation">@EnableSwagger</span>2 <span class="hljs-comment">// 启用 Swagger</span> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> {<!-- --></span>      <span class="hljs-annotation">@Bean</span>     <span class="hljs-keyword">public</span> Docket <span class="hljs-title">createRestApi</span>() {         Predicate&lt;RequestHandler&gt; predicate = <span class="hljs-keyword">new</span> Predicate&lt;RequestHandler&gt;() {             <span class="hljs-annotation">@Override</span>             <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">apply</span>(RequestHandler input) {                 Class&lt;?&gt; declaringClass = input.declaringClass();                 <span class="hljs-keyword">if</span> (declaringClass == BasicErrorController.class)<span class="hljs-comment">// 排除</span>                     <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;                 <span class="hljs-keyword">if</span>(declaringClass.isAnnotationPresent(RestController.class)) <span class="hljs-comment">// 被注解的类</span>                     <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;                 <span class="hljs-keyword">if</span>(input.isAnnotatedWith(ResponseBody.class)) <span class="hljs-comment">// 被注解的方法</span>                     <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;                 <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;             }         };         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.SWAGGER_2)                 .apiInfo(apiInfo())                 .useDefaultResponseMessages(<span class="hljs-keyword">false</span>)                 .select()                 .apis(predicate)                 .build();     }      <span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title">apiInfo</span>() {         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ApiInfoBuilder()             .title(<span class="hljs-string">"包含媒体、咨询、搜索引擎关键字、广告等类型接口的服务"</span>)<span class="hljs-comment">//大标题</span>             .version(<span class="hljs-string">"1.0"</span>)<span class="hljs-comment">//版本</span>             .build();     } }</code></pre> <p><strong>三、常见swagger注解一览与使用</strong></p> <p>最常用的5个注解</p> <pre class="prettyprint"><code class="hljs ruby"><span class="hljs-variable">@Api</span>：修饰整个类，描述<span class="hljs-constant">Controller</span>的作用 <span class="hljs-variable">@ApiOperation</span>：描述一个类的一个方法，或者说一个接口 <span class="hljs-variable">@ApiParam</span>：单个参数描述 <span class="hljs-variable">@ApiModel</span>：用对象来接收参数 <span class="hljs-variable">@ApiProperty</span>：用对象接收参数时，描述对象的一个字段</code></pre> <p>其它若干</p> <pre class="prettyprint"><code class="hljs ruby"><span class="hljs-variable">@ApiResponse</span>：<span class="hljs-constant">HTTP</span>响应其中<span class="hljs-number">1</span>个描述 <span class="hljs-variable">@ApiResponses</span>：<span class="hljs-constant">HTTP</span>响应整体描述 <span class="hljs-variable">@ApiIgnore</span>：使用该注解忽略这个<span class="hljs-constant">API</span>   <span class="hljs-variable">@ApiClass</span> <span class="hljs-variable">@ApiError</span> <span class="hljs-variable">@ApiErrors</span>  <span class="hljs-variable">@ApiParamImplicit</span> <span class="hljs-variable">@ApiParamsImplicit</span></code></pre> <p>下面创建2个Controller来测试： <br /> 1、TestController.java</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-annotation">@Controller</span> <span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">"/api/test"</span>) <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestController</span> {<!-- --></span>      <span class="hljs-annotation">@ResponseBody</span>     <span class="hljs-annotation">@RequestMapping</span>(value = <span class="hljs-string">"/show"</span>, method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)<span class="hljs-comment">// 这里指定RequestMethod，如果不指定Swagger会把所有RequestMethod都输出，在实际应用中，具体指定请求类型也使接口更为严谨。</span>     <span class="hljs-annotation">@ApiOperation</span>(value=<span class="hljs-string">"测试接口"</span>, notes=<span class="hljs-string">"测试接口详细描述"</span>)     <span class="hljs-keyword">public</span> String <span class="hljs-title">show</span>(             @<span class="hljs-title">ApiParam</span>(required=<span class="hljs-keyword">true</span>, name=<span class="hljs-string">"name"</span>, value=<span class="hljs-string">"姓名"</span>)             <span class="hljs-annotation">@RequestParam</span>(name = <span class="hljs-string">"name"</span>, required=<span class="hljs-keyword">true</span>) String stuName){         <span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;     } }</code></pre> <p>2、DemoController.java</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-javadoc">/**  * DemoController  *   */</span> <span class="hljs-annotation">@Controller</span> <span class="hljs-annotation">@RequestMapping</span>(value = <span class="hljs-string">"/demo"</span>) <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoController</span> {<!-- --></span>      <span class="hljs-keyword">private</span> Logger logger = LoggerFactory.getLogger(DemoController.class);      <span class="hljs-javadoc">/**      * 可以直接使用@ResponseBody响应JSON      *       *<span class="hljs-javadoctag"> @param</span> request      *<span class="hljs-javadoctag"> @param</span> response      *<span class="hljs-javadoctag"> @return</span>      */</span>     <span class="hljs-annotation">@ResponseBody</span>     <span class="hljs-annotation">@RequestMapping</span>(value = <span class="hljs-string">"/getcount"</span>, method = RequestMethod.POST)     <span class="hljs-annotation">@ApiOperation</span>(value=<span class="hljs-string">"测试-getCount"</span>, notes=<span class="hljs-string">"getCount更多说明"</span>)     <span class="hljs-keyword">public</span> ModelMap <span class="hljs-title">getCount</span>(HttpServletRequest request,             HttpServletResponse response) {         logger.info(<span class="hljs-string">"&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; begin getCount &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;"</span>);         ModelMap map = <span class="hljs-keyword">new</span> ModelMap();         map.addAttribute(<span class="hljs-string">"count"</span>, <span class="hljs-number">158</span>);          <span class="hljs-comment">// 后台获取的国际化信息</span>         map.addAttribute(<span class="hljs-string">"xstest"</span>, <span class="hljs-string">"测试"</span>);         <span class="hljs-keyword">return</span> map;     }      <span class="hljs-javadoc">/**      * 可以直接使用@ResponseBody响应JSON      *       *<span class="hljs-javadoctag"> @param</span> request      *<span class="hljs-javadoctag"> @param</span> response      *<span class="hljs-javadoctag"> @return</span>      */</span>     <span class="hljs-annotation">@ApiIgnore</span><span class="hljs-comment">//使用该注解忽略这个API</span>     <span class="hljs-annotation">@ResponseBody</span>     <span class="hljs-annotation">@RequestMapping</span>(value = <span class="hljs-string">"/jsonTest1"</span>, method = RequestMethod.POST)     <span class="hljs-keyword">public</span> ModelMap <span class="hljs-title">jsonTest</span>(HttpServletRequest request,             HttpServletResponse response) {         ModelMap map = <span class="hljs-keyword">new</span> ModelMap();         map.addAttribute(<span class="hljs-string">"hello"</span>, <span class="hljs-string">"你好"</span>);         map.addAttribute(<span class="hljs-string">"veryGood"</span>, <span class="hljs-string">"很好"</span>);          <span class="hljs-keyword">return</span> map;     }      <span class="hljs-javadoc">/**      * 可以直接使用@ResponseBody响应JSON      *       *<span class="hljs-javadoctag"> @param</span> request      *<span class="hljs-javadoctag"> @param</span> response      *<span class="hljs-javadoctag"> @return</span>      */</span>     <span class="hljs-annotation">@ResponseBody</span>     <span class="hljs-annotation">@RequestMapping</span>(value = <span class="hljs-string">"/jsonTest3"</span>, method = RequestMethod.POST)     <span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title">jsonTest3</span>(HttpServletRequest request,             HttpServletResponse response) {         List&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;();         list.add(<span class="hljs-string">"hello"</span>);         list.add(<span class="hljs-string">"你好"</span>);         <span class="hljs-keyword">return</span> list;     }      <span class="hljs-javadoc">/**      * JSON请求一个对象&lt;br/&gt;      * （Ajax Post Data：{"name":"名称","content":"内容"}）      *       *<span class="hljs-javadoctag"> @param</span> version      *<span class="hljs-javadoctag"> @return</span>      */</span>     <span class="hljs-annotation">@ResponseBody</span>     <span class="hljs-annotation">@RequestMapping</span>(value = <span class="hljs-string">"/jsonTest2"</span>, method = RequestMethod.POST)     <span class="hljs-keyword">public</span> ModelMap <span class="hljs-title">jsonTest2</span>(@RequestBody Demo demo) {         logger.info(<span class="hljs-string">"demoName："</span> + demo.getName());         logger.info(<span class="hljs-string">"demoContent："</span> + demo.getContent());         ModelMap map = <span class="hljs-keyword">new</span> ModelMap();         map.addAttribute(<span class="hljs-string">"result"</span>, <span class="hljs-string">"ok"</span>);         <span class="hljs-keyword">return</span> map;     }      <span class="hljs-javadoc">/**      * 直接读取URL参数值&lt;br/&gt;      * /demo/jsonTest6.do?name=Hello&amp;content=World      *       *<span class="hljs-javadoctag"> @param</span> demoName      *<span class="hljs-javadoctag"> @param</span> content      *<span class="hljs-javadoctag"> @return</span>      */</span>     <span class="hljs-annotation">@ResponseBody</span>     <span class="hljs-annotation">@RequestMapping</span>(value = <span class="hljs-string">"/jsonTest6"</span>, method = RequestMethod.POST)     <span class="hljs-keyword">public</span> ModelMap <span class="hljs-title">jsonTest6</span>(@<span class="hljs-title">RequestParam</span>("name") String demoName, @RequestParam String content) {         logger.info(<span class="hljs-string">"demoName："</span> + demoName);         ModelMap map = <span class="hljs-keyword">new</span> ModelMap();         map.addAttribute(<span class="hljs-string">"name"</span>,demoName + <span class="hljs-string">"AAA"</span>);         map.addAttribute(<span class="hljs-string">"content"</span>,content + <span class="hljs-string">"BBB"</span>);         map.addAttribute(<span class="hljs-string">"date"</span>,<span class="hljs-keyword">new</span> java.util.Date());         <span class="hljs-keyword">return</span> map;     }      <span class="hljs-javadoc">/**      * JSON请求一个对象，将RequestBody自动转换为JSONObject对象&lt;br/&gt;      * （Ajax Post Data：{"name":"名称","content":"内容"}）      *       * 使用JSONObject请添加依赖      *  &lt;dependency&gt;      *      &lt;groupId&gt;net.sf.json-lib&lt;/groupId&gt;      *      &lt;artifactId&gt;json-lib&lt;/artifactId&gt;      *      &lt;version&gt;2.4&lt;/version&gt;      *      &lt;!--指定jdk版本 --&gt;      *      &lt;classifier&gt;jdk15&lt;/classifier&gt;      *  &lt;/dependency&gt;      *       *<span class="hljs-javadoctag"> @param</span> version      *<span class="hljs-javadoctag"> @return</span>      */</span>     <span class="hljs-annotation">@ResponseBody</span>     <span class="hljs-annotation">@RequestMapping</span>(value = <span class="hljs-string">"/jsonTest5"</span>, method = RequestMethod.POST)     <span class="hljs-keyword">public</span> ModelMap <span class="hljs-title">jsonTest5</span>(@RequestBody JSONObject jsonObject) {         String name = jsonObject.getString(<span class="hljs-string">"name"</span>);         logger.info(<span class="hljs-string">"demoName："</span> + name);         ModelMap map = <span class="hljs-keyword">new</span> ModelMap();         map.addAttribute(<span class="hljs-string">"demoName"</span>,name);         <span class="hljs-keyword">return</span> map;     }      <span class="hljs-javadoc">/**      * 输入 和输出为JSON格式的数据的方式 HttpEntity&lt;?&gt; ResponseEntity&lt;?&gt;      *       *<span class="hljs-javadoctag"> @param</span> u      *<span class="hljs-javadoctag"> @return</span>      */</span>     <span class="hljs-annotation">@ResponseBody</span>     <span class="hljs-annotation">@RequestMapping</span>(value = <span class="hljs-string">"/jsonTest4"</span>, method = RequestMethod.POST)     <span class="hljs-keyword">public</span> ResponseEntity&lt;String&gt; <span class="hljs-title">jsonTest4</span>(HttpEntity&lt;Demo&gt; demo,             HttpServletRequest request, HttpSession session) {         <span class="hljs-comment">//获取Headers方法</span>         HttpHeaders headers = demo.getHeaders();          <span class="hljs-comment">// 获取内容</span>         String demoContent = demo.getBody().getContent();          <span class="hljs-comment">// 这里直接new一个对象（HttpHeaders headers = new HttpHeaders();）</span>         HttpHeaders responseHeaders = <span class="hljs-keyword">new</span> HttpHeaders();         responseHeaders.add(<span class="hljs-string">"MyHeaderName"</span>, <span class="hljs-string">"SHANHY"</span>);          ResponseEntity&lt;String&gt; responseResult = <span class="hljs-keyword">new</span> ResponseEntity&lt;String&gt;(                 demoContent, responseHeaders, HttpStatus.OK);         <span class="hljs-keyword">return</span> responseResult;     }  }</code></pre> <p>Swagger2默认将所有的Controller中的RequestMapping方法都会暴露，然而在实际开发中，我们并不一定需要把所有API都提现在文档中查看，这种情况下，使用注解@ApiIgnore来解决，如果应用在Controller范围上，则当前Controller中的所有方法都会被忽略，如果应用在方法上，则对应用的方法忽略暴露API。</p> <p>注解@ApiOperation和@ApiParam可以理解为API说明，多动手尝试就很容易理解了。 <br /> 如果我们不使用这样注解进行说明，Swagger2也是有默认值的，没什么可说的试试就知道了。</p> <p>在 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8080/swagger-ui.html"  rel="nofollow">http://localhost:8080/swagger-ui.html</a> 显示页面的右上角有api_key ，springfox-swagger 2.2.2 版本并没有进行处理，我们可以自己添加拦截器拦截 /v2/api-docs 来处理我们API文档的访问权限，如果要更严格更灵活的控制，可能需要修改源码来实现了。相信 springfox-swagger 的后期版本应该会支持更全面的应用需求的。</p> </p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-953.htm">spring boot web项目</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-955.htm">SDDC的Windows初体验-QT篇</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

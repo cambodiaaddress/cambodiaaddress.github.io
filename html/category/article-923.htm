@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-923.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>使用 Java 开发 Gradle 插件_在线工具 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>使用 Java 开发 Gradle 插件_在线工具</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<p>Gradle 插件代码可以在 build.gradle 中，buildSrc 项目中，以及独立的插件项目中编写。本文将介绍如何在一个独立的项目中使用 Java 语言编写 Gradle 插件，并发布到仓库中。</p> <h2 id="1-创建项目">1. 创建项目</h2> <p>Gradle 插件项目和普通的 Java 项目没有什么不同，普通项目是基于其它三方包进行开发，而 Gradle 插件项目基于 Gradle 的 API 进行开发。</p> <p>基于 Gradle 创建一个 Java 项目，项目目录结构如下，和普通项目一样。示例项目：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/Robothy/gradle-plugin-sample"  target="_blank"  rel="nofollow">https://github.com/Robothy/gradle-plugin-sample</a></p> <pre><code class="language-bash">gradle-plugin-sample | ├───build.gradle ├───settings.gradle └───src     ├───main     │   ├───java     │   └───resources     └───test         ├───java         └───resources </code></pre> <p>引入 Gradle API 相关的 jar 包。为了方便起见，可以通过 gradle 插件 java-gradle-plugin 来引入 Java 插件，引入 Gradle API 相关依赖以及生成插件相关的描述符。</p> <p>build.gradle</p> <pre><code class="language-java">plugins {     id 'java-gradle-plugin' }  group 'com.robothy' version '1.0-SNAPSHOT'  repositories {     mavenLocal()     mavenCentral() }  wrapper{     gradleVersion = '6.7' } </code></pre> <h2 id="2-动手开发">2. 动手开发</h2> <p>项目创建好之后，就可以开始动手开发了。从项目构建角度来看，Gradle 插件是一段可重用的构建逻辑，这段逻辑能够被应用到各个项目当中。更具体来说，Gradle 插件是一个实现了 org.gradle.api.Plugin 接口的类，它被 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.gradle.org/current/userguide/tutorial_using_tasks.html#sec:projects_and_tasks"  target="_blank"  rel="nofollow">Project</a> （可以认为是 build.gralde, 它本质是一个实现了 Project 接口的类）所引用。开发插件的本质就是往 build.gradle 中插入一段逻辑。</p> <pre><code class="language-java">void apply​(T target) </code></pre> <p>Plugin 是一个泛型接口，有一个抽象方法 apply，它的参数类型可以是 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.gradle.org/current/dsl/org.gradle.api.Project.html"  target="_blank"  rel="nofollow">Project</a>, <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.gradle.org/current/dsl/org.gradle.api.initialization.Settings.html"  target="_blank"  rel="nofollow">Settings</a>, 或者 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.gradle.org/current/dsl/org.gradle.api.invocation.Gradle.html"  target="_blank"  rel="nofollow">Gradle</a>。</p> <ul> <li> <p>类型为 Project，插件可以应用于 build.gradle；</p> </li> <li> <p>类型为 Settings，插件可应用于 settings.gradle；</p> </li> <li> <p>类型为 Gradle, 插件可应用于 Gradle 初始化脚本。</p> </li> </ul> <p>在应用插件时，gradle 会创建一个插件类的实例，并调用 apply 方法。因此，插件的逻辑就是 apply 方法中的代码。</p> <p>一个独立的项目中可以有多个实现了 Plugin 接口的类，意味着一个项目可以包含多个插件。每一个插件都需要在 build.gradle 中添加相应的描述，java-gradle-plugin 会根据这些描述生成插件描述符（jar 包中的一个文件）。</p> <p>假设要在 gradle-plugin-sample 项目中创建两个插件 hello, goodbye，需要进行如下两个步骤：</p> <p>1）创建插件类</p> <p>HelloPlugin.java</p> <pre><code class="language-java">import org.gradle.api.Plugin; import org.gradle.api.Project;  public class HelloPlugin implements Plugin&lt;Project&gt; {     @Override     public void apply(Project project) {         System.out.println("Message from hello plugin.");     } } </code></pre> <p>GoodbyePlugin.java</p> <pre><code class="language-java">import org.gradle.api.Plugin; import org.gradle.api.Project;  public class GoodbyePlugin implements Plugin&lt;Project&gt; {     @Override     public void apply(Project project) {         System.out.println("Message from goodbye plugin.");     } } </code></pre> <p>2）在 build.gradle 中添加描述内容</p> <p>描述内容需要指定插件的 ID 和插件的入口类。</p> <pre><code class="language-groovy">gradlePlugin {     plugins {         helloPlugin {             id = 'com.robothy.hello'             implementationClass = 'com.robothy.HelloPlugin'         }         googbyePlugin{             id = 'com.robothy.goodbye'             implementationClass = 'com.robothy.GoodbyePlugin'         }     } } </code></pre> <p>完成上面步骤之后，一个简单的插件就算完成了开发，接下来就可以发布和使用了。</p> <h2 id="3-发布插件">3. 发布插件</h2> <p>插件可以发布到 Maven 仓库和 Gradle 官方插件门户。</p> <h3 id="31-发布到-maven-仓库">3.1 发布到 Maven 仓库</h3> <p>发布插件到 Maven 仓库和发布普通的 jar 包一样，需要用到 maven-publish 插件。要发布到远程 Maven 仓库可能需要提供认证信息，这里简单起见只发布到本地仓库。</p> <p>1）在 build.gradle 文件中添加 maven-publish 插件</p> <pre><code class="language-groovy">plugins {     id 'java-gradle-plugin'     id 'maven-publish' } </code></pre> <p>2）执行 <code>gradle publishToMavenLocal</code>，成功之后可以在 <code>~/.m2</code> 目录下找打发布的 jar 包。</p> <p>要使用发布到 Maven 仓库中的 Gradle 插件，需要先在 settings.gradle 中指定仓库。如下代码指定了插件仓库有本地 Maven 和 Gradle 插件门户。</p> <pre><code class="language-groovy">pluginManagement {     repositories {         mavenLocal()         gradlePluginPortal()     } } </code></pre> <h3 id="32-发布到-gradle-官方插件门户">3.2 发布到 Gradle 官方插件门户</h3> <p>我们平常使用的大部分插件来自于 Gradle 官方插件门户，开发人员注册一个 Gradle 账号之后可以将插件发布到门户，这样其他人就可以很方便地使用了。按照如下步骤发布插件，这里如果没有描述清楚可以移步 Gradle 官网文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://plugins.gradle.org/docs/submit"  target="_blank"  rel="nofollow">How do I add my plugin to the plugin portal?</a>。</p> <p>1）注册门户账户</p> <p>2）创建 API Key。注册好账户就能够看见了。</p> <p>3）将 API Key 添加到文件 <code>~/.gradle/gradle.properties</code></p> <p>4）使用插件发布插件 com.gradle.plugin-publish 发布插件（不是病句，只是有点绕 ????）</p> <p>将 com.gradle.plugin-publish 添加到插件项目 gradle-plugin-sample 的 build.gradle 中，然后添加插件的描述信息。</p> <pre><code class="language-groovy">pluginBundle {   website = 'http://www.gradle.org/'   vcsUrl = 'https://github.com/gradle/gradle'   description = 'Greetings from here!'   tags = ['greetings', 'salutations']    plugins {     greetingsPlugin {       // id='com.robothy.hello' 可以省略，因为在 gradlePlugin 配置块中已经有 id 信息了       displayName = 'Hello Plugin'     }   } } </code></pre> <p>5）使用 <code>gradle publishPlugins</code> 发布插件</p> <p>如果插件信息描述正确，执行 puhlishPlugins 任务之后会打印出待审核的信息，之后就是等待了（本人发布的插件 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://plugins.gradle.org/plugin/com.robothy.cn-repo"  target="_blank"  rel="nofollow">com.robothy.cn-repo</a> 经过了四五个小时就审核通过了）。</p> <pre><code>Publishing plugin com.robothy.cn-repo version 1.0 Thank you. Your new plugin com.robothy.cn-repo has been submitted for approval by Gradle engineers. The request should be processed within the next few days, at which point you will be contacted via email. </code></pre> <h2 id="4-更多">4. 更多</h2> <h3 id="41-在插件中添加任务">4.1 在插件中添加任务</h3> <p>先自定义一个 Gradle 任务类 SayHelloTask，该任务的行为是简答的打印固定的字符串。自定义任务需要继承 DefaultTask。</p> <pre><code class="language-java">public class SayHelloTask {     @TaskAction     public void hello() {         System.out.println("Hello, World!");     } } </code></pre> <p>然后通过 project 往项目中注册一个 SayHelloTask 的实例，任务名为 task。</p> <pre><code class="language-java">public class HelloPlugin implements Plugin&lt;Project&gt; {     @Override     public void apply(Project project) {         System.out.println("Message from hello plugin.");         project.getTasks().register("hello", SayHelloTask.class);     } } </code></pre> <p>当然，也可以在使用 HelloPlugin 插件的 build.gradle 中注册任务。</p> <pre><code class="language-groovy">task hello(type: com.robothy.SayHelloTask) </code></pre> <p>重新发布插件，执行下面命令时控制台会打印出 "Hello, World!"。</p> <pre><code class="language-java">gradle hello </code></pre> <h3 id="42-添加扩展">4.2 添加扩展</h3> <p>Gradle 插件可以往 project 中注册扩展，开发人员可以通过扩展设置一些参数值，以供其它的 Gradle Task 使用。假设我们希望在 build.gradle 中添加如下配置信息。</p> <pre><code>user {     name = 'Robothy'     country = 'China' } </code></pre> <p>首先，创建一个配置信息接口，接口中只包含 getter 抽象方法。需要注意的是，返回的类型为 Property<string>，并非直接返回 String。配置信息不需要创建为 Java 类，Gradle 在运行时会通过动态代理的方式自动往代理对象中注入值。</string></p> <pre><code class="language-java">public interface User {     Property&lt;String&gt; getName();     Property&lt;String&gt; getCountry(); } </code></pre> <p>然后插件就可以往 project 中添加一个扩展了。</p> <pre><code class="language-java">project.getExtensions().add("user", User.class); </code></pre> <p>重新发布插件，此时引入了插件的项目就可以在 builde.gradle 中添加本小节开头描述的配置块了。</p> <p>Gradle 任务可以通过如下方式访问到这些配置信息。</p> <pre><code class="language-java">User user = (User) (project.getExtensions().getByName("user")); </code></pre> <h2 id="5-小结">5. 小结</h2> <p>本文主要介绍了如何使用纯 Java 语言在一个独立的项目中编写 Gradle 插件，插件主要通过通过传入的 project 参数访问项目，往项目的构建生命周期中插入一些逻辑或者添加配置信息。插件可以发布到私有的 Maven 仓库，也可以发布到 Gradle 插件门户。插件项目中还可以很好地封装一些 Gradle Task，定义一些配置类型。</p> <h2 id="6-参考内容">6. 参考内容</h2> <p>[1] <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.gradle.org/current/userguide/tutorial_using_tasks.html#sec:projects_and_tasks"  target="_blank"  rel="nofollow">Build Script Basics</a></p> <p>[2] <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://plugins.gradle.org/docs/submit"  target="_blank"  rel="nofollow">How do I add my plugin to the plugin portal?</a></p> <p>[3] <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.gradle.org/current/userguide/custom_plugins.html#note_for_plugins_published_without_java_gradle_plugin"  target="_blank"  rel="nofollow">Developing Custom Gradle Plugins</a></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-922.htm">在多行插入的情况下，对MySQL LAST_INSERT_ID()函数的输出有什么影响？</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-924.htm">win11系统如何激活超级管理员账户</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-993.htm" title="骨架屏技术讲解以及如何在Vue中实现骨架屏">骨架屏技术讲解以及如何在Vue中实现骨架屏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1031.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

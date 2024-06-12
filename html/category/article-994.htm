@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-994.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>java单例模式的8种写法 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>java单例模式的8种写法</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p><strong>单例模式（Singleton</strong>）是一种非常简单且容易理解的设计模式。顾名思义，单例即单一的实例，确切地讲就是指在某个系统中只存在一个实例，同时提供集中、统一的访问接口，以使系统行为保持协调一致</p> <h1>1 饿汉模式&nbsp; 推荐写法</h1> <pre><code class="language-java">package com.cyc.mystudy.singleton;  /**  * @Author cyc  * @create 2022/7/30 11:24  */ public class Test01 {     private static final Test01  INSTANCE=new Test01();      private  Test01(){      }      public static Test01 getINSTANCE() {         return INSTANCE;     }      public static void main(String[] args) {         for (int i=0;i&lt;1000;i++){             new Thread(()-&gt;{                 System.out.println(Test01.getINSTANCE().hashCode());             }).start();         }     } } </code></pre> <p>私有的构造方法使得Test01完全被封闭起来 实例化工作是自己内部的事务</p> <p>private static final 修饰 保证了 INSTANCE是私有的 ,不可见的不可访问的,static保证了静态性,在类被加载进内存时,就已经初始化 ,final保证INSTANCE是常量,是不能被修改的</p> <p>外部只要调用公共的方法TEST01.getINSTANCE就可以获得唯一的实例对象了&nbsp;</p> <h1>2 饿汉模式 静态代码块赋值</h1> <pre><code class="language-java">package com.cyc.mystudy.singleton;  /**  * @Author cyc  * @create 2022/7/30 11:24  */ public class Test03 {     private static final Test03 INSTANCE;      static {         INSTANCE=new Test03();     }     private Test03(){      }      public static Test03 getINSTANCE() {         return INSTANCE;     }      public static void main(String[] args) {         for (int i=0;i&lt;1000;i++){             new Thread(()-&gt;{                 System.out.println(Test03.getINSTANCE().hashCode());             }).start();         }     } } </code></pre> <p>此处将实例化操作放到静态代码块中</p> <h1>3 懒汉式&nbsp;</h1> <pre><code class="language-java">package com.cyc.mystudy.singleton;  /**  * @Author cyc  * @create 2022/7/30 11:33  */ public class Test02 {     private static Test02 test02;     private Test02(){};      public static Test02 getInstance(){         if (test02==null){             test02=new Test02();         }          return test02;     }      public static void main(String[] args) {         for (int i=0;i&lt;1000;i++){             new Thread(()-&gt;{                 System.out.println(Test02.getInstance().hashCode());             }).start();         }     }  } </code></pre> <p>恶汉模式如果没人使用,但是却实例化对象 ,这样一块内存区不是白浪费了 这样单杀了懒汉模式的写法</p> <p>只有当某一个线程第一次调用getINSTANCE时才会进行实例化操作 之后再有线程访问直接返回对象</p> <p>这样程序乍看确实没什么问题 但是在多线程环境下 可能会有多个线程进入到了getINSTANCE方法内,这样就会导致原来已经实例化的对象被覆盖掉</p> <p>为了保证线程安全 我们给getINSTANCE方法加上&nbsp;synchronized同步锁 下面看第四种写法</p> <h1>4&nbsp; synchronized 版懒汉模式</h1> <pre><code class="language-java">package com.cyc.mystudy.singleton;  /**  * @Author cyc  * @create 2022/7/30 11:33  */ public class Test04 {     private static Test04 test02;     private Test04(){};      public static synchronized Test04 getInstance(){         if (test02==null){             test02=new Test04();         }          return test02;     }      public static void main(String[] args) {         for (int i=0;i&lt;1000;i++){             new Thread(()-&gt;{                 System.out.println(Test04.getInstance().hashCode());             }).start();         }     }  } </code></pre> <p>这样确实没有什么问题&nbsp;然而这样的做法是要付出一定代价的，试想，线程还没进入方法内部便不管三七二十一直接加锁排队，会造成线程阻塞，资源与时间被白白浪费。我们只是为了实例化一个单例对象而已，犯不上如此兴师动众，使用synchronized让所有请求排队等候。所以，要保证多线程并发下逻辑的正确性，同步锁一定要加得恰到好处</p> <p>下面看第五种写法 在方法体内部加锁:</p> <h1>5&nbsp; synchronized 内部加锁</h1> <pre><code class="language-java">package com.cyc.mystudy.singleton;  /**  * @Author cyc  * @create 2022/7/30 11:33  */ public class Test05 {     private static Test05 test02;     private Test05(){};      public static  Test05 getInstance(){         if (test02==null){             synchronized (Test05.class){                 test02=new Test05();             }                      }          return test02;     }      public static void main(String[] args) {         for (int i=0;i&lt;1000;i++){             new Thread(()-&gt;{                 System.out.println(Test05.getInstance().hashCode());             }).start();         }     }  } </code></pre> <p>这样在多线程环境也会有一定问题 ,可能会有多个线程同时通过了 tese02==null 的判断进入了方法里,这样也会造成重复的实例化</p> <h1>6&nbsp; 双重检查synchronized 推荐写法</h1> <pre><code class="language-java">package com.cyc.mystudy.singleton;  /**  * @Author cyc  * @create 2022/7/30 11:33  */ public class Test06 {     private static  volatile  Test06 test02;     private Test06(){};      public static Test06 getInstance(){         if (test02==null){             synchronized (Test06.class){                 if (test02==null){                     test02=new Test06();                 }             }         }          return test02;     }      public static void main(String[] args) {         for (int i=0;i&lt;1000;i++){             new Thread(()-&gt;{                 System.out.println(Test06.getInstance().hashCode());             }).start();         }     }  } </code></pre> <p>我们一共用了2个嵌套的判空逻辑，这就是懒加载模式的“双检锁”：外层放宽入口，保证线程并发的高效性；内层加锁同步，保证实例化的单次运行。如此里应外合，不仅达到了单例模式的效果，还完美地保证了构建过程的运行效率，一举两得。</p> <h1>7&nbsp; 内部类方式</h1> <pre><code class="language-java">package com.cyc.mystudy.singleton;  /**  * @Author cyc  * @create 2022/7/30 11:51  */ public class Test07 {      private Test07(){};      private static class Test0701{         private static final  Test07 test07=new Test07();     }          public   static  Test07 getInstance(){         return Test0701.test07;     }      public static void main(String[] args) {         for (int i=0;i&lt;1000;i++){             new Thread(()-&gt;{                 System.out.println(Test07.getInstance().hashCode());             }).start();         }     }      } </code></pre> <h1>8 枚举类方式</h1> <pre><code class="language-java">package com.cyc.mystudy.singleton;  /**  * @Author cyc  * @create 2022/7/30 11:57  */ public enum Test08 {      INSTANCE;      public  void m(){         System.out.println("业务代码");     }      public static void main(String[] args) {         Test08.INSTANCE.m();     } } </code></pre> <p>在一般情况下我们使用饿汉模式,恶汉模式不用担心多线程环境会出问题,写法上也比较简单,</p> <p>我们不用为了省一点性能而去给自己造成麻烦</p> </p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-993.htm">骨架屏技术讲解以及如何在Vue中实现骨架屏</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-995.htm">CI实现简单的分页原理</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1013.htm" title="【译】defer-panic-and-recover_在线工具">【译】defer-panic-and-recover_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

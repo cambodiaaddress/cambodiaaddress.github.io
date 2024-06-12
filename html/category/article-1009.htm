@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1009.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>k8s TLS bootstrap解析-k8s TLS bootstrap流程分析 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h2 id="k8s-tls-bootstrap解析-k8s-tls-bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</h2> <h4 id="概述">概述</h4> <p>当k8s集群开启了TLS认证后，每个节点的kubelet组件都要使用由kube-apiserver的CA签发的有效证书才能与kube-apiserver通信；当节点非常多的时候，为每个节点都单独签署证书是一件非常繁琐而又耗时的事情。</p> <p>此时k8s TLS bootstrap功能应运而生。</p> <p>k8s TLS bootstrap功能就是让kubelet先使用一个预先商定好的低权限的bootstrap token连接到kube-apiserver，向kube-apiserver申请证书，然后kube-controller-manager给kubelet动态签署证书，后续kubelet都将通过动态签署的证书与kube-apiserver通信。</p> <h2 id="tls-bootstrap涉及组件相关参数">TLS bootstrap涉及组件相关参数</h2> <h4 id="1kube-apiserver">1.kube-apiserver</h4> <p>（1）<code>--client-ca-file</code>：认证客户端证书的CA证书；</p> <p>（2）<code>--enable-bootstrap-token-auth</code>：设置为true则代表开启TLS bootstrap特性；</p> <h4 id="2kube-controller-manager">2.kube-controller-manager</h4> <p>（1）<code>--cluster-signing-cert-file</code>、<code>--cluster-signing-key-file</code>：用来签发kubelet证书的CA证书和私钥，这里的kubelet证书指的是用来跟kube-apiserver通信，kube-apiserver认证kubelet身份的证书，所以--cluster-signing-cert-file指定的值与kube-apiserver的--client-ca-file指定值一致，而私钥则也是对应的私钥；</p> <p>（2）<code>--cluster-signing-duration</code>：签发给kubelet的证书有效期；</p> <h4 id="3kubelet">3.kubelet</h4> <p>（1）<code>--bootstrap-kubeconfig</code>：TLS bootstrap的配置文件，文件中一般包含bootstrap token和master url等信息；</p> <p>（2）<code>--kubeconfig</code>：在kubelet的CSR被批复并被kubelet取回时，一个引用所生成的密钥和所获得证书的kubeconfig文件会被写入到通过 --kubeconfig所指定的文件路径下，而证书和密钥文件会被放到--cert-dir所指定的目录中；</p> <p>（3）<code>--rotate-certificates</code>：开启证书轮换，kubelet在其现有证书即将过期时通过创建新的CSR来轮换其客户端证书。</p> <h2 id="详细流程解析">详细流程解析</h2> <p>下面以kubeadm使用k8s TLS bootstrap将一个node节点加入已有的master为例，对TLS bootstrap部分进行详细流程解析。</p> <h4 id="1rbac相关操作">1.RBAC相关操作</h4> <p>（1）生成bootstrap token，创建bootstrap token secret；</p> <p>bootstrap token secret模板：</p> <pre><code>apiVersion: v1 data:   auth-extra-groups: system:bootstrappers:kubeadm:default-node-token   expiration: 2022-04-03T11:13:09+08:00   token-id: {token-id}   token-secret: {token-secret}   usage-bootstrap-authentication: "true"   usage-bootstrap-signing: "true" kind: Secret metadata:   name: bootstrap-token-{token-id}   namespace: kube-system type: bootstrap.kubernetes.io/token</code></pre> <p>关于bootstrap token secret相关的格式说明：</p> <p>secret的name格式为<code>bootstrap-token-{token-id}</code>的格式；<br /> secret的type固定为<code>bootstrap.kubernetes.io/token</code>；<br /> secret data中的token-id为6位数字字母组合字符串，token-secret为16位数字字母组合字符串；<br /> secret data中的<code>auth-extra-groups</code>定义了bootstrap token所代表用户所属的的group，kubeadm使用了<code>system:bootstrappers:kubeadm:default-node-token</code>；<br /> secret所对应的bootstrap token为<code>{token-id}.{token-secret}</code>；</p> <p>bootstrap token secret示例：</p> <pre><code>apiVersion: v1 data:   auth-extra-groups: system:bootstrappers:kubeadm:default-node-token   expiration: 2022-04-03T11:13:09+08:00   token-id: abcdef   token-secret: 0123456789abcdef   usage-bootstrap-authentication: "true"   usage-bootstrap-signing: "true" kind: Secret metadata:   name: bootstrap-token-abcdef   namespace: kube-system type: bootstrap.kubernetes.io/token</code></pre> <p>上述secret示例中，kubeadm生成的bootstrap token为<code>abcdef.0123456789abcdef</code>，其代表的用户所在用户组为<code>system:bootstrappers:kubeadm:default-node-token</code>；</p> <p>（2）授予bootstrap token创建CSR证书签名请求的权限，即授予kubelet创建CSR证书签名请求的权限；</p> <p>即创建ClusterRoleBinding -- kubeadm:kubelet-bootstrap</p> <pre><code>apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata:   name: kubeadm:kubelet-bootstrap   ... roleRef:   apiGroup: rbac.authorization.k8s.io   kind: ClusterRole   name: system:node-bootstrapper subjects: - apiGroup: rbac.authorization.k8s.io   kind: Group   name: system:bootstrappers:kubeadm:default-node-token</code></pre> <p>kubeadm生成的bootstrap token所代表的用户所在用户组为<code>system:bootstrappers:kubeadm:default-node-token</code>，所以这里绑定权限的时候将权限绑定给了用户组<code>system:bootstrappers:kubeadm:default-node-token</code>；</p> <p>接下来看下被授予的权限ClusterRole -- system:node-bootstrapper</p> <pre><code>apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRole metadata:   name: system:node-bootstrapper   ... rules: - apiGroups:   - certificates.k8s.io   resources:   - certificatesigningrequests   verbs:   - create   - get   - list   - watch</code></pre> <p>（3）授予bootstrap token权限，让kube-controller-manager可以自动审批其发起的CSR；</p> <p>即创建ClusterRoleBinding -- kubeadm:node-autoapprove-bootstrap</p> <pre><code>apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata:   name: kubeadm:node-autoapprove-bootstrap   ... roleRef:   apiGroup: rbac.authorization.k8s.io   kind: ClusterRole   name: system:certificates.k8s.io:certificatesigningrequests:nodeclient subjects: - apiGroup: rbac.authorization.k8s.io   kind: Group   name: system:bootstrappers:kubeadm:default-node-token</code></pre> <p>kubeadm生成的bootstrap token所代表的用户所在用户组为<code>system:bootstrappers:kubeadm:default-node-token</code>，所以这里绑定权限的时候将权限绑定给了用户组<code>system:bootstrappers:kubeadm:default-node-token</code>；</p> <p>接下来看下被授予的权限ClusterRole -- system:certificates.k8s.io:certificatesigningrequests:nodeclient</p> <pre><code>apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRole metadata:   name: system:certificates.k8s.io:certificatesigningrequests:nodeclient   ... rules: - apiGroups:   - certificates.k8s.io   resources:   - certificatesigningrequests/nodeclient   verbs:   - create</code></pre> <p>（4）授予kubelet权限，让kube-controller-manager自动批复kubelet的证书轮换请求；</p> <p>即创建ClusterRoleBinding -- kubeadm:node-autoapprove-certificate-rotation</p> <pre><code>apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata:   name: kubeadm:node-autoapprove-certificate-rotation   ... roleRef:   apiGroup: rbac.authorization.k8s.io   kind: ClusterRole   name: system:certificates.k8s.io:certificatesigningrequests:selfnodeclient subjects: - apiGroup: rbac.authorization.k8s.io   kind: Group   name: system:nodes</code></pre> <p>kubelet创建的CSR用户名格式为<code>system:node:&lt;name&gt;</code>，用户组为<code>system:nodes</code>，所以kube-controller-manager为kubelet生成的证书所代表的用户所在用户组为<code>system:nodes</code>，所以这里绑定权限的时候将权限绑定给了用户组<code>system:nodes</code>；</p> <p>接下来看下被授予的权限ClusterRole -- system:certificates.k8s.io:certificatesigningrequests:selfnodeclient</p> <pre><code>apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRole metadata:   name: system:certificates.k8s.io:certificatesigningrequests:selfnodeclient   ... rules: - apiGroups:   - certificates.k8s.io   resources:   - certificatesigningrequests/selfnodeclient   verbs:   - create</code></pre> <h4 id="2启动kubelet开始tls-bootstrap">2.启动kubelet，开始TLS bootstrap</h4> <p>（0）根据bootstrap token以及master url等信息生成bootstrap-kubeconfig文件；</p> <p>（1）启动kubelet，配置了kubeconfig文件目录，但kubeconfig文件为空，再指定bootstrap-kubeconfig文件为上述步骤生成的bootstrap-kubeconfig文件；</p> <p>（2）kubelet发现配置的kubeconfig文件为空，则加载bootstrap-kubeconfig文件，读取其中的bootstrap token以及master url；</p> <p>（3）kubelet使用bootstrap token与apiserver通信，创建CSR证书签名请求；</p> <p>（4）kube-controller-manager批复CSR证书签名请求，为其签发相关证书；</p> <p>（5）kubelet取回kube-controller-manager生成的相关证书，默认存放在/var/lib/kubelet/pki 目录下，然后根据证书生成kubeconfig文件，后续kubelet将使用该kubeconfig文件与kube-apiserver进行认证通信；</p> <pre><code># ls /var/lib/kubelet/pki/ kubelet-client-2022-03-18-14-29-00.pem	kubelet-client-current.pem  kubelet.crt  kubelet.key</code></pre> <p>kubelet-client-current.pem是个软链，指向kubelet-client-2022-03-18-14-29-00.pem文件，kubelet-client-2022-03-18-14-29-00.pem文件名记录的是证书创建时间，后续kubelet将会根据证书过期时间，在证书临过期前向kube-apiserver重新申请证书，然后自动轮换该证书；</p> <pre><code># cat /etc/kubernetes/kubelet.conf apiVersion: v1 clusters: - cluster:     certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0F...     server: https://192.168.1.10:6443   name: test-cluster contexts: - context:     cluster: test-cluster     user: system:node:test-cluster-node-1   name: system:node:test-cluster-node-1 current-context: system:node:test-cluster-node-1 kind: Config preferences: {} users: - name: system:node:test-cluster-node-1   user:     client-certificate: /var/lib/kubelet/pki/kubelet-client-current.pem     client-key: /var/lib/kubelet/pki/kubelet-client-current.pem</code></pre> <h4 id="3kubelet自动轮换证书">3.kubelet自动轮换证书</h4> <p>（1）kubelet在证书接近于过期时自动向kube-apiserver请求更新证书；</p> <p>（2）kube-controller-manager自动批复，为其签发新的证书；</p> <p>（3）kubelet取回kube-controller-manager生成的相关证书，替换掉本地的旧证书，后续kubelet将使用新证书来与kube-apiserver进行认证通信；</p> <h2 id="总结">总结</h2> <p>最后以一幅图来总结一下k8s TLS bootstrap的整个流程。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/473c8417eebd72f6e11d956d59579055.jpg" alt="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析"></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1008.htm">SpringBoot 实现前后端分离的跨域访问（CORS）</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1010.htm">Redis 数据持久化实践</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1029.htm" title="python连接数据库并执行SQL语句">python连接数据库并执行SQL语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1048.htm" title="Spring Boot + Mybatis-Plus + jasypt 数据库连接加密">Spring Boot + Mybatis-Plus + jasypt 数据库连接加密</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

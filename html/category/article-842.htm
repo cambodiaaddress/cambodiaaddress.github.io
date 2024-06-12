@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-842.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>控制Python浮点数输出位数 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>控制Python浮点数输出位数</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h1 id="技术背景">技术背景</h1> <p>在Python的一些长效任务中，不可避免的需要向文本文件、二进制文件或者数据库中写入一些数据，或者是在屏幕上输出一些文本，此时如何控制输出数据的长度是需要我们注意的一个问题。比如对于一个二进制文件，如果输出的浮点数长度一直在发生变化，则写入到文件之后，读取的人按照比特位进行读取就会读到一堆错误的数据。因此，我们需要控制输出位数，尤其是浮点数要格外小心。</p> <h1 id="常规控制方法">常规控制方法</h1> <p>一般情况下，我们可以通过<code>round</code>来设置输出浮点数的有效数字，其原理是对于一个给定的浮点数直接取前n位的有效数字，后续的数字四舍五入。而<code>%.4f</code>和<code>{:.4f}</code>这两种格式化，是在输出时取小数点后4位打印，跟先取有效数字再打印是不一样的，后面会提到。先看下这几个方式的输出异同点：</p> <pre><code class="language-python">In [1]: pi_10=31.415926  In [2]: print (round(pi_10,4)) 31.4159  In [3]: print ('%.4f' % pi_10) 31.4159  In [4]: print ('{:.4f}'.format(pi_10)) 31.4159</code></pre> <p>上面的例子是小数点前和小数点后都有多位数字，另外类似的可以看下小数点前只有0的数字的输出结果：</p> <pre><code class="language-python">In [5]: pi_10=0.31415926  In [6]: print (round(pi_10,4)) 0.3142  In [7]: print ('{:.4f}'.format(pi_10)) 0.3142  In [8]: print ('%.4f' % pi_10) 0.3142</code></pre> <p>在上面的两个案例中，我们发现三者的输出结果都是一样的。但是前面提到了先取有效数字再输出，跟先输出再取有效数字的区别，可以通过下面的一个案例体现出来：</p> <pre><code class="language-python">In [9]: pi_10=3.1415926E-08  In [10]: print (round(pi_10,4)) 0.0  In [11]: print ('{:.4f}'.format(pi_10)) 0.0000  In [12]: print ('%.4f' % pi_10) 0.0000</code></pre> <p>这里的输入是一个小数点后有很多0的浮点数，但是这里用的是科学计数法，也就是<span class="math inline">\(3.1415926*10^{-8}\)</span>，此时我们用这三种输出方式，得到的结果全都是0，而且第一种方案更是直接小数点后都没满4位。这是因为在用round取有效数字时，发现小数点后的数字太多，把当前的浮点数直接当成了<code>0.0</code>而不是<code>0.0000</code>，而后面两个方案的过程更像是在打印出来这个数字之后，再把超过有效位数的数字去掉，因此会保留小数点后的4个0。但是，即使如此，得到的结果也不是我们所想要的结果。因为这个数字虽然很小，但是可能只是由于单位问题，并不代表这个数字产生的影响就是0，因此直接用这种取小数点后有效数字的方法可能会出问题。</p> <h1 id="取有效数字">取有效数字</h1> <p>这里我们要介绍的取有效数字的方法，不再是去小数点后的有效数字，而是整体的有效数字。方法也很简单，就是把上一个章节中的<code>{:.4f}</code>改成<code>{:.4}</code>，同样的可以通过这么几个案例来理解控制有效数字的结果：</p> <pre><code class="language-python">In [13]: pi_10=3.1415926E-08  In [14]: print ('{:.4}'.format(pi_10)) 3.142e-08  In [15]: pi_10=0.31415926  In [16]: print ('{:.4}'.format(pi_10)) 0.3142  In [17]: pi_10=31.415926  In [18]: print ('{:.4}'.format(pi_10)) 31.42</code></pre> <p>我们发现，输出的结果会根据输入的格式改变而改变，如果输入的小数位0过多，输出结果会被自动转换成科学计数法。而不仅仅是针对浮点数，<code>{:.4}</code>还可以作用在字符串中，效果如下：</p> <pre><code class="language-python">In [19]: string='Hello World!'  In [20]: print ('{:.4}'.format(string)) Hell</code></pre> <h1 id="总结概要">总结概要</h1> <p>在python的输出结果中，尤其是浮点数的输出，当我们需要写入文本文件时，最好是采用统一的输出格式，这样也能够增强结果的可读性。而对于浮点数输出位数的控制，可以通过{:.4f}、%.4f来指定打印或者输出时的字符串占据空间，也可以通过round函数来对输出前的结果进行转化。而如果是取有效数字，需要用到{:.4}，这几种方法没有优劣，只有看不同的场景，选取不同的精度控制方案。</p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-841.htm">Git基础blob对象详解</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-843.htm">func-spring-boot-starter 匿名函数托管</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-998.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

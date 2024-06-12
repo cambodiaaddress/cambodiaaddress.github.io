@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1049.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>1. 什么是虚拟环境？</p> <p>虚拟环境的意义，就如同 虚拟机 一样，它可以实现不同环境中Python依赖包相互独立，互不干扰。</p> <p>举个例子吧。</p> <p>假设我们的电脑里有两个项目，他们都用到同一个第三方包，本来一切都顺利。但是由于某种原因，项目B由于某些原因要使用这个第三方包的一些新特性(新版本才有)，而如果就这样贸然升级了，对项目A的影响我们无法评估，这个时候我们就特别需要有一种解决方案可以让项目A和B，处于两个不同的Python环境中。互不影响。</p> <p>为了方便大家对虚拟环境有个认识，我列举了下其优点：</p> <p>使不同应用开发环境独立</p> <p>环境升级不影响其他应用，也不会影响全局的python环境</p> <p>可以防止系统中出现包管理混乱和版本的冲突</p> <p>市场上管理 Python 版本和环境的工具有很多，这里列举几个：</p> <p>p：非常简单的交互式 python 版本管理工具。</p> <p>pyenv：简单的 Python 版本管理工具。</p> <p>Vex：可以在虚拟环境中执行命令。</p> <p>virtualenv：创建独立 Python 环境的工具。</p> <p>virtualenvwrapper：virtualenv 的一组扩展。</p> <p>工具很多，但个人认为最好用的，当属 virtualenvwrapper，推荐大家也使用。</p> <p>2. virtualenv</p> <p>由于 virtualenvwrapper 是 virtualenv 的一组扩展，所以如果要使用 virtualenvwrapper，就必须先安装 virtualenv。</p> <p>安装基本使用*</p> <p>由于virtualenv创建虚拟环境是在当前环境下创建的。所以我们要准备一个专门存放虚拟环境的目录。(以下操作在Linux在完成，windows相对简单，请自行完成，有不明白的请微信与我联系。)</p> <p>创建</p> <p># 准备目录并进入</p> <p>$ mkdir -p /home/wangbm/Envs</p> <p>$ cd !$</p> <p># 创建虚拟环境(按默认的Python版本)</p> <p># 执行完，当前目录下会有一个my_env01的目录</p> <p>$ virtualenv my_env01</p> <p># 你也可以指定版本</p> <p>$ virtualenv -p /usr/bin/python2.7 my_env01</p> <p>$ virtualenv -p /usr/bin/python3.6 my_env02</p> <p># 你肯定觉得每次都要指定版本，相当麻烦吧？</p> <p># 在Linux下，你可以把这个选项写进入环境变量中</p> <p>$ echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7" &gt;&gt; ~/.bashrc</p> <p>进入/退出</p> <p>$ cd /home/wangbm/Envs</p> <p># 进入</p> <p>$ source my_env01/bin/activate</p> <p># 退出</p> <p>$ deactivate</p> <p>删除</p> <p>删除虚拟环境，只需删除对应的文件夹就行了。并不会影响全局的Python和其他环境。</p> <p>$ cd /home/wangbm/Envs</p> <p>$ rm -rf my_env01</p> <p>注意：</p> <p>创建的虚拟环境，不会包含原生全局环境的第三方包，其会保证新建虚拟环境的干净。</p> <p>如果你需要和全局环境使用相同的第三方包。可以使用如下方法：</p> <p># 导出依赖包</p> <p>$ pip freeze &gt; requirements.txt</p> <p># 安装依赖包</p> <p>$ pip install -r requirements.txt</p> <p>3. virtualenvwrapper</p> <p>virtualenv 虽然已经相当好用了，可是功能还是不够完善。</p> <p>你可能也发现了，要进入虚拟环境，必须得牢记之前设置的虚拟环境目录，如果你每次按规矩来，都将环境安装在固定目录下也没啥事。但是很多情况下，人是会懒惰的，到时可能会有很多个虚拟环境散落在系统各处，你将有可能忘记它们的名字或者位置。</p> <p>还有一点，virtualenv 切换环境需要两步，退出 -&gt; 进入。不够简便。</p> <p>为了解决这两个问题，virtualenvwrapper就诞生了。</p> <p>安装</p> <p># 安装 - Linux</p> <p>pip install virtualenvwrapper</p> <p># 安装 - Windows</p> <p>pip install virtualenvwrapper-win</p> <p>配置</p> <p>先find一下virtualenvwrapper.sh文件的位置</p> <p>find / -name virtualenvwrapper.sh</p> <p># /usr/bin/virtualenvwrapper.sh</p> <p>若是 windows 则使用everything 查找 virtualenvwrapper.bat 脚本</p> <p>D:\Program Files (x86)\Python38-32\Scripts\virtualenvwrapper.bat</p> <p>在~/.bashrc 文件新增配置</p> <p>export WORKON_HOME=$HOME/.virtualenvs</p> <p>export PROJECT_HOME=$HOME/workspace</p> <p>export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh</p> <p>source /usr/bin/virtualenvwrapper.sh</p> <p>若是 windows 则新增环境变量：WORKON_HOME</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220818/e20cc7f78d34c56027ab713df21a09e2.jpg" alt="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境"></p> <p>基本语法：</p> <p>mkvirtualenv [-a project_path] [-i package] [-r requirements_file] [virtualenv options] ENVNAME</p> <p>常用方法</p> <p># 创建</p> <p>$ mkvirtualenv my_env01</p> <p># 进入</p> <p>$ workon my_env01</p> <p># 退出</p> <p>$ deactivate</p> <p># 列出所有的虚拟环境，两种方法</p> <p>$ workon</p> <p>$ lsvirtualenv</p> <p># 在虚拟环境内直接切换到其他环境</p> <p>$ workon my_env02</p> <p># 删除虚拟环境</p> <p>$ rmvirtualenv my_env01</p> <p>其他命令</p> <p># 列出帮助文档</p> <p>$ virtualenvwrapper</p> <p># 拷贝虚拟环境</p> <p>$ cpvirtualenv ENVNAME [TARGETENVNAME]</p> <p># 在所有的虚拟环境上执行命令</p> <p>$ allvirtualenv pip install -U pip</p> <p># 删除当前环境的所有第三方包</p> <p>$ wipeenv</p> <p># 进入到当前虚拟环境的目录</p> <p>$ cdsitepackages</p> <p># 进入到当前虚拟环境的site-packages目录</p> <p>$ cdvirtualenv</p> <p># 显示 site-packages 目录中的内容</p> <p>$ lssitepackages</p> <p>更多内容，可查看 官方文档</p> <p>https://virtualenvwrapper.rea...</p> <p>4. 实战演示</p> <p>以上内容，是一份使用指南。接下来，一起来看看，如何在项目中使用虚拟环境。</p> <p>如何使用在我们的开发中使用我们的虚拟环境呢</p> <p>通常我们使用的场景有如下几种</p> <p>交互式中</p> <p>PyCharm中</p> <p>工程中</p> <p>接下来，我将一一展示。</p> <p>4.1 交互式中</p> <p>先对比下，全局环境和虚拟环境的区别，全局环境中有requests包，而虚拟环境中并未安装。</p> <p>当我们敲入 workon my_env01，前面有my_env01的标识，说明我们已经处在虚拟环境中。后面所有的操作，都将在虚拟环境下执行。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220818/ad362e08e5cef4eba7540a902a3d1b24.jpg" alt="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境"></p> <p>4.2 工程项目中</p> <p>我们的工程项目，都有一个入口文件，仔细观察，其首行可以指定Python解释器。</p> <p>倘若我们要在虚拟环境中运行这个项目，只要更改这个文件头部即可。</p> <p>现在我还是以，import requests 为例，来说明，是否是在虚拟环境下运行的，如果是，则和上面一样，会报错。</p> <p>文件内容：</p> <p>#!/root/.virtualenvs/my_env01/bin/python</p> <p>import requests</p> <p>print "ok"</p> <p>运行前，注意添加执行权限。</p> <p>$ chmod +x ming.py</p> <p>好了。来执行一下</p> <p>$ ./ming.py</p> <p>发现和预期一样，真的报错了。说明我们指定的虚拟环境有效果。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220818/cdfaac928ba0a81dd98d4dba26450234.jpg" alt="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境"></p> <p>4.3 PyCharm中</p> <p>点击 File - Settings - Project - Interpreter</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220818/c8615dad31c942d36cc0d004c576312c.jpg" alt="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境"></p> <p>点击小齿轮。如图点击添加，按提示添加一个虚拟环境。然后点 OK 就可以使用这个虚拟环境，之后的项目都会在这个虚拟环境下运行。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220818/d80231ab4e7c1cb1070c1eecdcf35fc1.jpg" alt="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境"></p> <p>以上就是Python 中使用 virtualenv 管理虚拟环境的方法的详细内容，更多关于python 用virtualenv 管理虚拟环境的资料请关注我们其它相关文章！</p> <p>本文标题: Python 中如何使用 virtualenv 管理虚拟环境</p> <p>本文地址: http://www.cppcns.com/jiaoben/python/374641.html</p> </div> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1048.htm">Spring Boot + Mybatis-Plus + jasypt 数据库连接加密</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1050.htm">JDK8默认垃圾回收器详解</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

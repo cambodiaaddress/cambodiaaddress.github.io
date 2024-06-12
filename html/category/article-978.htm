@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-978.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>利用Python实现RSA加密解密方法实例_python - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>利用Python实现RSA加密解密方法实例_python</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">前言</a></li> <li><a href="#_label1" rel="nofollow">一、安装模块</a></li> <li><a href="#_label2" rel="nofollow">二、生成密钥对</a></li> <li><a href="#_label3" rel="nofollow">三、加密</a></li> <li><a href="#_label4" rel="nofollow">四、解密</a></li> <li><a href="#_label5" rel="nofollow">五、完整代码</a></li> <li><a href="#_label6" rel="nofollow">总结</a></li> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>前言</h2> <ul> <li>加密技术在数据安全存储，数据传输中发挥着重要作用，能够保护用户隐私数据安全，防止信息窃取。RSA是一种非对称加密技术，在软件、网页中已得到广泛应用。本文将介绍RSA加密解密在python中的实现。</li> <li>原则：公钥加密，私钥解密</li> <li>解释：具体过程的解释请见代码前的注释</li> </ul> <p><strong>RSA加密实验基本流程：</strong></p> <p>一、选取两个大素数p、q，并计算得到n、phi_n</p> <p>二、选取常用的e = 0x10001，方便将幂运算优化为左移，加快运算速度</p> <p>三、计算d，使用了扩展欧几里得算法</p> <p>四、输入明文a，将明文转化为可以用于计算的数字形式</p> <p>五、对a使用快速幂取模，得到密文b，以16进制显示</p> <p><strong>RSA解密流程：</strong></p> <p>六、对b使用快速幂取模，得到明文a，以字符形式显示</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>一、安装模块</h2> <div class="ay1code"> <pre class="brush:py;">pip install pycryptodome </pre> </div> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>二、生成密钥对</h2> <ul> <li>密钥对文件生成和读取</li> <li>代码：</li> </ul> <div class="ay1code"> <pre class="brush:py;">from Crypto.PublicKey import RSA  def create_rsa_pair(is_save=False):      '''      创建rsa公钥私钥对      :param is_save: default:False      :return: public_key, private_key      '''      f = RSA.generate(2048)      private_key = f.exportKey("PEM")  # 生成私钥      public_key = f.publickey().exportKey()  # 生成公钥      if is_save:          with open("crypto_private_key.pem", "wb") as f:              f.write(private_key)          with open("crypto_public_key.pem", "wb") as f:              f.write(public_key)      return public_key, private_key    def read_public_key(file_path="crypto_public_key.pem") -&gt; bytes:      with open(file_path, "rb") as x:          b = x.read()          return b    def read_private_key(file_path="crypto_private_key.pem") -&gt; bytes:      with open(file_path, "rb") as x:          b = x.read()          return b</pre> </div> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>三、加密</h2> <ul> <li>流程：输入文本（str）→字符串编码（默认utf-8）（bytes）→rsa加密（bytes）→base64编码（bytes）→解码为字符串（str）</li> <li>代码：</li> </ul> <div class="ay1code"> <pre class="brush:py;">import base64  from Crypto.Cipher import PKCS1_v1_5  from Crypto.PublicKey import RSA    def encryption(text: str, public_key: bytes):  	# 字符串指定编码（转为bytes）  	text = text.encode('utf-8')  	# 构建公钥对象  	cipher_public = PKCS1_v1_5.new(RSA.importKey(public_key))  	# 加密（bytes）  	text_encrypted = cipher_public.encrypt(text)   	# base64编码，并转为字符串  	text_encrypted_base64 = base64.b64encode(text_encrypted ).decode()  	return text_encrypted_base64   	  if __name__ == '__main__':  	public_key = read_public_key()  	text = '123456'  	text_encrypted_base64 = encryption(text, public_key)  	print('密文：',text_encrypted_base64)</pre> </div> <p class="maodian"><a name="_label4" rel="nofollow"></a></p> <h2>四、解密</h2> <ul> <li>说明：解密流程与加密流程相反（按照加密流程逆序解密）</li> <li>流程：输入文本（str）→字符串编码（默认utf-8）（bytes）→base64解码（bytes）→rsa解密（bytes）→解码为字符串（str）</li> <li>代码：</li> </ul> <div class="ay1code"> <pre class="brush:py;">import base64  from Crypto.Cipher import PKCS1_v1_5  from Crypto import Random  from Crypto.PublicKey import RSA    def decryption(text_encrypted_base64: str, private_key: bytes):  	# 字符串指定编码（转为bytes）  	text_encrypted_base64 = text_encrypted_base64.encode('utf-8')  	# base64解码  	text_encrypted = base64.b64decode(text_encrypted_base64 )  	# 构建私钥对象  	cipher_private = PKCS1_v1_5.new(RSA.importKey(private_key))  	# 解密（bytes）  	text_decrypted = cipher_private.decrypt(text_encrypted , Random.new().read)  	# 解码为字符串  	text_decrypted = text_decrypted.decode()  	return text_decrypted   	  if __name__ == '__main__':  	# 生成密文  	public_key = read_public_key()  	text = '123456'  	text_encrypted_base64 = encryption(text, public_key)  	print('密文：',text_encrypted_base64)  	  	# 解密  	private_key = read_private_key()  	text_decrypted = decryption(text_encrypted_base64, private_key)  	print('明文：',text_decrypted)</pre> </div> <p class="maodian"><a name="_label5" rel="nofollow"></a></p> <h2>五、完整代码</h2> <div class="ay1code"> <pre class="brush:py;">import base64  from Crypto.Cipher import PKCS1_v1_5  from Crypto import Random  from Crypto.PublicKey import RSA  # ------------------------生成密钥对------------------------  def create_rsa_pair(is_save=False):      '''      创建rsa公钥私钥对      :param is_save: default:False      :return: public_key, private_key      '''      f = RSA.generate(2048)      private_key = f.exportKey("PEM")  # 生成私钥      public_key = f.publickey().exportKey()  # 生成公钥      if is_save:          with open("crypto_private_key.pem", "wb") as f:              f.write(private_key)          with open("crypto_public_key.pem", "wb") as f:              f.write(public_key)      return public_key, private_key    def read_public_key(file_path="crypto_public_key.pem") -&gt; bytes:      with open(file_path, "rb") as x:          b = x.read()          return b    def read_private_key(file_path="crypto_private_key.pem") -&gt; bytes:      with open(file_path, "rb") as x:          b = x.read()          return b  # ------------------------加密------------------------  def encryption(text: str, public_key: bytes):      # 字符串指定编码（转为bytes）      text = text.encode('utf-8')      # 构建公钥对象      cipher_public = PKCS1_v1_5.new(RSA.importKey(public_key))      # 加密（bytes）      text_encrypted = cipher_public.encrypt(text)      # base64编码，并转为字符串      text_encrypted_base64 = base64.b64encode(text_encrypted).decode()      return text_encrypted_base64    # ------------------------解密------------------------  def decryption(text_encrypted_base64: str, private_key: bytes):      # 字符串指定编码（转为bytes）      text_encrypted_base64 = text_encrypted_base64.encode('utf-8')      # base64解码      text_encrypted = base64.b64decode(text_encrypted_base64)      # 构建私钥对象      cipher_private = PKCS1_v1_5.new(RSA.importKey(private_key))      # 解密（bytes）      text_decrypted = cipher_private.decrypt(text_encrypted, Random.new().read)      # 解码为字符串      text_decrypted = text_decrypted.decode()      return text_decrypted    if __name__ == '__main__':      # 生成密钥对      # create_rsa_pair(is_save=True)      # public_key = read_public_key()      # private_key = read_private_key()      public_key, private_key = create_rsa_pair(is_save=False)        # 加密      text = '123456'      text_encrypted_base64 = encryption(text, public_key)      print('密文：', text_encrypted_base64)        # 解密      text_decrypted = decryption(text_encrypted_base64, private_key)      print('明文：', text_decrypted)</pre> </div> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220423/7e768834d830ca9bcbfff981d0293203.jpg"></p> <p class="maodian"><a name="_label6" rel="nofollow"></a></p> <h2>总结</h2> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-977.htm">k8s &#8211; 使用helm安装mysql</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-979.htm">层次聚类分析及代码实现</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
+                        <li class="py-2"><a href="/html/category/article-1003.htm" title="Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控">Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

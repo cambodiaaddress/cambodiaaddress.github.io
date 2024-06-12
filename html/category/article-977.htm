@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-977.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>k8s &#8211; 使用helm安装mysql - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>k8s &#8211; 使用helm安装mysql</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h1><a id="Helm_0" rel="nofollow"></a>安装Helm</h1> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://helm.sh/docs/"  rel="nofollow">helm是k8s的包管理</a>，类似于管理docker镜像的docker hub</p> <p>官网提供了很多中安装方式，看自己的爱好以及条件。以下是源码安装：</p> <pre><code class="prism language-bash"><span class="token function">git</span> clone https://github.com/helm/helm.git<span class="token builtin class-name">cd</span> helm<span class="token function">make</span></code></pre> <p>如果网络有问题，可以使用<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/helm/helm/releases"  rel="nofollow">二进制安装</a></p> <pre><code class="prism language-bash"><span class="token function">tar</span> -zxvf helm-v3.0.0-linux-amd64.tar.gz<span class="token function">mv</span> linux-amd64/helm /usr/local/bin/helm</code></pre> <p>Three Big Concepts<br /> A<strong>Chart</strong> is a Helm package. It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster. Think of it like the Kubernetes equivalent of a Homebrew formula, an Apt dpkg, or a Yum RPM file.</p> <p>A<strong>Repository</strong> is the place where charts can be collected and shared. It’s like Perl’s CPAN archive or the Fedora Package Database, but for Kubernetes packages.</p> <p>A<strong>Release</strong> is an instance of a chart running in a Kubernetes cluster. One chart can often be installed many times into the same cluster. And each time it is installed, a new release is created. Consider a MySQL chart. If you want two databases running in your cluster, you can install that chart twice. Each one will have its own release, which will in turn have its own release name.</p> <h1><a id="mysql_23" rel="nofollow"></a>安装mysql</h1> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://artifacthub.io/packages/helm/bitnami/mysql"  rel="nofollow">参考这个网站</a>可以在线安装</p> <pre><code class="prism language-bash">helm repo<span class="token function">add</span> bitnami https://charts.bitnami.com/bitnami helm<span class="token function">install</span> my-release bitnami/mysql</code></pre> <p>如果是内网，下载安装包后离线安装</p> <pre><code class="prism language-bash">helm<span class="token function">install</span> my-release mysql-0.1.1.tgz</code></pre> <p>参考提示信息可以操作mysql</p> <pre><code class="prism language-bash">NAME: my-release LAST DEPLOYED: Sat Nov<span class="token number">20</span><span class="token number">11</span>:21:22<span class="token number">2021</span> NAMESPACE: default STATUS: deployed REVISION:<span class="token number">1</span> TEST SUITE: None NOTES: CHART NAME: mysql CHART VERSION:<span class="token number">8.8</span>.12 APP VERSION:<span class="token number">8.0</span>.27  ** Please be patient<span class="token keyword">while</span> the chart is being deployed **  Tip:    Watch the deployment status using the command: kubectl get pods -w --namespace default  Services:<span class="token builtin class-name">echo</span> Primary: my-release-mysql.default.svc.cluster.local:3306  Execute the following to get the administrator credentials:<span class="token builtin class-name">echo</span> Username: root<span class="token assign-left variable">MYSQL_ROOT_PASSWORD</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>kubectl get secret --namespace default my-release-mysql -o<span class="token assign-left variable">jsonpath</span><span class="token operator">=</span><span class="token string">"{.data.mysql-root-password}"</span><span class="token operator">|</span> base64 --decode<span class="token variable">)</span></span>  To connect to your database:<span class="token number">1</span>. Run a pod that you can use as a client:        kubectl run my-release-mysql-client --rm --tty -i --restart<span class="token operator">=</span><span class="token string">'Never'</span> --image  docker.io/bitnami/mysql:8.0.27-debian-10-r8 --namespace default --command --<span class="token function">bash</span><span class="token number">2</span>. To connect to primary<span class="token function">service</span><span class="token punctuation">(</span>read/write<span class="token punctuation">)</span>:        mysql -h my-release-mysql.default.svc.cluster.local -uroot -p<span class="token string">"<span class="token variable">$MYSQL_ROOT_PASSWORD</span>"</span>    To upgrade this helm chart:<span class="token number">1</span>. Obtain the password as described on the<span class="token string">'Administrator credentials'</span> section and<span class="token builtin class-name">set</span> the<span class="token string">'root.password'</span> parameter as shown below:<span class="token assign-left variable">ROOT_PASSWORD</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>kubectl get secret --namespace default my-release-mysql -o<span class="token assign-left variable">jsonpath</span><span class="token operator">=</span><span class="token string">"{.data.mysql-root-password}"</span><span class="token operator">|</span> base64 --decode<span class="token variable">)</span></span>       helm upgrade --namespace default my-release bitnami/mysql --set auth.rootPassword<span class="token operator">=</span><span class="token variable">$ROOT_PASSWORD</span></code></pre> <h2><a id="mysql_82" rel="nofollow"></a>使用mysql</h2> <p>拿到mysql的登录密码</p> <pre><code class="prism language-bash"><span class="token builtin class-name">echo</span><span class="token assign-left variable">MYSQL_ROOT_PASSWORD</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>kubectl get secret --namespace default my-release-mysql -o<span class="token assign-left variable">jsonpath</span><span class="token operator">=</span><span class="token string">"{.data.mysql-root-password}"</span><span class="token operator">|</span> base64 --decode<span class="token variable">)</span></span></code></pre> <p>进入mysql容器pod</p> <pre><code class="prism language-bash">kubectl<span class="token builtin class-name">exec</span> -ti my-release1-mysql-0 --<span class="token function">bash</span></code></pre> <p>登录mysql</p> <pre><code class="prism language-bash">mysql -u root -p ysql<span class="token operator">&gt;</span> show databases<span class="token punctuation">;</span></code></pre> <h1><a id="mysql_98" rel="nofollow"></a>删除mysql</h1> <p>查看</p> <pre><code class="prism language-bash">helm<span class="token function">ls</span></code></pre> <p>删除</p> <pre><code class="prism language-bash">helm delete my-release</code></pre> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-976.htm">HBase 技术原理【华为HCIA-BigData】</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-978.htm">利用Python实现RSA加密解密方法实例_python</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1002.htm" title="前端【参考】文字过长显示省略号">前端【参考】文字过长显示省略号</a></li>
+                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-996.htm" title="js穿梭框；将两个table中的数据选中移动">js穿梭框；将两个table中的数据选中移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1029.htm" title="python连接数据库并执行SQL语句">python连接数据库并执行SQL语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1012.htm" title="【ASP.NET Core】自己编程来生成自签名的服务器证书">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

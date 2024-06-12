@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-935.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Clickhouse 用户自定义外部函数 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Clickhouse 用户自定义外部函数</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				  			 <div id="log-box">  				<div id="catalog"><ul id="catalog-ul"> <li><i class="be be-arrowright"></i> <a href="#title-0" title="2.&nbsp; 增加custom_function.xml自定义函数的声明文件">2.&nbsp; 增加custom_function.xml自定义函数的声明文件</a></li> <li><i class="be be-arrowright"></i> <a href="#title-1" title="5. 至此已经完成，进行方法测试">5. 至此已经完成，进行方法测试</a></li> </ul><span class="log-zd"><span class="log-close"><a title="隐藏目录"><i class="be be-cross"></i><strong>目录</strong></a></span></span></div>  			</div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/4c0ecc274e154ad44509fcdfc62c38c1.jpg" alt="Clickhouse 用户自定义外部函数"></p> <h3>写在前面</h3> <p>　　Clickhouse 从<span class="cnblogs_code">21.11</span>&nbsp;版本开始，除了提供类似SqlServer、MySQL<span class="cnblogs_code">CREATE FUNCTION</span>&nbsp;的自定义函数之外，还有一个用户自定义函数（UDF），与其说是“用户自定义函数”，为了避免混淆，称之为”用户自定义外部函数“更为准确。官方对此功能的解释：</p> <div class="cnblogs_code"> <pre>ClickHouse can call any external executable program or script to process data.<br/>译文：ClickHouse可以调用任何外部可执行程序或脚本来处理数据。</pre> </div> <p>可以调用外部程序或脚本来处理数据，这对于数据建模、数据分析等等来说，无疑是杀手锏的存在。</p> <h3>开始</h3> <p>　　示例情景：调用python脚本实现向量点积运算。</p> <p>　　环境：Docker、Clickhouse&nbsp;21.11.4.14 、Ubuntu 20.04、Python3</p> <h4><strong>1.&nbsp; 在config.xml里内增加</strong></h4> <div class="cnblogs_code"> <pre>&lt;user_defined_executable_functions_config&gt;*_function.xml&lt;/user_defined_executable_functions_config&gt;</pre> </div> <span class="directory"></span><h4 id="title-0">2.&nbsp; 增加custom_function.xml自定义函数的声明文件</h4> <p>　　新建custom_function.xml文件，与config.xml、users.xml文件是同级目录下的，如图</p> <p><strong><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/473d4db49032d36b0703718fcd75c57e.jpg" alt="Clickhouse 用户自定义外部函数"></strong></p> <h4><strong>3. 声明方法</strong></h4> <p>　　打开custom_function.xml文件，编写文件内容如下：</p> <div class="cnblogs_code"> <pre>&lt;functions&gt;     &lt;function&gt;         &lt;type&gt;executable&lt;/type&gt;         &lt;name&gt;custom_dotProduct&lt;/name&gt;         &lt;return_type&gt;Float32&lt;/return_type&gt;         &lt;return_name&gt;result&lt;/return_name&gt;         &lt;argument&gt;             &lt;type&gt;Array(Float32)&lt;/type&gt;             &lt;name&gt;v1&lt;/name&gt;         &lt;/argument&gt;         &lt;argument&gt;             &lt;type&gt;Array(Float32)&lt;/type&gt;             &lt;name&gt;v2&lt;/name&gt;         &lt;/argument&gt;         &lt;format&gt;JSONEachRow&lt;/format&gt;         &lt;execute_direct&gt;0&lt;/execute_direct&gt;         &lt;command&gt;python3 /var/lib/clickhouse/user_scripts/custom_dotProduct.py&lt;/command&gt;     &lt;/function&gt; &lt;/functions&gt;</pre> </div> <p>　　execute_direct=0，默认是1，1表示将在clickhouse的/data/user_scripts文件夹内搜索脚本，0表是按照用户配置的命令搜索脚本路径，建议设置为0，避免找不到执行的脚本文件。其他参数可以参考文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://clickhouse.com/docs/en/sql-reference/functions/"  rel="nofollow">Introduction | ClickHouse Documentation</a><strong><br /></strong></p> <h4><strong>4. 编写python脚本</strong></h4> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 0, 1)">#</span><span style="color: rgba(0, 128, 0, 1)">!/usr/bin/python3</span><span style="color: rgba(0, 0, 255, 1)">import</span><span style="color: rgba(0, 0, 0, 1)"> sys</span><span style="color: rgba(0, 0, 255, 1)">import</span><span style="color: rgba(0, 0, 0, 1)"> json</span><span style="color: rgba(0, 0, 255, 1)">if</span><span style="color: rgba(128, 0, 128, 1)">__name__</span> ==<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">__main__</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">for</span> line<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> sys.stdin:         dict</span>=<span style="color: rgba(0, 0, 0, 1)"> json.loads(line)         ls</span>=<span style="color: rgba(0, 0, 0, 1)"> []</span><span style="color: rgba(0, 0, 255, 1)">for</span> v<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> dict.values():             ls.insert(</span>1<span style="color: rgba(0, 0, 0, 1)">, list(v))         vector1</span>=<span style="color: rgba(0, 0, 0, 1)"> tuple(ls[0])         vector2</span>= tuple(ls[1<span style="color: rgba(0, 0, 0, 1)">])         v</span>= sum(p * q<span style="color: rgba(0, 0, 255, 1)">for</span> p, q<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> zip(vector1, vector2))         data</span>= {<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">result</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">: str(v)}</span><span style="color: rgba(0, 0, 255, 1)">print</span>(json.dumps(data), end=<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">\n</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">)         sys.stdout.flush()</span></pre> </div> <p>　　保存脚本并命名为<span class="cnblogs_code">custom_dotProduct.py</span>&nbsp;，再放到<span class="cnblogs_code">/var/lib/clickhouse/user_scripts</span>&nbsp;文件夹内。</p> <p>　　特别需要注意是脚本运行环境和存放路径问题，Clickhouse如果是放到docker里面，则需要在docker内配置python可运行的环境，其他C++、java也是如此，最起码能保证手动执行脚本的时候能运行。 在<span class="cnblogs_code">custom_function.xml</span>&nbsp;声明方法的时候，编写的xml文件中的<code><span class="cnblogs_code">command</span></code>命令是容器里面的路径，而不是宿主机的路径。</p> <span class="directory"></span><h4 id="title-1">5. 至此已经完成，进行方法测试</h4> <div class="cnblogs_code"> <pre>--<span style="color: rgba(0, 0, 0, 1)">重新加载方法 SYSTEM RELOAD FUNCTIONS;</span>--<span style="color: rgba(0, 0, 0, 1)">查看方法是否加载成功 SELECT</span>* FROM system.functions WHERE name =<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">custom_dotProduct</span><span style="color: rgba(128, 0, 0, 1)">'</span>;</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/724a6de8c3d837f08945fd46ee7fb001.jpg" alt="Clickhouse 用户自定义外部函数"></p> <p>&nbsp;执行方法：</p> <div class="cnblogs_code"> <pre>select custom_dotProduct([1,2,3],[4,5,6]);</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/5d343ab6a4167c4974c0b030ee9d8dcf.jpg" alt="Clickhouse 用户自定义外部函数"></p> <h3>最后</h3> <p>　　还需特别注意的是Clickhouse版本问题，在示例的python脚本中和官网文档中的示例python脚本取值方法不太一样，</p> <p>官方示例：</p> <div class="cnblogs_code"> <pre>first_arg = int(value[<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">argument_1</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">]) second_arg</span>= int(value[<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">argument_2</span><span style="color: rgba(128, 0, 0, 1)">'</span>])</pre> </div> <p>它是通过自定义配置的name获取值：</p> <div class="cnblogs_code"> <pre>&lt;function&gt;     &lt;type&gt;executable&lt;/type&gt;     &lt;name&gt;test_function_sum_json&lt;/name&gt;     &lt;return_type&gt;UInt64&lt;/return_type&gt;     &lt;return_name&gt;result_name&lt;/return_name&gt;     &lt;argument&gt;         &lt;type&gt;UInt64&lt;/type&gt;<span style="color: rgba(255, 0, 0, 1)"> &lt;name&gt;argument_1&lt;/name&gt;</span>     &lt;/argument&gt;     &lt;argument&gt;         &lt;type&gt;UInt64&lt;/type&gt;<span style="color: rgba(255, 0, 0, 1)">&lt;name&gt;argument_2&lt;/name&gt;</span>     &lt;/argument&gt;     &lt;format&gt;JSONEachRow&lt;/format&gt;     &lt;command&gt;test_function_sum_json.py&lt;/command&gt; &lt;/function&gt;</pre> </div> <p>而我是通过遍历出来的：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">for</span> v<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> dict.values():             ls.insert(</span>1, list(v))</pre> </div> <p>原因是Clickhouse这种取值方式必须要求在<span class="cnblogs_code">22.3</span>&nbsp;版本以上才支持，若低于<span class="cnblogs_code">22.3</span>的版本用官方的取值方式是永远报错的（巨坑之一）。具体可以看我之前提的Issue：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/ClickHouse/ClickHouse/issues/35562"  rel="nofollow">UDFs: JSON Bug ? · Issue #35562 · ClickHouse/ClickHouse (github.com)</a></p> <p>　　另外，从2022年1月后，Clickhouse的Docker镜像将停止<span class="cnblogs_code">yandex/clickhouse-server</span>&nbsp;的迭代，使用新的镜像地址<span class="cnblogs_code">clickhouse/clickhouse-server</span>&nbsp; 。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/aed13724e7ff77af5240c090fb69ba9c.jpg" alt="Clickhouse 用户自定义外部函数"></p> <p>如继续使用<span class="cnblogs_code">yandex/clickhouse-server</span>的镜像，最新的版本号停留在<span class="cnblogs_code">22.1.3.7</span>&nbsp;（巨坑之二）。</p> <p>好了，下班！不不不，等下下班！</p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-934.htm">php redis 二进制,关于php:PHP操作redis中bitMap</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-936.htm">Pytorch：使用data_prefetcher提升数据读取速度【自动将训练数据移动到GPU】</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-993.htm" title="骨架屏技术讲解以及如何在Vue中实现骨架屏">骨架屏技术讲解以及如何在Vue中实现骨架屏</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

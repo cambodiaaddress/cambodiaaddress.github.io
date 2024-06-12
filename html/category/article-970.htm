@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-970.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>对进程、线程和协程的理解以及它们的区别 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>对进程、线程和协程的理解以及它们的区别</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h2 id="一进程">一、进程</h2> <p>先来了解一下操作系统的进程：</p> <blockquote> <p>操作系统对正在运行程序的抽象，这个就是进程（process）。</p> </blockquote> <p>比如运行一个 web 浏览器，一个 text 文本，都是运行的一个一个进程。</p> <p>有的人说：进程是程序运行资源的集合。进程是系统资源分配的最小单位等等。</p> <p>从静态的角度来说，进程确实是运行程序的各种资源集合。</p> <p>如果你进一步思考，进程里的各种资源都有哪些呢？如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/69bc91df23cdba02848892e06683812e.jpg" alt="对进程、线程和协程的理解以及它们的区别"></p> <p>                                    （图1：进程资源）</p> <blockquote> <ul> <li> <p>内存管理相关</p> </li> <li> <p>文件系统</p> </li> <li> <p>调度相关</p> </li> <li> <p>信号处理</p> </li> <li> <p>内核栈</p> </li> <li> <p>进程各种状态</p> </li> <li> <p>进程运行时统计信息</p> </li> <li> <p>进程标识</p> </li> </ul> <p>等等。</p> <p>可以看出，进程中的资源是相当多的。</p> <p>从 Linux 操作系统对进程的定义也可以看出。我以前对进程结构 task_struct 分析文章：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/jiujuan/p/11715853.html"  target="_blank" rel="nofollow">Linux进程: task_struct结构体成员</a></p> </blockquote> <p>多进程：操作系统有多个程序运行，那么就有多个进程，如下所示简图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/aba96d170dc72bfca8cd3826adbfc088.jpg" alt="对进程、线程和协程的理解以及它们的区别"></p> <p>                                   （图2：多进程简图）</p> <h2 id="二线程">二、线程</h2> <h3 id="21-什么是线程">2.1 什么是线程？</h3> <p>《操作系统设计与实现》里说：</p> <p>在传统操作系统中，每个进程中只存在一个地址空间和一个控制流（thread）。</p> <p>然后，有些情况下，需要在相同地址空间中有多个控制流并行的运行，就像他们是单独的进程一样（只是他们共享相同的地址空间）。</p> <p>这些控制流通常被称为线程（thread），有时也称为轻量级进程（lightweight process）。</p> <p>尽管线程必须在进程中执行，但是线程和进程是可以分别对待处理的两个概念。进程用来集合资源，而线程是 CPU 调度的实体。</p> <p>线程给进程模型增加的是，允许在同一个进程环境中有多个执行流，这些执行流在很大程度上相对独立。</p> <p>也即是说，在进程中，程序执行的最小单位（执行流）是线程，可以把线程看作是进程里的一条执行流。</p> <p>一个进程里可以有一条或多条线程。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/50e8ca47aedd7b03f9e634bed48fcfd2.jpg" alt="对进程、线程和协程的理解以及它们的区别"></p> <p>                                    (图3：进程里的线程)</p> <h3 id="22-为什么会有多线程">2.2 为什么会有多线程？</h3> <p>在一个应用程序执行过程中，应用程序里可能会有多种事件执行。</p> <p>而有些事件执行一段时间后可能会被阻塞。如果把应用程序执行事件分解成多个并行运行的线程，即可以让程序设计变得简单，如果有阻塞的，</p> <p>可以把这部分让出行换其他线程执行。</p> <p>还有一个原因是：</p> <p>线程比进程更轻量级。所以线程比进程更加容易创建，销毁。</p> <p>第三个跟第一个有点关系，是关于性能的，若多线程都是 CPU 密集型的，那么不能获取性能上增强。如果有大量计算和大量 I/O 处理，那么</p> <p>多线程就可以获取性能上的优势，因为允许多线程重叠执行。</p> <p>多线程的缺点：</p> <blockquote> <ol> <li>对于多线程来说，进程中的资源是共享的，所以会产生资源竞争。</li> <li>当进程中的一个线程崩溃了，会导致这个进程里的其他线程也崩溃。所以有时多进程程序更好，一个进程崩溃不会导致其他进程也崩溃。</li> </ol> </blockquote> <h2 id="三进程与线程区别">三、进程与线程区别</h2> <p>从上面进程和线程介绍知道，线程是程序执行流的最小单位，进程是操作系统分配资源的单位。</p> <p>进程与进程之间关系：</p> <blockquote> <p>进程与进程之间是相互独立的。</p> </blockquote> <p>线程与进程关系：</p> <blockquote> <p>线程是进程里的执行流，进程里的线程可以是一个，也可以是多个。</p> <p>所有线程共享进程里一些资源，比如代码，数据，地址空间，信号处理，打开文件，全局变量等。</p> <p>同时，线程也有自己的寄存器，程序计数器，堆栈，线程状态等</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/7dc0be8c450a8c646260435af156635f.jpg" alt="对进程、线程和协程的理解以及它们的区别"></p> <p>                                    （图4：进程与线程关系）</p> <h2 id="四协程">四、协程</h2> <p>协程是建立在线程之上，一般是语言级别的 ”多线程“ 模型，比线程更加的轻量级。有的叫它微线程。它是完全运行在用户态里。</p> <p>协程是在线程之上在进行抽象，它需要线程来承载运行。一个线程可以有多个协程。</p> <p>比如 Go 语言的 goroutine，它用一个关键字<code>go</code> 就可以运行一个协程程序。</p> <p>在 Go 语言里面，协程是由 Go 提供的 runtime 来控制和调度。</p> <p>协程的优点：</p> <ol> <li> <p>协程栈很小，只有几KB，而线程栈是 1 M，对比起来，创建大量协程需要的内存更少。</p> </li> <li> <p>协程的调度是语言提供的 runtime 来调度，是在用户空间直接调度，不需要在内核空间和用户空间来回切换，浪费效率。</p> </li> <li> <p>能更好的利用 cpu 的多核，提高程序执行性能。</p> </li> <li> <p>避免阻塞，如果协程所在的线程发生了阻塞，那么协程调度器可以把运行在阻塞线程上的协程，调度到其它没有发生阻塞的线程上，继续运行。</p> </li> </ol> <h2 id="五协程与线程区别">五：协程与线程区别</h2> <ol> <li>协程是运行在线程之上，一个线程可以有多个协程。就像一个进程里可以有多个线程一样。</li> <li>协程能更好的控制利用多核机制。比如 Go 协程可以控制运行在多少个 CPU 的核上。</li> <li>协程是在用户空间完成调度，由语言提供的 runtime 进行调度完全用户态。线程由内核调度。</li> <li>协程使用内存更小。</li> </ol> <h2 id="六golang-中协程与线程关系">六：Golang 中协程与线程关系</h2> <p>Go 中的协程相当于一个”微线程“，由 Go runtime 调度使用。它的调度模型是一个 GMP 模型，对于 Go 调度的基本了解可以看<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/jiujuan/p/12735559.html"  target="_blank" rel="nofollow">这里</a>，<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/jiujuan/p/12977832.html"  target="_blank" rel="nofollow">还有这里</a>。</p> <p>简单介绍下 GMP :</p> <blockquote> <p>G：goroutine，表示 go 的一个协程，也就是”微线程“。</p> <p>M：machine，表示线程，G 在 M 上运行。</p> <p>P：processor，它包含了运行 goroutine 所需资源。如果一个 M 想运行一个 goroutine，那么先要获取 processor。</p> </blockquote> <p>Go 中 goroutine 和线程关系？</p> <blockquote> <p>goroutine 协程都是运行在线程上的。</p> </blockquote> <p>GMP 与线程关系简图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/0a0debf8127e1e44050c3d28d9196521.jpg" alt="对进程、线程和协程的理解以及它们的区别"></p> <p>                        （图5：协程、线程关系简图）</p> <h2 id="七参考">七、参考</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://book.douban.com/subject/3108799/"  target="_blank" rel="nofollow">《操作系统设计与实现》</a>作者: (美)ANDREW S.TANENBAUM / ALBERT S.WOODHULL</li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.zhihu.com/question/20511233"  target="_blank" rel="nofollow">https://www.zhihu.com/question/20511233</a> 协程有哪些好处</li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://zh.wikipedia.org/wiki/%E8%A1%8C%E7%A8%8B"  target="_blank" rel="nofollow">https://zh.wikipedia.org/wiki/行程</a> 进程</li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://zh.wikipedia.org/wiki/%E7%BA%BF%E7%A8%8B"  target="_blank" rel="nofollow">https://zh.wikipedia.org/wiki/线程</a> 线程</li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://zh.wikipedia.org/wiki/%E5%8D%8F%E7%A8%8B"  target="_blank" rel="nofollow">https://zh.wikipedia.org/wiki/协程</a> 协程</li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part2.html"  target="_blank" rel="nofollow">https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part2.html</a> Go 调度器(2)，作者：William Kennedy</li> </ul> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-969.htm">python三大器物&#8212;装饰器</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-971.htm">如果我们将时间分量和日期分量作为DATEDIFF()函数的参数包括在内，MySQL将返回什么？</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1031.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                        <li class="py-2"><a href="/html/category/article-1006.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1000.htm" title="@RequestBody接受参数报415错误">@RequestBody接受参数报415错误</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

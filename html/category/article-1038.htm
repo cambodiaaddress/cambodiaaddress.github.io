@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1038.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>spring boot 导入导出 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>spring boot 导入导出</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <pre><code class="prism language-css">    private final static Logger logger = LoggerFactory.<span class="token function">getLogger</span><span class="token punctuation">(</span>ExcelUtils.class<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">/**      * @param list     导出的数据list      * @param clazz    导出的对象class      * @param fileName 导出的文件名称      * @param response reponse      * @param &lt;T&gt;      */</span>     <span class="token selector">public static &lt;T&gt; void exportExcel(List&lt;T&gt; list, Class&lt;T&gt; clazz, String fileName, HttpServletResponse response)</span> <span class="token punctuation">{<!-- --></span>         SXSSFWorkbook workBook = <span class="token function">getWorkBook</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> clazz<span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token selector">try</span> <span class="token punctuation">{<!-- --></span>             response.<span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">"application/vnd.ms-excel;charset=UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             response.<span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             response.<span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Disposition"</span><span class="token punctuation">,</span> <span class="token string">"attachment;filename="</span> + URLEncoder.<span class="token function">encode</span><span class="token punctuation">(</span>fileName + <span class="token string">".xls"</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             OutputStream output = response.<span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             BufferedOutputStream bufferedOutPut = new <span class="token function">BufferedOutputStream</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">;</span>             bufferedOutPut.<span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             workBook.<span class="token function">write</span><span class="token punctuation">(</span>bufferedOutPut<span class="token punctuation">)</span><span class="token punctuation">;</span>             bufferedOutPut.<span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span> <span class="token selector">catch (Exception e)</span> <span class="token punctuation">{<!-- --></span>             e.<span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span>      <span class="token selector">private static &lt;T&gt; SXSSFWorkbook getWorkBook(List&lt;T&gt; list, Class&lt;T&gt; clazz)</span> <span class="token punctuation">{<!-- --></span>         SXSSFWorkbook wb = new <span class="token function">SXSSFWorkbook</span><span class="token punctuation">(</span>100<span class="token punctuation">)</span><span class="token punctuation">;</span>         Sheet sheet = wb.<span class="token function">createSheet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         Row row = sheet.<span class="token function">createRow</span><span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>         row.<span class="token function">setHeightInPoints</span><span class="token punctuation">(</span>23<span class="token punctuation">)</span><span class="token punctuation">;</span>         Field[] declaredFields = <span class="token function">getAllFields</span><span class="token punctuation">(</span>clazz<span class="token punctuation">)</span><span class="token punctuation">;</span>         //添加序号         Cell cellOrder = row.<span class="token function">createCell</span><span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>         cellOrder.<span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">"序号"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         cellOrder.<span class="token function">setCellStyle</span><span class="token punctuation">(</span><span class="token function">titleStyle</span><span class="token punctuation">(</span>wb<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         sheet.<span class="token function">setColumnWidth</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 10 * 256<span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token selector">//设置表头         for (Field field : declaredFields)</span> <span class="token punctuation">{<!-- --></span>             Excel annotation = field.<span class="token function">getAnnotation</span><span class="token punctuation">(</span>Excel.class<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token selector">if (annotation != null)</span> <span class="token punctuation">{<!-- --></span>                 Cell cell = row.<span class="token function">createCell</span><span class="token punctuation">(</span>Integer.<span class="token function">valueOf</span><span class="token punctuation">(</span>annotation.<span class="token function">orderNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>                 cell.<span class="token function">setCellValue</span><span class="token punctuation">(</span>annotation.<span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 cell.<span class="token function">setCellStyle</span><span class="token punctuation">(</span><span class="token function">titleStyle</span><span class="token punctuation">(</span>wb<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 //设置列的宽度                 sheet.<span class="token function">setColumnWidth</span><span class="token punctuation">(</span>Integer.<span class="token function">valueOf</span><span class="token punctuation">(</span>annotation.<span class="token function">orderNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>   <span class="token punctuation">(</span>int<span class="token punctuation">)</span>annotation.<span class="token function">width</span><span class="token punctuation">(</span><span class="token punctuation">)</span> * 256<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span>         <span class="token punctuation">}</span>         // 遍历集合数据，产生数据行         Iterator&lt;?&gt; it = list.<span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         int index = 0<span class="token punctuation">;</span>         <span class="token selector">while (it.hasNext())</span> <span class="token punctuation">{<!-- --></span>             index++<span class="token punctuation">;</span>             row = sheet.<span class="token function">createRow</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>             Cell cell = row.<span class="token function">createCell</span><span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>             cell.<span class="token function">setCellStyle</span><span class="token punctuation">(</span><span class="token function">orderStyle</span><span class="token punctuation">(</span>wb<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             cell.<span class="token function">setCellValue</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>             row.<span class="token function">setHeightInPoints</span><span class="token punctuation">(</span>18<span class="token punctuation">)</span><span class="token punctuation">;</span>             T t = <span class="token punctuation">(</span>T<span class="token punctuation">)</span> it.<span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             // 利用反射，根据javabean属性的先后顺序，动态调用<span class="token function">getXxx</span><span class="token punctuation">(</span><span class="token punctuation">)</span>方法得到属性值             Field[] fields = <span class="token function">getAllFields</span><span class="token punctuation">(</span>t.<span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token selector">for (Field field : fields)</span> <span class="token punctuation">{<!-- --></span>                 Excel annotation = field.<span class="token function">getAnnotation</span><span class="token punctuation">(</span>Excel.class<span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token selector">if (annotation != null)</span> <span class="token punctuation">{<!-- --></span>                     cell = row.<span class="token function">createCell</span><span class="token punctuation">(</span>Integer.<span class="token function">valueOf</span><span class="token punctuation">(</span>annotation.<span class="token function">orderNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>                     cell.<span class="token function">setCellStyle</span><span class="token punctuation">(</span><span class="token function">contentStyle</span><span class="token punctuation">(</span>wb<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     String fieldName = field.<span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     String getMethodName = <span class="token string">"get"</span>                             + fieldName.<span class="token function">substring</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 1<span class="token punctuation">)</span>.<span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                             + fieldName.<span class="token function">substring</span><span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token selector">try</span> <span class="token punctuation">{<!-- --></span>                         <span class="token selector">Method getMethod = t.getClass().getMethod(getMethodName,                                 new Class[]</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                         <span class="token selector">Object value = getMethod.invoke(t, new Object[]</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                         cell.<span class="token function">setCellValue</span><span class="token punctuation">(</span>null == value ? <span class="token string">""</span> <span class="token punctuation">:</span> String.<span class="token function">valueOf</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token punctuation">}</span> <span class="token selector">catch (Exception e)</span> <span class="token punctuation">{<!-- --></span>                         e.<span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token punctuation">}</span>                 <span class="token punctuation">}</span>             <span class="token punctuation">}</span>         <span class="token punctuation">}</span>         return wb<span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token selector">//设置标题样式     private static CellStyle titleStyle(SXSSFWorkbook wb)</span> <span class="token punctuation">{<!-- --></span>         CellStyle cellStyle = <span class="token function">contentStyle</span><span class="token punctuation">(</span>wb<span class="token punctuation">)</span><span class="token punctuation">;</span>         //设置居中         cellStyle.<span class="token function">setAlignment</span><span class="token punctuation">(</span>HorizontalAlignment.CENTER<span class="token punctuation">)</span><span class="token punctuation">;</span>         //设置单元格背景颜色         cellStyle.<span class="token function">setFillForegroundColor</span><span class="token punctuation">(</span>IndexedColors.GREY_25_PERCENT.<span class="token function">getIndex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         //设置单元格填充样式<span class="token punctuation">(</span>使用纯色背景颜色填充<span class="token punctuation">)</span>         cellStyle.<span class="token function">setFillPattern</span><span class="token punctuation">(</span>FillPatternType.SOLID_FOREGROUND<span class="token punctuation">)</span><span class="token punctuation">;</span>         //设置字体加粗         Font font = wb.<span class="token function">createFont</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         font.<span class="token function">setBold</span><span class="token punctuation">(</span>true<span class="token punctuation">)</span><span class="token punctuation">;</span>         font.<span class="token function">setFontHeightInPoints</span><span class="token punctuation">(</span><span class="token punctuation">(</span>short<span class="token punctuation">)</span> 12<span class="token punctuation">)</span><span class="token punctuation">;</span>         //设置字体         font.<span class="token function">setFontName</span><span class="token punctuation">(</span><span class="token string">"宋体"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         cellStyle.<span class="token function">setFont</span><span class="token punctuation">(</span>font<span class="token punctuation">)</span><span class="token punctuation">;</span>         return cellStyle<span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token selector">//设置单元格样式     private static CellStyle contentStyle(SXSSFWorkbook wb)</span> <span class="token punctuation">{<!-- --></span>         //给单元格设置样式         CellStyle cellStyle = wb.<span class="token function">createCellStyle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         Font font = wb.<span class="token function">createFont</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         //设置字体大小         font.<span class="token function">setFontHeightInPoints</span><span class="token punctuation">(</span><span class="token punctuation">(</span>short<span class="token punctuation">)</span> 11<span class="token punctuation">)</span><span class="token punctuation">;</span>         //设置字体         font.<span class="token function">setFontName</span><span class="token punctuation">(</span><span class="token string">"宋体"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         //给字体设置样式         cellStyle.<span class="token function">setFont</span><span class="token punctuation">(</span>font<span class="token punctuation">)</span><span class="token punctuation">;</span>         //字体设置边框         cellStyle.<span class="token function">setBorderBottom</span><span class="token punctuation">(</span>BorderStyle.THIN<span class="token punctuation">)</span><span class="token punctuation">;</span>         cellStyle.<span class="token function">setBorderRight</span><span class="token punctuation">(</span>BorderStyle.THIN<span class="token punctuation">)</span><span class="token punctuation">;</span>         //设置垂直居中         cellStyle.<span class="token function">setVerticalAlignment</span><span class="token punctuation">(</span>VerticalAlignment.CENTER<span class="token punctuation">)</span><span class="token punctuation">;</span>         return cellStyle<span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token selector">//设置单元格样式     private static CellStyle orderStyle(SXSSFWorkbook wb)</span> <span class="token punctuation">{<!-- --></span>         CellStyle cellStyle = <span class="token function">contentStyle</span><span class="token punctuation">(</span>wb<span class="token punctuation">)</span><span class="token punctuation">;</span>         cellStyle.<span class="token function">setAlignment</span><span class="token punctuation">(</span>HorizontalAlignment.CENTER<span class="token punctuation">)</span><span class="token punctuation">;</span>         return cellStyle<span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token selector">private static &lt;T&gt; Field[] getAllFields(Class&lt;T&gt; clazz)</span> <span class="token punctuation">{<!-- --></span>         Field[] declaredFields = clazz.<span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         Class superClass = clazz.<span class="token function">getSuperclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token selector">if (!superClass.equals(Object.class))</span> <span class="token punctuation">{<!-- --></span>             Field[] superFields = superClass.<span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             int sonLength = declaredFields.length<span class="token punctuation">;</span>             int superLength = superFields.length<span class="token punctuation">;</span>             // 合并两个数组             Field[] newFields = new Field[sonLength + superLength]<span class="token punctuation">;</span>             System.<span class="token function">arraycopy</span><span class="token punctuation">(</span>declaredFields<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> newFields<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> sonLength<span class="token punctuation">)</span><span class="token punctuation">;</span>             System.<span class="token function">arraycopy</span><span class="token punctuation">(</span>superFields<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> newFields<span class="token punctuation">,</span> sonLength<span class="token punctuation">,</span> superLength<span class="token punctuation">)</span><span class="token punctuation">;</span>             return newFields<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         return declaredFields<span class="token punctuation">;</span>     <span class="token punctuation">}</span>            private static final String XLS = <span class="token string">"xls"</span><span class="token punctuation">;</span>         private static final String XLSX = <span class="token string">"xlsx"</span><span class="token punctuation">;</span>          <span class="token comment">/**          * 根据文件后缀名类型获取对应的工作簿对象          * @param inputStream 读取文件的输入流          * @param fileType 文件后缀名类型（xls或xlsx）          * @return 包含文件数据的工作簿对象          * @throws IOException          */</span>         <span class="token selector">public static Workbook getWorkbook(InputStream inputStream, String fileType) throws IOException</span> <span class="token punctuation">{<!-- --></span>             Workbook workbook = null<span class="token punctuation">;</span>             <span class="token selector">if (fileType.equalsIgnoreCase(XLS))</span> <span class="token punctuation">{<!-- --></span>                 workbook = new <span class="token function">HSSFWorkbook</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span> <span class="token selector">else if (fileType.equalsIgnoreCase(XLSX))</span> <span class="token punctuation">{<!-- --></span>                 workbook = new <span class="token function">XSSFWorkbook</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span>             return workbook<span class="token punctuation">;</span>         <span class="token punctuation">}</span> </code></pre> <p>//导入</p> <pre><code class="prism language-css"> <span class="token selector">public void add(MultipartFile file)</span> <span class="token punctuation">{<!-- --></span>         String fileName = file.<span class="token function">getOriginalFilename</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         File file1 = new <span class="token function">File</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span><span class="token punctuation">;</span>         ImportParams params = new <span class="token function">ImportParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         params.<span class="token function">setTitleRows</span><span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>         params.<span class="token function">setHeadRows</span><span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span>          List&lt;Bill&gt; bills = ExcelImportUtil.<span class="token function">importExcel</span><span class="token punctuation">(</span>file1<span class="token punctuation">,</span> Bill.class<span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token selector">for (Bill bill : bills)</span> <span class="token punctuation">{<!-- --></span>             billlMapper.<span class="token function">insert</span><span class="token punctuation">(</span>bill<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token punctuation">}</span> </code></pre> <pre><code>} //导出 </code></pre> <pre><code class="prism language-css">  <span class="token atrule"><span class="token rule">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/exportExcelDc"</span><span class="token punctuation">)</span>     public void <span class="token function">exportExcelDc</span><span class="token punctuation">(</span>HttpServletResponse response<span class="token punctuation">)</span> throws Exception</span> <span class="token punctuation">{<!-- --></span>          List&lt;Bill&gt; list = billService.<span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         ExcelUtils.<span class="token function">exportExcel</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> Bill.class<span class="token punctuation">,</span> <span class="token string">"数据"</span><span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>  </code></pre> <p>//另一种导出</p> <pre><code class="prism language-css">    <span class="token atrule"><span class="token rule">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/exportExcelDc1"</span><span class="token punctuation">)</span>     public void <span class="token function">exportExcelDc1</span><span class="token punctuation">(</span>HttpServletResponse response<span class="token punctuation">)</span> throws Exception</span> <span class="token punctuation">{<!-- --></span>         ExportParams params = new <span class="token function">ExportParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         params.<span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"年度账单"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         params.<span class="token function">setSheetName</span><span class="token punctuation">(</span><span class="token string">"年度账单表"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         params.<span class="token function">setType</span><span class="token punctuation">(</span>ExcelType.XSSF<span class="token punctuation">)</span><span class="token punctuation">;</span>         List&lt;Bill&gt; list = billService.<span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          Workbook workbook = ExcelExportUtil.<span class="token function">exportExcel</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> Bill.class<span class="token punctuation">,</span> list<span class="token punctuation">)</span><span class="token punctuation">;</span>         response.<span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">"application/vnd.ms-excel;charset=UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         response.<span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         response.<span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Disposition"</span><span class="token punctuation">,</span> <span class="token string">"attachment;filename="</span> + URLEncoder.<span class="token function">encode</span><span class="token punctuation">(</span><span class="token string">"测试"</span> + <span class="token string">".xls"</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         OutputStream output = response.<span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         BufferedOutputStream bufferedOutPut = new <span class="token function">BufferedOutputStream</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">;</span>         bufferedOutPut.<span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         workbook.<span class="token function">write</span><span class="token punctuation">(</span>bufferedOutPut<span class="token punctuation">)</span><span class="token punctuation">;</span>         bufferedOutPut.<span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> </code></pre> <pre><code>// 注解   @Excel(name = "序号",orderNum = "0") </code></pre> </p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1037.htm">启动zookeeper、kafka报错，sudo java未找到</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1039.htm">使用Kotlin实现百思不得姐弹出菜单</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-993.htm" title="骨架屏技术讲解以及如何在Vue中实现骨架屏">骨架屏技术讲解以及如何在Vue中实现骨架屏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1003.htm" title="Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控">Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控</a></li>
+                        <li class="py-2"><a href="/html/category/article-998.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1000.htm" title="@RequestBody接受参数报415错误">@RequestBody接受参数报415错误</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

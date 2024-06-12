@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-828.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>在同一个类中，一个方法调用另外一个有注解（比如@Async，@Transational）的方法，注解失效的原因和解决方法 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>在同一个类中，一个方法调用另外一个有注解（比如@Async，@Transational）的方法，注解失效的原因和解决方法</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  在同一个类中，一个方法调用另外一个有注解（比如@Async，@Transational）的方法，注解是不会生效的。 </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <br style="background-color:inherit"/> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  比如，下面代码例子中，有两方法，一个有@Transational注解，一个没有。如果调用了有注解的addPerson()方法，会启动一个Transaction；如果调用updatePersonByPhoneNo()，因为它内部调用了有注解的addPerson()，如果你以为系统也会为它启动一个Transaction，那就错了，实际上是没有的。 </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <br style="background-color:inherit"/> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px"> <pre><code class="language-java">@Service public class PersonServiceImpl implements PersonService {   @Autowired  PersonDao personDao;    @Override  @Transactional  public boolean addPerson(Person person) {   boolean result = personDao.insertPerson(person)&gt;0 ? true : false;   return result;  }   @Override  //@Transactional  public boolean updatePersonByPhoneNo(Person person) {   boolean result = personDao.updatePersonByPhoneNo(person)&gt;0 ? true : false;   addPerson(person); //测试同一个类中@Transactional是否起作用   return result;  } }</code></pre> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <br style="background-color:inherit"/> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  如何查看是否启动了Transaction？ </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  设置log leve为debug，可以查看是否有下面这个log，判断是否启动了Transaction： </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  DEBUG org.springframework.jdbc.datasource.DataSourceTransactionManager - Creating new transaction with name... </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <br style="background-color:inherit"/> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  同样地，@Async等其他注解也有这样的问题。 </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  （关于@Async的用法，请参考：<br />  <a target="_blank" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.csdn.net/clementad/article/details/47403185"  rel="nofollow">http://blog.csdn.net/clementad/article/details/47403185</a>） </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <br style="background-color:inherit"/> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  原因： </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  spring 在扫描bean的时候会扫描方法上是否包含@Transactional注解，如果包含，spring会为这个bean动态地生成一个子类（即代理类，proxy），代理类是继承原来那个bean的。此时，当这个有注解的方法被调用的时候，实际上是由代理类来调用的，代理类在调用之前就会启动transaction。然而，如果这个有注解的方法是被同一个类中的其他方法调用的，那么该方法的调用并没有通过代理类，而是直接通过原来的那个bean，所以就不会启动transaction，我们看到的现象就是@Transactional注解无效。 </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <br style="background-color:inherit"/> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  为什么一个方法a()调用同一个类中另外一个方法b()的时候，b()不是通过代理类来调用的呢？可以看下面的例子（为了简化，用伪代码表示）： </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <br style="background-color:inherit"/> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px"> <pre><code class="language-java">@Service class A{     @Transactinal     method b(){...}          method a(){    //标记1         b();     } }  //Spring扫描注解后，创建了另外一个代理类，并为有注解的方法插入一个startTransaction()方法： class proxy$A{     A objectA = new A();     method b(){    //标记2         startTransaction();         objectA.b();     }      method a(){    //标记3         objectA.a();    //由于a()没有注解，所以不会启动transaction，而是直接调用A的实例的a()方法     } }</code></pre> <p> 当我们调用A的bean的a()方法的时候，也是被proxy$A拦截，执行proxy$A.a()（标记3），然而，由以上代码可知，这时候它调用的是objectA.a()，也就是由原来的bean来调用a()方法了，所以代码跑到了“标记1”。由此可见，“标记2”并没有被执行到，所以startTransaction()方法也没有运行。 </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <br style="background-color:inherit"/> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <span style="background-color:inherit">了解了失效的原因，解决的方法就简单了（两种）：</span> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px"> <ol style="margin-top:0px; margin-bottom:0px; background-color:inherit"> <li style="background-color:inherit"><span style="background-color:inherit; line-height:1.5">把这两个方法分开到不同的类中；</span></li> <li style="background-color:inherit">把注解加到类名上面；</li> </ol> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <br style="background-color:inherit"/> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  参考： </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <a target="_blank" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://stackoverflow.com/questions/18590170/transactional-does-not-work-on-method-level"  style="background-color:inherit" rel="nofollow">http://stackoverflow.com/questions/18590170/transactional-does-not-work-on-method-level</a> </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">   </div> <div style="font-family:微软雅黑; font-size:14px; line-height:21px">  <span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">（原创文章，转载请注明转自：http://blog.csdn.net/clementad）</span><br />   </div> <div>   </div> </p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-827.htm">Java两个List＜T＞ 求交集,差集,并集,去重后的并集_java</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-829.htm">os和os.path的常用方法</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1031.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1030.htm" title="vue-element-admin模板，点击跳转到另一个页面传参">vue-element-admin模板，点击跳转到另一个页面传参</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

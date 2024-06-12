@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1026.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>源码分析 Spring Security OAuth2 生成 token 的执行流程 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>源码分析 Spring Security OAuth2 生成 token 的执行流程</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-github-gist"> <h2><a id="_0" rel="nofollow"></a>说明</h2> <ol> <li> <p>本文内容全部基于<code>Spring Security OAuth2(2.3.5.RELEASE)</code>.</p> </li> <li> <p><code>OAuth2.0</code> 有四种授权模式, 本文会以<strong>密码模式</strong> 来举例讲解源码.</p> </li> <li> <p>阅读前, 需要对<code>OAuth2.0</code> 的相关概念有所了解.</p> </li> <li> <p>最好有<code>Spring Security OAuth</code> 框架的使用经验</p> </li> </ol> <p>下面是前面写的<code>OAuth2.0</code> 相关文章</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/cnm10050/article/details/106139315"  rel="nofollow"> 结合第三方登录案例理解 OAuth2.0 授权码方式</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/cnm10050/article/details/105923631"  rel="nofollow">spring security oauth2 实战（仿微博第三方登录） - 工程搭建及登陆流程</a></p> <h2><a id="_16" rel="nofollow"></a>正文</h2> <h3><a id="_18" rel="nofollow"></a>前置知识</h3> <pre><code class="prism language-Java">@RequestMapping(value = "/oauth/token", method=RequestMethod.POST) public ResponseEntity&lt;OAuth2AccessToken&gt; postAccessToken( Principal principal,  @RequestParam Map&lt;String, String&gt; parameters)  	throws HttpRequestMethodNotSupportedException { 	// TODO }</code></pre> <ol> <li>获取 token 的默认请求路径是<code>/oauth/token</code></li> <li>获取 token 的入口类是<code>TokenEndpoint</code></li> <li>获取 token 的接口需要接收两个参数 <ul> <li><code>Principal principal</code></li> <li><code>Map&lt;String, String&gt; parameters</code></li> </ul> </li> </ol> <h3><a id="_34" rel="nofollow"></a>执行流程</h3> <p><strong>第一步:</strong></p> <p>调用<code>ClientDetailsService</code> 类的<code>loadClientByClientId</code> 方法, 获取客户端信息装载到<code>ClientDetails</code> 对象中</p> <ul> <li><code>ClientDetailsService</code> 用来管理客户端信息 <ul> <li> <p>实现1:<code>InMemoryClientDetailsService</code> (把客户端信息放在内存中)</p> </li> <li> <p>实现2:<code>JdbcClientDetialsService</code> (把客户端信息放在数据库中)</p> </li> </ul> </li> </ul> <p><strong>第二步:</strong></p> <p>调用<code>OAuth2RequestFactory</code> 类生成<code>TokenRequest</code> 对象</p> <ul> <li> <p><code>DefaultOAuth2RequestFactory</code> 是<code>OAuth2RequestFactory</code> 的唯一实现</p> </li> <li> <p><code>TokenRequest</code> 是对请求参数<code>parameters</code> 和<code>ClientDetails</code> 属性的封装</p> </li> </ul> <p><strong>第三步:</strong></p> <p>调用<code>TokenGranter</code>, 利用<code>TokenRequest</code> 产生两个对象<code>OAuth2Request</code> 和<code>Authentication</code></p> <p><code>TokenGranter</code> 是对 4 种授权模式的一个封装。它会根据<code>grant_type</code> 参数去挑一个具体的实现来生成令牌</p> <p>部分实现类如下:</p> <pre><code>* ResourceOwnerPasswordTokenGranter  * AuthorizationCodeTokenGranter * ImplicitTokenGranter * ClientCredentialsTokenGranter</code></pre> <p><strong>第四步:</strong></p> <p>将<code>OAuth2Request</code> 和<code>Authorization</code> 两个对象组合起来形成一个<code>OAuth2Authorization</code> 对象，它的里面包含了:</p> <ul> <li>哪个第三方应用在请求 token</li> <li>哪个用户以哪种授权模式进行授权</li> </ul> <p><strong>第五步:</strong><br /> 将第 4 步 的对象会传递到<code>AuthorizationServerTokenServices</code> 的实现类<code>DefaultTokenServices</code> 中，最终会生成一个<code>OAuth2AccessToken</code>。</p> <h3><a id="_75" rel="nofollow"></a>源码分析</h3> <h4><a id="1_TokenEndpointpostAccessToken_77" rel="nofollow"></a>1. TokenEndpoint#postAccessToken()</h4> <pre><code class="prism language-Java">// 从请求参数中解析出 clientId String clientId = this.getClientId(principal);  // 第一步: 从 内存 or 数据库(根据 ClientDetailsService 的具体实现)中取出客户端的详细信息 ClientDetails authenticatedClient = this.getClientDetailsService().loadClientByClientId(clientId); // 第二步: 调用 `OAuth2RequestFactory` 类生成 `TokenRequest` 对象 TokenRequest tokenRequest = this.getOAuth2RequestFactory().createTokenRequest(parameters, authenticatedClient);  // 省略一堆判断  // 第3-5步: 根据不同的授权方式, 生成 token OAuth2AccessToken token = this.getTokenGranter().grant(tokenRequest.getGrantType(), tokenRequest); if (token == null) {     throw new UnsupportedGrantTypeException("Unsupported grant type: " + tokenRequest.getGrantType()); } else {     return this.getResponse(token); }</code></pre> <p>针对上述 第 3-5 步的源码接着分析:</p> <p><code>OAuth2AccessToken token = this.getTokenGranter().grant(tokenRequest.getGrantType(), tokenRequest);</code></p> <p>假设现在使用的是授权码模式-密码模式, 那么<code>this.getTokenGranter()</code><br /> 返回的结果就是<code>ResourceOwnerPasswordTokenGranter</code>.</p> <p>对应的<code>grant()</code>方法调用的是<code>CompositeTokenGranter的 grant()方法</code></p> <h4><a id="2_CompositeTokenGrantergrant_108" rel="nofollow"></a>2. CompositeTokenGranter#grant()</h4> <pre><code class="prism language-Java">    public OAuth2AccessToken grant(String grantType, TokenRequest tokenRequest) { 		for (TokenGranter granter : tokenGranters) { 			OAuth2AccessToken grant = granter.grant(grantType, tokenRequest); 			if (grant!=null) { 				return grant; 			} 		} 		return null; 	}</code></pre> <p><code>CompositeTokenGranter</code> 中有一个集合，这个集合里装的就是五个会产生令牌的操作。</p> <p>在遍历过程中, 通过<code>grant_type</code> 在五种情况中挑一种生成<code>accessToken</code> 对象。</p> <h4><a id="3_AbstractTokenGrantergrant_125" rel="nofollow"></a>3. AbstractTokenGranter#grant</h4> <pre><code class="prism language-Java">public OAuth2AccessToken grant(String grantType, TokenRequest tokenRequest) { 		// 判断参数传来的的授权类型和该类所支持的授权类型是否一致 59到第63行是 		if (!this.grantType.equals(grantType)) { 			return null; 		} 		//获取客户端信息跟授权类型再做一个校验 		String clientId = tokenRequest.getClientId(); 		ClientDetails client = clientDetailsService.loadClientByClientId(clientId); 		validateGrantType(grantType, client); 		return getAccessToken(client, tokenRequest);  	}</code></pre> <h4><a id="4_AbstractTokenGranter_getAccessToken_141" rel="nofollow"></a>4. AbstractTokenGranter #getAccessToken()</h4> <pre><code class="prism language-Java"> protected OAuth2AccessToken getAccessToken(ClientDetails  client, TokenRequest tokenRequest) { // 调用 ResourceOwnerPasswordTokenGrante的getOAuth2Authentication方法         return this.tokenServices.createAccessToken(this.getOAuth2Authentication(client, tokenRequest)); }</code></pre> <h4><a id="5_ResourceOwnerPasswordTokenGrantergetOAuth2Authentication_152" rel="nofollow"></a>5. ResourceOwnerPasswordTokenGranter#getOAuth2Authentication()</h4> <p>在密码模式中的策略:</p> <ol> <li>根据请求中携带的用户名和密码来获取当前用户的授权信息<code>Authentication</code></li> <li>将<code>OAuth2Request</code> 和<code>Authentication</code> 组合一个<code>OAuth2Authentication</code> 对象</li> </ol> <pre><code class="prism language-Java">protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {          // 从 TokenRequest 中获取请求参数         Map&lt;String, String&gt; parameters = new LinkedHashMap(tokenRequest.getRequestParameters());         // 用户名和密码         String username = (String)parameters.get("username");         String password = (String)parameters.get("password");         parameters.remove("password");                  // 构造一个 Authentication 对象         Authentication userAuth = new UsernamePasswordAuthenticationToken(username, password);         ((AbstractAuthenticationToken)userAuth).setDetails(parameters);          Authentication userAuth;         try {         // 把 userAuth 传递给authenticationManager做认证         // 其实就是调用 自定义的UserDetailService 的 loadUserByUsername 方法去校验用户             userAuth = this.authenticationManager.authenticate(userAuth);         } catch (AccountStatusException var8) {             throw new InvalidGrantException(var8.getMessage());         } catch (BadCredentialsException var9) {             throw new InvalidGrantException(var9.getMessage());         }          if (userAuth != null &amp;&amp; userAuth.isAuthenticated()) {             OAuth2Request storedOAuth2Request = this.getRequestFactory().createOAuth2Request(client, tokenRequest);             // 通过 OAuth2Request 构造一个 OAuth2Authentication 对象             return new OAuth2Authentication(storedOAuth2Request, userAuth);         } else {             throw new InvalidGrantException("Could not authenticate user: " + username);         }     }</code></pre> <h4><a id="6_DefaultTokenServicescreateAccessToken_191" rel="nofollow"></a>6. DefaultTokenServices#createAccessToken</h4> <pre><code class="prism language-Java">// 从 tokenStore 取出 token OAuth2AccessToken existingAccessToken = tokenStore.getAccessToken(authentication); OAuth2RefreshToken refreshToken = null; 	 if (existingAccessToken != null) {     // 如果 token 过期     if (existingAccessToken.isExpired()) { 				 	    if (existingAccessToken.getRefreshToken() != null) { 	        // 移除 refresh token 		    refreshToken = existingAccessToken.getRefreshToken();			 			tokenStore.removeRefreshToken(refreshToken); 		} 		// // 移除 token 		tokenStore.removeAccessToken(existingAccessToken);    } else { 		// 如果token 没过期, 就刷新有效期, 返回 token 		tokenStore.storeAccessToken(existingAccessToken, authentication); 		return existingAccessToken; 	} }  	 if (refreshToken == null) { 	refreshToken = createRefreshToken(authentication); } else if (refreshToken instanceof ExpiringOAuth2RefreshToken) { 	ExpiringOAuth2RefreshToken expiring = (ExpiringOAuth2RefreshToken) refreshToken; 	if (System.currentTimeMillis() &gt; expiring.getExpiration().getTime()) { 		refreshToken = createRefreshToken(authentication); 	} } // 创建新的 token, 并返回 OAuth2AccessToken accessToken = createAccessToken(authentication, refreshToken); tokenStore.storeAccessToken(accessToken, authentication); // In case it was modified refreshToken = accessToken.getRefreshToken(); if (refreshToken != null) { 	tokenStore.storeRefreshToken(refreshToken, authentication); }  return accessToken;</code></pre> <h2><a id="_237" rel="nofollow"></a>总结</h2> <p>密码模式获取<code>token</code> 的流程就是把请求的参数 比如<code>clientId, secret, grant_type, username, password</code> 等信息, 通过<code>/oauth/token</code> 接口传到后端, 经过下图中的一系列转换得到一个<code>OAuth2AccessToken</code> 对象</p> <p>最终获得如下<code>json</code>串</p> <pre><code class="prism language-Json">{      "scope": "[all, read, write]",      "code": 0,      "access_token": "71561b3d-73d5-4a91-bf0f-456c9dc84d7d",      "token_type": "bearer",      "refresh_token": "b888d6d7-5ec2-47f9-82fe-eca5a0350770",      "expires_in": 7199 }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220722/41108afbe0b7b0f7739c282024f6452c.jpg" alt="源码分析 Spring Security OAuth2 生成 token 的执行流程"></p> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1025.htm">Spring-RabbitMQ 消费者消息确认案例实践</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1027.htm">pytorch 保存模型和加载模型</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1013.htm" title="【译】defer-panic-and-recover_在线工具">【译】defer-panic-and-recover_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1034.htm" title="java.sql.ResultSet">java.sql.ResultSet</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1030.htm" title="vue-element-admin模板，点击跳转到另一个页面传参">vue-element-admin模板，点击跳转到另一个页面传参</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-996.htm" title="js穿梭框；将两个table中的数据选中移动">js穿梭框；将两个table中的数据选中移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

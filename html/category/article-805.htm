@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-805.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Java 线程池四种拒绝策略 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Java 线程池四种拒绝策略</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<blockquote> <p>jdk1.5版本新增了<code>JUC</code> 并发包，其中一个包含线程池。</p> </blockquote> <p>四种拒绝策略：</p> <table> <thead> <tr> <th style="text-align: center"></th> <th style="text-align: center">拒绝策略类型</th> <th style="text-align: center">说明</th> </tr> </thead> <tbody> <tr> <td style="text-align: center">1</td> <td style="text-align: center">ThreadPoolExecutor.AbortPolicy</td> <td style="text-align: center">默认拒绝策略，拒绝任务并抛出任务</td> </tr> <tr> <td style="text-align: center">2</td> <td style="text-align: center">ThreadPoolExecutor.CallerRunsPolicy</td> <td style="text-align: center">使用调用线程直接运行任务</td> </tr> <tr> <td style="text-align: center">3</td> <td style="text-align: center">ThreadPoolExecutor.DiscardPolicy</td> <td style="text-align: center">直接拒绝任务，不抛出错误</td> </tr> <tr> <td style="text-align: center">4</td> <td style="text-align: center">ThreadPoolExecutor.DiscardOldestPolicy</td> <td style="text-align: center">触发拒绝策略，只要还有任务新增，一直会丢弃阻塞队列的最老的任务，并将新的任务加入</td> </tr> </tbody> </table> <h2 id="预先配置">预先配置</h2> <h3 id="配置线程池">配置线程池。</h3> <ul> <li>核心线程和最大线程都尽量设置的小一点，分别设置成 1 和 2</li> <li>阻塞队列设置<strong>固定长度</strong>的有界队列，长度为 1</li> <li>线程工厂设置<strong>默认线程工厂</strong></li> </ul> <pre><code>// 核心线程数 int corePoolSize = 1; // 最大线程数 int maximumPoolSize = 2; // 线程存活时间 long keepAliveTime = 10; // 线程存活时间单位 TimeUnit unit = TimeUnit.SECONDS; // 有界队列 遵循 FIFO 原则 BlockingQueue&lt;Runnable&gt; workQueue = new ArrayBlockingQueue&lt;&gt;(1); // 线程工厂 ThreadFactory threadFactory = Executors.defaultThreadFactory();</code></pre> <h3 id="创建线程任务">创建线程任务</h3> <p>创建线程任务，一个线程任务执行一秒：</p> <pre><code>class TaskThread implements Runnable{                  		private int i;  		public TaskThread(int i) { 			this.i = i; 		}  		@Override 		public void run() { 			try { 				TimeUnit.SECONDS.sleep(2); 				System.out.println("执行任务:" + i); 			} catch (InterruptedException e) { 				e.printStackTrace(); 			} 		} 	}</code></pre> <h2 id="拒绝策略一abortpolicy">拒绝策略一:AbortPolicy</h2> <p>默认拒绝策略，拒绝任务并抛出任务</p> <pre><code>// 拒绝策略 默认拒绝策略，拒绝任务并抛出异常： RejectedExecutionHandler handler = new ThreadPoolExecutor.AbortPolicy(); ThreadPoolExecutor threadPool = new ThreadPoolExecutor(corePoolSize, 				maximumPoolSize, 				keepAliveTime, 				unit, 				workQueue, 				threadFactory, 				handler); 		for (int i = 1; i &lt;= 5; i++) { 			try { 				threadPool.execute(new TaskThread(i)); 			} catch (Exception e) { 				System.out.println("【任务" + i + "】报错:" + e.getMessage()); 			}  		}</code></pre> <p>输出</p> <pre><code>【任务】4报错:Task com.test.controller.ThreadPoolController$TaskThread@5c0369c4 rejected from java.util.concurrent.ThreadPoolExecutor@50675690[Running, pool size = 2, active threads = 2, queued tasks = 1, completed tasks = 0] 【任务】5报错:Task com.test.controller.ThreadPoolController$TaskThread@31b7dea0 rejected from java.util.concurrent.ThreadPoolExecutor@50675690[Running, pool size = 2, active threads = 2, queued tasks = 1, completed tasks = 0] 执行任务:1 执行任务:3 执行任务:2</code></pre> <p>最大线程数 + 阻塞队列 = 3，执行到4，5的时候就抛出错误。这里需要用<code>try catch</code> 捕获异常。任务1、2、3正常执行。</p> <blockquote> <p>如果提交的任务都要执行，可以将抛出的错误任务存入在redis中，然后定时从<code>redis</code>中获取任务，再提交执行。</p> </blockquote> <h2 id="拒绝策略二callerrunspolicy">拒绝策略二：CallerRunsPolicy</h2> <p>调用线程运行多余的任务。</p> <p>更换拒绝策略，将上面的<code>AbortPolicy</code> 换成<code>CallerRunsPolicy</code>。</p> <pre><code>RejectedExecutionHandler handler = new ThreadPoolExecutor.CallerRunsPolicy();</code></pre> <p>执行任务，输出：</p> <pre><code>执行任务:1 执行任务:4 执行任务:3 执行任务:2 执行任务:5</code></pre> <p>最大线程数 + 阻塞队列 = 3，多余的任务还是继续被执行。</p> <h2 id="拒绝策略三discardpolicy">拒绝策略三：DiscardPolicy</h2> <p>拒绝任务，不会抛出错误。<br /> 更换策略，将<code>CallerRunsPolicy</code> 换成<code>DiscardPolicy</code>:</p> <pre><code>RejectedExecutionHandler handler = new ThreadPoolExecutor.DiscardPolicy();</code></pre> <p>执行任务，输出：</p> <pre><code>执行任务:1 执行任务:3 执行任务:2</code></pre> <p>多余的线程任务提交被拒绝，而只执行<strong>最大线程数 + 阻塞队列</strong> 数量的任务，并且不会抛出错误。</p> <h2 id="拒绝策略四discardoldestpolicy">拒绝策略四：DiscardOldestPolicy</h2> <p>只要还有任务新增，一直会丢弃<strong>阻塞队列</strong>的最老的任务，并将新的任务加入到<strong>阻塞队列中</strong>。<br /> 更换策略，将<code>DiscardPolicy</code> 换成<code>DiscardOldestPolicy</code>:</p> <pre><code>RejectedExecutionHandler handler3 = new ThreadPoolExecutor.DiscardOldestPolicy();</code></pre> <p>执行任务，输出：</p> <pre><code>执行任务:3 执行任务:1 执行任务:5</code></pre> <p>任务的执行顺序是 核心线程数 —&gt; 阻塞队列 —&gt; 最大线程数，其中任务1，任务3提交成功。</p> <ul> <li>任务2因为在阻塞队列中，</li> <li>后面的任务4把任务2挤掉，</li> <li>任务5又把任务4挤掉，所以最后执行的是任务5。</li> </ul> <h2 id="总结">总结</h2> <p>本文介绍了线程四种拒绝策略，当工作任务大于<strong>最大线程 + 阻塞队列</strong>会执行阻塞队列。</p> <ul> <li>AbortPolicy 默认策略，拒绝任务，并抛出异常</li> <li>CallerRunsPolicy 调用线程执行对于的任务</li> <li>DiscardPolicy 拒绝任务，不会抛出异常</li> <li>DiscardOldestPolicy 有多余的任务，把阻塞队列最老的任务丢弃，放入新的任务，直到没有新的任务。<br /><strong>如果觉得文章对你有帮助的话，请点个推荐吧!</strong></li> </ul> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-804.htm">Spring boot整合JPA</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-806.htm">JavaScript实现的多功能侧边导航菜单源码</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

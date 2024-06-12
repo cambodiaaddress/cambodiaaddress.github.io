@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-952.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Qt(QtWebEngine)加载本地网页跨域问题的总结 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Qt(QtWebEngine)加载本地网页跨域问题的总结</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#1-%E6%A6%82%E8%BF%B0" rel="nofollow">1. 概述</a></li> <li><a href="#2-%E8%AF%A6%E8%AE%BA" rel="nofollow">2. 详论</a> <ul> <li><a href="#21-%E4%BC%A0%E5%8F%82" rel="nofollow">2.1. 传参</a></li> <li><a href="#22-js-module" rel="nofollow">2.2. JS module</a></li> </ul> </li> <li><a href="#3-%E5%BB%BA%E8%AE%AE" rel="nofollow">3. 建议</a></li> <li><a href="#4-%E5%8F%82%E8%80%83" rel="nofollow">4. 参考</a></li> </ul> </div> <h1 id="1-概述">1. 概述</h1> <p>浏览器直接加载本地网页的时候，如果网页涉及到加载本地资源（如图片），会出现跨域的问题。Qt的Qt WebEngine模块基于Chromium项目，遇到这样的情况也会出现跨域的问题。</p> <h1 id="2-详论">2. 详论</h1> <h2 id="21-传参">2.1. 传参</h2> <p>理论上，我们可以像设置chrome浏览器跨域一样（设置chrome浏览器跨域网上的资料非常多），给我们使用的Qt程序传参：</p> <pre><code class="language-cpp">char ARG_DISABLE_WEB_SECURITY[] = "--disable-web-security"; int newArgc = argc+1+1; char** newArgv = new char*[newArgc]; for(int i=0; i&lt;argc; i++) {     newArgv[i] = argv[i]; } newArgv[argc] = ARG_DISABLE_WEB_SECURITY; newArgv[argc+1] = nullptr;  QApplication myApplication(newArgc, newArgv);</code></pre> <p>Qt会将跨域参数传递到Qt WebEngine模块的Chromium内核中，从而实现跨域。</p> <h2 id="22-js-module">2.2. JS module</h2> <p>即使设置跨域，当使用JavaScript ES6 module的时候，仍然有可能会出现跨域的问题。</p> <p>一个显而易见的错误提示如下：</p> <pre><code>js: Failed to load module script: The server responded with a non-JavaScript MIME type of "". Strict MIME type checking is enforced for module scripts per HTML spec.</code></pre> <p>原因在于，在Chrome浏览器的某些版本中，ES6 module的功能不支持跨域（但是require.js却可以）。现在最新版本的Chrome的跨域设置已经可以支持ES6 module，但是Qt WebEngine模块却可能是比较低的Chromium版本，从而造成使用ES6 module遇到跨域问题。通常来说，越新的Qt版本，Chromium版本也会越高。</p> <p>如果还是不想要服务器环境，那么一种解决方案就是自定义URL方案：</p> <pre><code class="language-cpp">#include &lt;QApplication&gt; #include &lt;QWebEngineView&gt; #include &lt;QWebEngineUrlScheme&gt; #include &lt;QWebEngineProfile&gt; #include &lt;QWebEngineUrlSchemeHandler&gt; #include &lt;QWebEngineUrlRequestJob&gt; #include &lt;QFile&gt; #include &lt;QFile&gt; #include &lt;QFileInfo&gt; #include &lt;QMimeDatabase&gt;  class QtSchemeHandler : public QWebEngineUrlSchemeHandler { public:     QtSchemeHandler(QObject *parent = nullptr):QWebEngineUrlSchemeHandler(parent)     {     }      void requestStarted(QWebEngineUrlRequestJob *request) override     {         QByteArray request_method = request-&gt;requestMethod();         if(request_method != "GET")         {             request-&gt;fail(QWebEngineUrlRequestJob::RequestDenied);             return;         }          QUrl request_url = request-&gt;requestUrl();         QString request_path = request_url.path();         //qDebug()&lt;&lt;request_url&lt;&lt;endl;          QString application_path = "D:/";         QFile *file = new QFile(application_path + request_path);         file-&gt;setParent(request);         connect(request, &amp;QObject::destroyed, file, &amp;QFile::deleteLater);         //qDebug()&lt;&lt;file-&gt;size()&lt;&lt;endl;         if(!file-&gt;exists()||file-&gt;size()==0)         {             printf("resource '{request_path}' not found or is empty");             request-&gt;fail(QWebEngineUrlRequestJob::UrlNotFound);             return;         }          QFileInfo file_info = QFileInfo(*file);         QMimeDatabase mime_database;         QMimeType mime_type = mime_database.mimeTypeForFile(file_info);         request-&gt;reply(QUrl(mime_type.name()).toEncoded(), file);     } };  int main(int argc, char *argv[]) {     char ARG_DISABLE_WEB_SECURITY[] = "--disable-web-security";     int newArgc = argc+1+1;     char** newArgv = new char*[newArgc];     for(int i=0; i&lt;argc; i++) {         newArgv[i] = argv[i];     }     newArgv[argc] = ARG_DISABLE_WEB_SECURITY;     newArgv[argc+1] = nullptr;      qputenv("QTWEBENGINE_REMOTE_DEBUGGING", "7542");    //用于调试      QWebEngineUrlScheme scheme = QWebEngineUrlScheme("qt");     scheme.setFlags(QWebEngineUrlScheme::CorsEnabled);     QWebEngineUrlScheme::registerScheme(scheme);      //QApplication a(argc, argv);     QApplication a(newArgc, newArgv);      QWebEngineView view;      QtSchemeHandler *scheme_handler = new QtSchemeHandler();     view.page()-&gt;profile()-&gt;installUrlSchemeHandler("qt", scheme_handler);      view.page()-&gt;profile()-&gt;clearHttpCache();       //删除缓存      //view.load(QUrl("D:/cesium/CesiumWork/3DTilesPhotogrammetry/3DTilesPhotogrammetry.html"));     view.load(QUrl("qt://local/cesium/CesiumWork/3DTilesPhotogrammetry/3DTilesPhotogrammetry.html"));      view.show();      return a.exec(); }</code></pre> <p>这个方案的本质是将URL定义地址的资源给转发了一遍。但是这种方案还是有局限性，经过测试，在Qt5.15.2版本中可行，但在Qt5.12.5版本中不行。而且这样所有的资源地址都得采用这一套URL方案。</p> <h1 id="3-建议">3. 建议</h1> <p>其实个人还是不太建议再轻易尝试使用本地网页跨域了，毕竟这一点与Web的安全性背道而驰。最好还是让网页在服务器环境下吧，出问题的可能性会小一点。</p> <h1 id="4-参考">4. 参考</h1> <ol> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://stackoverflow.com/questions/45909518/qt-qwebengineview-not-allowed-to-load-local-resource"  target="_blank" rel="nofollow">Qt QWebEngineView not allowed to load local resource</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://stackoverflow.com/questions/69358171/pyqt5-how-to-use-javascript-modules"  target="_blank" rel="nofollow">PyQt5 How To Use JavaScript Modules</a></li> </ol> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-951.htm">上班摸鱼与网络安全</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-953.htm">spring boot web项目</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1031.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

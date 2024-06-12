@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1012.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>【ASP.NET Core】自己编程来生成自签名的服务器证书 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>【ASP.NET Core】自己编程来生成自签名的服务器证书</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<p>如果项目不大，或者是客户公司内部使用，或者不想花钱购买证书，又或者用于开发阶段测试……完全可以使用自签名证书。</p> <p>所谓自签，就是自己给自己签名颁发的证书，自给自足，丰衣足食。</p> <p>生成证书的方法和工具很多，你可能会想到用以前 .NET Framework SDK工具，你可能想到用 OpenSSL 工具。但是，与其用工具，还不如直接调用 .NET 自身的 API ，在项目中直接创建证书来得方便。密钥随机即可，创建证书后写入到 .pfx 文件中。这样做也很方便，有利于程序搬家。</p> <p>好，鬼话不多说，咱们开始今天的表演。</p> <p>首先，写一个类，简单粗暴易用。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> CerMaker     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">static</span><span style="color: rgba(0, 0, 255, 1)">async</span> Task CreateSslCertAsync(<span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> subName,                                        DateTime bgDate,                                        DateTime endDate,</span><span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> outFile,</span><span style="color: rgba(0, 0, 255, 1)">string</span>?<span style="color: rgba(0, 0, 0, 1)"> passWd)         {</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 参数检查</span><span style="color: rgba(0, 0, 255, 1)">if</span>(subName<span style="color: rgba(0, 0, 255, 1)">is</span><span style="color: rgba(0, 0, 255, 1)">null</span> or { Length: &lt;<span style="color: rgba(128, 0, 128, 1)">3</span><span style="color: rgba(0, 0, 0, 1)"> })             {</span><span style="color: rgba(0, 0, 255, 1)">throw</span><span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> ArgumentNullException(nameof(subName));             }</span><span style="color: rgba(0, 0, 255, 1)">if</span>(endDate &lt;=<span style="color: rgba(0, 0, 0, 1)"> bgDate)             {</span><span style="color: rgba(0, 0, 255, 1)">throw</span><span style="color: rgba(0, 0, 255, 1)">new</span> ArgumentException(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">结束日期应大于开始日期</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);             }</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 随机密钥</span>             RSA key = RSA.Create(<span style="color: rgba(128, 0, 128, 1)">1024</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 创建CRT</span>             CertificateRequest crt =<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)">(subName, key, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 创建自签名证书</span><span style="color: rgba(0, 0, 255, 1)">var</span> cert =<span style="color: rgba(0, 0, 0, 1)"> crt.CreateSelfSigned(bgDate, endDate);</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 将证书写入文件</span><span style="color: rgba(0, 0, 255, 1)">byte</span>[] data =<span style="color: rgba(0, 0, 0, 1)"> cert.Export(X509ContentType.Pfx, passWd);</span><span style="color: rgba(0, 0, 255, 1)">await</span><span style="color: rgba(0, 0, 0, 1)"> File.WriteAllBytesAsync(outFile, data);         }     }</span></pre> </div> <p>一个类，一个静态方法，参数 subName 表示证书的标题文本，一般使用域名，比如 CN=xpxp.org、CN=www.sb.edu.cn 等。</p> <p>参数 bgDate 表示证书有效期的起始日期，一般咱们选生成证书当前时间；</p> <p>参数 endDate 表示证书有效期的终止日期，即过期时间；</p> <p>参数 outFile 表示 .pfx文件的保存路径，相对的绝对的都行，有写权限就行；</p> <p>参数 passWd 表示给.pfx文件加密的密码，可以随便定义。</p> <p>生成的过程如下：</p> <p>1、RSA.Create 方法创建密钥（包含公/私钥），内容是随机生成的，1024指密钥的长度为1024位，你也可以指定为4096位；</p> <p>2、创建一个&nbsp;CertificateRequest 实例：</p> <div class="cnblogs_code"> <pre>  CertificateRequest crt =<span style="color: rgba(0, 0, 255, 1)">new</span>(subName, key, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);</pre> </div> <p>第一个参数传的证书的标题，第二个参数是刚刚随机生成的密钥，第三个参数是哈希算法，此处选的是 SHA256 算法；第四个参数不用多想，就用 PKCS1 就行（这是块填充行为）。</p> <p>3、调用&nbsp;CreateSelfSigned 方法，就能创建证书了；</p> <p>4、调用证书的 Export 方法把其导出为 .pfx 格式的数据；</p> <p>5、把数据写入文件，收工。</p> <p>---------------------------------------------</p> <p>你看，多 Easy 的事，不用费心去找什么工具了，自己动一动手就成了。</p> <p>然后，在 ASP.NET Core 项目里，咱们先检查一下证书文件存不存在，如果不存在，自动生成一个。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 先创建自签名证书</span><span style="color: rgba(0, 0, 255, 1)">const</span><span style="color: rgba(0, 0, 255, 1)">string</span> CER_FILE =<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">host.pfx</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 0, 255, 1)">const</span><span style="color: rgba(0, 0, 255, 1)">string</span> PASSWD =<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">dagongji</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 0, 255, 1)">const</span><span style="color: rgba(0, 0, 255, 1)">string</span> SUB_NAME =<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">CN=万年坑玩具厂.com.cn</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">; DateTime today</span>=<span style="color: rgba(0, 0, 0, 1)"> DateTime.Now; DateTime endday</span>= today.AddDays(<span style="color: rgba(128, 0, 128, 1)">365</span><span style="color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 0, 255, 1)">if</span>(!<span style="color: rgba(0, 0, 0, 1)">File.Exists(CER_FILE)) {</span><span style="color: rgba(0, 0, 255, 1)">await</span><span style="color: rgba(0, 0, 0, 1)"> CerMaker.CreateSslCertAsync(SUB_NAME, today, endday, CER_FILE, PASSWD); }</span></pre> </div> <p>一般来说，项目的证书并不需要换来换去，所以，咱们可以把生成证书的代码写到一个控制台应用项目中，生成一个命令行工具，自己留着用，只需要执行它生成证书文件，再放到 ASP.NET Core 项目的目录下就可以了。</p> <p>在 build 应用程序之前，配置一下 Kestrel 服务器，使用咱们自己生成的证书文件。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">var</span> builder =<span style="color: rgba(0, 0, 0, 1)"> WebApplication.CreateBuilder(args);</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 配置证书</span> builder.WebHost.ConfigureKestrel(opt =&gt;<span style="color: rgba(0, 0, 0, 1)"> {     opt.ConfigureHttpsDefaults(cnncop</span>=&gt;<span style="color: rgba(0, 0, 0, 1)">     {<span style="background-color: rgba(255, 255, 0, 1)"><strong>cnncop.ServerCertificate</strong></span></span><span style="background-color: rgba(255, 255, 0, 1)"><strong>=<span style="color: rgba(0, 0, 255, 1)">new</span></strong></span><span style="color: rgba(0, 0, 0, 1)"><span style="background-color: rgba(255, 255, 0, 1)"><strong> X509Certificate2(CER_FILE, PASSWD);</strong></span>     }); });</span><span style="color: rgba(0, 0, 255, 1)">var</span> app = builder.Build();</pre> </div> <p>这是用于独立启动的 ASP.NET Core 应用程序（使用内置的 Kestrel 服务器）。如果你用的 IIS，那么证书是在IIS管理器中配置（IIS管理器有生成自签名证书的功能）；如果你用的是 nginx，也是在服务器的配置文件中配置证书，而不是在 ASP.NET Core 代码中。</p> <p>由于证书是自己签给自己的，不是从权威机构买的，所以，当浏览器访问时，会有不安全提示。只要你确认是你自己的证书，或者客户知道这是他们自家可用的证书就可以了。浏览器肯定不认识自签证书的。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/4113148dd8ffa2def9cdc0d233f96c03.jpg" alt="【ASP.NET Core】自己编程来生成自签名的服务器证书"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/bcf6e4caf7d011bad2c5da8506aefc04.jpg" alt="【ASP.NET Core】自己编程来生成自签名的服务器证书"></p> <p>好了，今天这个好用的技巧就分享到这儿了。</p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1011.htm">常见 几种 git操作代码回退的方法</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1013.htm">【译】defer-panic-and-recover_在线工具</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-874.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>.NET 程序读取当前目录避坑指南 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>.NET 程序读取当前目录避坑指南</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<p>前些天有 AgileConfig 的用户反映，如果把 AgileConfig 部署成 Windows 服务程序会启动失败。我看了一下日志，发现根目录被定位到了<code>C:\Windows\System32</code> 下，那么读取 appsettings.json 配置文件自然就失败了。</p> <pre><code> var builder = new ConfigurationBuilder()                    .SetBasePath(Directory.GetCurrentDirectory());</code></pre> <p>以上是我构造 ConfigurationBuilder 的代码。使用<code>Directory.GetCurrentDirectory()</code> 获取程序根目录然后设置<code>SetBasePath</code> 。以上代码在99%的情况是不会有问题的，那么为什么会在做为服务部署的时候会有问题呢？让我们往下看。</p> <h2 id="directorygetcurrentdirectory">Directory.GetCurrentDirectory()</h2> <p><code>Directory.GetCurrentDirectory()</code> 获取根目录是我们很常见的一个操作。先让我们对其进行一些简单的测试。新建一个控制台程序，编写以下代码进行：</p> <pre><code>var dirpath = Directory.GetCurrentDirectory(); Console.WriteLine("Directory.GetCurrentDirectory = " + dirpath);</code></pre> <h3 id="直接运行">直接运行</h3> <p>代码很简单，就是读取根目录，然后输出一下。</p> <pre><code>Directory.GetCurrentDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0</code></pre> <p>编译完成后双击 exe 文件，可以看到获取到的目录是正确的。</p> <h3 id="使用-cmd-运行">使用 cmd 运行</h3> <p>下面让我们试一下在 cmd 下运行这个 exe 。</p> <pre><code>C:\&gt;cd C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0 C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0&gt;basedir.exe Directory.GetCurrentDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0</code></pre> <p>我们把路径切换到 exe 所在的目录，然后输入 basedir.exe 直接运行它，可以看到输出的目录也是正确的。</p> <h3 id="切换工作目录">切换工作目录</h3> <p>这次我们把工作目录切换到 C 盘的 apps 目录，然后使用完全路径去执行 exe 程序。</p> <pre><code>C:\&gt;cd apps C:\APPS&gt;C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0\basedir.exe Directory.GetCurrentDirectory = C:\APPS</code></pre> <p>怎么样？是不是跟预期的不一样了？这次输出的根目录不是 exe 所在的目录，而是<code>c:\APPS</code> ,也就是我们的工作目录。</p> <h3 id="使用另外一个-exe-程序启动测试程序">使用另外一个 exe 程序启动测试程序</h3> <p>在我们日常场景中有很多时候需要通过一个程序去运行另外一个程序，那么这个时候<code>Directory.GetCurrentDirectory</code> 获取的根目录是怎么样的呢？<br /> 首先我们编写另外一个 WPF 的程序，使用这个程序来启动我们的 basedir.exe 测试程序。<br /> 我们把这个 WPF 程序放在<code>c:\APPS</code> 目录下，然后运行它:<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/23ea9955a5849bfbed7387e44d197755.jpg" alt=".NET 程序读取当前目录避坑指南"><br /> 其中按钮的事件代码如下：</p> <pre><code>private void Button_Click(object sender, RoutedEventArgs e)         {             var process = new Process();             process.StartInfo.FileName = this.path.Text;             process.Start();         }</code></pre> <p>点击这个按钮，它会把我们的测试程序 basedir.exe 给运行起来：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f56367b795d5bddea98f95daaa893784.jpg" alt=".NET 程序读取当前目录避坑指南"><br /> 我们可以看到，当 WPF 程序把我们的测试程序运行起来的时候，测试程序输出的目录为<code>c:\APPS</code>，也就是 WPF 程序所在的目录。</p> <h3 id="为什么做为服务运行的时候获取程序根目录为-system32">为什么做为服务运行的时候获取程序根目录为 System32</h3> <p>通过以上的测试，AgileConfig 做为服务运行的时候获取根目录为<code>C:\Windows\System32</code> 的原因已经很明显了。我们的 windows 服务的启动一般来说有2个途径，一个是通过 sc.exe 工具另外一个是通过 services.exe 也就是 SCM (service control manager) 来启动。那么这2个可执行程序在哪里呢？答案就是<code>C:\Windows\System32</code> 。我们的 windows 服务的启动其实是通过这2个工具来运行的，所以根据上面的测试，很明显通过<code>Directory.GetCurrentDirectory</code>来获取根目录的话会是这2个工具所在的目录。</p> <h2 id="其它读取程序根目录的方式">其它读取程序根目录的方式</h2> <p>通过以上我们知道通过<code>Directory.GetCurrentDirectory</code>读取根目录会有一点小坑。在我们的 .NET 世界里还有很多办法能获取根目录，那么他们会不会也有坑呢？<br /> 以下列几个常见的获取根目录的方法：</p> <pre><code>var dirpath = Directory.GetCurrentDirectory(); Console.WriteLine("Directory.GetCurrentDirectory = " + dirpath);  // 通过 AppDomain.CurrentDomain.BaseDirectory 读取根目录 var dirpath1 = AppDomain.CurrentDomain.BaseDirectory; Console.WriteLine("AppDomain.CurrentDomain.BaseDirectory = " + dirpath1);  // 通过 Environment.CurrentDirectory 来读取根目录 var dirpath2 = Environment.CurrentDirectory; Console.WriteLine("Environment.CurrentDirectory = " + dirpath2);  // 通过 Assembly.GetExecutingAssembly().Location 来获取运行程序集所在的位置，从而判断根目录 var dirpath3 = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); Console.WriteLine("Path.GetDirectoryName Assembly.GetExecutingAssembly().Location = " + dirpath3);  // 通过 AppContext.BaseDirectory 获取根目录 var dirpath4 = AppContext.BaseDirectory; Console.WriteLine("AppContext.BaseDirectory = " + dirpath4);</code></pre> <h3 id="直接运行-1">直接运行</h3> <p>把以上获取根目录的代码补充进我们的测试程序，编译成功后直接运行：</p> <pre><code>Directory.GetCurrentDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0 AppDomain.CurrentDomain.BaseDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0\ Environment.CurrentDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0 Path.GetDirectoryName Assembly.GetExecutingAssembly().Location = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0 AppContext.BaseDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0\</code></pre> <p>以上是输出结果。可以看到所有的方法都准确的获取到了 exe 程序所在的根目录。有一点要注意的是<br /><code>AppDomain.CurrentDomain.BaseDirectory</code> 跟<code>AppContext.BaseDirectory</code> 方法获取的路径最后带有一个<code>\</code> 其它则没有。</p> <h3 id="使用-cmd-运行-1">使用 cmd 运行</h3> <p>同样让我们在 cmd 下运行一下：</p> <pre><code>C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0&gt;basedir.exe Directory.GetCurrentDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0 AppDomain.CurrentDomain.BaseDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0\ Environment.CurrentDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0 Path.GetDirectoryName Assembly.GetExecutingAssembly().Location = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0 AppContext.BaseDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0\</code></pre> <p>我们把路径切换到 exe 所在的目录，然后输入 basedir.exe 直接运行它，可以看到所有的方法输出的目录都是正确的。</p> <h3 id="切换工作目录-1">切换工作目录</h3> <p>同样我们在 cmd 下把工作目录切换到<code>c:\APPS</code> ，然后运行 exe 。</p> <pre><code>C:\&gt;cd APPS  C:\APPS&gt;C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0\basedir.exe Directory.GetCurrentDirectory = C:\APPS AppDomain.CurrentDomain.BaseDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0\ Environment.CurrentDirectory = C:\APPS Path.GetDirectoryName Assembly.GetExecutingAssembly().Location = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0 AppContext.BaseDirectory = C:\00WORKSPACE\basedir\basedir\bin\Debug\net6.0\</code></pre> <p>可以看到<code>Directory.GetCurrentDirectory</code> 和<code>Environment.CurrentDirectory</code> 方法输出均为<code>c:\APPS</code> 而其它方法则都输出了 exe 所在目录。</p> <h3 id="使用另外一个-exe-程序启动测试程序-1">使用另外一个 exe 程序启动测试程序</h3> <p>同样我们再次使用另外一个 WPF 程序来运行 basedir.exe 测试程序：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/23ea9955a5849bfbed7387e44d197755.jpg" alt=".NET 程序读取当前目录避坑指南"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a4666e90474c8571319f8fcad2fa1b4a.jpg" alt=".NET 程序读取当前目录避坑指南"></p> <p>可以看到<code>Directory.GetCurrentDirectory</code> 和<code>Environment.CurrentDirectory</code> 方法输出均为<code>c:\APPS</code>，也就是 WPF 所在的目录， 而其它方法则都输出了 exe 所在目录。</p> <h2 id="总结">总结</h2> <p>以上常见的 5 种读取程序当前目录的办法在绝大多数情况下都可以正确的获取到预期的结果。其中需要注意的是<code>Directory.GetCurrentDirectory</code> 和<code>Environment.CurrentDirectory</code>。这2个方法在 cmd 或者 bash 环境下返回的是工作目录；使用 A 程序启动另外一个 B 程序的时候，B 程序获取到的根目录是 A 程序所在的目录。所以使用<code>Directory.GetCurrentDirectory</code> 和<code>Environment.CurrentDirectory</code> 的时候一定要格外注意，避免引入 BUG 。</p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-873.htm">vue使用el-tabs实现标签页（内存+vuex）</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-875.htm">spring常用配置profile(设置不同的运行环境)使用纪要</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1002.htm" title="前端【参考】文字过长显示省略号">前端【参考】文字过长显示省略号</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1019.htm" title="网络层-IP地址详解&amp;Linux配置IP地址（centos7）">网络层-IP地址详解&amp;Linux配置IP地址（centos7）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1048.htm" title="Spring Boot + Mybatis-Plus + jasypt 数据库连接加密">Spring Boot + Mybatis-Plus + jasypt 数据库连接加密</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

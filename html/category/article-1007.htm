@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1007.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>vue的插槽 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>vue的插槽</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="_0" rel="nofollow"></a>插槽的定义</h2> <p>官方解释：插槽就是vue实现的一套内容分发的API,将元素作为承载分发内容的出口</p> <p>通俗解释：想要在一个组件标签中，加入一些内容，那就必须要在组件内声明slot元素，否则不会被渲染</p> <h4> <a id="_5" rel="nofollow"></a>一、默认插槽</h4> <p>父组件想要引入组件中显示，</p> <p>我是你爸爸</p> <p>，就必须先在子组件中用slot定义一个插槽，用来接收父组件传递的代码，才能正常的在页面中渲染<br /> <br /> 在父组件中 </p> <pre><code class="prism language-js">  <span class="token operator">&lt;</span>son<span class="token operator">&gt;</span>       <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>我是你爸爸<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span><span class="token operator">/</span>son<span class="token operator">&gt;</span> </code></pre> <p>在子组件中</p> <pre><code class="prism language-js"> <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>我是儿子<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>slot<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> </code></pre> <p>页面就有添加的内容<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230128/496b1827eec25baa8d8ce864245c58e6.jpg" alt="vue的插槽"></p> <h4> <a id="_22" rel="nofollow"></a>二、具名插槽</h4> <p>定义：就是在slot标签上有一个属性:name,可以将指定的代码放到指定的插槽中<br /> 使用：元素有一个特殊attribute:name.这个是name属性的值就是插槽的名字，父组件中在一个元素上使用v-slot指令，并以v-slot的参数的形式提供其名称，一一对应。</p> <p>子组件</p> <pre><code class="prism language-js"> <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>header<span class="token operator">&gt;</span>             <span class="token operator">&lt;</span>slot name<span class="token operator">=</span><span class="token string">"header"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span><span class="token operator">/</span>header<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>我是儿子<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>slot<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>footer<span class="token operator">&gt;</span>             <span class="token operator">&lt;</span>slot name<span class="token operator">=</span><span class="token string">"footer"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span><span class="token operator">/</span>footer<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> </code></pre> <p>父组件</p> <pre><code class="prism language-js"><span class="token operator">&lt;</span>hr <span class="token operator">/</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>son<span class="token operator">&gt;</span>       <span class="token operator">&lt;</span>template v<span class="token operator">-</span>slot<span class="token operator">:</span>header<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>我是爸爸的头部<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>       <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>       <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>我是你爸爸<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>       <span class="token operator">&lt;</span>template v<span class="token operator">-</span>slot<span class="token operator">:</span>footer<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>我是爸爸的腿部<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>       <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">/</span>son<span class="token operator">&gt;</span> </code></pre> <p>页面显示<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230128/c2cd2df9fabbf6ae6e2278dbce33df8a.jpg" alt="vue的插槽"></p> <h4> <a id="_55" rel="nofollow"></a>三、作用域插槽</h4> <p>作用域插槽主要用于解决的问题是：当父组件向子组件插槽传递模板内容时存在访问子组件数据的问题</p> <p>描述：作用域插槽其实就是带数据的插槽，即带参数的插槽，简单来说就是子组件提供给父组件的参数，该参数仅限于插槽中使用，父组件可根据子组件传过来的插槽数据进行不同的方式展现好热填充插槽内容。</p> <p>子组件中</p> <pre><code class="prism language-js"> <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>          <span class="token operator">&lt;</span>slot <span class="token operator">:</span>user<span class="token operator">=</span><span class="token string">"user"</span><span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>user<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>   <span class="token punctuation">.</span>   <span class="token punctuation">.</span>   <span class="token punctuation">.</span>   <span class="token punctuation">.</span>    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token keyword">return</span> <span class="token punctuation">{<!-- --></span>                 <span class="token literal-property property">user</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>                     <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Alan'</span><span class="token punctuation">,</span>                     <span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token number">23</span>                 <span class="token punctuation">}</span>             <span class="token punctuation">}</span>         <span class="token punctuation">}</span><span class="token punctuation">,</span> </code></pre> <p>父组件中</p> <pre><code class="prism language-js"><span class="token operator">&lt;</span>template v<span class="token operator">-</span>slot<span class="token operator">:</span><span class="token keyword">default</span><span class="token operator">=</span><span class="token string">"slotProps"</span><span class="token operator">&gt;</span>         <span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>slotProps<span class="token punctuation">.</span>user<span class="token punctuation">}</span><span class="token punctuation">}</span>       <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span> </code></pre> <p>作用域插槽绑定了一套数据，父组件可以拿来用，所以样式父组件说了算，但内容可以显示子组件插槽绑定的</p> <h2> <a id="_86" rel="nofollow"></a>区别</h2> <p>单个插槽和具名插槽不绑定数据，所以父组件提供的模板一般要包括样式又包括内容</p> <p>作用域插槽，父组件要提供一套样式</p> <p>总结：</p> <p>子组件中：</p> <pre><code>插槽用 &lt;slot&gt; 标签来确定渲染的位置，里面放如果父组件没传内容时的后备内容 具名插槽用name属性来表示插槽的名字，不传为默认插槽 作用域插槽在作用域上绑定属性来将子组件的信息传给父组件使用，这些属性会被挂在父组件slot-scope接收的对象上 </code></pre> <pre><code class="prism language-js"><span class="token comment">//Child.vue</span> <span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>    	<span class="token operator">&lt;</span>main<span class="token operator">&gt;</span>    	<span class="token comment">//默认插槽</span>    		<span class="token operator">&lt;</span>slot<span class="token operator">&gt;</span>    			<span class="token comment">//slot内为后备内容</span>    			<span class="token operator">&lt;</span>h3<span class="token operator">&gt;</span>没传内容<span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">&gt;</span>    		<span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>    	<span class="token operator">&lt;</span><span class="token operator">/</span>main<span class="token operator">&gt;</span>    	    	<span class="token comment">//具名插槽</span>    	<span class="token operator">&lt;</span>header<span class="token operator">&gt;</span>    		<span class="token operator">&lt;</span>slot name<span class="token operator">=</span><span class="token string">"header"</span><span class="token operator">&gt;</span>    			<span class="token operator">&lt;</span>h3<span class="token operator">&gt;</span>没传header插槽<span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">&gt;</span>    		<span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>    	<span class="token operator">&lt;</span><span class="token operator">/</span>header<span class="token operator">&gt;</span>     	<span class="token comment">//作用域插槽</span>    	<span class="token operator">&lt;</span>footer<span class="token operator">&gt;</span>    		<span class="token operator">&lt;</span>slot name<span class="token operator">=</span><span class="token string">"footer"</span> testProps<span class="token operator">=</span><span class="token string">"子组件的值"</span><span class="token operator">&gt;</span>    		 <span class="token operator">&lt;</span>h3<span class="token operator">&gt;</span>没传footer插槽<span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">&gt;</span>     		<span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>     	<span class="token operator">&lt;</span><span class="token operator">/</span>footer<span class="token operator">&gt;</span>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span>style scoped<span class="token operator">&gt;</span> div<span class="token punctuation">{<!-- --></span>    <span class="token literal-property property">border</span><span class="token operator">:</span>1px solid #<span class="token number">000</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>  </code></pre> <p>父组件在使用时：</p> <pre><code>默认插槽的话直接在子组件的标签内写入内容即可 具名插槽是在默认插槽的基础上加上slot属性，值为子组件插槽name属性值 作用域插槽则是通过slot-scope获取子组件的信息，在内容中使用。这里可以用解构语法去直接获取想要的属性 </code></pre> <pre><code class="prism language-js"><span class="token comment">// Parent.vue</span> <span class="token operator">&lt;</span>child<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 默认插槽 <span class="token operator">--</span><span class="token operator">&gt;</span>  <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>默认插槽<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 具名插槽 <span class="token operator">--</span><span class="token operator">&gt;</span>  <span class="token operator">&lt;</span>div slot<span class="token operator">=</span><span class="token string">"header"</span><span class="token operator">&gt;</span>具名插槽header<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 作用域插槽 <span class="token operator">--</span><span class="token operator">&gt;</span>  <span class="token operator">&lt;</span>div slot<span class="token operator">=</span><span class="token string">"footer"</span> slot<span class="token operator">-</span>scope<span class="token operator">=</span><span class="token string">"slotProps"</span><span class="token operator">&gt;</span>    <span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>slotProps<span class="token punctuation">.</span>testProps<span class="token punctuation">}</span><span class="token punctuation">}</span>  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>child<span class="token operator">&gt;</span>  </code></pre> <p>v-slot</p> <p>在vue2.6中。上述的API被软废弃（3.0正式废弃），取而代之的是内置指令v-slot，可以缩写为【#】<br /> 子组件用法保持不变，父组件中</p> <pre><code>slot属性弃用，具名插槽通过指令参数v-slot:插槽名的形式传入，可以简化为#插槽名 slot-scope属性弃用，作用域插槽通过v-slot:xxx="slotProps"的slotProps来获取子组件传出的属性 v-slot属性只能在template上使用，但在只有默认插槽时可以在组件标签上使用 </code></pre> </p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1006.htm">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1008.htm">SpringBoot 实现前后端分离的跨域访问（CORS）</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1013.htm" title="【译】defer-panic-and-recover_在线工具">【译】defer-panic-and-recover_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-996.htm" title="js穿梭框；将两个table中的数据选中移动">js穿梭框；将两个table中的数据选中移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

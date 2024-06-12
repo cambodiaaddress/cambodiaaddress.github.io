@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-851.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Django + Taro 前后端分离项目实现企业微信登录 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Django + Taro 前后端分离项目实现企业微信登录</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h2 id="前言">前言</h2> <p>还是最近在做的一个小项目，后端用的是Django搭配RestFramework做接口，前端第一次尝试用京东开源的Taro框架来做多端（目前需要做用于企业微信的H5端和微信小程序）</p> <p>本文记录一下企业微信登录的流程，上周看文档看得头晕晕的，其实很简单，封装好了就几行代码的事~</p> <h2 id="两种方式">两种方式</h2> <ul> <li>一种是先拼接好登录要用的地址<code>authorize_url</code>，回调地址设置成h5应用的网页入口，然后把<code>authorize_url</code>设置为企业微信里的应用主页就行，然后直接提取链接里的code</li> <li>另一种是在应用里拼接<code>authorize_url</code>地址，回调地址同样设置成h5应用的网页入口，然后应用里去请求<code>authorize_url</code>，然后提取链接里的code用来登录就行</li> </ul> <p>说是两种，其实流程都是一样的，只不过第一种少去了前端拼接<code>authorize_url</code>以及首次请求的操作，为了方便起见，本文推荐使用第一种</p> <h2 id="思路">思路</h2> <p>假设前端地址是<code>http://xxx.com</code>，那么我们用后端生成的企业微信登录地址中会把前端地址作为回调地址传入，在企业微信中访问登录地址之后，回跳转到我们的前端地址，并在路径中附上参数code，形式如下：</p> <pre><code>http://xxx.com?code=dkwawen123j13bk1</code></pre> <p>所以前端要做的就是拿到这串code，并提交给后端，让后端拿code去微信服务器换用户信息，就这样~</p> <h2 id="后端代码">后端代码</h2> <p>企业微信登录的接口已经集成在我的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/Deali-Axy/DjangoStarter"  target="_blank" rel="nofollow">「DjangoStarter」</a>项目模板中，可以直接食用~</p> <p>后端使用的是wechatpy这个库，非常好用，封装了微信开发的常用功能~</p> <p>下面写一下两个关键的方法</p> <pre><code class="language-python">from django.conf import settings from django.contrib.auth import login from django.contrib.auth.models import User from rest_framework.authtoken.models import Token from drf_yasg2.utils import swagger_auto_schema from drf_yasg2 import openapi from rest_framework.exceptions import APIException from rest_framework import viewsets from rest_framework.response import Response from rest_framework.request import HttpRequest from rest_framework.decorators import action from wechatpy.enterprise import WeChatClient from apps.core.serializers import UserSerializer  class WechatWork(viewsets.ViewSet):     """微信企业号相关认证服务"""     client = WeChatClient(         settings.WECHAT_WORK_CONFIG['CORP_ID'],         settings.WECHAT_WORK_CONFIG['SECRET'],     )      @swagger_auto_schema(operation_summary='获取微信企业号登录链接')     @action(detail=False)     def get_authorize_url(self, request):         return Response({             # todo 这里要写上前端应用入口地址             'url': self.client.oauth.authorize_url('http://xxx.com')         })      @swagger_auto_schema(         operation_summary='通过code登录',         manual_parameters=[             openapi.Parameter(                 name='code', in_=openapi.IN_QUERY,                 description='从微信企业号服务器获取到的code',                 type=openapi.TYPE_STRING)         ])     @action(detail=False, methods=['POST'])     def login_by_code(self, request: HttpRequest):         code = request.GET.get('code', None)         try:             user_info = self.client.oauth.get_user_info(code)         except Exception as e:             raise APIException(detail=e)          phone = user_info['UserId']         is_created_user = False          if User.objects.filter(username=phone).exists():             user_obj: User = User.objects.get(username=phone)         else:             is_created_user = True             user_obj: User = User.objects.create_user(username=phone, password=phone)          # 记录Django登录状态         login(request, user_obj)         # 生成drf token         token, created = Token.objects.get_or_create(user=user_obj)          return Response({             'user': UserSerializer(user_obj).data,             'user_info': user_info,             'successful': True,             'is_created_user': is_created_user,             'token': token.key,             'message': '企业微信登录成功',         })</code></pre> <p>写完接口配置一下路由（这里就不重复了）</p> <p>然后请求这个<code>get_authorize_url</code>接口，得到一个地址</p> <pre><code class="language-json">{   "message": "请求成功",   "code": 200,   "data": {     "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx386...&amp;redirect_uri=http%3A%2F%2Fxxx.com&amp;response_type=code&amp;scope=snsapi_base#wechat_redirect"   } }</code></pre> <p>比如我上面写的应用入口地址是<code>http://xxx.com</code>，那么得到的企业微信登录地址就是</p> <pre><code>https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx386...&amp;redirect_uri=http%3A%2F%2Fxxx.com&amp;response_type=code&amp;scope=snsapi_base#wechat_redirect</code></pre> <p>各个参数的意义看企业微信官方文档就行，我们不用细究</p> <h2 id="企业微信应用配置">企业微信应用配置</h2> <p>接下来我们把这个地址设置成企业微信应用的主页</p> <p>如图</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/db4ab4b5d7b6f8e15a2f2aa41d6d001f.jpg" alt="Django + Taro 前后端分离项目实现企业微信登录"></p> <p>同时还得设置一下「可信域名」，在同个页面的最下方「开发者接口」处，把前端应用部署所在的服务器域名和端口（80就不用）填上去就行~</p> <p>这样应用配置就好了</p> <h2 id="前端代码">前端代码</h2> <p>前端用的是京东开源的Taro框架，我前一篇文章写到我终于用上了React，说的就是在Taro开发里用React+TypeScript，开发体验非常好<s>（除了这个框架有一些让人无语的坑之外）</s></p> <p>前端要实现的就是从路径参数里取出code</p> <p>我们看到，Taro官方文档就有关于路由参数的处理</p> <p>所以可以这样写来获取code（函数式组件写法）</p> <pre><code class="language-typescript">import { getCurrentInstance } from '@tarojs/taro' let code getCurrentInstance().router?.params['code']</code></pre> <p>然而！这样在普通页面跳转是可以的</p> <p>比如这种形式</p> <pre><code>http://xxx.com/#/pages/index/index?code=abc</code></pre> <p>但人家微信登录回调跳转的地址形式是这样</p> <pre><code>http://xxx.com?code=abc&amp;state=#/pages/index/index</code></pre> <p>这根本就拿不到code啊 o(´^｀)o</p> <p>所以得自己用js封装一个</p> <p>直接上代码了</p> <pre><code class="language-js">// 解析微信redirect_uri地址中的code export const getCodeFromUrl = (url: string) =&gt; {   let code = ''   let index = url.indexOf('?')   let paramStr = url.substring(index + 1, url.length);   let params = paramStr.split('&amp;')   params.forEach(element =&gt; {     if (element.indexOf('code') &gt;= 0) {       code = element.substring(element.indexOf('=') + 1, element.length)     }   });   return code }</code></pre> <p>使用的时候</p> <pre><code class="language-js">let code = getCodeFromUrl(window.location.href)</code></pre> <p>就可以拿到code了</p> <p>code都有了，后面就不用多说了~</p> <h2 id="参考资料">参考资料</h2> <ul> <li>wechatpy库文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://docs.wechatpy.org/zh_CN/stable/oauth.html#id4"  target="_blank" rel="nofollow">http://docs.wechatpy.org/zh_CN/stable/oauth.html#id4</a></li> <li>企业微信文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://developer.work.weixin.qq.com/document/path/91335"  target="_blank" rel="nofollow">https://developer.work.weixin.qq.com/document/path/91335</a></li> <li>Taro框架文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://taro-docs.jd.com/taro/docs/router"  target="_blank" rel="nofollow">https://taro-docs.jd.com/taro/docs/router</a></li> </ul> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-850.htm">我们如何按降序对MySQL输出进行排序？</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-852.htm">numpy和tensor类型更改（增加或减少）参数维度（reshape）</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1030.htm" title="vue-element-admin模板，点击跳转到另一个页面传参">vue-element-admin模板，点击跳转到另一个页面传参</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

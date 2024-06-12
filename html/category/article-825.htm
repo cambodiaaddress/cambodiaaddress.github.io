@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-825.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Linux中信号量源码的详细解析 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Linux中信号量源码的详细解析</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<p>如果一个任务获取信号量失败，该任务就必须等待，直到其他任务释放信号量。本文的重点是，在Linux中，当有任务释放信号量之后，如何唤醒正在等待该信号量的任务。</p> <p>信号量定义如下：</p> <pre><code class="language-C">struct semaphore { 	raw_spinlock_t		lock; 	unsigned int		count; 	struct list_head	wait_list; };</code></pre> <p>其中<code>wait_list</code>链表用于管理因没有成功获取信号量而处于睡眠状态的任务。</p> <p>任务通过调用<code>down()</code>函数，尝试获取信号量，如果获取信号量失败，调用<code>__down()</code>函数。<code>__down()</code>函数内部调用了<code>__down_common</code>函数。（事实上<code>down()</code>函数有多个变种，如<code>down_interruptible</code>，在获取信号量失败时调用<code>__down_interruptible</code>,<code>__down_interruptible</code>也会调用<code>__down_common</code>函数。不同的<code>down()</code>函数最终调用<code>__down_common</code>时传入不同的参数，以处理不同的获取信号量的情况）。</p> <p>同时，整个down()函数使用<code>sem-&gt;lock</code>保护起来。</p> <pre><code class="language-C">void down(struct semaphore *sem) { 	unsigned long flags;  	raw_spin_lock_irqsave(&amp;sem-&gt;lock, flags); 	if (likely(sem-&gt;count &gt; 0)) 		sem-&gt;count--; 	else 		__down(sem); 	raw_spin_unlock_irqrestore(&amp;sem-&gt;lock, flags); }  static noinline void __sched __down(struct semaphore *sem) { 	__down_common(sem, TASK_UNINTERRUPTIBLE, MAX_SCHEDULE_TIMEOUT); }</code></pre> <p>下面是重点：<code>__down_common</code>函数如何使任务休眠，休眠中的任务如何被唤醒并获得信号量。</p> <p><code>semaphore_waiter</code>是一个关键的数据结构，代表一个获取信号量失败，正在等待的任务。<code>up</code>字段标识了该任务是否是被该信号量唤醒，也就是休眠中的任务收到某种信号被唤醒之后，判断是否是被等待中的信号量唤醒的。</p> <pre><code class="language-C">struct semaphore_waiter { 	struct list_head list; 	struct task_struct *task; 	bool up; };</code></pre> <p><code>__down_common</code>函数首先初始化了一个<code>semaphore_waiter</code>。task字段标识当前任务，up设置为false。</p> <pre><code class="language-C">static inline int __sched __down_common(struct semaphore *sem, long state, 								long timeout) { 	struct semaphore_waiter waiter;  	list_add_tail(&amp;waiter.list, &amp;sem-&gt;wait_list); 	waiter.task = current; 	waiter.up = false; ...</code></pre> <p>然后休眠当前任务，调用 schedule_timeout()主动让出 CPU。上文提到整个函数都是在<code>sem-&gt;lock</code>的临界区中，但是在自旋锁的临界区是不可以休眠的，所以这里实际上在休眠之前释放了锁，被唤醒之后再重新获得锁。<br /> 当任务被唤醒后，如果<code>waiter.up</code>是否为真，则该任务可以获得信号量。<code>waiter.up</code>是必须要判断的，取决于<code>__set_current_state（）</code>函数传入的参数不同，任务可能处于不同的休眠状态，可能被不同的信号唤醒，而未必是被等待的信号唤醒。</p> <pre><code class="language-C">	for (;;) { 		if (signal_pending_state(state, current)) 			goto interrupted; 		if (unlikely(timeout &lt;= 0)) 			goto timed_out; 		__set_current_state(state); 		raw_spin_unlock_irq(&amp;sem-&gt;lock); 		timeout = schedule_timeout(timeout); 		raw_spin_lock_irq(&amp;sem-&gt;lock); 		if (waiter.up) 			return 0; 	}   timed_out: 	list_del(&amp;waiter.list); 	return -ETIME;   interrupted: 	list_del(&amp;waiter.list); 	return -EINTR; }</code></pre> <p>当一个任务释放信号量时，如果信号量的等待队列中存在任务，则将队列中的第一个任务的<code>up</code>标记为true,并唤醒，同时从等待队列中删除。<br /> 同时，只有在等待队列为空的情况下，才会更新<code>sem-&gt;count</code>，确保了等待队列中的任务优先于新来的任务获得信号量，保证了严格的先进先出，不会因为新来的任务导致等待队列中的任务饥饿。</p> <pre><code class="language-C">void up(struct semaphore *sem) { 	unsigned long flags;  	raw_spin_lock_irqsave(&amp;sem-&gt;lock, flags); 	if (likely(list_empty(&amp;sem-&gt;wait_list))) 		sem-&gt;count++; 	else 		__up(sem); 	raw_spin_unlock_irqrestore(&amp;sem-&gt;lock, flags); }  static noinline void __sched __up(struct semaphore *sem) { 	struct semaphore_waiter *waiter = list_first_entry(&amp;sem-&gt;wait_list, 						struct semaphore_waiter, list); 	list_del(&amp;waiter-&gt;list); 	waiter-&gt;up = true; 	wake_up_process(waiter-&gt;task); }</code></pre> <p>任务被唤醒之后，检测到<code>up</code>为true，返回0,成功获得信号量。</p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-824.htm">GCC降级</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-826.htm">Python数据类型%s，%d，%f的用法</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-998.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1006.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1012.htm" title="【ASP.NET Core】自己编程来生成自签名的服务器证书">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-909.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>vue中excel导入功能 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>vue中excel导入功能</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p>批量导入信息的时候就需要excel导入功能,可以大大提高工作效率,但是这个功能应该如何实现呢.</p> <h2>1.excel导入思路</h2> <h3>1.1前端为主导</h3> <p>&nbsp; &nbsp; &nbsp; &nbsp; 用户上传excel文件,前端将excel文件读取,然后还原成最基本的行列样式,按照后端给出的接口上传给服务器.</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220604/5a3a1c2d6e53896b6f900f07d7587f5c.jpg"></p> <h3>&nbsp;1.2后端为主导</h3> <p>&nbsp; &nbsp; &nbsp; &nbsp; 前端只负责接收excel文件,将文件直接发给后端,后端处理数据.</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220604/c251e71ea329f3a221db4485f40d8ca2.jpg"></p> <h2>&nbsp;2.前端数据处理数据</h2> <p>&nbsp; &nbsp; &nbsp; &nbsp; 因为经常会有excel上传数据的功能,所有现在已经有成熟的解决方案,直接使用便可以.vue-admin-element中已经有了成熟的解决方案,寻找文件夹src/components/UploadExcel/index.vue,</p> <p>将其复制到自己vue项目中.</p> <pre><code class="language-javascript">&lt;template&gt;   .... &lt;/template&gt;  &lt;script&gt; import XLSX from 'xlsx'  export default {   props: {     beforeUpload: Function, // eslint-disable-line     onSuccess: Function// eslint-disable-line   } } &lt;/script&gt;</code></pre> <p>&nbsp; &nbsp; &nbsp; &nbsp; 这个组件使用了XLSX包,需要自行下载.命令为:npm install xlsx -S.</p> <p>将其定义为组件(全局或者局部随意),在项目中引用该组件并且传入两个属性</p> <pre><code class="language-javascript">&lt;upload-excel-component        :on-success="handleSuccess"        :before-upload="beforeUpload"      /&gt;</code></pre> <p>核心代码</p> <pre><code class="language-javascript">methods: {     beforeUpload(file) {       const isLt1M = file.size / 1024 / 1024 &lt; 1       if (isLt1M) {         return true       }       this.$message({         message: 'Please do not upload files larger than 1m in size.',         type: 'warning'       })       return false     },     handleSuccess({ results, header }) {       this.tableData = results       this.tableHeader = header     }   }</code></pre> <p>可以观察下handleSuccess的返回值 header返回值为excel中的标题, results的返回值为excel中的内容.</p> <p>思路</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220604/ad35bcb2517e4a4ff34f870437d1939e.jpg"></p> <p>&nbsp;调用接口进行excel上传的<strong>重点其实是数据的处理</strong>，我们需要按照接口的要求，把excel表格中经过插件处理好的数据处理成后端接口要求的格式</p> <pre><code class="language-javascript">/**      * results excel表格的内容       // [           {'姓名'：'小张'， '手机号': '13712345678'}         , {.....}         ]        // 目标       // [ {'username'：'小张'，'mobile': '13712345678'}, {.....} ]      */     // 把一个对象数组中的每个对象的属性名，从中文改成英文     // 思路：对于原数组每个对象来说     //    （1） 找出所有的中文key     //     (2)  得到对应的英文key     //     (3)  拼接一个新对象： 英文key:值     transExcel(results) {       const mapInfo = {         '入职日期': 'timeOfEntry',         '手机号': 'mobile',         '姓名': 'username',         '转正日期': 'correctionTime',         '工号': 'workNumber',         '部门': 'departmentName',         '聘用形式': 'formOfEmployment'       }       return results.map(zhObj =&gt; {         const enObj = {}         const zhKeys = Object.keys(zhObj) // ['姓名', '手机号']          zhKeys.forEach(zhKey =&gt; {           const enKey = mapInfo[zhKey]            enObj[enKey] = zhObj[zhKey]         })          return enObj       })     }</code></pre> <p>转换完成后发现问题从excel中读入的日期时间“<strong>变形</strong>”了</p> <p>原因:excel内部时间编码与其他文件中的不同</p> <h3>解决</h3> <p>需要借助公式来进行还原。在utils/index.js中定义如下</p> <pre><code class="language-javascript">// 把excel文件中的日期格式的内容转回成标准时间 // https://blog.csdn.net/qq_15054679/article/details/107712966 export function formatExcelDate(numb, format = '/') {   const time = new Date((numb - 25567) * 24 * 3600000 - 5 * 60 * 1000 - 43 * 1000 - 24 * 3600000 - 8 * 3600000)   time.setYear(time.getFullYear())   const year = time.getFullYear() + ''   const month = time.getMonth() + 1 + ''   const date = time.getDate() + ''   if (format &amp;&amp; format.length === 1) {     return year + format + month + format + date   }   return year + (month &lt; 10 ? '0' + month : month) + (date &lt; 10 ? '0' + date : date) }</code></pre> <p>所以上方整理格式代码需要更新</p> <pre><code class="language-javascript">import { formatExcelDate } from '@/utils/index.js'  // 更新格式转换函数 transExcel(results) {       const mapInfo = {         '入职日期': 'timeOfEntry',         '手机号': 'mobile',         '姓名': 'username',         '转正日期': 'correctionTime',         '工号': 'workNumber',         '部门': 'departmentName',         '聘用形式': 'formOfEmployment'       }       return results.map(zhObj =&gt; {         const enObj = {}         const zhKeys = Object.keys(zhObj) // ['姓名', '手机号']          zhKeys.forEach(zhKey =&gt; {           const enKey = mapInfo[zhKey] +          if (enKey === 'timeOfEntry' || enKey === 'correctionTime') {             // 后端需要的日期格式是标准时间 +            enObj[enKey] = new Date(formatExcelDate(zhObj[zhKey]))           } else {             enObj[enKey] = zhObj[zhKey]           }         })          return enObj       })     }</code></pre> <h2>3.数据上传</h2> <p>导入API</p> <p>封装doImport</p> <pre><code class="language-javascript">  async doImport(data) {       try {         const res = await importEmployee(data)         console.log('importEmployee', res)         this.$message.success('导入成功')          // 页面后退         this.$router.back()       } catch (err) {         console.log('importEmployee', err)         this.$message.error('导入失败')       }     },     //  1. 把数据从excel文件读入到浏览器内存     handleSuccess({ header, results }) {       console.log(header, results)        // 2. 按接口要求 组装数据       const data = this.transExcel(results)       console.log('按接口要求 组装数据', data)       // 3. 调用接口做上传       this.doImport(data)     },</code></pre> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-908.htm">Spark Streaming实时流处理项目实战(四)分布式消息队列Kafka</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-910.htm">PHP命名空间概述</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1029.htm" title="python连接数据库并执行SQL语句">python连接数据库并执行SQL语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1003.htm" title="Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控">Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

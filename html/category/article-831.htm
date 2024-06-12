@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-831.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>TensorFlow模型保存和提取方法 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>TensorFlow模型保存和提取方法</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <h2>一、TensorFlow模型保存和提取方法</h2> <p>1. TensorFlow通过tf.train.Saver类实现神经网络模型的保存和提取。tf.train.Saver对象saver的save方法将TensorFlow模型保存到指定路径中，<strong><span style="color:red; background:yellow">saver.save(sess,"Model/model.ckpt")</span></strong>，实际在这个文件目录下会生成4个人文件：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/108087be79225a10f4e7599e260f7753.jpg" alt="TensorFlow模型保存和提取方法"></p> <p>checkpoint文件保存了一个录下多有的模型文件列表，model.ckpt.meta保存了TensorFlow计算图的结构信息，model.ckpt保存每个变量的取值，此处文件名的写入方式会因不同参数的设置而不同，但加载restore时的文件路径名是以checkpoint文件中的“model_checkpoint_path”值决定的。</p> <p>2. 加载这个已保存的TensorFlow模型的方法是<strong><span style="color:red; background:yellow">saver.restore(sess,"./Model/model.ckpt")</span></strong>，加载模型的代码中也要定义TensorFlow计算图上的所有运算并声明一个tf.train.Saver类，不同的是加载模型时不需要进行变量的初始化，而是将变量的取值通过保存的模型加载进来，注意加载路径的写法。若不希望重复定义计算图上的运算，可直接加载已经持久化的图，<strong><span style="color:red; background:yellow">saver =tf.train.import_meta_graph("Model/model.ckpt.meta")</span></strong>。</p> <p>3.tf.train.Saver类也支持在保存和加载时给变量重命名，声明Saver类对象的时候使用一个字典dict重命名变量即可，{"已保存的变量的名称name": 重命名变量名}，<strong><span style="color:red; background:yellow">saver = tf.train.Saver({"v1":u1, "v2": u2})</span></strong>即原来名称name为v1的变量现在加载到变量u1（名称name为other-v1）中。</p> <p>4. 上一条做的目的之一就是方便使用变量的滑动平均值。如果在加载模型时直接将影子变量映射到变量自身，则在使用训练好的模型时就不需要再调用函数来获取变量的滑动平均值了。载入时，声明Saver类对象时通过一个字典将滑动平均值直接加载到新的变量中，saver = tf.train.Saver({"v/ExponentialMovingAverage": v})，另通过tf.train.ExponentialMovingAverage的<strong><span style="color:red; background:yellow">variables_to_restore()</span></strong>函数获取变量重命名字典。</p> <p>此外，通过convert_variables_to_constants函数将计算图中的变量及其取值通过常量的方式保存于一个文件中。</p> <h2>二、TensorFlow程序实现</h2> <div> <pre><code class="language-python"># 本文件程序为配合教材及学习进度渐进进行，请按照注释分段执行 # 执行时要注意IDE的当前工作过路径，最好每段重启控制器一次，输出结果更准确   # Part1: 通过tf.train.Saver类实现保存和载入神经网络模型  # 执行本段程序时注意当前的工作路径 import tensorflow as tf  v1 = tf.Variable(tf.constant(1.0, shape=[1]), name="v1") v2 = tf.Variable(tf.constant(2.0, shape=[1]), name="v2") result = v1 + v2  saver = tf.train.Saver()  with tf.Session() as sess:     sess.run(tf.global_variables_initializer())     saver.save(sess, "Model/model.ckpt")   # Part2: 加载TensorFlow模型的方法  import tensorflow as tf  v1 = tf.Variable(tf.constant(1.0, shape=[1]), name="v1") v2 = tf.Variable(tf.constant(2.0, shape=[1]), name="v2") result = v1 + v2  saver = tf.train.Saver()  with tf.Session() as sess:     saver.restore(sess, "./Model/model.ckpt") # 注意此处路径前添加"./"     print(sess.run(result)) # [ 3.]   # Part3: 若不希望重复定义计算图上的运算，可直接加载已经持久化的图  import tensorflow as tf  saver = tf.train.import_meta_graph("Model/model.ckpt.meta")  with tf.Session() as sess:     saver.restore(sess, "./Model/model.ckpt") # 注意路径写法     print(sess.run(tf.get_default_graph().get_tensor_by_name("add:0"))) # [ 3.]   # Part4： tf.train.Saver类也支持在保存和加载时给变量重命名  import tensorflow as tf  # 声明的变量名称name与已保存的模型中的变量名称name不一致 u1 = tf.Variable(tf.constant(1.0, shape=[1]), name="other-v1") u2 = tf.Variable(tf.constant(2.0, shape=[1]), name="other-v2") result = u1 + u2  # 若直接生命Saver类对象，会报错变量找不到 # 使用一个字典dict重命名变量即可，{"已保存的变量的名称name": 重命名变量名} # 原来名称name为v1的变量现在加载到变量u1（名称name为other-v1）中 saver = tf.train.Saver({"v1": u1, "v2": u2})  with tf.Session() as sess:     saver.restore(sess, "./Model/model.ckpt")     print(sess.run(result)) # [ 3.]   # Part5: 保存滑动平均模型  import tensorflow as tf  v = tf.Variable(0, dtype=tf.float32, name="v") for variables in tf.global_variables():     print(variables.name) # v:0  ema = tf.train.ExponentialMovingAverage(0.99) maintain_averages_op = ema.apply(tf.global_variables()) for variables in tf.global_variables():     print(variables.name) # v:0                           # v/ExponentialMovingAverage:0  saver = tf.train.Saver()  with tf.Session() as sess:     sess.run(tf.global_variables_initializer())     sess.run(tf.assign(v, 10))     sess.run(maintain_averages_op)     saver.save(sess, "Model/model_ema.ckpt")     print(sess.run([v, ema.average(v)])) # [10.0, 0.099999905]   # Part6: 通过变量重命名直接读取变量的滑动平均值  import tensorflow as tf  v = tf.Variable(0, dtype=tf.float32, name="v") saver = tf.train.Saver({"v/ExponentialMovingAverage": v})  with tf.Session() as sess:     saver.restore(sess, "./Model/model_ema.ckpt")     print(sess.run(v)) # 0.0999999   # Part7: 通过tf.train.ExponentialMovingAverage的variables_to_restore()函数获取变量重命名字典  import tensorflow as tf  v = tf.Variable(0, dtype=tf.float32, name="v") # 注意此处的变量名称name一定要与已保存的变量名称一致 ema = tf.train.ExponentialMovingAverage(0.99) print(ema.variables_to_restore()) # {'v/ExponentialMovingAverage': &lt;tf.Variable 'v:0' shape=() dtype=float32_ref&gt;} # 此处的v取自上面变量v的名称name="v"  saver = tf.train.Saver(ema.variables_to_restore())  with tf.Session() as sess:     saver.restore(sess, "./Model/model_ema.ckpt")     print(sess.run(v)) # 0.0999999   # Part8: 通过convert_variables_to_constants函数将计算图中的变量及其取值通过常量的方式保存于一个文件中  import tensorflow as tf from tensorflow.python.framework import graph_util  v1 = tf.Variable(tf.constant(1.0, shape=[1]), name="v1") v2 = tf.Variable(tf.constant(2.0, shape=[1]), name="v2") result = v1 + v2  with tf.Session() as sess:     sess.run(tf.global_variables_initializer())     # 导出当前计算图的GraphDef部分，即从输入层到输出层的计算过程部分     graph_def = tf.get_default_graph().as_graph_def()     output_graph_def = graph_util.convert_variables_to_constants(sess,                                                         graph_def, ['add'])      with tf.gfile.GFile("Model/combined_model.pb", 'wb') as f:         f.write(output_graph_def.SerializeToString())   # Part9: 载入包含变量及其取值的模型  import tensorflow as tf from tensorflow.python.platform import gfile  with tf.Session() as sess:     model_filename = "Model/combined_model.pb"     with gfile.FastGFile(model_filename, 'rb') as f:         graph_def = tf.GraphDef()         graph_def.ParseFromString(f.read())      result = tf.import_graph_def(graph_def, return_elements=["add:0"])     print(sess.run(result)) # [array([ 3.], dtype=float32)]</code></pre> </div></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-830.htm">android适配器：BaseAdapter</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-832.htm">instanceof实现</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1003.htm" title="Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控">Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

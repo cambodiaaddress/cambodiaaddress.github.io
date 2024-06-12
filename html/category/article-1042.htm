@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1042.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>python PIL Image 图像处理基本操作实例_python - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>python PIL Image 图像处理基本操作实例_python</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h3>1. 图片加载、灰度图、 显示和保存</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image    img = Image.open('01.jpg')  imgGrey = img.convert('L')    img.show()  imgGrey.show()    img.save('img_copy.jpg')  imgGrey.save('img_gray.jpg')</pre> </div> <h3>2. 图片宽、高、通道模式、平均值获取</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image  import numpy as np    img = Image.open('01.jpg')    width, height = img.size  channel_mode = img.mode  mean_value = np.mean(img)    print(width)  print(height)  print(channel_mode)  print(mean_value)</pre> </div> <h3>3. 创建指定大小，指定通道类型的空图像</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image    width = 200  height = 100    img_white = Image.new('RGB', (width,height), (255,255,255))  img_black = Image.new('RGB', (width,height), (0,0,0))  img_L = Image.new('L', (width, height), (255))    img_white.show()  img_black.show()  img_L.show()</pre> </div> <h3>4. 访问和操作图像像素</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image    img = Image.open('01.jpg')    width, height = img.size    # 获取指定坐标位置像素值  pixel_value = img.getpixel((width/2, height/2))  print(pixel_value)    # 或者使用load方法  pim = img.load()  pixel_value1 = pim[width/2, height/2]  print(pixel_value1)    # 设置指定坐标位置像素的值  pim[width/2, height/2] = (0, 0, 0)    # 或使用putpixel方法  img.putpixel((w//2, h//2), (255,255,255))    # 设置指定区域像素的值  for w in range(int(width/2) - 40, int(width/2) + 40):  for h in range(int(height/2) - 20, int(height/2) + 20):  pim[w, h] = (255, 0, 0)  # img.putpixel((w, h), (255,255,255))  img.show()</pre> </div> <h3>5. 图像通道分离和合并</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image    img = Image.open('01.jpg')    # 通道分离  R, G, B = img.split()    R.show)  G.show()  B.show()    # 通道合并  img_RGB = Image.merge('RGB', (R, G, B))  img_BGR = Image.merge('RGB', (B, G, R))  img_RGB.show()  img_BGR.show()</pre> </div> <h3>6. 在图像上输出文字</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image, ImageDraw, ImageFont    img = Image.open('01.jpg')    # 创建Draw对象:  draw = ImageDraw.Draw(img)  # 字体颜色  fillColor = (255, 0, 0)    text = 'print text on PIL Image'  position = (200,100)    draw.text(position, text, fill=fillColor)  img.show()</pre> </div> <h3>7. 图像缩放</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image    img = Image.open('01.jpg')    width, height = img.size    img_NEARESET = img.resize((width//2, height//2)) # 缩放默认模式是NEARESET(最近邻插值)  img_BILINEAR = img.resize((width//2, height//2), Image.BILINEAR) # BILINEAR 2x2区域的双线性插值  img_BICUBIC = img.resize((width//2, height//2), Image.BICUBIC) # BICUBIC 4x4区域的双三次插值  img_ANTIALIAS = img.resize((width//2, height//2), Image.ANTIALIAS) # ANTIALIAS 高质量下采样滤波</pre> </div> <h3>8. 图像遍历操作</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image    img = Image.open('01.jpg').convert('L')    width, height = img.size    pim = img.load()    for w in range(width):  for h in range(height):  if pim[w, h] &gt; 100:  img.putpixel((w, h), 255)  # pim[w, h] = 255  else:  img.putpixel((w, h), 0)  # pim[w, h] = 0    img.show()</pre> </div> <h3>9. 图像阈值分割、 二值化</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image    img = Image.open('01.jpg').convert('L')    width, height = img.size    threshold = 125    for w in range(width):  for h in range(height):  if img.getpixel((w, h)) &gt; threshold:  img.putpixel((w, h), 255)  else:  img.putpixel((w, h), 0)    img.save('binary.jpg')</pre> </div> <h3>10. 图像裁剪</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image    img = Image.open('01.jpg')    width, height = img.size    # 前两个坐标点是左上角坐标  # 后两个坐标点是右下角坐标  # width在前， height在后  box = (100, 100, 550, 350)    region = img.crop(box)    region.save('crop.jpg')</pre> </div> <h3><strong>11. 图像边界扩展</strong></h3> <div class="ay1code"> <pre class="brush:py;"># 边界扩展  from PIL import Image    img = Image.open('test.png')    width, height = img.size  channel_mode = img.mode    img_makeBorder_full = Image.new(channel_mode, (2*width, height))  img_makeBorder_part = Image.new(channel_mode, (width+200, height))    # 图像水平扩展整个图像  img_makeBorder_full.paste(img, (0, 0, width, height))  img_makeBorder_full.paste(img, (width, 0, 2*width, height))    # 前两个坐标点是左上角坐标  # 后两个坐标点是右下角坐标  # width在前， height在后  box = (width-200, 0, width, height)  region = img.crop(box)    # 图像水平右侧扩展一个ROI  img_makeBorder_part.paste(img, (0, 0, width, height))  img_makeBorder_part.paste(region, (width, 0, width+200, height))  img_makeBorder_part.show()  img_makeBorder_full.show()</pre> </div> <h3>12. PIL.Image 和 numpy 格式相互转换</h3> <div class="ay1code"> <pre class="brush:py;">from PIL import Image  import numpy as np    img = Image.open('01.jpg')    array = np.array(img) # PIL.Image 转 numpy    img1 = Image.fromarray(array) # numpy转 PIL.Image  img1 = Image.fromarray(array.astype('uint8'))    img1.save('from_array.jpg')</pre> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1041.htm">JavaScript深入理解系列：call与apply</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1043.htm">springsecurity 中 核心过滤器和请求</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1007.htm" title="vue的插槽">vue的插槽</a></li>
+                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1000.htm" title="@RequestBody接受参数报415错误">@RequestBody接受参数报415错误</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-953.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>spring boot web项目 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>spring boot web项目</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p>建表sql:</p> <pre><code class="language-sql">   CREATE TABLE employee    (    id INT(8) PRIMARY KEY AUTO_INCREMENT ,    lastName VARCHAR(25),    email VARCHAR(64),    gender INT(1),    department_id INT,    birthday DATE,    CONSTRAINT FK_department_id FOREIGN KEY(department_id)  REFERENCES department(id) ON DELETE NO ACTION ON UPDATE NO ACTION     )ENGINE=INNODB DEFAULT CHARSET =utf8;            CREATE TABLE department    (    id INT PRIMARY KEY,    departmentName VARCHAR(64)    )ENGINE=INNODB DEFAULT CHARSET=utf8;</code></pre> <p>&nbsp;</p> <p>&nbsp;</p> <h3><span style="color:#f33b45;">on null context object 异常</span></h3> <p>做查询所有员工功能时，一直报这个错误，网上找了半天，也没搞定。</p> <p>这个错误根本原因还是上下文对象为null导致的。</p> <p>Caused by: org.springframework.expression.spel.SpelEvaluationException<span style="color:#f33b45;">: EL1011E: Method call: Attempted to call method getId() on null context object</span><br /> ------------------</p> <p>2020-04-10 18:21:59.581 ERROR 30800 --- [nio-8088-exec-9] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/wang/table] and exception [Exception evaluating SpringEL expression: "<span style="color:#f33b45;">emp.getId()"</span> (template: "basic-table" - line 51, col 29)] as the response has already been committed. As a result, the response may have the wrong status code.</p> <pre><code class="language-html">                         &lt;tr th:each="emp : ${employeeList}"&gt;                             &lt;td th:text="${emp.getId()}" &gt;&lt;/td&gt;                             &lt;td th:text="${emp.getLastName()}"&gt;&lt;/td&gt;                             &lt;td th:text="${emp.getEmail()}"&gt;12 May 2017&lt;/td&gt; &lt;!--                            thymeleaf的三元表达式--&gt;                             &lt;td th:text="${emp.getGender()==0?'女':(emp.getGender()==1 ? '男':null)}"&gt;12 May 2017&lt;/td&gt;                             &lt;td th:text="${emp.getDepartment()!=null?emp.getDepartment().getDepartmentName():null}"&gt;12 May 2017&lt;/td&gt; &lt;!--   日期格式转换：  #dates是thymeleaf提供的一个工具，它能帮我们展示想要的日期格式--&gt;                             &lt;td th:text="${#dates.format(emp.getBirthday(),'yyyy-MM-dd HH:mm:ss')}"&gt;Pending&lt;/label&gt;&lt;/td&gt;                              &lt;td &gt; &lt;!--  在修改的时候,我们需要把员工id传递给后台,后台得到员工的详细信息,之后进入修改页面,这里使用的restful风格. --&gt;                                  &lt;a th:href="@{/employee/toUpdatePage/} + ${emp.getId()}"  class="btn btn-sm btn-primary" th:text="修改" &gt;&lt;/a&gt;                                     &lt;a th:href="@{/employee/delete/} + ${emp.getId()}" class="btn btn-sm btn-danger" th:text="删除"&gt;&lt;/a&gt;                                 &lt;/td&gt;                             &lt;/tr&gt;</code></pre> <p>前端代码：之前已经验证过，没有问题，那么根本原因还是在后端，后端没有正确传递数据。</p> <p>最后果然，是因为我的mapper中的sql写的不对。</p> <p>错误版本：</p> <p>由于一开始，我的对象和table的字段一致，我以为就不要写column 和result对应了。其实还是太年轻。。。。</p> <pre><code class="language-html">    &lt;select id="queryAllEmployee" resultMap="employeeMap"&gt;         select e.id as eId,d.id as dId ,e.email,e.birthday,e.gender,e.lastName,d.departmentName          from employee e ,department d          where e.department_id = d.id     &lt;/select&gt;      &lt;resultMap id="employeeMap" type="employee"&gt;                  &lt;association property="department" javaType="department"&gt;                     &lt;/association&gt;     &lt;/resultMap&gt;</code></pre> <p>&nbsp;</p> <p>正确版本：</p> <pre><code class="language-html">    &lt;select id="queryAllEmployee" resultMap="employeeMap"&gt;         select e.id as eId,d.id as dId ,e.email,e.birthday,e.gender,e.lastName,d.departmentName          from employee e ,department d          where e.department_id = d.id     &lt;/select&gt;      &lt;resultMap id="employeeMap" type="employee"&gt;         &lt;result column="eId" property="id"&gt;&lt;/result&gt;         &lt;result column="email" property="email"&gt;&lt;/result&gt;         &lt;result column="lastName" property="lastName"&gt;&lt;/result&gt;         &lt;result column="birthday" property="birthday"&gt;&lt;/result&gt;         &lt;result column="gender" property="gender"&gt;&lt;/result&gt;         &lt;association property="department" javaType="department"&gt;             &lt;result column="dId" property="id"&gt;&lt;/result&gt;             &lt;result column="departmentName" property="departmentName"&gt;&lt;/result&gt;         &lt;/association&gt;     &lt;/resultMap&gt;</code></pre> <p> &nbsp;</p> </p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-952.htm">Qt(QtWebEngine)加载本地网页跨域问题的总结</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-954.htm">Spring Boot 集成Swagger</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-998.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1029.htm" title="python连接数据库并执行SQL语句">python连接数据库并执行SQL语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-1030.htm" title="vue-element-admin模板，点击跳转到另一个页面传参">vue-element-admin模板，点击跳转到另一个页面传参</a></li>
+                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

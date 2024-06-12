@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-932.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>java list在哪个包_Java 中初始化 List 集合的 N 种方式！ - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>java list在哪个包_Java 中初始化 List 集合的 N 种方式！</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>List 是 Java 开发中经常会使用的集合，你们知道有哪些方式可以初始化一个 List 吗？这其中不缺乏一些坑，在此总结一下常用的方式。</p> <p>1、常规方式List&nbsp;languages&nbsp;=&nbsp;new&nbsp;ArrayList&lt;&gt;();</p> <p>languages.add("Java");</p> <p>languages.add("PHP");</p> <p>languages.add("Python");</p> <p>System.out.println(languages);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;[Java,&nbsp;PHP,&nbsp;Python]</p> <p>这种就是我们平常用的最多最平常的方式了，没什么好说的，后面缺失的泛型类型在 JDK 7 之后就可以不用写具体的类型了，改进后会自动推断类型。</p> <p>2、Arrays 工具类List&nbsp;jdks&nbsp;=&nbsp;Arrays.asList("JDK6",&nbsp;"JDK8",&nbsp;"JDK10");</p> <p>System.out.println(jdks);&nbsp;&nbsp;&nbsp;//&nbsp;[JDK6,&nbsp;JDK8,&nbsp;JDK10]</p> <p>这种方式添加的是只读的，是不可变的 List，即不能添加、删除等操作，需要警惕。。</p> <p>如果要可变，那就使用 ArrayList 再包装一下，如下面所示。List&nbsp;numbers&nbsp;=&nbsp;new&nbsp;ArrayList&lt;&gt;(Arrays.asList("1",&nbsp;"2",&nbsp;"3"));</p> <p>numbers.add("4");</p> <p>System.out.println(numbers);</p> <p>包装一下，这就是可变的 ArrayList 了。</p> <p>3、Collections 工具类List&nbsp;apples&nbsp;=&nbsp;Collections.nCopies(3,&nbsp;"apple");</p> <p>System.out.println(apples);&nbsp;//&nbsp;[apple,&nbsp;apple,&nbsp;apple]</p> <p>这种方式添加的同样是只读的，是不可变的。</p> <p>老规则，如果要可变，使用 ArrayList 包装一遍。List&nbsp;dogs&nbsp;=&nbsp;new&nbsp;ArrayList&lt;&gt;(Collections.nCopies(3,&nbsp;"dog"));</p> <p>dogs.add("dog");</p> <p>System.out.println(dogs);</p> <p>还有初始化单个对象的 List 工具类，这种方式也是不可变的，集合内只能有一个元素，这种也用得很少啊。List&nbsp;cat&nbsp;=&nbsp;Collections.singletonList("cat");</p> <p>System.out.println(cat);</p> <p>还有设置集合为只读的。使用 unmodifiableList 方法。//&nbsp;使用&nbsp;Collections.unmodifiableList&nbsp;创建只读集合</p> <p>List&nbsp;list&nbsp;=&nbsp;new&nbsp;ArrayList&lt;&gt;();</p> <p>list.add("jack");</p> <p>list.add("tom");</p> <p>list.add("lily");</p> <p>List&nbsp;readList&nbsp;=&nbsp;Collections.unmodifiableList(list);</p> <p>4、匿名内部类List&nbsp;names&nbsp;=&nbsp;new&nbsp;ArrayList&lt;&gt;()&nbsp;{<!-- -->{<!-- --></p> <p>add("Tom");</p> <p>add("Sally");</p> <p>add("John");</p> <p>}};</p> <p>System.out.println(names);</p> <p>这种使用了匿名内部类的方式，一气喝成，是不是很高大上？看似高级，实现也没什么卵用。</p> <p>5、JDK8 StreamList&nbsp;colors&nbsp;=&nbsp;Stream.of("blue",&nbsp;"red",&nbsp;"yellow").collect(Collectors.toList());</p> <p>colors.add("beautiful");</p> <p>System.out.println(colors);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;[blue,&nbsp;red,&nbsp;yellow,&nbsp;beautiful]</p> <p>Stream 是 JDK 8 推出来的新概念，比集合还要更强大，还可以和集合互相转换。</p> <p>6、JDK 9 List.ofList&nbsp;cups&nbsp;=&nbsp;List.of("A",&nbsp;"B",&nbsp;"C");</p> <p>System.out.println(cups);</p> <p>这是 JDK 9 里面新增的 List 接口里面的静态方法，同样也是不可变的。</p> <p>7、Guava 工具包//&nbsp;使用&nbsp;Lists.newArrayList&nbsp;创建的集合非只读</p> <p>ArrayList&nbsp;list&nbsp;=&nbsp;Lists.newArrayList("java",&nbsp;"php",&nbsp;"javaScript",&nbsp;"h5",&nbsp;"jackson");</p> <p>//&nbsp;使用&nbsp;ImmutableList.of&nbsp;创建只读集合</p> <p>ImmutableList&nbsp;list&nbsp;=&nbsp;ImmutableList.of("jack",&nbsp;"tom",&nbsp;"lily");</p> <p>说到最后，还是 Guava 用的最爽，对于集合的控制也很多。</p> <p>更多内容，持续探索，你还知道哪些绝招呢？欢迎留言分享一下。。。。。。</p> </div></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-931.htm">Oracle模糊查询，不区分大小写</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-933.htm">MySQL CONCAT()函数如何使用通配符</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1048.htm" title="Spring Boot + Mybatis-Plus + jasypt 数据库连接加密">Spring Boot + Mybatis-Plus + jasypt 数据库连接加密</a></li>
+                        <li class="py-2"><a href="/html/category/article-1006.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(摄取、修改数据 DML)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

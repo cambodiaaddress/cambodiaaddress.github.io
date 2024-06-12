@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1051.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>FeignClient参数 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>FeignClient参数</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h3> <a id="FeignClient_0" rel="nofollow"></a>FeignClient注解参数</h3> <p>name：指定FeignClient的名称，如果项目使用了Ribbon，name属性会作为微服务的名称，用于服务发现<br /> url: url一般用于调试，可以手动指定@FeignClient调用的地址<br /> decode404:当发生http 404错误时，如果该字段位true，会调用decoder进行解码，否则抛出FeignException<br /> configuration: Feign配置类，可以自定义Feign的Encoder、Decoder、LogLevel、Contract<br /> fallback: 定义容错的处理类，当调用远程接口失败或超时时，会调用对应接口的容错逻辑，fallback指定的类必须实现@FeignClient标记的接口<br /> fallbackFactory: 工厂类，用于生成fallback类示例，通过这个属性我们可以实现每个接口通用的容错逻辑，减少重复的代码<br /> path: 定义当前FeignClient的统一前缀</p> <h3> <a id="_9" rel="nofollow"></a>日志级别配置</h3> <p>默认Feign是不打印任何日志的，下面我们来开启Feign的日志，Feign有四种日志级别：</p> <p>NONE【性能最佳，适用于生产】：不记录任何日志（默认值）。<br /> BASIC【适用于生产环境追踪问题】：仅记录请求方法、URL、响应状态代码以及执行时间。<br /> HEADERS：记录BASIC级别的基础上，记录请求和响应的header。<br /> FULL【比较适用于开发及测试环境定位问题】：记录请求和响应的header、body和元数据。<br /> 在application.yml 中添加以下内容，将该Feign接口的日志级别设置为DEBUG：</p> <pre><code class="prism language-java"># 定义feign客户端所在的路径，需要设置日志级别为debug logging<span class="token punctuation">.</span>level<span class="token operator">:</span> com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService<span class="token operator">:</span> debug # user为服务名，单个配置客户端日志级别设置，如果需要全局配置，把user更换为<span class="token keyword">default</span> feign<span class="token punctuation">.</span>client<span class="token punctuation">.</span>config<span class="token punctuation">.</span>user<span class="token punctuation">.</span>loggerLevel<span class="token operator">:</span> FULL </code></pre> <p>调用日志信息截图</p> <pre><code class="prism language-java"><span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.671</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> <span class="token operator">--</span><span class="token operator">-</span><span class="token operator">&gt;</span> GET http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>user<span class="token operator">/</span>user HTTP<span class="token operator">/</span><span class="token number">1.1</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.671</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> <span class="token operator">--</span><span class="token operator">-</span><span class="token operator">&gt;</span> END HTTP <span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">-</span><span class="token keyword">byte</span> body<span class="token punctuation">)</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.678</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> <span class="token operator">&lt;</span><span class="token operator">--</span><span class="token operator">-</span> HTTP<span class="token operator">/</span><span class="token number">1.1</span> <span class="token number">200</span>  <span class="token punctuation">(</span><span class="token number">7</span>ms<span class="token punctuation">)</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.679</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> connection<span class="token operator">:</span> keep<span class="token operator">-</span>alive <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.679</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> content<span class="token operator">-</span>type<span class="token operator">:</span> application<span class="token operator">/</span>json <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.679</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> date<span class="token operator">:</span> Sun<span class="token punctuation">,</span> <span class="token number">07</span> Jun <span class="token number">2020</span> <span class="token number">06</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27</span> GMT <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.679</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> keep<span class="token operator">-</span>alive<span class="token operator">:</span> timeout<span class="token operator">=</span><span class="token number">60</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.679</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> transfer<span class="token operator">-</span>encoding<span class="token operator">:</span> chunked <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.679</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.679</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> <span class="token punctuation">{<!-- --></span><span class="token string">"id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"name"</span><span class="token operator">:</span><span class="token string">"test"</span><span class="token punctuation">,</span><span class="token string">"phone"</span><span class="token operator">:</span><span class="token string">"119"</span><span class="token punctuation">}</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">07</span> <span class="token number">14</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">27.679</span> DEBUG <span class="token number">24961</span> <span class="token operator">--</span><span class="token operator">-</span> <span class="token punctuation">[</span>nio<span class="token operator">-</span><span class="token number">8081</span><span class="token operator">-</span>exec<span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span> c<span class="token punctuation">.</span>e<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService     <span class="token operator">:</span> <span class="token punctuation">[</span>CustomerService#getUser<span class="token punctuation">]</span> <span class="token operator">&lt;</span><span class="token operator">--</span><span class="token operator">-</span> END HTTP <span class="token punctuation">(</span><span class="token number">36</span><span class="token operator">-</span><span class="token keyword">byte</span> body<span class="token punctuation">)</span> </code></pre> <h3> <a id="_39" rel="nofollow"></a>服务超时、重试、降级和熔断</h3> <p><strong>·超时</strong> Feign接口调用分两层，Ribbon（负载均衡）和Hystrix（熔断器）的调用，因此Feign的超时时间就是ribbon的超时时间和Hystrix的超时时间的结合<br /><strong>·重试</strong> 使用Ribbon</p> <p><strong>设置Ribbon重试次数</strong></p> <pre><code class="prism language-java">ribbon<span class="token operator">:</span>   #连接超时时间   ConnectTimeout<span class="token operator">:</span> <span class="token number">1000</span>   #读超时时间   ReadTimeout<span class="token operator">:</span> <span class="token number">1000</span>   ##同一台实例最大重试次数<span class="token punctuation">,</span>不包括首次调用   MaxAutoRetries<span class="token operator">:</span> <span class="token number">0</span>   #重试负载均衡其他的实例最大重试次数<span class="token punctuation">,</span>不包括首次调用   MaxAutoRetriesNextServer<span class="token operator">:</span> <span class="token number">1</span>   #是否所有操作都重试<span class="token punctuation">,</span>设置<span class="token boolean">false</span>时，只会对get请求进行重试；如果设置为<span class="token boolean">true</span>，便会对所有的请求进行重试，如果是put或post等写操作，如果服务器接口没做幂等性<span class="token punctuation">,</span>慎用；   OkToRetryOnAllOperations<span class="token operator">:</span> <span class="token boolean">false</span> </code></pre> <p><strong>负载均衡配置</strong></p> <pre><code class="prism language-java">#服务名 user<span class="token operator">:</span>   ribbon<span class="token operator">:</span>     #选择随机算法     NFLoadBalancerRuleClassName<span class="token operator">:</span> com<span class="token punctuation">.</span>netflix<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>RandomRule </code></pre> <p><strong>Ribbon Eager加载</strong><br /> 默认情况下Ribbon是懒加载的——首次请求Ribbon相关类才会初始化，这会导致首次请求过慢的问题，你可以配置饥饿加载，让Ribbon在应用启动时就初始化。</p> <pre><code class="prism language-java">ribbon<span class="token operator">:</span>   eager<span class="token operator">-</span>load<span class="token operator">:</span>     enabled<span class="token operator">:</span> <span class="token boolean">true</span>     # 多个用<span class="token punctuation">,</span>分隔     clients<span class="token operator">:</span> user </code></pre> <p><strong>降级和熔断使用hystrix</strong><br /> 如果重试期间，调用时间超过了 Hystrix熔断的超时时间，便会立即熔断，进行FallBack</p> <pre><code class="prism language-java"># 开启hystrix feign<span class="token punctuation">.</span>hystrix<span class="token punctuation">.</span>enabled<span class="token operator">:</span> <span class="token boolean">true</span>  # hystrix的超时时间 时间设置需要根据实际业务场景计算得出 hystrix<span class="token punctuation">.</span>command<span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">.</span>execution<span class="token punctuation">.</span>isolation<span class="token punctuation">.</span>thread<span class="token punctuation">.</span>timeoutInMilliseconds<span class="token operator">:</span> <span class="token number">10000</span> </code></pre> <p><strong>Fallback配置</strong></p> <pre><code class="prism language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"user"</span><span class="token punctuation">,</span> fallback <span class="token operator">=</span> CustomerFeignClientFallback<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">CustomerService</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">/**    * 获取用户信息    *    * @return 用户信息    */</span>   <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/user"</span><span class="token punctuation">)</span>   UserDTO getUser <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token annotation punctuation">@Component</span>   <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomerFeignClientFallback</span> <span class="token keyword">implements</span> <span class="token class-name">CustomerService</span> <span class="token punctuation">{<!-- --></span>       <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> UserDTO getUser <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>      <span class="token comment">//todo 回退逻辑</span>       <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">UserDTO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"服务降级"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <pre><code class="prism language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"user"</span><span class="token punctuation">,</span> fallbackFactory <span class="token operator">=</span> CustomerFeignClientFallbackFactory<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">CustomerService</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">/**    * 获取用户信息    *    * @return 用户信息    */</span>   <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/user"</span><span class="token punctuation">)</span>   UserDTO getUser <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token annotation punctuation">@Component</span>   <span class="token annotation punctuation">@Slf4j</span>   <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomerFeignClientFallbackFactory</span> <span class="token keyword">implements</span> <span class="token class-name">FallbackFactory</span><span class="token generics function"><span class="token punctuation">&lt;</span>CustomerService<span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span>       <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> CustomerService getUser <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>        <span class="token comment">//todo 回退逻辑</span>       <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">UserDTO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"服务降级"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p><strong>配置</strong></p> <pre><code class="prism language-java">logging<span class="token operator">:</span>   level<span class="token operator">:</span>     com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>customer<span class="token punctuation">.</span>service<span class="token punctuation">.</span>CustomerService<span class="token operator">:</span> debug #全局配置，单个服务配置把<span class="token keyword">default</span>替换为需要设置的服务名 feign<span class="token operator">:</span>   client<span class="token punctuation">.</span>config<span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">.</span>loggerLevel<span class="token operator">:</span> FULL   okhttp<span class="token punctuation">.</span>enabled<span class="token operator">:</span> <span class="token boolean">true</span>   #熔断与回退   hystrix<span class="token punctuation">.</span>enabled<span class="token operator">:</span> <span class="token boolean">true</span> #重试机制 ribbon<span class="token operator">:</span>   #连接超时时间   ConnectTimeout<span class="token operator">:</span> <span class="token number">2000</span>   #读超时时间   ReadTimeout<span class="token operator">:</span> <span class="token number">2000</span>   ##同一台实例最大重试次数<span class="token punctuation">,</span>不包括首次调用   MaxAutoRetries<span class="token operator">:</span> <span class="token number">0</span>   #重试负载均衡其他的实例最大重试次数<span class="token punctuation">,</span>不包括首次调用   MaxAutoRetriesNextServer<span class="token operator">:</span> <span class="token number">1</span>   #是否所有操作都重试   OkToRetryOnAllOperations<span class="token operator">:</span> <span class="token boolean">false</span> # Hystrix的超时时间 hystrix<span class="token punctuation">.</span>command<span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">.</span>execution<span class="token punctuation">.</span>isolation<span class="token punctuation">.</span>thread<span class="token punctuation">.</span>timeoutInMilliseconds<span class="token operator">:</span> <span class="token number">10000</span> </code></pre> <h4> <a id="Feign_164" rel="nofollow"></a>有关Feign超时时间易混淆概念</h4> <p>Feign超时时间<br /> feign.client.config.default.connectTimeout=10000 //Feign的连接建立超时时间，默认为10秒<br /> feign.client.config.default.readTimeout=60000 //Feign的请求处理超时时间，默认为60</p> <p>Ribbon 超时时间<br /> ribbon.ReadTimeout=1000 //处理请求的超时时间，默认为1秒<br /> ribbon.ConnectTimeout=1000 //连接建立的超时时长，默认1秒</p> <p>Hystrix 超时时间<br /> hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=3000 #熔断器的超时时长默认1秒<br /> 以上各种超时配置，如果都存在，则时间小的配置生效</p> <h4> <a id="_177" rel="nofollow"></a>小提示</h4> <ol> <li>Feign的底层是调用ribbon来实现负载均衡的，为了不和ribbon的重试机制冲突不需要配置feign超时时间和重试功能，只需配置ribbon和hystrix超时时间即可。</li> <li>Ribbon超时时间必须小于hysrix超时设置，这样才能触发ribbon重试，ribbon重试分为两种情况，同一实例重试和负载均衡的不同实例重试，默认为1次和0次</li> <li>Feign的默认配置，是不启用hystrix，需要开启feign.hystrix.enabled=true，这样hystrix的相关配置才可以在Feign中生效。</li> <li>Hystrix的超时时间=Ribbon的重试次数(包含首次) * (ribbon.ReadTimeout + ribbon.ConnectTimeout)<br /> 在Ribbon超时但Hystrix没有超时的情况下，Ribbon便会采取重试机制；而重试期间如果时间超过了Hystrix的超时配置则会立即被熔断（fallback）</li> <li>关系图<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/36fd2c83141849d68b3b3902fab10274.jpg" alt="FeignClient参数"> </li> </ol> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1050.htm">JDK8默认垃圾回收器详解</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1052.htm">Spring AOP打通两个切面之间的通信详解</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1000.htm" title="@RequestBody接受参数报415错误">@RequestBody接受参数报415错误</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

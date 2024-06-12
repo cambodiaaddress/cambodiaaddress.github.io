@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-938.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>数据传输POST心法分享，做前端的你还解决不了这个bug？ - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>数据传输POST心法分享，做前端的你还解决不了这个bug？</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h3 id="背景">背景</h3> <p>随时随地给大家提供技术支持的葡萄又来了。这次的事情是这样的，提供demo属于是常规操作，但是前两天客户突然反馈压缩传输模块抛出异常，具体情况是压缩内容传输到服务端后无法解压。</p> <p>由于代码没有发生任何变动，前端相关依赖也没有升级，服务端java版本也没有变化，所以我们可以推定为环境问题；进一步仔细检查，经过反复对比后突然发现服务端收到的压缩内容变长了；和前端请求内容进行对比，发现所有的\r和\n都变成了\r\n。</p> <p>综合以上分析我们初步判断：问题出在了浏览器转译之中。为了验证猜想是否正确，葡萄将chrome版本回退到92版，异常消失，服务端接收的内容也没有被替换。</p> <p>问题是顺利解决了，但是Chrome POST数据内容居然会在传输过程中发生变化。一直擅长大前端技术的葡萄绝不认输，为了弄明白这一原因，我们来看看POST的细节操作到底有什么。<br /> 控制字符<br /> 首先我们需要搞清楚几个控制字符的含义。</p> <ul> <li>回车符（CR）和换行符（LF）是文本文件用于标记换行的控制字符（control characters）或字节码（bytecode）。</li> <li>CR = Carriage Return，回车符号（\r，十六进制 ascii 码为0x0D，十进制 ascii 码为13），用于将鼠标移动到行首，并不前进至下一行。</li> <li>LF = Line Feed，换行符号（ \n, 十六进制 ascii 码为 0x0A，十进制 ascii 码为10）。<br /> 紧邻的 CR 和 LF（组成 CRLF，\r\n，或十六进制 0x0D0A）将鼠标移动到下一行行首。（Windows 操作系统默认的文本换行符为 CRLF；Linux 以及 macOS 系统默认使用 LF，早期的 mac os 系统使用 CR 换行。）</li> </ul> <p>在代码管理中，在不同操作系统下CRLF会有很大不同。下面在不同系统中为大家实际演示一下：<br /> 在Mac Visual Code中新建一个文档默认为LF，而Windows中为CRLF，可以选择切换行尾序列的内容的类型。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/20f0f6dbc568b27e342172e15e11fec6.jpg" alt="数据传输POST心法分享，做前端的你还解决不了这个bug？"><br /> Mac版Visual Code</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5b90cc40f0afbff5a392674266874bd1.jpg" alt="数据传输POST心法分享，做前端的你还解决不了这个bug？"><br /> Windows 版</p> <p>面对这种情况，需要开发者统一CRLF，以免不同操作系统开发导致代码管理的混乱。</p> <h3 id="post传输的数据变化">POST传输的数据变化</h3> <p>弄明白了在不同系统中，控制字符会出现不同的原因，接下来我们就需要搞清楚为什么POST的数据在传输过程中发生了变化。</p> <p></p> <p>我们来写个简单Demo测试一下。先在页面上放一个允许换行的textarea， 输入带换行的文本，获取内容看到只有\n转译。通过FormData直接post数据到服务端，然后直接返回，看到\n全部变成了\r\n。</p> <pre><code>            var uploadData = document.getElementById("ta").value             var formData = new FormData();             formData.append("data", uploadData)             fetch("http://localhost:8088/spread/getpdf", {                     body: formData,                     method: "POST"                 }).then(resp =&gt; resp.text())                 .then(text =&gt; {                     console.log(JSON.stringify(text));                     document.getElementById("result").innerHTML= JSON.stringify(text)                 })</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b61c1f6c5b484f405522f3cd233ff9e8.jpg" alt="数据传输POST心法分享，做前端的你还解决不了这个bug？"></p> <p>浏览器标识：</p> <pre><code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.83 Safari/537.36</code></pre> <p>回退Chrome到92版本，发送和接收文本此时编为一致：</p> <pre><code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36</code></pre> <p>深入探究这一原因，我们了解到互联网请求意见稿2046（RFC 2046）4.1.1.中有明确说明：</p> <pre><code> “ The canonical form of any MIME‘text’ subtype MUST always represent a    line break as a CRLF sequence. “</code></pre> <p>这里我们可以看到所有的文本类型都要使用CRLF，而Chrome只是修复了一个“bug”，对于用户而言，在普通文本中用户感知不到CR、LF和CRLF的区别，但是当使用场景转换到解压的文本内容就变得十分重要。</p> <h3 id="三种解决方式">三种解决方式</h3> <p>大家都知道POST是HTTP的一个常用方法，而另一个我们常用的方法是GET。<br /> 关于GET和POST区别以及使用相关问题这里不做赘述，要解决POTS传输的数据变化问题，最相关的是Content-Type。</p> <p>首先我们来了解Content-Type和MIME分别是什么：<br /> Content-Type，内容类型，一般是指网页中存在的Content-Type，用于定义网络文件的类型和网页的编码，决定浏览器将以什么形式、什么编码读取这个文件，这就是经常看到一些Asp网页点击的结果却是下载到的一个文件或一张图片的原因。</p> <p>在POST中常用的Content-Type有application/x-www-form-urlencoded、multipart/form-data和application/json。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/439fc658d40caf3b64a6ea1a8a791151.jpg" alt="数据传输POST心法分享，做前端的你还解决不了这个bug？"></p> <p>1、 application/x-www-form-urlencoded<br /> 将需要内容提交表单后，内容会按照name1=value1&amp;name2=value2的方式编码，并且key和valu  e都会进行URL转码。<br /> 对于"\n"和"\r" 会被转码为'%0A'和'%0D'，通过这种传输方式，避免了浏览器的对CRLF的修正可以解决以上问题。<br /> 但是这样转码会增加文本长度，原本1个字符变成了3个，结果是压缩的文本又变长了。</p> <p>2、multipart/form-data<br /> 当需要想服务器提交文件时，就需要使用这种方式。前面代码中我们可以看到当formData是普通文本是会被修正，为了解决这个情况我们可以将string内容封装到Blob中作为文件流传输，来避免修正。<br /> 这样传输，服务端会以文件方式收到内容，直接读取Stream内容；对于压缩文本，这种处理方式最优。</p> <pre><code>           var formData = new FormData();             formData.append("data", uploadData)             formData.append("data1", new Blob( [uploadData]))</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/bef64d1a957f758b36121392276c6a95.jpg" alt="数据传输POST心法分享，做前端的你还解决不了这个bug？"></p> <p>上图展示了同样的内容，使用不同方式进行传输。</p> <p>3、 application/json<br /> Json也是目前比较流行的传输方式，json的内容在post传输中也不会被改变，如果文本内容不长，也是不错的方式。</p> <pre><code>          fetch("http://localhost.charlesproxy.com:8088/spread/postjson", {                     headers: {                         'Content-Type': 'application/json',                     },                     body: JSON.stringify({data: uploadData}),                     method: "POST"                 }).then(resp =&gt; resp.text())                 .then(text =&gt; {                     console.log(JSON.stringify(text));                     document.getElementById("result").innerHTML= JSON.stringify(text)                 })</code></pre> <h3 id="总结">总结</h3> <p>作为一个前端er，除了HTML、CSS和Javascript三大件，熟练使用Axios等类库调用API，更不可忽视的是要了解如何调试网络请求，在项目出现问题时能快速定位到问题的所在。</p> <p>这里提供了在 Angular 框架下动态加载js文件时返回 Content-Type 为text/html 的Demo，大家感兴趣的可以自行下载试试。</p> <p>Demo 地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gcdn.grapecity.com.cn/forum.php?mod=attachment&amp;aid=NDc5OTJ8YmU1Mjk0NDN8MTY1MDI2MTI0M3wxfDUwOTgw"  target="_blank" rel="nofollow">https://gcdn.grapecity.com.cn/forum.php?mod=attachment&amp;aid=NDc5OTJ8YmU1Mjk0NDN8MTY1MDI2MTI0M3wxfDUwOTgw</a></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-937.htm">自学Python3中的while循环语句,break和continue语句</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-939.htm">国密算法(SM2，SM3，SM4)辅助工具升级版(OTP+PBOC3.0)</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1019.htm" title="网络层-IP地址详解&amp;Linux配置IP地址（centos7）">网络层-IP地址详解&amp;Linux配置IP地址（centos7）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-998.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1048.htm" title="Spring Boot + Mybatis-Plus + jasypt 数据库连接加密">Spring Boot + Mybatis-Plus + jasypt 数据库连接加密</a></li>
+                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

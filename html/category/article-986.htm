@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-986.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Qt QComboBox之setEditable和currentTextChanged及其源码分析 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Qt QComboBox之setEditable和currentTextChanged及其源码分析</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#qt-qcombobox%E4%B9%8Bseteditable%E5%92%8Ccurrenttextchanged%E4%BB%A5%E5%8F%8A%E5%85%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90" rel="nofollow">Qt QComboBox之setEditable和currentTextChanged以及其源码分析</a> <ul> <li><a href="#%E5%89%8D%E8%A8%80" rel="nofollow">前言</a></li> <li><a href="#%E9%97%AE%E9%A2%98%E7%9A%84%E5%87%BA%E7%8E%B0" rel="nofollow">问题的出现</a></li> <li><a href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90" rel="nofollow">问题分析</a></li> <li><a href="#currenttextchanged%E4%BF%A1%E5%8F%B7%E8%A7%A6%E5%8F%91" rel="nofollow">currentTextChanged信号触发</a></li> <li><a href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90" rel="nofollow">源码分析</a></li> </ul> </li> </ul> </div> <h1 id="qt-qcombobox之seteditable和currenttextchanged以及其源码分析">Qt QComboBox之setEditable和currentTextChanged以及其源码分析</h1> <h2 id="前言">前言</h2> <p>最近做了一个QComboBox里有选项，然后选中选项之后就会自动触发条件搜索。然后我发现，在我初始化comboBox时，由于信号连接的原因会触发这个currentTextChanged信号。代码大致如下：</p> <pre><code class="language-cpp">connect(ui-&gt;comboBox, &amp;QComboBox::currentTextChanged,         this,         &amp;CountryType::slot_pageSearch);   void Country::setComboBox() {     QStringList content;     int maxLen = 0;     QFont font;     font.setFamily("Microsoft YaHei");     font.setPixelSize(16);     QFontMetrics fontMetrics(font);      QString command = jointQueryComboBoxTextCommand();     QList&lt;QStringList&gt; texts = m_oracle-&gt;runSelectCommand(command);     foreach (QStringList text, texts) {         QString item = text.value(0)+"-"+text.value(1);         content.push_back(item);         // 计算最大宽度         maxLen = maxLen &gt; fontMetrics.boundingRect(item).width() ?                     maxLen :                     fontMetrics.boundingRect(item).width();     }      // comboBox的宽度为 文字的最大宽度 + 下拉箭头的宽度 + 文字两边的间距     ui-&gt;comboBox-&gt;setMinimumWidth(maxLen + 38 + 8);     ui-&gt;comboBox-&gt;clear();     // 填充一个空选项作为筛选所有     ui-&gt;comboBox-&gt;addItem("");     ui-&gt;comboBox-&gt;addItems(content); }  void Country::search() {     setComboBox(); }</code></pre> <h2 id="问题的出现">问题的出现</h2> <p>在我每一次对页面进行切换的时候，我发现这个<code>search</code>都会触发这个<code>slot_pageSearch</code>槽函数，然后执行条件搜索。<br /> 但是我今天突发奇想，我是不是应该让使用者能够手动的输入这个条件呢，于是我<code>setEditable(true);</code>，将编辑打开了。<br /> 也就是:</p> <pre><code class="language-cpp">ui-&gt;comboBox-&gt;setEditable(true);</code></pre> <p>在设置了这个之后，我惊奇的发现，并没有像之前一样会触发<code>slot_pageSearch</code>这个槽函数。</p> <h2 id="问题分析">问题分析</h2> <p>因为我只修改了<code>ui-&gt;comboBox-&gt;setEditable(true);</code>，所以我肯定，问题就是发生在这个地方，于是我在网上搜索与这个问题有关联的答案。</p> <p>最后，我还是在QT的官方文档中对于<code>currentText</code>这个部分的介绍中，找到了问题的原因。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/2064e12d8685e02e0b3e0cc73137cc6a.jpg" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析">大概意思就是说，当你将<code>QComboBox</code>设置成可编辑的状态时（<code>setEditable(true)</code>），<code>currentText</code>就是当前的框内显示的文字。当不为可编辑的状态时，<code>currentText</code>就是当前的选项或者是一个空的字符串。</p> <p>所以我猜想，设置成不可编辑状态时，由于我进行了一个条目的添加，所以就将当前的选项改变了。</p> <h2 id="currenttextchanged信号触发">currentTextChanged信号触发</h2> <p>于是我在正常的流程下，添加了一些打印语句，用于证实我的猜想。</p> <pre><code class="language-cpp">    void Country::setComboBox() {         ...         // 填充一个空选项作为筛选所有          qDebug() &lt;&lt; "1";         ui-&gt;comboBox-&gt;addItem("");         qDebug() &lt;&lt; "2";         ui-&gt;comboBox-&gt;addItems(content);         qDebug() &lt;&lt; "3";         ...     }      void CountryType::slot_pageSearch()     {         ...         qDebug() &lt;&lt; "111";         ...     }</code></pre> <p>输出的结果为：</p> <pre><code class="language-cpp">    1     111     2     3</code></pre> <p>这也就表明了，我是在<code>setItem</code>之后，就会触发槽函数。但是具体为啥是这样的，为啥<code>addItems</code>不会触发<code>currentTextChanged</code>呢？<br /> 所以我带着问题，决定去源码里找答案</p> <h2 id="源码分析">源码分析</h2> <pre><code class="language-cpp">// 代码调用结构 1. QComboBox::addItem(int , const QIcon &amp;, const QString &amp;, const QVariant &amp;) ----&gt; QStandardItem::setData(const QVariant &amp;, int ) 	  ----&gt; QStandardItemModelPrivate::itemChanged(QStandardItem *, const QVector&lt;int&gt; &amp;) 			----&gt; signal: QStandardItemModel::dataChanged(QModelIndex,QModelIndex) slot: QComboBox::_q_dataChanged(QModelIndex,QModelIndex) 				  ----&gt; if (lineEdit) lineEdit-&gt;setText(); else emit currentTextChanged(QString);    2. QComboxBox::addItems(QStringList) ----&gt; QComboxBox::insertItems(int, QStringList) 	  ----&gt; QStandardItem::insertRows(int, QList&lt;QStandardItem*&gt;) 			----&gt; QStandardItemPrivate::insertRows(int, QList&lt;QStandardItem*&gt;) 				  ----&gt; rowsAboutToBeInserted(QStandardItem *, int , int) 						----&gt; QAbstractItemModel::beginInsertRows(const QModelIndex &amp;, int , int ) 							  ----&gt; signal: rowsAboutToBeInserted(const QModelIndex &amp;, int , int ) slot:  							  ----&gt; QAbstractItemModelPrivate::rowsAboutToBeInserted(const QModelIndex &amp;, int , int ) 				  ----&gt; QStandardItemModelPrivate::rowsInserted(QStandardItem *, int , int ) 						----&gt; QAbstractItemModel::endInsertRows() 							  ----&gt; void QAbstractItemModelPrivate::rowsInserted(const QModelIndex &amp;, int , int ) 							  ----&gt; signal: QAbstractItemModel::rowsInserted(QModelIndex,int,int) slot: QComboBox::_q_rowsInserted(QModelIndex,int,int)</code></pre> <ol> <li>首先，我从最简单的来入手——<code>addItem</code><br /><img decoding="async" src="https://img-blog.csdnimg.cn/34b566987a8e484083b019c99ca8a932.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述" loading="lazy"/><br /> 在上面这张图里可以知道,<code>addItem</code>调用的是<code>insertItem</code>这个函数，这个是用来插入条目的一个函数;</li> </ol> <p>然后就是<code>insertItem</code>这个函数，我们可以看到，这个函数会根据你的是不是原始的<code>QStandardItemModel</code>，是的话，就会去设置数据；<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/1790c858c65210866762afe516d12ee3.jpg" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><br /> 这里有两个分支，</p> <ul> <li><code>setData</code><br /><img decoding="async" src="https://img-blog.csdnimg.cn/4836b02cd60240cc8a4a9567182e465e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /><img decoding="async" src="https://img-blog.csdnimg.cn/4f9d43647b5d4f0480bb2dd9fb2b4fcd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 随着函数的调用过程，信号<code>dataChanged</code>被发射了，同时，在qcombobox.cpp中有对这个信号的连接，<br /><img decoding="async" src="https://img-blog.csdnimg.cn/ef1c106b6f7e432db5051a0510afdd5e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><img decoding="async" src="https://img-blog.csdnimg.cn/2d0e6217b2ca47f789747313d8e62879.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 我们进到这个<code>_q_dataChanged()</code>函数里面，<br /><img decoding="async" src="https://img-blog.csdnimg.cn/7f4c4bf97ab740b3b72682be34aaaae6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 这里有一段代码：</li> </ul> <pre><code class="language-cpp"> if (currentIndex.row() &gt;= topLeft.row() &amp;&amp; currentIndex.row() &lt;= bottomRight.row()) {         const QString text = q-&gt;itemText(currentIndex.row());         if (lineEdit) {             lineEdit-&gt;setText(text);             updateLineEditGeometry();         } else {             emit q-&gt;currentTextChanged(text);         }         q-&gt;update(); #ifndef QT_NO_ACCESSIBILITY         QAccessibleValueChangeEvent event(q, text);         QAccessible::updateAccessibility(&amp;event); #endif     }</code></pre> <p>在这里，我们就找到了我们的目标<code>currentTextChanged</code>这个信号。但是发射这个信号的前提条件是：</p> <ul> <li><code>currentIndex.row() &gt;= topLeft.row() &amp;&amp; currentIndex.row() &lt;= bottomRight.row()</code>也就是说，当前的下标的值需要在范围内</li> <li>当前的状态必须是不可编辑状态才会发射信号</li> </ul> <p>所以这里就是设置成可编辑状态后，不会触发信号的原因；</p> <ul> <li><code>insertRow</code><br /><img decoding="async" src="https://img-blog.csdnimg.cn/0f58cc8903d044dc8ade101f8d095472.png" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><img decoding="async" src="https://img-blog.csdnimg.cn/07e637d3da73442d913c7810142e6368.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_17,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /><img decoding="async" src="https://img-blog.csdnimg.cn/8f6d997893a649f695451dbabb94f104.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 现在关键的函数要来了，这个函数<code>bool QStandardItemPrivate::insertRows</code>，在待会<code>addItems</code>这个函数分析时也会用到。<br /><img decoding="async" src="https://img-blog.csdnimg.cn/92801610b1f54d1d8981357479ac6529.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /><img decoding="async" src="https://img-blog.csdnimg.cn/0d9796c7fb33479d9a00fab72d10a95a.png" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><br /> 在这里发射了这个<code>rowInserted()</code>信号，这个信号，又在QComboBox中进行了槽函数的连接<br /><img decoding="async" src="https://img-blog.csdnimg.cn/69b28956e3434ebfb07f086231fa507a.png" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><br /><img decoding="async" src="https://img-blog.csdnimg.cn/2e24b2d0ac764a2d9f093862285430e9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_14,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 所以在这个函数里面，如果是插入的第一个条目，就会把当前的下表设置成0，这时候就会触发另外一个信号<code>currentIndexChanged</code>。<br /><img decoding="async" src="https://img-blog.csdnimg.cn/0be278f7f2c5469ba583f0ea45df3435.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 至此，我们就能明白，为什么<code>addItem</code>会触发<code>currentTextChanged</code>的信号。同时，如果设置成可编辑状态，又是为何不会触发<code>currentTextChanged</code></li> </ul> <ol start="2"> <li>其次，我们从第二个函数，也就是<code>addItems</code><br /><img decoding="async" src="https://img-blog.csdnimg.cn/4f375e3f9c9045c5804155967a1248f4.png" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><br /><img decoding="async" src="https://img-blog.csdnimg.cn/50ed99bb404b4905a086d0b2cdde5a80.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 到这里，就能发现，这个部分调用的还是这个<code>bool QStandardItemPrivate::insertRows</code>,同样根据条件判断，<code>currentIndex = 0</code>而其他两个分别为1和添加条目的数量，很显然不符合要求。<br /> 所以这也就是为什么<code>addItems</code>不会触发<code>currentIndexChange</code>的原因。<br /> 至此，根据源码的分析，所有发生的事情，都能够正常的解释通了。</li> </ol> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-985.htm">springboot数据库插入时间datetime类型的字段不对</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-987.htm">Vue组件通信之跨组件跨层级传递</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-996.htm" title="js穿梭框；将两个table中的数据选中移动">js穿梭框；将两个table中的数据选中移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-998.htm" title="Docker从入门到放弃(1) Docker简介与安装_在线工具">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1030.htm" title="vue-element-admin模板，点击跳转到另一个页面传参">vue-element-admin模板，点击跳转到另一个页面传参</a></li>
+                        <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

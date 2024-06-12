@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-955.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SDDC的Windows初体验-QT篇 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>SDDC的Windows初体验-QT篇</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<h1 id="前言">前言</h1> <p>如果熟悉爱智和看过我之前文章的朋友见到这篇文章一定会有很大疑问，SDDC 作为智能设备发现控制协议，怎么会用在 windows 上？</p> <p>这一切还是源自于我巨大的脑洞，因为这段在搞 Windows 开发，突发奇想能不能把电脑也接入到爱智上，于是就把嵌入式设备使用的 SDDC 协议移植到了 Windows 上，本文就介绍下基于 QT 移植的 libsddc 库，其实我还移植到了 VS2022 上了，这个之后再介绍吧。</p> <h2 id="软硬件选择">软硬件选择</h2> <p>这里使用 windows  开发，除了电脑也不需要其他额外的硬件了。</p> <p>软件的话，使用的是 QT 5.9.0 版本，官网下载太慢了，推荐大家下载这个清华大学开源镜像站的资源：<code>https://mirrors.tuna.tsinghua.edu.cn/qt/archive/qt/5.9/5.9.0/qt-opensource-windows-x86-5.9.0.exe</code></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3cc970bb5bd1c572142dd46bffef8b85.jpg" alt="SDDC的Windows初体验-QT篇"></p> <h2 id="代码获取与解析">代码获取与解析</h2> <p>代码可以从我的 gitee 仓库直接获取：</p> <p><code>https://gitee.com/inspiration-desktop/windows-libsddc.git</code></p> <p>打开 libsddc 项目如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/ae9d14e45c29b6ce65bd8e0cc5755ba9.jpg" alt="SDDC的Windows初体验-QT篇"></p> <p>其中 SDDC 相关代码都已基于 windows环境进行兼容修改，具体修改内容可以全局搜索<code>__WINDOWS__</code> 宏来查看，其中主要的差异是 windows 和嵌入式系统的 socket 相关实现上，还有就是多线程，QT本身就支持 pthread ，这个给移植带来了很大的便利，不像 VS 为了支持 pthread 还需要一顿折腾，对于VS的移植之后的文章再介绍吧。</p> <p>main.cpp 代码解析，主要内容是获取uuid作为设备唯一标识（其实还是我没找到合适的获取 windows MAC 地址的接口...）；</p> <pre><code class="language-c++">#include "mainwindow.h" #include &lt;QApplication&gt; #include "sddc_message_example.h" #include "sddc.h" #include "test_thread.h" #include "cJSON.h" #include &lt;QUuid&gt; #include &lt;QFile&gt; #include &lt;iostream&gt;  int main(int argc, char *argv[]) {     QApplication a(argc, argv);          // 启动可视化窗口，暂时用不到     //MainWindow w;          //w.show();      char * uuid_str;     char buffer[128];     QString uuidstr;     QUuid uuid;      // 获取uuid作为设备唯一标识     QFile file("uuid.txt");     if(file.exists()){         std::cout &lt;&lt; "file exist\n";         if(!file.open(QIODevice::ReadWrite)){             std::cout &lt;&lt; "open file failed\n";         }else{             //读取文件             //判断文件是否已经读到末尾了              while(!file.atEnd()){                 //读取数据                 memset(buffer,0,sizeof(buffer));                 qint64 length = file.readLine(buffer,128);                 if(length != -1){                     uuid_str = (char*)&amp;buffer;                     std::cout &lt;&lt; "read success\n";                 }             }             file.close();         }     }else{         if(!file.open(QIODevice::ReadWrite)){             std::cout &lt;&lt; "open file failed\n";         }else{             uuid = QUuid::createUuid();             uuidstr = uuid.toString();              uuid_str = (char *)uuidstr.remove("{").remove("}").remove("-").toStdString().data();             memset(buffer,0,sizeof(buffer));             memcpy(buffer,uuid_str,strlen(uuid_str));             uuid_str = buffer;              std::cout &lt;&lt; uuid_str &lt;&lt; std::endl;             qint64 length = -1;             length = file.write(uuid_str);              if(length == -1){                 std::cout &lt;&lt; "write file failed\n";             }else{                 std::cout &lt;&lt; "write file success\n";             }              file.close();         }     }      std::cout &lt;&lt; uuid_str &lt;&lt; std::endl;      // 启动一个新线程进行其他业务处理 	//test_thread *thread1 = new test_thread(); 	//thread1-&gt;start();      // 启动 SDDC 协议     sddc_main(uuid_str);     a.exec();      return 0; }</code></pre> <h2 id="效果">效果</h2> <p>点击左下角的绿色三角运行程序；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/7204f434b18e1d1d2bff9afb0e326acb.jpg" alt="SDDC的Windows初体验-QT篇"></p> <p>可以在爱智设备搜索中发现对应设备并添加；</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/ab16d90922ba0310319279bb583d2215.jpg" alt="SDDC的Windows初体验-QT篇"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/18068933aa918fb14873f987cf27d9bd.jpg" alt="SDDC的Windows初体验-QT篇"></p> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-954.htm">Spring Boot 集成Swagger</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-956.htm">vue中巧用三元表达式解析_vue.js</a></p>
+                                                                    </div>
+
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1002.htm" title="前端【参考】文字过长显示省略号">前端【参考】文字过长显示省略号</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-994.htm" title="java单例模式的8种写法">java单例模式的8种写法</a></li>
+                        <li class="py-2"><a href="/html/category/article-995.htm" title="CI实现简单的分页原理">CI实现简单的分页原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1048.htm" title="Spring Boot + Mybatis-Plus + jasypt 数据库连接加密">Spring Boot + Mybatis-Plus + jasypt 数据库连接加密</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
