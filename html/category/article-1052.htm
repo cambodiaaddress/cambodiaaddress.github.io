@@ -67,7 +67,7 @@ var _hmt = _hmt || [];
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right main-nav">
-                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/">首页</a></li>
                                                                 <li><a href="/html/category/">文章分类</a></li>
                                                                 <li><a href="#">关于</a></li>
                                 <li><a href="#">联系</a></li>
@@ -101,6 +101,7 @@ var _hmt = _hmt || [];
                                   				  				  				<h3 id="场景描述">场景描述</h3> <p>在秒杀微服务中，笔者在需要各种校验前端传来的参数后，通过 Redis 加锁限流（切面A）并返回，最后封装订单数据推送到 RabbitMQ 消息队列（切面B）做善后工作。</p> <p>问题：如何将 切面 A 的数据传递 给切面B 处理呢？</p> <pre><code class="language-java">/**  * 添加到秒杀流程  *  * @param killId 秒杀商品缓存键 sessionId_skuId  * @param key    随机码 randomCode  * @param num    数量  * @return {@link R}  */ @GetMapping("/kill") public R addToSeckill(         @RequestParam("killId") String killId,         @RequestParam("key") String key,         @RequestParam("num") Integer num) {     // 实现类只是带有两个注解方法，返回 null（因为全部交给切面托管了）     String orderSn = seckillService.kill(killId, key, num);     if (StringUtils.isEmpty(orderSn)) {         return R.error();     }     return R.ok().setData(orderSn); }</code></pre> <h3 id="解决方案">解决方案</h3> <p>通过参数传递数据，通过捕获异常保证业务逻辑（离谱但有用） ????</p> <pre><code class="language-java">// 强制修改参数，通过异常返回正常流程，而通过AOP消息队列处理收尾动作 try {     return pjp.proceed(new Object[]{orderTo, null, null}); } catch (Throwable e) {     return orderSn; }</code></pre> <p>注意事项：</p> <ol> <li> <p>参数一致性：必须伪造和方法签名的<strong>数量相等</strong>的参数 ⇒ 否则线程会抛出异常 I 就返回了，无法执行<code>pjp.proceed</code> 原始方法 ⇒ 无法跳转第二个切面<br /><code>java.lang.IllegalArgumentException: Expecting 3 arguments to proceed, but was passed 1 arguments</code></p> </li> <li> <p>捕获异常不抛出，直接执行正常业务逻辑 ⇒ 否则线程将吞没异常 II<br /><code>cn.miozus.gulimall.common.to.mq.SeckillOrderTo cannot be cast to java.lang.String</code></p> </li> </ol> <p>3.虽然两个切面都返回了<code>orderSn</code> ，实际最终只有切面A传递到了控制层和前端， 切面B的返回值成了摆设。</p> <h3 id="跳转过程">跳转过程</h3> <p>打断点查看两个切面的跳转过程。</p> <p>切面A：准备跳转第二个切面</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/efb74164f89abe7e257ea98171039d08.jpg" alt="Spring AOP打通两个切面之间的通信详解"></p> <p>切面B：发送消息完成</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9845db59d43c7dc2ab69121c99b45333.jpg" alt="Spring AOP打通两个切面之间的通信详解"></p> <p>打印日志，可见场景需求，已经满足了。</p> <pre><code class="language-bash">2022-03-29 17:32:56.521  INFO 7904 --- [io-25000-exec-8] c.m.g.s.aspect.SeckillRabbitMqAspect     : 快速创建订单：发送消息创建完成: 202203291732444881508738921192005634 2022-03-29 17:33:01.526  INFO 7904 --- [io-25000-exec-8] c.m.g.s.controller.SeckillController     : 秒杀创建订单用时：28778 ???? seckill orderSn = 202203291732444881508738921192005634 2022-03-29 17:33:01.527  INFO 7904 --- [nectionFactory5] c.m.g.s.config.RabbitMqSeckillConfig     : ???? 消息已发送, params: correlationData:null,ack:true,cause:null</code></pre> <h3 id="其他方案">其他方案</h3> <p>最简单的办法，不切了，两个切面耦合在一起。注入和调用方法。</p> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-1051.htm">FeignClient参数</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1059.htm">TypeError: Cannot read properties of undefined (reading ‘state‘)</a></p>
                                                                     </div>
 
                                                             </div>
@@ -111,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
-                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
-                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
                         <li class="py-2"><a href="/html/category/article-1031.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
-                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1034.htm" title="java.sql.ResultSet">java.sql.ResultSet</a></li>
-                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
-                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1019.htm" title="网络层-IP地址详解&amp;Linux配置IP地址（centos7）">网络层-IP地址详解&amp;Linux配置IP地址（centos7）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
                         <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
-                        <li class="py-2"><a href="/html/category/article-1021.htm" title="electron-vite新一代electron开发构建工具_vue.js_">electron-vite新一代electron开发构建工具_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
                     </ul>
     </div>
 </div>
@@ -132,7 +133,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
@@ -163,7 +164,7 @@ var _hmt = _hmt || [];
                                 CambodiaAddress 版权所有 Powered by WordPress
                             </span>
                             <ul class="list-inline pull-right">
-                                                                <li><a href="/xcblog/">首页</a></li>
+                                                                <li><a href="/">首页</a></li>
                                                                 <li><a href="/html/category/">文章分类</a></li>
                                                                 <li><a href="#">关于</a></li>
                                 <li><a href="#">联系</a></li>

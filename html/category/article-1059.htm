@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-985.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1059.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>springboot数据库插入时间datetime类型的字段不对 - CambodiaAddress</title>
+    <title>TypeError: Cannot read properties of undefined (reading ‘state‘) - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>springboot数据库插入时间datetime类型的字段不对</h2>
+                                <h2>TypeError: Cannot read properties of undefined (reading ‘state‘)</h2>
                             </div>
                         </div>
                     </div>
@@ -98,10 +98,10 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>今天mybatis插入数据，有一列是datetime类型，发现代码中获取到的时间都是对的。但是插入之后时间就不对了。<br /> 需要在连接参数里加上serverTimezone=Asia/Shanghai或者是GMT%2B8<br /> GMT%2B8实际为GMT+8<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/f1825319d48603e588b1ba5ccfc97eb1.jpg" alt="springboot数据库插入时间datetime类型的字段不对"><br /> 原因<br /> 如果没有自定义设置，数据库默认使用的时区是系统时区，<br /> 当JDBC与Mysql服务器建立连接时，如果我们没有给JDBC指定时区，JDBC就会取Mysql服务器的默认时区，也就是CST，而它又把CST理解成了美国中部时间，结果就使用了美国中部时间的时区，而不是后端系统服务器的时区。</p> <p>参考资料：<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/vae1314chuanchen/article/details/81838476"  rel="nofollow">关于数据库与服务器时区的问题</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jb51.net/article/121952.htm"  rel="nofollow">mysql中url时区的陷阱该如何规避详解</a></p> </div> 			
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>写个刚好写个项目中要用到vuex在app里面挂载了一个player组件<br /> main.js里也引用了这个store文件但报了一个Error in render: "TypeError: Cannot read properties of undefined (reading ‘state’)</p> <pre><code class="prism language-js"><span class="token keyword">import</span> Store<span class="token keyword">from</span><span class="token string">'./store/index'</span><span class="token keyword">import</span> Vue<span class="token keyword">from</span><span class="token string">'vue'</span><span class="token keyword">import</span> App<span class="token keyword">from</span><span class="token string">'./App.vue'</span><span class="token keyword">import</span> router<span class="token keyword">from</span><span class="token string">'./router'</span><span class="token keyword">import</span><span class="token string">'./style/reset.css'</span><span class="token comment">// 引入重置样式</span><span class="token keyword">import</span> axios<span class="token keyword">from</span><span class="token string">'./Utils/axios'</span><span class="token keyword">import</span> VueLazyload<span class="token keyword">from</span><span class="token string">'vue-lazyload'</span><span class="token comment">// 将axios挂载到vue的原型上 组件继承实例</span> Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip<span class="token operator">=</span><span class="token boolean">false</span><span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$axios<span class="token operator">=</span> axios<span class="token comment">// 图片的懒加载</span> Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueLazyload<span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span>   preLoad<span class="token operator">:</span><span class="token number">1.3</span><span class="token punctuation">,</span>   error<span class="token operator">:</span><span class="token string">'../public/favicon.ico'</span><span class="token punctuation">,</span>   loading<span class="token operator">:</span><span class="token string">'../public/favicon.ico'</span><span class="token punctuation">,</span>   attempt<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">new</span><span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   router<span class="token punctuation">,</span>   Store<span class="token punctuation">,</span><span class="token function-variable function">render</span><span class="token operator">:</span><span class="token parameter">h</span><span class="token operator">=&gt;</span><span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span></code></pre> <p>原因是这个store大写了，具体原因不太清楚，希望有大神能告知。</p> </div> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-984.htm">JAVA Json数据转换实体对象</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-986.htm">Qt QComboBox之setEditable和currentTextChanged及其源码分析</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-1052.htm">Spring AOP打通两个切面之间的通信详解</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1060.htm">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></p>
                                                                     </div>
 
                                                             </div>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
-                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
-                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
-                        <li class="py-2"><a href="/html/category/article-1034.htm" title="java.sql.ResultSet">java.sql.ResultSet</a></li>
-                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
-                        <li class="py-2"><a href="/html/category/article-1030.htm" title="vue-element-admin模板，点击跳转到另一个页面传参">vue-element-admin模板，点击跳转到另一个页面传参</a></li>
                         <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1003.htm" title="Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控">Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控</a></li>
+                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1034.htm" title="java.sql.ResultSet">java.sql.ResultSet</a></li>
+                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
                         <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-996.htm" title="js穿梭框；将两个table中的数据选中移动">js穿梭框；将两个table中的数据选中移动</a></li>
-                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-997.htm" title="我们如何检查特定MySQL数据库的默认字符集？">我们如何检查特定MySQL数据库的默认字符集？</a></li>
                     </ul>
     </div>
 </div>
