@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-875.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1328.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>spring常用配置profile(设置不同的运行环境)使用纪要 - CambodiaAddress</title>
+    <title>vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具 - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>spring常用配置profile(设置不同的运行环境)使用纪要</h2>
+                                <h2>vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</h2>
                             </div>
                         </div>
                     </div>
@@ -98,10 +98,9 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="htmledit_views"> <pre><code class="language-Go">spring常用配置——profile（设置不同的运行环境）  作用: Profile为不同环境下使用不同的配置提供了支持（例如:开发环境,生产环境及测试环境的配置, 这其中的配置一般都是不同的。）一般通过以下几种方式来配置环境信息  解决办法:    1. 通过设定Environment的ActiveProfiles来设定当前Context需要使用的配置环境，在开发中使 用@Profile注解类或者方法，达到不同情况实例化不同的bean    2. 通过设定jvm的spring.profiles.active参数来配置环境. (例如: application-dev.properties/application-pro.properties,然后只需要在application- .properties中制定dev还是pro就可以了）    3. web项目的话，一般在servlet的context parameter中设置.   说明: 此篇博文的应用背景是第二种情况,项目中使用jvm的配置方式来配置当前的环境;</code></pre> <p><img decoding="async" alt="" height="63" src="http://img.555519.xyz/uploads/20221230/e0d8d80daca8b7da9b85e83e1ef9d56e.jpg"></p> <p><img decoding="async" alt="" height="107" src="http://img.555519.xyz/uploads/20221230/48145bc14b5843ca1fb587a08fc0d6e2.jpg"></p> </p></div> 			
+                                  				  				  				<blockquote> <p>前面两篇介绍了computed和watch的基本使用</p> </blockquote> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://lewyon.xyz/watchDetail.html"  target="_blank"  rel="nofollow">watch篇</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://lewyon.xyz/computedDetail.html"  target="_blank"  rel="nofollow">computed篇</a></li> </ul> <p>两者的区别，继续通过代码实现的方式具体去了解</p> <p><strong>html</strong></p> <pre><code>&lt;li&gt;最开始的value值：{{ name }}&lt;/li&gt; &lt;li&gt;computed计算后的值：{{ computedName }}&lt;/li&gt; &lt;li&gt; 	watch修改后的值：{{ watchName }} 	&lt;input type="text" v-model="watchName" /&gt; &lt;/li&gt; &lt;li&gt;&lt;button @click="handleNumber"&gt;修改名字&lt;/button&gt;&lt;/li&gt; </code></pre> <p><strong>JS</strong></p> <pre><code>data() { 	return { 		name: "zhangsan", 		watchName: "张三", 	}; }, watch: { 	watchName(newVal, oldVal) { 		console.log("旧的值----&gt;", newVal); 		console.log("新的值----&gt;", oldVal); 		console.log("watch下所有的状态都会监听this.name----&gt;", this.name); 		console.log( 			"watch下所有的状态都会监听this.computedName----&gt;", 			this.computedName 		); 		this.watchName = newVal; 	}, }, computed: { 	computedName: function (currentThis) { 		console.log( 			"和计算属性无关的状态发生更改时,不会执行，只要依赖的状态发生更改，缓存才会更新", 			currentThis 		); 		return `依赖于name，：${this.name}`; 	}, }, methods: { 	handleNumber() { 		this.name = "lisi"; 	}, }, </code></pre> <h3 id="区别"><strong>区别</strong></h3> <p><strong>依赖值：</strong> computed依赖于所使用的状态，类似在data中声明的name,<br /> 而watch中监听的值不依赖于某个值，只要组件状态发生更改，监听的值就实时获取最新值,<br /> computed的实现使用的是getter和setter获取值，属于同步操作。</p> <p><strong>使用方法：</strong></p> <ul> <li>computed最后需要进行return处理返回值，并且可以使用更深层次的getter和setter，具体参考<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://note.youdao.com/"  target="_blank"  rel="nofollow">computed篇</a> </li> <li>watch除了callback回调函数外，还有两个属性值为布尔值的属性，用于首次绑定immediate，以及对对象的深度监听deep</li> <li>两者相同点就是可以通过方法参数获取新值，结合其他状态处理相关的业务</li> </ul> <hr> <h3 id="补充">**补充##</h3> <p>在官方文档中，除了在组件中使用的watch外，官方文档中，还有对于示例中watch的介绍</p> <p>具体用法可以在官网中：</p> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://cn.vuejs.org/v2/api/#vm-watch"  target="_blank"  rel="nofollow">https://cn.vuejs.org/v2/api/#vm-watch</a></p> </blockquote> <p><strong>$watch基础使用--来自官方文档例子</strong></p> <p>官方文档提示：</p> <blockquote> <p>注意：在变更 (不是替换) 对象或数组时，旧值将与新值相同，因为它们的引用指向同一个对象/数组。Vue 不会保留变更之前值的副本。</p> </blockquote> <pre><code>vm.$watch('a.b.c', function (newVal, oldVal) {   // 做点什么 })  // 函数 vm.$watch(   function () {     // 表达式 `this.a + this.b` 每次得出一个不同的结果时     // 处理函数都会被调用。     // 这就像监听一个未被定义的计算属性     return this.a + this.b   },   function (newVal, oldVal) {     // 做点什么   } )   </code></pre> <p>需要注意的是，如果使用vm.$watch，那么使用unwatch有助于我们取消对某个状态的监听，减少不必要的监听和交互开销</p> <pre><code>var unwatch = vm.$watch('a', cb) // 之后取消观察 unwatch() </code></pre> <hr> <h3 id="结尾"><strong>结尾</strong></h3> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://note.youdao.com/"  target="_blank"  rel="nofollow">watch篇</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://note.youdao.com/"  target="_blank"  rel="nofollow">computed篇</a></li> </ul> <p>花了三个篇幅去介绍watch和computed的使用方法，以及这两个钩子函数的区别，在实际的企业项目开发中，使用的场景和次数较多，所以尽量写的稍微详细一些，同时也将笔记的代码放在了开源仓库，希望对大家在开发vue2.x的项目中有所帮助</p> <ul> <li> <h5 id="码云-httpsgiteecomlewyonvue-note"> <strong>码云</strong> <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/lewyon/vue-note"  target="_blank"  rel="nofollow">https://gitee.com/lewyon/vue-note</a><br /> </h5> </li> <li> <h5 id="githup-httpsgithubcomakari16vue-note"> <strong>githup</strong> <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/akari16/vue-note"  target="_blank"  rel="nofollow">https://github.com/akari16/vue-note</a><br /> </h5> </li> </ul> <p>文章个人博客地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://lewyon.xyz/computedWatch.html"  target="_blank"  rel="nofollow">vue2.x版本中computed和watch的使用入门详解-关联和区别</a></p> <p>欢迎关注公众号：程序猿布欧，不定期更新一些前端入门文章</p> <p>创作不易，转载请注明出处和作者。</p> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-874.htm">.NET 程序读取当前目录避坑指南</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-876.htm">Spring Boot拦截器示例及源码原理分析</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-1327.htm">java-websocket断线重连</a></p>
                                                                     </div>
 
                                                             </div>
@@ -112,16 +111,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
+                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
                         <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
-                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
-                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
-                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
-                        <li class="py-2"><a href="/html/category/article-1002.htm" title="前端【参考】文字过长显示省略号">前端【参考】文字过长显示省略号</a></li>
-                        <li class="py-2"><a href="/html/category/article-1059.htm" title="TypeError: Cannot read properties of undefined (reading ‘state‘)">TypeError: Cannot read properties of undefined (reading ‘state‘)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
-                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
-                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1011.htm" title="常见 几种 git操作代码回退的方法">常见 几种 git操作代码回退的方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-999.htm" title="mybatis各种查询功能4 &#8211; 查询以及返回单个map集合">mybatis各种查询功能4 &#8211; 查询以及返回单个map集合</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
                     </ul>
     </div>
 </div>
