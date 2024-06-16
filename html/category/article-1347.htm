@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-857.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1347.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Parquet文件格式解析 - CambodiaAddress</title>
+    <title>VUE3setup响应式函数系统API详解 - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>Parquet文件格式解析</h2>
+                                <h2>VUE3setup响应式函数系统API详解</h2>
                             </div>
                         </div>
                     </div>
@@ -98,10 +98,10 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="htmledit_views"> <h1> 介绍</h1> <p> Parquet是目前比较流行的大数据文件列存储格式，主流的大数据计算框架都对其有良好的支持，包括spark,hive,impala等。相对于传统的行存储模式，列存储主要有以下优点：</p> <p>可以跳过不符合条件的数据，只读取需要的数据，降低IO数据量。<br /> 压缩编码可以降低磁盘存储空间。由于同一列的数据类型是一样的，可以使用更高效的压缩编码（例如Run Length Encoding和Delta Encoding）进一步节约存储空间。<br /> 只读取需要的列，支持向量运算，能够获取更好的扫描性能。<br /> 相对于其它的列式存储格式，例如ORC,Parquet主要优势在于支持更为广泛，且对嵌套数据的支持更好。详细的比较可以参考</p> <p>http://dongxicheng.org/mapreduce-nextgen/columnar-storage-parquet-and-orc/</p> <h1>主要概念</h1> <ul> <li>Parquet文件是以二进制方式存储的，不能直接读取和修改，文件中包括该文件的数据和schema（自解析，可以理解为类似JSON）</li> <li>行组(Row Group)：按照行将数据物理上划分为多个单元，每一个行组包含一定的行数，Row group是数据读写时候的缓存单元，Parquet读写的时候会将整个行组缓存在内存中；</li> <li>列块(Column Chunk)：列块负责存储一个行组中某一列的数据，行组中的所有列连续的存储在这个行组文件中。不同的列块可能使用不同的算法进行压缩。</li> <li>页(Page)：每一个列块又划分为多个页，Page是压缩和编码的最小单元，对数据模型来说是透明的，在同一个列块的不同页可能使用不同的编码方式。</li> </ul> <h1>性能调优</h1> <p> 如果采用HDFS文件系统，影响Parquet文件读写性能的参数主要有两个，dfs.blocksize和parquet.block.size</p> <ul> <li>dfs.blocksize: 控制HDFS file中每个block的大小，该参数主要影响计算任务的并行度，例如在spark中，一个map操作的默认分区数=（输入文件的大小/dfs.block.size）*输入的文件数（分区数等于该操作产生的任务数），如果dfs.block.size设置过大或过小，都会导致生成的Task数量不合理，因此应根据实际计算所涉及的输入文件大小以及executor数量决定何时的值。</li> <li>parquet.block.size 控制parquet的Row Group大小，一般情况下较大的值可以组织更大的连续存储的Column Chunk，有利于提升I/O性能，但上面也提到Row group是数据读写时候的缓存单元，每个需要读写的parquet文件都需要在内存中占据Row Group size设置的内存空间（读取的情况，由于可能跳过部分列，占据的内存会小于Row Group size），这样更大的Row Group size意味着更多的内存开销。同时设置该值时还需要考虑dfs.blocksize的值，尽量让Row Group size等同于HDFS一个block的大小，因为单个Row Group必须在一个计算任务中被处理，如果一个Row Group跨越了多个hdfs block可能会导致额外的远程数据读取。一般推荐的参数一个Row group大小1G，一个HDFS块大小1G，一个HDFS文件只含有一个块。</li> </ul> <p>在Spark中可以使用如下方式修改默认配置参数：</p> <pre><code>val ONE_GB = 1024 * 1024 * 1024  sc.hadoopConfiguration.setInt("dfs.blocksize", ONE_GB)  sc.hadoopConfiguration.setInt("parquet.block.size", ONE_GB)</code></pre> <p> 参考资料<br /> http://ingest.tips/2015/01/31/parquet-row-group-size</p> <p>http://www.infoq.com/cn/articles/in-depth-analysis-of-parquet-column-storage-format</p> </div> 			
+                                  				  				  				<div id="content_views" class="htmledit_views"> <blockquote> <p>Vue3.0提供的一组具有响应式特性的杉树式API，以函数的形式提供<br /> 1、reactive<br /> reactive（）函数接收一个普通对象，返回该普通对象的响应式代理对象<br /> 2、ref<br /> ref（）函数接收一个参数值，返回一个响应式的数据对象。该对象只包含一个指向内部值的.value属性<br /> 3、computed<br /> computed（）函数用来创建计算属性，函数的返回值是一个ref的实例<br /> 4、readonly</p> <p>readonly（）函数接收一个对象（普通或者响应式），返回一个原始对象只读代理对象<br /> 5、watch<br /> watch（）函数用来监听数据的变化，从而出发特定的操作<br /> 6、watchEffect<br /> watchEffect（）函数接收一个函数作为参数，并立即执行该函数，同时响应式追踪其依赖，并在其依赖变更时，重新运行该函数。</p> </blockquote> <p>&nbsp;reactive.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt; 		&lt;p&gt;{<!-- -->{name}}&lt;/p&gt; 		&lt;button @click="name='juju'"&gt;修改name&lt;/button&gt; 	&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	//1、导入reactive响应函数 	import { reactive } from 'vue' 	export default{ 		setup(){ 			//2、创建响应式对象，是一个代理对象 			const data=reactive({ 				name:'htt', 				age:22 			}) 			 			return data 		} 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>ref.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt; 		&lt;!-- 在模板中访问时，无需通过value属性,它会自动展开 --&gt; 		&lt;p&gt;{<!-- -->{ num }}&lt;/p&gt; 		&lt;button @click="change"&gt;修改count&lt;/button&gt; 	&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	//导入ref函数 	import {ref} from 'vue' 	export default{ 		setup(){ 			//创建响应对象 			const num=ref(1) 			console.log(num.value) 			 			const change=()=&gt;{ 				num.value=5 			} 			//setup导出数据都要return，可以是函数，也可以是数据 			return { 				num, 				change 			} 		}, 		//以后经常使用的就是setup，不是data 		data(){ 			return{ 				 			} 		} 		 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>computed.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt; 		&lt;p&gt;{<!-- -->{hg}}&lt;/p&gt; 		&lt;p&gt;{<!-- -->{ss}}&lt;/p&gt; 	&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	import {computed,ref} from 'vue' 	export default{ 		setup(){ 			const hg=ref(1) 			 			//创建一个只读的计算属性 			const ss=computed(()=&gt;{ 				return hg.value+1 			}) 			 			//创建一个可读可写的计算属性 			const pk=computed({ 				get(){ 					return hg.value+1 				}, 				set(hg){ 					hg.value=hg 				} 			}) 			return { 				hg, 				ss, 				pk 			} 		} 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>readonly.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	import {reactive,readonly} from 'vue' 	export default{ 		setup(){ 			const obj =reactive({conunt:1}) 			 			//代理了响应式对象 			const proxy=readonly(obj) 			 			console.log(obj) 			console.log(proxy) 			//代理只读对象是不允许修改的 			//修改原始对象时代理对象也会响应式变化 		} 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>watch.vue和watchEffect.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt; 		&lt;!-- 点击之后就停止监视 --&gt; 		&lt;button @click="unwatch"&gt;停止监视&lt;/button&gt; 	&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	import {watch,reactive} from 'vue' 	export default{ 		setup(){ 			const state=reactive({count:1}) 			 			 		//监视数据的变化,会返回一个用于取消监视的函数 		//当数据发生改变擦会启动监视，不会立即启动监视 		// const unwatch=watch(() =&gt; 		// 	state.count,(oldValue,newValue)=&gt;{ 		// 	console.log(oldValue,newValue) 		// }) 		//先立即执行传入的函数 		//当函数内依赖的数据发生变化时会再次执行函数 		watchEffect(()=&gt;{ 			console.log(state.count) 		}) 		 		return { 			state, 			unwatch 		} 			 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>App.vue</p> <pre><code> &lt;template&gt; 	&lt;!-- &lt;comp-setup msg="welcome"&gt; 		 	&lt;/comp-setup&gt; --&gt; 	&lt;comp-reactive&gt;&lt;/comp-reactive&gt; 	&lt;comp-ref&gt;&lt;/comp-ref&gt; 	&lt;comp-computed&gt;&lt;/comp-computed&gt; 	&lt;comp-reonly&gt;&lt;/comp-reonly&gt; 	&lt;comp-watch&gt;&lt;/comp-watch&gt; &lt;/template&gt;  &lt;script&gt; /*eslint no-mixed-spaces-and-tabs: ["error", "smart-tabs"]*/ // import CompSetup from './components/setupview' import CompReactive from './components/reactive.vue' import CompRef from './components/ref.vue' import CompComputed from './components/compud.vue' import CompReonly from './components/reonly.vue' import CompWatch from './components/watch.vue' export default {   name: 'App',   components: { 	  // CompSetup, 	  CompReactive, 	  CompRef, 	  CompComputed, 	  CompReonly, 	  CompWatch,   } } &lt;/script&gt;  &lt;style&gt;  &lt;/style&gt;</code></pre> </div> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-856.htm">@RequestBody总结相关</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-858.htm">PowerBI开发：用自然语言来探索数据&#8211;Q&amp;A</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-1338.htm">Kafka启动后进程过一段时间自己消失，问题解决</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1348.htm">PostMan传参给@RequestBody（接受前端参数）的方式</a></p>
                                                                     </div>
 
                                                             </div>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
-                        <li class="py-2"><a href="/html/category/article-1012.htm" title="【ASP.NET Core】自己编程来生成自签名的服务器证书">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></li>
-                        <li class="py-2"><a href="/html/category/article-1337.htm" title="机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
-                        <li class="py-2"><a href="/html/category/article-1327.htm" title="java-websocket断线重连">java-websocket断线重连</a></li>
-                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
-                        <li class="py-2"><a href="/html/category/article-1019.htm" title="网络层-IP地址详解&amp;Linux配置IP地址（centos7）">网络层-IP地址详解&amp;Linux配置IP地址（centos7）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
-                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
-                        <li class="py-2"><a href="/html/category/article-1347.htm" title="VUE3setup响应式函数系统API详解">VUE3setup响应式函数系统API详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1348.htm" title="PostMan传参给@RequestBody（接受前端参数）的方式">PostMan传参给@RequestBody（接受前端参数）的方式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
                     </ul>
     </div>
 </div>

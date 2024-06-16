@@ -101,6 +101,7 @@ var _hmt = _hmt || [];
                                   				  				  				<div id="content_views" class="htmledit_views"> <p>我的Kafka有三个节点，启动kafka后进程过一段时间后会自己消失。解决问题思路如下：</p> <p>由于kafka依赖于zookeeper，启动后要去zookeeper中注册，</p> <pre class="has"><code>启动kafka时：先启动zookeeper，保证zookeeper服务正常后，后再启动Kafka。  关闭Kafka时：先关闭kafka，再关闭zookeeper。</code></pre> <p>保证启动和停止无误后，如果kafka启动后，kafka进程过一段时间后消失,解决思路如下：</p> <p><strong>1.删除Kafka的logs，注意这个logs的目录指的是你Kafka的server.properties配置文件</strong></p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="299" src="http://img.555519.xyz/uploads3/20220820/29f6ca0fcbb4b62bbb83f15883ccca5c.jpg"></p> <p><strong>2.进入zookeeper客户端删除brokerid</strong></p> <pre class="has"><code>/opt/module/zookeeper-3.4.10/bin/zkCli.sh</code></pre> <p><img decoding="async" alt="" class="has" height="193" src="http://img.555519.xyz/uploads3/20220820/8d3893f2e0afd4dcab63cad69e21a807.jpg"></p> <p>执行删除brokerid</p> <pre class="has"><code>[zk: localhost:2181(CONNECTED) 3] rmr /brokers</code></pre> <p><strong>3. 然后启动zookeeper，再启动Kafka就恢复正常</strong></p> </div> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-1337.htm">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1347.htm">VUE3setup响应式函数系统API详解</a></p>
                                                                     </div>
 
                                                             </div>
@@ -111,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
-                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
-                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
-                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
-                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1029.htm" title="python连接数据库并执行SQL语句">python连接数据库并执行SQL语句</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1338.htm" title="Kafka启动后进程过一段时间自己消失，问题解决">Kafka启动后进程过一段时间自己消失，问题解决</a></li>
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
                         <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
-                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
                         <li class="py-2"><a href="/html/category/article-1010.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
-                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
                     </ul>
     </div>
 </div>
@@ -132,7 +133,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+                <h4><span class="badge" style="float: right;">32</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>

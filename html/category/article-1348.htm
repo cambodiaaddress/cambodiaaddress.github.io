@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-857.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1348.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Parquet文件格式解析 - CambodiaAddress</title>
+    <title>PostMan传参给@RequestBody（接受前端参数）的方式 - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>Parquet文件格式解析</h2>
+                                <h2>PostMan传参给@RequestBody（接受前端参数）的方式</h2>
                             </div>
                         </div>
                     </div>
@@ -98,10 +98,9 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="htmledit_views"> <h1> 介绍</h1> <p> Parquet是目前比较流行的大数据文件列存储格式，主流的大数据计算框架都对其有良好的支持，包括spark,hive,impala等。相对于传统的行存储模式，列存储主要有以下优点：</p> <p>可以跳过不符合条件的数据，只读取需要的数据，降低IO数据量。<br /> 压缩编码可以降低磁盘存储空间。由于同一列的数据类型是一样的，可以使用更高效的压缩编码（例如Run Length Encoding和Delta Encoding）进一步节约存储空间。<br /> 只读取需要的列，支持向量运算，能够获取更好的扫描性能。<br /> 相对于其它的列式存储格式，例如ORC,Parquet主要优势在于支持更为广泛，且对嵌套数据的支持更好。详细的比较可以参考</p> <p>http://dongxicheng.org/mapreduce-nextgen/columnar-storage-parquet-and-orc/</p> <h1>主要概念</h1> <ul> <li>Parquet文件是以二进制方式存储的，不能直接读取和修改，文件中包括该文件的数据和schema（自解析，可以理解为类似JSON）</li> <li>行组(Row Group)：按照行将数据物理上划分为多个单元，每一个行组包含一定的行数，Row group是数据读写时候的缓存单元，Parquet读写的时候会将整个行组缓存在内存中；</li> <li>列块(Column Chunk)：列块负责存储一个行组中某一列的数据，行组中的所有列连续的存储在这个行组文件中。不同的列块可能使用不同的算法进行压缩。</li> <li>页(Page)：每一个列块又划分为多个页，Page是压缩和编码的最小单元，对数据模型来说是透明的，在同一个列块的不同页可能使用不同的编码方式。</li> </ul> <h1>性能调优</h1> <p> 如果采用HDFS文件系统，影响Parquet文件读写性能的参数主要有两个，dfs.blocksize和parquet.block.size</p> <ul> <li>dfs.blocksize: 控制HDFS file中每个block的大小，该参数主要影响计算任务的并行度，例如在spark中，一个map操作的默认分区数=（输入文件的大小/dfs.block.size）*输入的文件数（分区数等于该操作产生的任务数），如果dfs.block.size设置过大或过小，都会导致生成的Task数量不合理，因此应根据实际计算所涉及的输入文件大小以及executor数量决定何时的值。</li> <li>parquet.block.size 控制parquet的Row Group大小，一般情况下较大的值可以组织更大的连续存储的Column Chunk，有利于提升I/O性能，但上面也提到Row group是数据读写时候的缓存单元，每个需要读写的parquet文件都需要在内存中占据Row Group size设置的内存空间（读取的情况，由于可能跳过部分列，占据的内存会小于Row Group size），这样更大的Row Group size意味着更多的内存开销。同时设置该值时还需要考虑dfs.blocksize的值，尽量让Row Group size等同于HDFS一个block的大小，因为单个Row Group必须在一个计算任务中被处理，如果一个Row Group跨越了多个hdfs block可能会导致额外的远程数据读取。一般推荐的参数一个Row group大小1G，一个HDFS块大小1G，一个HDFS文件只含有一个块。</li> </ul> <p>在Spark中可以使用如下方式修改默认配置参数：</p> <pre><code>val ONE_GB = 1024 * 1024 * 1024  sc.hadoopConfiguration.setInt("dfs.blocksize", ONE_GB)  sc.hadoopConfiguration.setInt("parquet.block.size", ONE_GB)</code></pre> <p> 参考资料<br /> http://ingest.tips/2015/01/31/parquet-row-group-size</p> <p>http://www.infoq.com/cn/articles/in-depth-analysis-of-parquet-column-storage-format</p> </div> 			
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p>今天新接手一个项目框架，需要改造，但后台写好方法，准备用postman 测试时候，发现用以前传参方式不行，需要<strong>需要将json字符串转成json对象：</strong></p> <p><strong>先上图吧,第一张：一般传参方式：</strong></p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="267" src="http://img.555519.xyz/uploads/20230108/255b36e9f1e786c2ee155d85965366d3.jpg"></p> <p><strong>更改传参方式后，可以传参接受了：直接上图吧：</strong></p> <p><img decoding="async" alt="" class="has" height="523" src="http://img.555519.xyz/uploads/20230108/39cf99aa10534ab7713632c019001d64.jpg"></p> <p>注意箭头指的地方，参数格式转换成这样的就行。</p> <p>顺便上下后台controller接参数形式：</p> <p><img decoding="async" alt="" class="has" height="74" src="http://img.555519.xyz/uploads/20230108/5e3a3705d3b08f2f3c8fa610e7b711f7.jpg"></p> <p>&nbsp;</p> </p></div> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-856.htm">@RequestBody总结相关</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-858.htm">PowerBI开发：用自然语言来探索数据&#8211;Q&amp;A</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-1347.htm">VUE3setup响应式函数系统API详解</a></p>
                                                                     </div>
 
                                                             </div>
@@ -112,16 +111,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
-                        <li class="py-2"><a href="/html/category/article-1012.htm" title="【ASP.NET Core】自己编程来生成自签名的服务器证书">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></li>
-                        <li class="py-2"><a href="/html/category/article-1337.htm" title="机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
                         <li class="py-2"><a href="/html/category/article-1327.htm" title="java-websocket断线重连">java-websocket断线重连</a></li>
-                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
-                        <li class="py-2"><a href="/html/category/article-1019.htm" title="网络层-IP地址详解&amp;Linux配置IP地址（centos7）">网络层-IP地址详解&amp;Linux配置IP地址（centos7）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                        <li class="py-2"><a href="/html/category/article-1031.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
                         <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
-                        <li class="py-2"><a href="/html/category/article-1347.htm" title="VUE3setup响应式函数系统API详解">VUE3setup响应式函数系统API详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1001.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1022.htm" title="微信小程序｜小程序自定义底部导航栏">微信小程序｜小程序自定义底部导航栏</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
                     </ul>
     </div>
 </div>
