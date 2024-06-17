@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-875.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1358.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>spring常用配置profile(设置不同的运行环境)使用纪要 - CambodiaAddress</title>
+    <title>Logback及其MDC功能详解 - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>spring常用配置profile(设置不同的运行环境)使用纪要</h2>
+                                <h2>Logback及其MDC功能详解</h2>
                             </div>
                         </div>
                     </div>
@@ -98,10 +98,9 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="htmledit_views"> <pre><code class="language-Go">spring常用配置——profile（设置不同的运行环境）  作用: Profile为不同环境下使用不同的配置提供了支持（例如:开发环境,生产环境及测试环境的配置, 这其中的配置一般都是不同的。）一般通过以下几种方式来配置环境信息  解决办法:    1. 通过设定Environment的ActiveProfiles来设定当前Context需要使用的配置环境，在开发中使 用@Profile注解类或者方法，达到不同情况实例化不同的bean    2. 通过设定jvm的spring.profiles.active参数来配置环境. (例如: application-dev.properties/application-pro.properties,然后只需要在application- .properties中制定dev还是pro就可以了）    3. web项目的话，一般在servlet的context parameter中设置.   说明: 此篇博文的应用背景是第二种情况,项目中使用jvm的配置方式来配置当前的环境;</code></pre> <p><img decoding="async" alt="" height="63" src="http://img.555519.xyz/uploads/20221230/e0d8d80daca8b7da9b85e83e1ef9d56e.jpg"></p> <p><img decoding="async" alt="" height="107" src="http://img.555519.xyz/uploads/20221230/48145bc14b5843ca1fb587a08fc0d6e2.jpg"></p> </p></div> 			
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p>Logback日志系统是SLF4J的原生实现。同时，Logback也是Log4j的继任者，补全了Log4j的不足。</p> <p>1.&nbsp;Logback的模块组成</p> <ul> <li>logback-core，其他模块的功能基础</li> <li>logback-classic</li> </ul> <p>可以看作Log4j的增强版实现。<br /> 实现了SLF4J API，能够在部署的时候提供给应用日志功能。</p> <ul> <li>logback-access</li> </ul> <p>集成了Servlet容器（Tomcat,Jetty），提供以HTTP方式访问日志的功能。</p> <p>2. Logback在Maven项目中的应用</p> <p>在应用中使用兼容SLF4J的日志系统，无需在构建时依赖任何具体的日志系统，而只需要依赖SLF4J API，POM配置示例如下：</p> <pre class="has"><code>&lt;dependency&gt;   &lt;groupId&gt;org.slf4j&lt;/groupId&gt;   &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;   &lt;version&gt;1.7.9&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>而对于实际部署时使用的日志系统，无需在POM中配置，只需将日志系统的jar文件置于应用部署环境的classpath中即可。</p> <p>但是为了部署方便，可以直接在POM中给出对日志系统的依赖。例如，应用中使用Logback日志系统，配置POM如下即可：</p> <pre class="has"><code>&lt;dependency&gt;   &lt;groupId&gt;org.slf4j&lt;/groupId&gt;   &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;   &lt;version&gt;1.7.9&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt;   &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;   &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;   &lt;version&gt;1.2.3&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>3.&nbsp;Logback的MDC功能概述</p> <p>Logback的设计目标就是审计、调试复杂的分布式应用。</p> <p>在分布式应用中，为了区分不同客户端的日志输出，往往为每个客户端实例化一个单独的logger。但是这样将导致大量日志的产生，而且增加了日志管理的负担。</p> <p>为此，Logback采用了更轻量级的技术，为一个客户端的每一个日志请求打上唯一识别的时间戳，而这是通过SLF4J的MDC实现的。为了给每个日志请求打上唯一识别的时间戳，必须利用请求的上下文信息，即将请求的上下文信息装入MDC，并在需要的时候被Logback的日志组件提取。</p> <p>4.&nbsp;Logback的MDC功能实现</p> <p>Logback是在logback-classic模块中实现了SLF4J的MDC功能。</p> <p>MDC中管理的数据（简称MDC数据）是以单个线程为单位进行访问的，即对MDC数据的操作（如put, get）只对当前线程有效，所以也永远是线程安全的。<br /> 在服务端，为每个请求分配一个线程进行处理，所以每个服务端线程处理的请求，都具有唯一的MDC上下文数据。</p> <p>子线程不会自动继承父线程的MDC数据。所以在创建子线程时，可以先调用MDC的getCopyOfContextMap()方法以返回一个Map&lt;String, String&gt;对象，从而获取父线程的MDC数据，然后再在子线程的开始处，最先调用MDC的setContextMap()方法为子线程设置父线程的MDC数据。从而能够在子线程中访问父线程的MDC数据。</p> <p>在使用java.util.concurrent.Executors管理线程时，使用同样的方法让子线程继承主线程的MDC数据。</p> <p>但是，在Web应用中，一个请求可能在不同的阶段被多个线程处理。这时，只是在服务端的处理线程中设置MDC数据，并不能保证请求的某些信息（如用户的认证信息等）总是能够被处理线程访问到。为了在处理一个请求时能够保证某些信息总是可访问，建议使用Servlet Filter，在请求到来时就将信息装入到MDC中，在完成所有的后续处理后，再次通过过滤器时将MDC数据移除。</p> <pre class="has"><code>		public class MyFilter implements Filter { 			public void doFilter(ServletRequest request, ServletResponse response, 				FilterChain chain) throws IOException, ServletException { 				... 				MDC.put(MY_KEY, myValue); 				... 			    try { 				  chain.doFilter(request, response); 				} finally { 				  if (MDC.contains(MY_KEY)) { 					MDC.remove(MY_KEY); 				  } 				}</code></pre> <p> Logback自带的ch.qos.logback.classic.helpers.MDCInsertingServletFilter能够将HTTP请求的hostname, request URI, user-agent等信息装入MDC，只需在web.xml中设置（建议MDCInsertingServletFilter作为第一个Filter配置，原因请读者思考），后续处理过程就可以直接访问如下请求参数的值：</p> <ul> <li>req.remoteHost</li> <li>req.xForwardedFor</li> <li>req.method</li> <li>req.requestURI</li> <li>req.requestURL</li> <li>req.queryString</li> <li>req.userAgent</li> </ul> <p>参考链接：</p> <p>&nbsp;&nbsp; &nbsp;https://logback.qos.ch/index.html<br /> &nbsp;&nbsp; &nbsp;http://logback.qos.ch/manual/mdc.html</p> </div> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-874.htm">.NET 程序读取当前目录避坑指南</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-876.htm">Spring Boot拦截器示例及源码原理分析</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-1357.htm">pandas读取csv文件时报错的解决方式，你get到了吗？</a></p>
                                                                     </div>
 
                                                             </div>
@@ -112,16 +111,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
-                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
-                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
-                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-1004.htm" title="微服务架构概述(帝炎)">微服务架构概述(帝炎)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-1358.htm" title="Logback及其MDC功能详解">Logback及其MDC功能详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
                         <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
-                        <li class="py-2"><a href="/html/category/article-1059.htm" title="TypeError: Cannot read properties of undefined (reading ‘state‘)">TypeError: Cannot read properties of undefined (reading ‘state‘)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1031.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
                     </ul>
     </div>
 </div>
