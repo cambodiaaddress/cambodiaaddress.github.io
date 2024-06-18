@@ -101,6 +101,7 @@ var _hmt = _hmt || [];
                                   				  				  				<div id="content_views" class="htmledit_views"> <p>Logback日志系统是SLF4J的原生实现。同时，Logback也是Log4j的继任者，补全了Log4j的不足。</p> <p>1.&nbsp;Logback的模块组成</p> <ul> <li>logback-core，其他模块的功能基础</li> <li>logback-classic</li> </ul> <p>可以看作Log4j的增强版实现。<br /> 实现了SLF4J API，能够在部署的时候提供给应用日志功能。</p> <ul> <li>logback-access</li> </ul> <p>集成了Servlet容器（Tomcat,Jetty），提供以HTTP方式访问日志的功能。</p> <p>2. Logback在Maven项目中的应用</p> <p>在应用中使用兼容SLF4J的日志系统，无需在构建时依赖任何具体的日志系统，而只需要依赖SLF4J API，POM配置示例如下：</p> <pre class="has"><code>&lt;dependency&gt;   &lt;groupId&gt;org.slf4j&lt;/groupId&gt;   &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;   &lt;version&gt;1.7.9&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>而对于实际部署时使用的日志系统，无需在POM中配置，只需将日志系统的jar文件置于应用部署环境的classpath中即可。</p> <p>但是为了部署方便，可以直接在POM中给出对日志系统的依赖。例如，应用中使用Logback日志系统，配置POM如下即可：</p> <pre class="has"><code>&lt;dependency&gt;   &lt;groupId&gt;org.slf4j&lt;/groupId&gt;   &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;   &lt;version&gt;1.7.9&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt;   &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;   &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;   &lt;version&gt;1.2.3&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>3.&nbsp;Logback的MDC功能概述</p> <p>Logback的设计目标就是审计、调试复杂的分布式应用。</p> <p>在分布式应用中，为了区分不同客户端的日志输出，往往为每个客户端实例化一个单独的logger。但是这样将导致大量日志的产生，而且增加了日志管理的负担。</p> <p>为此，Logback采用了更轻量级的技术，为一个客户端的每一个日志请求打上唯一识别的时间戳，而这是通过SLF4J的MDC实现的。为了给每个日志请求打上唯一识别的时间戳，必须利用请求的上下文信息，即将请求的上下文信息装入MDC，并在需要的时候被Logback的日志组件提取。</p> <p>4.&nbsp;Logback的MDC功能实现</p> <p>Logback是在logback-classic模块中实现了SLF4J的MDC功能。</p> <p>MDC中管理的数据（简称MDC数据）是以单个线程为单位进行访问的，即对MDC数据的操作（如put, get）只对当前线程有效，所以也永远是线程安全的。<br /> 在服务端，为每个请求分配一个线程进行处理，所以每个服务端线程处理的请求，都具有唯一的MDC上下文数据。</p> <p>子线程不会自动继承父线程的MDC数据。所以在创建子线程时，可以先调用MDC的getCopyOfContextMap()方法以返回一个Map&lt;String, String&gt;对象，从而获取父线程的MDC数据，然后再在子线程的开始处，最先调用MDC的setContextMap()方法为子线程设置父线程的MDC数据。从而能够在子线程中访问父线程的MDC数据。</p> <p>在使用java.util.concurrent.Executors管理线程时，使用同样的方法让子线程继承主线程的MDC数据。</p> <p>但是，在Web应用中，一个请求可能在不同的阶段被多个线程处理。这时，只是在服务端的处理线程中设置MDC数据，并不能保证请求的某些信息（如用户的认证信息等）总是能够被处理线程访问到。为了在处理一个请求时能够保证某些信息总是可访问，建议使用Servlet Filter，在请求到来时就将信息装入到MDC中，在完成所有的后续处理后，再次通过过滤器时将MDC数据移除。</p> <pre class="has"><code>		public class MyFilter implements Filter { 			public void doFilter(ServletRequest request, ServletResponse response, 				FilterChain chain) throws IOException, ServletException { 				... 				MDC.put(MY_KEY, myValue); 				... 			    try { 				  chain.doFilter(request, response); 				} finally { 				  if (MDC.contains(MY_KEY)) { 					MDC.remove(MY_KEY); 				  } 				}</code></pre> <p> Logback自带的ch.qos.logback.classic.helpers.MDCInsertingServletFilter能够将HTTP请求的hostname, request URI, user-agent等信息装入MDC，只需在web.xml中设置（建议MDCInsertingServletFilter作为第一个Filter配置，原因请读者思考），后续处理过程就可以直接访问如下请求参数的值：</p> <ul> <li>req.remoteHost</li> <li>req.xForwardedFor</li> <li>req.method</li> <li>req.requestURI</li> <li>req.requestURL</li> <li>req.queryString</li> <li>req.userAgent</li> </ul> <p>参考链接：</p> <p>&nbsp;&nbsp; &nbsp;https://logback.qos.ch/index.html<br /> &nbsp;&nbsp; &nbsp;http://logback.qos.ch/manual/mdc.html</p> </div> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-1357.htm">pandas读取csv文件时报错的解决方式，你get到了吗？</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1635.htm">Vue.js 3.x 中跨层级组件如何传递数据？_在线工具</a></p>
                                                                     </div>
 
                                                             </div>
@@ -111,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1358.htm" title="Logback及其MDC功能详解">Logback及其MDC功能详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1020.htm" title="FreeRTOS使用任务通知实现命令行解释器_操作系统">FreeRTOS使用任务通知实现命令行解释器_操作系统</a></li>
-                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
-                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
-                        <li class="py-2"><a href="/html/category/article-1008.htm" title="SpringBoot 实现前后端分离的跨域访问（CORS）">SpringBoot 实现前后端分离的跨域访问（CORS）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
-                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
-                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
+                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1019.htm" title="网络层-IP地址详解&amp;Linux配置IP地址（centos7）">网络层-IP地址详解&amp;Linux配置IP地址（centos7）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1636.htm" title="模型的威力：基于模型，快速梳理源码_在线工具">模型的威力：基于模型，快速梳理源码_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
                     </ul>
     </div>
 </div>
@@ -132,7 +133,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+                <h4><span class="badge" style="float: right;">36</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>

@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-973.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1635.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>PHP 关联数组详解 - CambodiaAddress</title>
+    <title>Vue.js 3.x 中跨层级组件如何传递数据？_在线工具 - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>PHP 关联数组详解</h2>
+                                <h2>Vue.js 3.x 中跨层级组件如何传递数据？_在线工具</h2>
                             </div>
                         </div>
                     </div>
@@ -98,10 +98,10 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<h2>定义和用法</h2> <p>在PHP中，<strong>数组</strong>是<strong>键=&gt;值</strong>对的逗号分隔集合。这样的数组称为<strong>关联数组</strong>，其中值与唯一键相关联。关键部分必须是字符串或整数，而value可以是任何类型，甚至是另一个数组。</p> <p>键的使用是可选的。如果数组仅由值组成，则它将成为索引数组，其中基于零的位置值索引将充当键。</p> <p>数组对象可以通过<strong>array()</strong>函数进行初始化，也可以通过将元素放在方括号内来赋值<strong>[]</strong></p> <h2>语法</h2> <pre>//使用array()函数的关联数组 $arr=array(key1=&gt;val1,&nbsp;key2=&gt;val2,key3=val3,..); //使用赋值方法的关联数组 $arr=[key1=&gt;val1,&nbsp;key2=&gt;val2,key3=val3,..];</pre> <p>键应为整数或字符串。值组件可以是任何PHP类型。如果某个键重复出现，则最后分配的值将覆盖先前的值。我们可以通过以下语法访问与某个键关联的值-</p> <pre>$arr[key1];</pre> <h2>PHP版本</h2> <p>从PHP 5.4开始就可以使用方括号来分配数组</p> <p>下面的示例使用array()函数声明一个关联数组</p> <h2>示例</h2> <pre>&lt;?php $arr=array(1=&gt;"one",&nbsp;2=&gt;"two",&nbsp;3=&gt;"three"); var_dump($arr); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>array(3)&nbsp;{ &nbsp;&nbsp;&nbsp;[1]=&gt; &nbsp;&nbsp;&nbsp;int(11) &nbsp;&nbsp;&nbsp;[2]=&gt; &nbsp;&nbsp;&nbsp;int(22) &nbsp;&nbsp;&nbsp;[3]=&gt; &nbsp;&nbsp;&nbsp;int(33) }</pre> <p>本示例使用方括号分配关联数组</p> <h2>示例</h2> <pre>&lt;?php $arr=[1=&gt;"one",&nbsp;2=&gt;"two",&nbsp;3=&gt;"three"]; var_dump($arr); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>array(3)&nbsp;{ &nbsp;&nbsp;&nbsp;[1]=&gt; &nbsp;&nbsp;&nbsp;string(3)&nbsp;"one" &nbsp;&nbsp;&nbsp;[2]=&gt; &nbsp;&nbsp;&nbsp;string(3)&nbsp;"two" &nbsp;&nbsp;&nbsp;[3]=&gt; &nbsp;&nbsp;&nbsp;string(5)&nbsp;"three" }</pre> <p>我们可以使用foreach循环遍历数组元素，如下所示：</p> <h2>示例</h2> <pre>&lt;?php $arr=[1=&gt;"one",&nbsp;2=&gt;"two",&nbsp;3=&gt;"three"]; //使用foreach循环 foreach&nbsp;($arr&nbsp;as&nbsp;$key=&gt;$value){ &nbsp;&nbsp;&nbsp;echo&nbsp;$key&nbsp;.&nbsp;"=&gt;"&nbsp;.&nbsp;$value&nbsp;.&nbsp;"\n"; } ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>1=&gt;one 2=&gt;two 3=&gt;three</pre> <p>该示例显示了修改现有元素的值并使用方括号添加新的键-值对</p> <h2>示例</h2> <pre>&lt;?php $arr=[1=&gt;"one",&nbsp;2=&gt;"two",&nbsp;3=&gt;"three"]; //修改数组元素 $arr[2]="twenty"; //add&nbsp;new&nbsp;element&nbsp;in&nbsp;array $arr[10]="ten"; //使用foreach循环 foreach&nbsp;($arr&nbsp;as&nbsp;$key=&gt;$value){ &nbsp;&nbsp;&nbsp;echo&nbsp;$key&nbsp;.&nbsp;"=&gt;"&nbsp;.&nbsp;$value&nbsp;.&nbsp;"\n"; } ?&gt;</pre> <p>输出结果</p> <p>这将产生以下结果-</p> <pre>1=&gt;one 2=&gt;twenty 3=&gt;three 10=&gt;ten</pre> <div></div> 			
+                                  				  				  				<h2 id="provideinject-基本用法">provide/inject 基本用法</h2> <p>在 <code>Vue.js</code> 中，跨层级组件如果想要传递数据，我们可以直接使用 <code>props</code> 来将祖先组件的数据传递给子孙组件：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/da4e9ed6401ea327ae746803b7acc385.jpg" alt="Vue.js 3.x 中跨层级组件如何传递数据？_在线工具"></p> <blockquote> <p>注：上图来自 <code>Vue.js</code> 官网：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://vuejs.org/guide/components/provide-inject.html#prop-drilling"  target="_blank"  rel="nofollow">Prop Drilling</a>。</p> </blockquote> <p>如上图所示，中间组件 <code>&lt;Footer&gt;</code> 可能根本不需要这部分 <code>props</code>，但为了 <code>&lt;DeepChiild&gt;</code> 能访问这些 <code>props</code>，<code>&lt;Footer&gt;</code> 还是需要定义这些 <code>props</code>，并将其传递下去。</p> <p>有人说我们可以使用 <code>$attrs/$listeners</code>，但依然还要经过中间层级，而使用 <code>Vuex</code> 又过于麻烦，<code>Event Bus</code> 又很容易导致逻辑分散，出现问题后难以定位。</p> <p>那么，有没有其他方法可以实现直接从祖先组件传递数据给子孙组件呢？答案就是 <code>provide/inject</code>。</p> <p>祖先组件：</p> <pre><code class="language-vue">// Root.vue  &lt;script setup&gt; import { provide } from 'vue'  provide('msg' /* 注入的键名 */ , 'Vue.js' /* 值 */) &lt;/script&gt; </code></pre> <p>子孙组件：</p> <pre><code class="language-vue">// DeepChild.vue  &lt;script setup&gt; import { inject } from 'vue'    const msg = inject('msg' /* 注入的键名 */, 'World' /* 默认值 */) &lt;/script&gt; </code></pre> <p>具体用法详见：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://vuejs.org/guide/components/provide-inject.html"  target="_blank"  rel="nofollow">Provide / Inject</a>。</p> <p>现在，问题解决了：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/a2412bdfabfbadebb15dcb986d73fe06.jpg" alt="Vue.js 3.x 中跨层级组件如何传递数据？_在线工具"></p> <blockquote> <p>注：上图来自 <code>Vue.js</code> 官网：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://vuejs.org/guide/components/provide-inject.html#prop-drilling"  target="_blank"  rel="nofollow">Prop Drilling</a>。</p> </blockquote> <h2 id="provide-实现原理">provide 实现原理</h2> <p>这么神奇的东西，究竟是如何实现的呢？</p> <pre><code class="language-typescript">export function provide&lt;T&gt;(key: InjectionKey&lt;T&gt; | string | number, value: T) {   let provides = currentInstance.provides    const parentProvides = currentInstance.parent &amp;&amp; currentInstance.parent.provides   if (parentProvides === provides) {     provides = currentInstance.provides = Object.create(parentProvides)   }      provides[key as string] = value } </code></pre> <p>在默认情况下，组件实例的 provides 继承自其父组件。但是当组件实例需要提供自己的值的时候，它使用父组件的 provides 对象作为原型，来创建自己的 provides 对象。这样一来，当使用 <code>inject</code> 时，我们就可以<strong>通过原型链来找到父组件提供的数据</strong>。</p> <h2 id="inject-实现原理">inject 实现原理</h2> <p><code>inject</code> 的代码也很简单，简单到你看了之后会来一句：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/bbec706564ffef5edd053313502bb1ab.jpg" alt="Vue.js 3.x 中跨层级组件如何传递数据？_在线工具"></p> <pre><code class="language-typescript">export function inject(   key: InjectionKey&lt;any&gt; | string,   defaultValue?: unknown,   treatDefaultAsFactory = false ) {   const instance = currentInstance || currentRenderingInstance    if (instance) {     // #2400     // to support `app.use` plugins,     // fallback to appContext's `provides` if the instance is at root     const provides = instance.parent == null         ? instance.vnode.appContext &amp;&amp; instance.vnode.appContext.provides         : instance.parent.provides      if (provides &amp;&amp; (key as string | symbol) in provides) {       return provides[key as string]     } else if (arguments.length &gt; 1) {       return treatDefaultAsFactory &amp;&amp; isFunction(defaultValue)         ? defaultValue.call(instance.proxy)         : defaultValue     }   } }  </code></pre> <p><code>inject</code> 的主要功能就两点：</p> <ul> <li>通过 <code>in</code> 操作获取父组件的数据，<code>in</code> 操作会遍历原型链，这就是上面 <code>provide</code> 的实现中，为什么组件要使用父组件的 provides 对象作为原型来创建自己 provides 对象的原因</li> <li>实现 <code>inject</code> 的默认值功能，<code>inject</code> 第二个参数为默认值</li> </ul> <p><strong>一句话总结：<code>provide/inject</code> 利用原型链来实现跨层级组件的数据传递。</strong></p> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-972.htm">pandas大数据处理技巧</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-974.htm">Spark连接Hive，进行Hive数据表的读写操作</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-1358.htm">Logback及其MDC功能详解</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1636.htm">模型的威力：基于模型，快速梳理源码_在线工具</a></p>
                                                                     </div>
 
                                                             </div>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
-                        <li class="py-2"><a href="/html/category/article-1048.htm" title="Spring Boot + Mybatis-Plus + jasypt 数据库连接加密">Spring Boot + Mybatis-Plus + jasypt 数据库连接加密</a></li>
-                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1348.htm" title="PostMan传参给@RequestBody（接受前端参数）的方式">PostMan传参给@RequestBody（接受前端参数）的方式</a></li>
-                        <li class="py-2"><a href="/html/category/article-1005.htm" title="集成神经网络的缺点是,各种神经网络的优缺点">集成神经网络的缺点是,各种神经网络的优缺点</a></li>
-                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
-                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
-                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
-                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
-                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1026.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/html/category/article-1018.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1013.htm" title="【译】defer-panic-and-recover_在线工具">【译】defer-panic-and-recover_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1014.htm" title="EFCore 的 DbFirst 模式">EFCore 的 DbFirst 模式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1636.htm" title="模型的威力：基于模型，快速梳理源码_在线工具">模型的威力：基于模型，快速梳理源码_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1009.htm" title="k8s TLS bootstrap解析-k8s TLS bootstrap流程分析">k8s TLS bootstrap解析-k8s TLS bootstrap流程分析</a></li>
                     </ul>
     </div>
 </div>
