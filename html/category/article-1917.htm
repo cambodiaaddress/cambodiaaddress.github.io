@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-852.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1917.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>numpy和tensor类型更改（增加或减少）参数维度（reshape） - CambodiaAddress</title>
+    <title>css图片上面显示文字 - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>numpy和tensor类型更改（增加或减少）参数维度（reshape）</h2>
+                                <h2>css图片上面显示文字</h2>
                             </div>
                         </div>
                     </div>
@@ -98,12 +98,31 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="htmledit_views"> <p>首先需注意的是numpy和tensor的维度排列顺序不一样，这里拿一张图片的shape举例：</p> <pre><code>to_tensor = torchvision.transforms.ToTensor() img = cv2.imread("sample.jpg") img_tensor = to_tensor(img) print(type(img))  # &lt;class 'numpy.ndarray'&gt; print(img.shape)  # (450, 500, 3) print(type(img_tensor))  # &lt;class 'torch.Tensor'&gt; print(img_tensor.shape)  # torch.Size([3, 450, 500]) </code></pre> <p>如果想改变数组内元素的排列顺序，torch和numpy都自带reshape方法：</p> <pre><code># 展平操作 print(np.reshape(img, (1, 1, -1)).shape)  # (1, 1, 675000) print(torch.reshape(img_tensor, (1, 1, -1)).shape)  # torch.Size([1, 1, 675000]) # 注意-1的含义是让计算机自己计算这里的值（因为元素总数是不会变的，该例3*450*500 = 675000） # 但“-1”至多出现一次，也很好理解，假若两个位置需要计算机计算（-1），显然是无法做到的 </code></pre> <p>增加（减少）维度，以numpy为例（tensor同用法）：</p> <pre><code># 减少维度 img_1 = img[:, :, 1]  # 截取 img_2 = np.reshape(img, (450, -1))  # reshape方法必须保证总量不变 print(img_1.shape)  # (450, 500) print(img_2.shape)  # (450, 1500)  # 增加维度 a = np.array((3, 2, 3)) b = a[:, None, None] c = np.reshape(a, (3, 1, -1)) print(a.shape)  # (3,) print(b.shape)  # (3, 1, 1) print(c.shape)  # (3, 1, 1)</code></pre> <p>实例应用：</p> <p>在图像标准化处理中假设我们计算得到RGB的均值(mean)为（127， 127， 127）&nbsp;标准差std为（8， 8， 8），那么我们接下来要对整个图片各个位置的RGB进行(img - mean) / std&nbsp;计算，显然是不能直接计算的，因为原图是个三维矩阵，而我们计算得到的均值和标准差都是一维的（包含三个值），所以在计算过程中需要对mean和std进行增加维度操作。</p> <pre><code># 举例 img = np.random.randint(0, 255, (2, 2, 3)) mean = np.array((127, 127, 127)) std = np.array((8, 8, 8)) img_result = (img - mean[None, None, :]) / std[None, None, :] print("处理前：", img) # [[[177   1 231] #   [  1 109 203]] #  #  [[177 135 146] #   [ 66  89 122]]] print("处理后", img_result) # [[[  6.25  -15.75   13.   ] #   [-15.75   -2.25    9.5  ]] #  #  [[  6.25    1.      2.375] #   [ -7.625  -4.75   -0.625]]] </code></pre> </p></div> 			
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <pre><code class="prism language-bash"><span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE html<span class="token operator">&gt;</span><span class="token operator">&lt;</span>html<span class="token operator">&gt;</span><span class="token operator">&lt;</span>head<span class="token operator">&gt;</span><span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>title<span class="token operator">&gt;</span><span class="token operator">&lt;</span>/title<span class="token operator">&gt;</span><span class="token operator">&lt;</span>style type<span class="token operator">=</span><span class="token string">"text/css"</span><span class="token operator">&gt;</span> 			.main<span class="token punctuation">{<!-- --></span> 				width: 300px<span class="token punctuation">;</span> 				height: 300px<span class="token punctuation">;</span> 				padding: 10px<span class="token punctuation">;</span> 				background-color:<span class="token comment">#0087F1;</span><span class="token punctuation">}</span>  			.imgbox1<span class="token punctuation">{<!-- --></span> 				position: relative<span class="token punctuation">;</span><span class="token punctuation">}</span>  			img<span class="token punctuation">{<!-- --></span> 				width: 100%<span class="token punctuation">;</span> 				height: 100%<span class="token punctuation">;</span><span class="token punctuation">}</span>  			.tips<span class="token punctuation">{<!-- --></span> 				position: absolute<span class="token punctuation">;</span> 				color: white<span class="token punctuation">;</span> 				font-size: 10px<span class="token punctuation">;</span> 				right: 10px<span class="token punctuation">;</span> 				bottom: 10px<span class="token punctuation">;</span> 				padding: 1px 3px<span class="token punctuation">;</span> 				border-radius: 2px<span class="token punctuation">;</span> 				background-color: rgba<span class="token punctuation">(</span>0, 0, 0, 0.7<span class="token punctuation">)</span><span class="token punctuation">;</span> 				z-index: 2<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token operator">&lt;</span>/style<span class="token operator">&gt;</span><span class="token operator">&lt;</span>/head<span class="token operator">&gt;</span><span class="token operator">&lt;</span>body<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"main"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"imgbox1"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Farticle.fd.zol-img.com.cn%2Ft_s640x2000%2Fg5%2FM00%2F03%2F0D%2FChMkJlawkneIQL3lAARnfQ9pCogAAIOSAPcT2AABGeV555.jpg&amp;refer=http%3A%2F%2Farticle.fd.zol-img.com.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1614742344&amp;t=8fed9d197f990c15c4bd191a5726a379"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"tips"</span><span class="token operator">&gt;</span>专栏<span class="token operator">&lt;</span>/div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>/div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>/div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>/body<span class="token operator">&gt;</span><span class="token operator">&lt;</span>/html<span class="token operator">&gt;</span></code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220604/cb386b0cee0a175d519133eccd1169b4.jpg" alt="css图片上面显示文字"><br /> 在图片上展示的文字需要用absolute绝对定位，定位在想展示的位置，它的父元素imgbox要有position定位，且不能为static值。</p> </div> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-851.htm">Django + Taro 前后端分离项目实现企业微信登录</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-853.htm">Java ArrayList集合(Java动态数组)</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-1636.htm">模型的威力：基于模型，快速梳理源码_在线工具</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1918.htm">java基础面试题</a></p>
                                                                     </div>
 
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-1044.htm">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1039.htm">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1031.htm">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1018.htm">GIT 中如何打标签（git tag）</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-997.htm">我们如何检查特定MySQL数据库的默认字符集？</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-990.htm">SpringSecurity如何使用注解控制权限</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-987.htm">Vue组件通信之跨组件跨层级传递</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-969.htm">python三大器物&#8212;装饰器</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-803.htm">Python里的引用与拷贝规律</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-796.htm">elemen-ui表格默认样式的修改</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
                                                             </div>
                             <div class="col-md-3">
                                 <div class="panel panel-default">
@@ -112,16 +131,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
-                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
-                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
-                        <li class="py-2"><a href="/html/category/article-1327.htm" title="java-websocket断线重连">java-websocket断线重连</a></li>
-                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
                         <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
-                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
-                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
-                        <li class="py-2"><a href="/html/category/article-1357.htm" title="pandas读取csv文件时报错的解决方式，你get到了吗？">pandas读取csv文件时报错的解决方式，你get到了吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
                         <li class="py-2"><a href="/html/category/article-1048.htm" title="Spring Boot + Mybatis-Plus + jasypt 数据库连接加密">Spring Boot + Mybatis-Plus + jasypt 数据库连接加密</a></li>
+                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1013.htm" title="【译】defer-panic-and-recover_在线工具">【译】defer-panic-and-recover_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1337.htm" title="机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1358.htm" title="Logback及其MDC功能详解">Logback及其MDC功能详解</a></li>
                     </ul>
     </div>
 </div>
