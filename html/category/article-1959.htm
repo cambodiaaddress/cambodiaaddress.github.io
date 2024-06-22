@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1959.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>实战代码（十）：Springboot RestTemplate连接池 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>实战代码（十）：Springboot RestTemplate连接池</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2> <a id="_0" rel="nofollow"></a>一、理论基础</h2> <p>RestTemplate是Springboot中内置的Http请求工具，可以直接注入使用。</p> <p>两个常用的构造方法如下图 (<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html"  rel="nofollow">点击进入文档地址</a>)</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/022688cf7850af5bc35eb9d12a51e6ad.jpg" alt="实战代码（十）：Springboot RestTemplate连接池"></p> <p>从上面可以看出，最简单的方式就是使用默认配置，不需要额外的配置，便可以直接使用该工具。对于请求频次比较低的情况下，默认配置完全够用。</p> <p>如果需要大量的请求，可以自定义配置，使用HttpClient的连接池。</p> <h2> <a id="_14" rel="nofollow"></a>二、实战代码</h2> <h3> <a id="21__16" rel="nofollow"></a>2.1 依赖引入</h3> <pre><code>&lt;dependency&gt; 	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 	&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; 	&lt;exclusions&gt; 		&lt;exclusion&gt; 			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 			&lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt; 		&lt;/exclusion&gt; 	&lt;/exclusions&gt; &lt;/dependency&gt; &lt;!-- 将tomcat替换为undertow --&gt; &lt;dependency&gt; 	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 	&lt;artifactId&gt;spring-boot-starter-undertow&lt;/artifactId&gt; &lt;/dependency&gt;  &lt;!-- 自定义的元数据依赖 --&gt; &lt;dependency&gt; 	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 	&lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt; 	&lt;optional&gt;true&lt;/optional&gt; &lt;/dependency&gt;  &lt;!-- httpclient，为了使用其连接池 --&gt; &lt;dependency&gt; 	&lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt; 	&lt;artifactId&gt;httpclient&lt;/artifactId&gt; 	&lt;version&gt;4.5.12&lt;/version&gt; &lt;/dependency&gt;  &lt;!-- for fastjson --&gt; &lt;dependency&gt; 	&lt;groupId&gt;com.alibaba&lt;/groupId&gt; 	&lt;artifactId&gt;fastjson&lt;/artifactId&gt; 	&lt;version&gt;1.2.62&lt;/version&gt; &lt;/dependency&gt;  &lt;!-- lombok，减少代码量，idea需要安装lombok插件 --&gt; &lt;dependency&gt; 	&lt;groupId&gt;org.projectlombok&lt;/groupId&gt; 	&lt;artifactId&gt;lombok&lt;/artifactId&gt; 	&lt;optional&gt;true&lt;/optional&gt; &lt;/dependency&gt; </code></pre> <h3> <a id="22__64" rel="nofollow"></a>2.2 配置项</h3> <h3> <a id="221__66" rel="nofollow"></a>2.2.1 配置</h3> <pre><code>http:   pool:     # 连接超时     connectTimeout: 5000     connectionRequestTimeout: 5000     defaultMaxPerRoute: 20     # 最大连接数     maxTotal: 100     # 服务器返回数据(response)的时间     socketTimeout: 5000     validateAfterInactivity: 30000 </code></pre> <h3> <a id="222__83" rel="nofollow"></a>2.2.2 读取配置文件</h3> <pre><code>@Component @ConfigurationProperties(prefix = "http.pool") @Data public class HttpClientProperties {       /**      * 最大连接数      */     private Integer maxTotal;     /**      * 路由是对最大连接数的细分      * 每个路由基础的连接数      */     private Integer defaultMaxPerRoute;     /**      * 连接超时时间      */     private Integer connectTimeout;     /**      * 从连接池中获取连接的超时时间      */     private Integer connectionRequestTimeout;     /**      * 服务器返回数据(response)的时间      */     private Integer socketTimeout;     /**      * 可用空闲连接过期时间      * 重用空闲连接时会先检查是否空闲时间超过这个时间，如果超过，释放socket重新建立      */     private Integer validateAfterInactivity; } </code></pre> <h3> <a id="23__122" rel="nofollow"></a>2.3 配置文件</h3> <pre><code>@Configuration public class RestTemplateConfig {       private final HttpClientProperties httpClientProperties;      public RestTemplateConfig(HttpClientProperties httpClientProperties) {         this.httpClientProperties = httpClientProperties;     }       @Bean     public RestTemplate restTemplate(ClientHttpRequestFactory factory){         return new RestTemplate(factory);     }       @Bean     public ClientHttpRequestFactory clientHttpRequestFactory(){         return new HttpComponentsClientHttpRequestFactory(httpClient());     }       @Bean     public HttpClient httpClient() {         Registry&lt;ConnectionSocketFactory&gt; registry = RegistryBuilder.&lt;ConnectionSocketFactory&gt;create()                 .register("http", PlainConnectionSocketFactory.getSocketFactory())                 .register("https", SSLConnectionSocketFactory.getSocketFactory())                 .build();         PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager(registry);         connectionManager.setMaxTotal(httpClientProperties.getMaxTotal());         connectionManager.setDefaultMaxPerRoute(httpClientProperties.getDefaultMaxPerRoute());         connectionManager.setValidateAfterInactivity(httpClientProperties.getValidateAfterInactivity());         RequestConfig requestConfig = RequestConfig.custom()                 .setSocketTimeout(httpClientProperties.getSocketTimeout())                 .setConnectTimeout(httpClientProperties.getConnectTimeout())                 .setConnectionRequestTimeout(httpClientProperties.getConnectionRequestTimeout())                 .build();         return HttpClientBuilder.create()                 .setDefaultRequestConfig(requestConfig)                 .setConnectionManager(connectionManager)                 .build();     } } </code></pre> <h3> <a id="24__172" rel="nofollow"></a>2.4 简单的工具类</h3> <pre><code>@Component @Slf4j public class HttpClientUtils {      private final RestTemplate restTemplate;      public HttpClientUtils(RestTemplate restTemplate) {         this.restTemplate = restTemplate;     }      /**      * Get      */     public String get(String uri, Map&lt;String, String&gt; param, String token) {         HttpHeaders headers = new HttpHeaders();         headers.set("token", token);         HttpEntity&lt;String&gt; requestEntity = new HttpEntity&lt;&gt;(null, headers);         StringBuilder url = new StringBuilder();         url.append(uri).append("?");         param.forEach((k, v) -&gt; url.append(k).append("=").append(v).append("&amp;"));         String getUrl = url.substring(0, url.length() - 1);         ResponseEntity&lt;CodeResult&gt; response = restTemplate.exchange(getUrl, HttpMethod.GET, requestEntity, CodeResult.class);         return parseCodeResult(response);     }      /**      * post方式请求接口      * - 参数形式：form-data      */     public String postFormData(String url, MultiValueMap&lt;String, Object&gt; paramMap, String token) {         HttpHeaders headers = new HttpHeaders();         headers.set("token", token);         headers.setContentType(MediaType.MULTIPART_FORM_DATA);         //用HttpEntity封装整个请求报文         HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt; files = new HttpEntity&lt;&gt;(paramMap, headers);         ResponseEntity&lt;CodeResult&gt; response = restTemplate.postForEntity(url, files, CodeResult.class);         return parseCodeResult(response);     }      /**      * post方式请求接口      * - 参数形式：json      */     public String postJson(String url, String param, String token) {         HttpHeaders headers = new HttpHeaders();         headers.setContentType(MediaType.APPLICATION_JSON);         headers.set("token", token);         HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(param, headers);         ResponseEntity&lt;CodeResult&gt; response = restTemplate.postForEntity(url, entity, CodeResult.class);         return parseCodeResult(response);     }      /**      * 解析云端服务接口返回值      */     public String parseCodeResult(ResponseEntity&lt;CodeResult&gt; response) {         if (response.getStatusCodeValue() != HttpStatus.OK.value()) {             throw new RuntimeException("网络请求失败,状态码:" + response.getStatusCodeValue());         }         CodeResult codeResult = response.getBody();         assert codeResult != null;         if (!codeResult.getSuccess()) {             log.error("调用后台服务接口错误,返回值:{}", JSON.toJSON(codeResult));             throw new RuntimeException("调用后台服务接口错误， 错误信息：" + codeResult.getMsg());         }         return JSON.toJSONString(codeResult.getData());     } } </code></pre> <h2> <a id="_245" rel="nofollow"></a>三、源码地址</h2> <p>https://github.com/lysmile/spring-boot-demo/tree/master/spring-boot-resttemplate-demo</p> </p></div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-1946.htm">dao层和serivce层的作用和区别</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-1960.htm">面试官：请用SQL模拟一个死锁</a></p>
+                                                                    </div>
+
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-1917.htm">css图片上面显示文字</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1045.htm">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-998.htm">Docker从入门到放弃(1) Docker简介与安装_在线工具</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-956.htm">vue中巧用三元表达式解析_vue.js</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-924.htm">win11系统如何激活超级管理员账户</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-921.htm">MM32F0140 UART1硬件自动波特率校准功能的使用</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-914.htm">匿名类（Anonymous Classes）</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-904.htm">SpringAop实现原理及代理模式</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-864.htm">C语言中的零长度数组使用说明</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-841.htm">Git基础blob对象详解</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1016.htm" title="helm部署单节点redis">helm部署单节点redis</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-1932.htm" title="nohup: redirecting stderr to stdout的解决办法">nohup: redirecting stderr to stdout的解决办法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1019.htm" title="网络层-IP地址详解&amp;Linux配置IP地址（centos7）">网络层-IP地址详解&amp;Linux配置IP地址（centos7）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1015.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1635.htm" title="Vue.js 3.x 中跨层级组件如何传递数据？_在线工具">Vue.js 3.x 中跨层级组件如何传递数据？_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1946.htm" title="dao层和serivce层的作用和区别">dao层和serivce层的作用和区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1347.htm" title="VUE3setup响应式函数系统API详解">VUE3setup响应式函数系统API详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">44</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
