@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-922.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-2245.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>在多行插入的情况下，对MySQL LAST_INSERT_ID()函数的输出有什么影响？ - CambodiaAddress</title>
+    <title>8 高并发解决方案 - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>在多行插入的情况下，对MySQL LAST_INSERT_ID()函数的输出有什么影响？</h2>
+                                <h2>8 高并发解决方案</h2>
                             </div>
                         </div>
                     </div>
@@ -98,12 +98,31 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<p>MySQL LAST_INSERT_ID()函数返回最新生成的序列号，但是如果有多个行插入，它将返回由<em>最前面</em>插入的行生成的序列号。</p> <h2>示例</h2> <pre>mysql&gt;&nbsp;Insert&nbsp;into&nbsp;Student(Name)&nbsp;values('Ram'),('Mohan'),('Aryan'); Records:&nbsp;3&nbsp;Duplicates:&nbsp;0&nbsp;Warnings:&nbsp;0</pre> <p>上面的查询借助多行插入查询在Student表中插入了三个值。列'Id'的值可以在以下查询的帮助下进行检查-</p> <pre>mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;Student;  +----+-------+ |&nbsp;Id&nbsp;|&nbsp;Name&nbsp;&nbsp;| +----+-------+ |&nbsp;1&nbsp;|&nbsp;Raman&nbsp;&nbsp;| |&nbsp;2&nbsp;|&nbsp;Rahul&nbsp;&nbsp;| |&nbsp;3&nbsp;|&nbsp;Ram&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;4&nbsp;|&nbsp;Mohan&nbsp;&nbsp;| |&nbsp;5&nbsp;|&nbsp;Aryan&nbsp;&nbsp;| +----+-------+  5&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>这意味着Last_Insert_Id()必须返回5作为输出，但是正如我们看到的那样，它返回值3如下：</p> <pre>mysql&gt;&nbsp;Select&nbsp;Last_Insert_Id();  +------------------+ |&nbsp;Last_Insert_Id()&nbsp;| +------------------+ |&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| +------------------+  1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>它返回值3，因为3是具有多个插入行查询的最前面插入行的值。</p> <div></div> 			
+                                  				  				  				<div id="content_views" class="htmledit_views"> <h2>&nbsp;8.1 高并发问题分析</h2> <p>&nbsp;</p> <p><img fetchpriority="high" decoding="async" alt="" height="411" src="http://img.555519.xyz/uploads/20230112/26de0bab53270bbd26f9a6667516d378.jpg"></p> <h2>&nbsp;8.2 代码实现</h2> <pre><code class="language-java">package xx.study.sc.command;  import com.netflix.hystrix.*; import org.springframework.web.client.RestTemplate; import xx.study.sc.model.Product;  public class OrderCommand extends HystrixCommand&lt;Product&gt; {      private RestTemplate restTemplate;     private Long id;      public OrderCommand(RestTemplate restTemplate,Long id){         super(setter());         this.restTemplate=restTemplate;         this.id=id;      }     private static Setter setter(){         //服务分组         HystrixCommandGroupKey groupKey=HystrixCommandGroupKey.Factory.asKey("order_product");         //服务标识         HystrixCommandKey commandKey=HystrixCommandKey.Factory.asKey("product");         //线程池名称         HystrixThreadPoolKey threadPoolKey=HystrixThreadPoolKey.Factory.asKey("order_produt_pool");          /**          * 线程池配置          * withCoreSize :线程池大小          * withKeepAliveTimeMinutes:线程存活时间15s          * withQueueSizeRejectionThreshold:队列等待的阈值为100，超过100执行拒绝策略          */         HystrixThreadPoolProperties.Setter threadPoolProperties=HystrixThreadPoolProperties.Setter().withCoreSize(50).                 withKeepAliveTimeMinutes(15).withQueueSizeRejectionThreshold(100);         //命令属性配置Hystrix开启超时         HystrixCommandProperties.Setter commandProperties=HystrixCommandProperties.Setter().                 //采用线程池隔离                 withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)                 .withExecutionTimeoutEnabled(false);         return Setter.withGroupKey(groupKey).andCommandKey(commandKey).andThreadPoolKey(threadPoolKey)                 .andThreadPoolPropertiesDefaults(threadPoolProperties).andCommandPropertiesDefaults(commandProperties);           }       @Override     protected Product run() throws Exception {         return restTemplate.getForObject("http://127.0.0.1:9000/product/buy",Product.class);     } } </code></pre> <p>&nbsp;</p> </p></div> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-921.htm">MM32F0140 UART1硬件自动波特率校准功能的使用</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-923.htm">使用 Java 开发 Gradle 插件_在线工具</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-1960.htm">面试官：请用SQL模拟一个死锁</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-2246.htm">Java中自定义注解的使用</a></p>
                                                                     </div>
 
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-1337.htm">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1024.htm">mybatis 加载配置文件的方法（两种方式）</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1010.htm">Redis 数据持久化实践</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-995.htm">CI实现简单的分页原理</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-964.htm">Java 方法的重载与参数传递详解_java</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-943.htm">Halo 开源项目学习发布文章与页面</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-940.htm">JavaScript实现页面无缝滚动效果_javascript技巧_</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-922.htm">在多行插入的情况下，对MySQL LAST_INSERT_ID()函数的输出有什么影响？</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-870.htm">使用 Bitnami PostgreSQL Docker 镜像快速设置流复制集群</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-817.htm">Docker知识点问题总结</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
                                                             </div>
                             <div class="col-md-3">
                                 <div class="panel panel-default">
@@ -112,16 +131,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
+                        <li class="py-2"><a href="/html/category/article-1337.htm" title="机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
+                        <li class="py-2"><a href="/html/category/article-1348.htm" title="PostMan传参给@RequestBody（接受前端参数）的方式">PostMan传参给@RequestBody（接受前端参数）的方式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
                         <li class="py-2"><a href="/html/category/article-1048.htm" title="Spring Boot + Mybatis-Plus + jasypt 数据库连接加密">Spring Boot + Mybatis-Plus + jasypt 数据库连接加密</a></li>
-                        <li class="py-2"><a href="/html/category/article-1327.htm" title="java-websocket断线重连">java-websocket断线重连</a></li>
                         <li class="py-2"><a href="/html/category/article-2245.htm" title="8 高并发解决方案">8 高并发解决方案</a></li>
-                        <li class="py-2"><a href="/html/category/article-1960.htm" title="面试官：请用SQL模拟一个死锁">面试官：请用SQL模拟一个死锁</a></li>
-                        <li class="py-2"><a href="/html/category/article-1029.htm" title="python连接数据库并执行SQL语句">python连接数据库并执行SQL语句</a></li>
-                        <li class="py-2"><a href="/html/category/article-1338.htm" title="Kafka启动后进程过一段时间自己消失，问题解决">Kafka启动后进程过一段时间自己消失，问题解决</a></li>
-                        <li class="py-2"><a href="/html/category/article-1040.htm" title="Hbase(四)：Hbase原理">Hbase(四)：Hbase原理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-1931.htm" title="SpringMVC中MultipartFile转File的两种方式_java">SpringMVC中MultipartFile转File的两种方式_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1945.htm" title="Interlaken协议介绍">Interlaken协议介绍</a></li>
+                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
                         <li class="py-2"><a href="/html/category/article-1017.htm" title="SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪">SpringBoot整合SpringCloud组件-Sleuth&amp;ZipKin链路追踪</a></li>
-                        <li class="py-2"><a href="/html/category/article-2246.htm" title="Java中自定义注解的使用">Java中自定义注解的使用</a></li>
                     </ul>
     </div>
 </div>
