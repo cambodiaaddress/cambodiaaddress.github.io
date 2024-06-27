@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-3430.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>关于Spring中@Order注解的使用 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>关于Spring中@Order注解的使用</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>@<a href="%E8%BF%99%E9%87%8C%E5%86%99%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9B%AE%E5%BD%95%E6%A0%87%E9%A2%98" rel="nofollow">关于Spring中@Order注解的使用</a></p> <p><strong>先来一段代码：</strong></p> <pre><code class="prism language-javascript"><span class="token keyword">public</span><span class="token keyword">interface</span><span class="token class-name">DefaultService</span><span class="token punctuation">{<!-- --></span><span class="token keyword">void</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-javascript">@Component @<span class="token function">Order</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">ServiceA</span><span class="token keyword">implements</span><span class="token class-name">DefaultService</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token function">ServiceA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"constructor ServiceA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>      @Override<span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ServiceA.send"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-javascript">@Component @<span class="token function">Order</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">ServiceB</span><span class="token keyword">implements</span><span class="token class-name">DefaultService</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token function">ServiceB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"constructor ServiceB"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>      @Override<span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ServiceB.send"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-javascript">@Component<span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">SortedService</span><span class="token punctuation">{<!-- --></span>      @Autowired<span class="token keyword">private</span> List<span class="token operator">&lt;</span>DefaultService<span class="token operator">&gt;</span> list<span class="token punctuation">;</span>     @Autowired<span class="token keyword">private</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> DefaultService<span class="token operator">&gt;</span> map<span class="token punctuation">;</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">demo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         Optional<span class="token punctuation">.</span><span class="token keyword">of</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ifPresent</span><span class="token punctuation">(</span>l<span class="token operator">-</span><span class="token operator">&gt;</span> l<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>e<span class="token operator">-</span><span class="token operator">&gt;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//输出</span><span class="token comment">//com.example.demo.service.ServiceB@19b843ba</span><span class="token comment">//com.example.demo.service.ServiceA@2462cb01</span><span class="token comment">//构造方法</span><span class="token comment">//constructor ServiceA</span><span class="token comment">//constructor ServiceB</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p><strong>我们可以看到，ServiceA和ServiceB的实例化顺序是不受@Order注解影响的，受影响的只是@Autowired自动注入时的一个注入的顺序（接口的实现类集合list是按照@Order顺序排列的）。</strong></p> <p><strong>再来一段代码：</strong></p> <pre><code class="prism language-javascript">@Component @<span class="token function">Order</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">RunnerA</span><span class="token keyword">implements</span><span class="token class-name">ApplicationRunner</span><span class="token punctuation">{<!-- --></span>     @Override<span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">run</span><span class="token punctuation">(</span>ApplicationArguments args<span class="token punctuation">)</span> throws Exception<span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"RunnerA.run"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-javascript">@Component @<span class="token function">Order</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">RunnerB</span><span class="token keyword">implements</span><span class="token class-name">ApplicationRunner</span><span class="token punctuation">{<!-- --></span>     @Override<span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">run</span><span class="token punctuation">(</span>ApplicationArguments args<span class="token punctuation">)</span> throws Exception<span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"RunnerB.run"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-javascript">@SpringBootApplication<span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">DemoApplication</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         ConfigurableApplicationContext ctx<span class="token operator">=</span> SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>DemoApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//RunnerB.run</span><span class="token comment">//RunnerA.run</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-javascript"><span class="token keyword">private</span><span class="token keyword">void</span><span class="token function">callRunners</span><span class="token punctuation">(</span>ApplicationContext context<span class="token punctuation">,</span> ApplicationArguments args<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		List<span class="token operator">&lt;</span>Object<span class="token operator">&gt;</span> runners<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		runners<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span><span class="token function">getBeansOfType</span><span class="token punctuation">(</span>ApplicationRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		runners<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span><span class="token function">getBeansOfType</span><span class="token punctuation">(</span>CommandLineRunner<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 容器已经完成了初始化后，排序后调用接口实现类</span> 		AnnotationAwareOrderComparator<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>runners<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">for</span><span class="token punctuation">(</span>Object runner<span class="token punctuation">:</span><span class="token keyword">new</span><span class="token class-name">LinkedHashSet</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>runners<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">if</span><span class="token punctuation">(</span>runner<span class="token keyword">instanceof</span><span class="token class-name">ApplicationRunner</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token function">callRunner</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ApplicationRunner<span class="token punctuation">)</span> runner<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">if</span><span class="token punctuation">(</span>runner<span class="token keyword">instanceof</span><span class="token class-name">CommandLineRunner</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token function">callRunner</span><span class="token punctuation">(</span><span class="token punctuation">(</span>CommandLineRunner<span class="token punctuation">)</span> runner<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p><strong>其实在Spring官网已经对@Order注解的作用做了很详细的描述</strong></p> <blockquote> <p>Your target beans can implement the org.springframework.core.Ordered interface or use the @Order or standard @Priority annotation if you want items in the array or list to be sorted in a specific order. Otherwise, their order follows the registration order of the corresponding target bean definitions in the container.</p> </blockquote> <blockquote> <p>You can declare the @Order annotation at the target class level and on @Bean methods, potentially for individual bean definitions (in case of multiple definitions that use the same bean class). @Order values may influence priorities at injection points, but be aware that they do not influence singleton startup order, which is an orthogonal concern determined by dependency relationships and @DependsOn declarations.<br /><mark>@Order值可能会影响注入点的优先级，但是要注意它们不会影响单例启动顺序，单例启动顺序是由依赖关系和@DependsOn声明决定的正交关系</mark></p> </blockquote> <blockquote> <p>Note that the standard javax.annotation.Priority annotation is not available at the @Bean level, since it cannot be declared on methods. Its semantics can be modeled through @Order values in combination with @Primary on a single bean for each type.</p> </blockquote> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-3429.htm">认证与授权流程与spring boot整合 spring security</a></p>
+                                                                    </div>
+
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-1018.htm">GIT 中如何打标签（git tag）</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1016.htm">helm部署单节点redis</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1000.htm">@RequestBody接受参数报415错误</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-991.htm">Golang 实现 Redis(10): 本地原子性事务_在线工具</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-949.htm">设计模式学习笔记（十九）观察者模式及应用场景</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-929.htm">Spring Security核心类详解</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-902.htm">Kafka如果保证数据的可靠性</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-880.htm">架构设计基础设施保障IaaS之计算篇</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-820.htm">eureka server配置_程序员笔记|详解Eureka 缓存机制</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-812.htm">asyncio 系列、asyncio 的协程与任务</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1636.htm" title="模型的威力：基于模型，快速梳理源码_在线工具">模型的威力：基于模型，快速梳理源码_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1917.htm" title="css图片上面显示文字">css图片上面显示文字</a></li>
+                        <li class="py-2"><a href="/html/category/article-1024.htm" title="mybatis 加载配置文件的方法（两种方式）">mybatis 加载配置文件的方法（两种方式）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1023.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1337.htm" title="机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
+                        <li class="py-2"><a href="/html/category/article-1945.htm" title="Interlaken协议介绍">Interlaken协议介绍</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
