@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-3735.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe） - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#RabbitMQPublishSubscribe_1" rel="nofollow">RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）</a></li> </ul> </div> <h1><a id="RabbitMQPublishSubscribe_1" rel="nofollow"></a>RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）</h1> <p><strong>发布者/订阅者</strong> 模型如下：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/ec260b9433659a1463af2932b3d8ccac.jpg" alt="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）"></p> <p>他与前面两个小案例最大的区别就是，他的消息<strong>不是阅完即焚</strong>的。<strong>他允许将同一条消息发送给多个消费者。而实现此操作的原因是加入了我们的交换机（exchange）。</strong></p> <p><strong>在发布者和订阅者的模型中，各个组件的功能如下</strong>：</p> <ul> <li><strong>Publisher</strong>：生产者，也就是要发送消息的程序，但是不再发送到队列中，而是发给X（交换机）</li> <li><strong>Exchange</strong>：交换机，一方面，接收生产者发送的消息。另一方面，知道如何处理消息，例如递交给某个特别队列、递交给所有队列、或是将消息丢弃。到底如何操作，取决于Exchange的类型。Exchange有以下3种类型： <ul> <li><strong>Fanout</strong>：广播，将消息交给所有绑定到交换机的队列</li> <li><strong>Direct</strong>：定向，把消息交给符合指定routing key 的队列</li> <li><strong>Topic</strong>：通配符，把消息交给符合routing pattern（路由模式） 的队列</li> </ul> </li> <li><strong>Queue</strong>：消息队列也与以前一样，接收消息、缓存消息。</li> <li><strong>Consumer</strong>：消费者，与以前一样，订阅队列，没有变化</li> </ul> <p><strong>注意：交换机他只负责消息的转发，并不存储消息，如果没有任何队列与Exchange绑定，或者没有符合路由规则的队列，那么消息会丢失！！</strong></p> <p>OK，这么解释肯定是不够的，下面我们就来说一下<strong>第一种交换机类型——Fanout（广播）在Java中的具体使用方式</strong>。</p> <p><strong>步骤一、在消费者服务中，利用代码声明队列、交换机，并将两者进行绑定。</strong><br /> SpringAMQP提供的**交换机（Exchange）、队列（Queue）、绑定（Binding）**的API如下：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/16d101567b248bce3271f6329bf5b98f.jpg" alt="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）"><br /> 要将我们的队列绑定到交换机，我们需要编写我们的配置类如下：</p> <pre><code class="prism language-java"><span class="token keyword">package</span><span class="token namespace">com<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>mq<span class="token punctuation">.</span>config</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">Binding</span></span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">BindingBuilder</span></span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">FanoutExchange</span></span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">Queue</span></span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Bean</span></span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Configuration</span></span><span class="token punctuation">;</span><span class="token annotation punctuation">@Configuration</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">FanoutConfig</span><span class="token punctuation">{<!-- --></span><span class="token comment">/**      *  声明FanoutExchange（广播交换机）      */</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">FanoutExchange</span><span class="token function">fanoutExchange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//交换机的名称</span><span class="token keyword">return</span><span class="token keyword">new</span><span class="token class-name">FanoutExchange</span><span class="token punctuation">(</span><span class="token string">"exchange.fanout"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      *  声明第一个队列      */</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">Queue</span><span class="token function">fanoutQueue1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token keyword">new</span><span class="token class-name">Queue</span><span class="token punctuation">(</span><span class="token string">"fanout.queue1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      *  声明第二个队列      */</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">Queue</span><span class="token function">fanoutQueue2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token keyword">new</span><span class="token class-name">Queue</span><span class="token punctuation">(</span><span class="token string">"fanout.queue2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      *  绑定 队列1 到 交换机      */</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">Binding</span><span class="token function">bindingQueue1</span><span class="token punctuation">(</span><span class="token class-name">Queue</span> fanoutQueue1<span class="token punctuation">,</span><span class="token class-name">FanoutExchange</span> fanoutExchange<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token class-name">BindingBuilder</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>fanoutQueue1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span>fanoutExchange<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      *  绑定 队列2 到 交换机      */</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">Binding</span><span class="token function">bindingQueue2</span><span class="token punctuation">(</span><span class="token class-name">Queue</span> fanoutQueue2<span class="token punctuation">,</span><span class="token class-name">FanoutExchange</span> fanoutExchange<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token class-name">BindingBuilder</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>fanoutQueue2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span>fanoutExchange<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>写完配置类，我们重启一下我们的消费者服务类，然后我们到RabbitMQ上看一下我们的交换机和队列。</p> <p>可以看到，确实多了一个交换机叫 exchange.fanout。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/6c17dd1110f48d7e66f99910916ae6cc.jpg" alt="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）"></p> <p>我们再看一下队列，可以看到，我们两个队列也都注册成功了。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/28f6c5803f15e7732a187ab977038cb3.jpg" alt="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）"><br /> 点击我们刚才新增的交换机，打开它的Bindings，可以看到这个交换机他告诉我们，他的消息是会转发到 fanout.queue1 和 fanout.queue2中：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/67b0551e199e4af924e7f725f8423aaf.jpg" alt="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）"></p> <p>ok，我们接着往下写：</p> <p>**步骤二、在消费者服务中，编写两个消费者方法，分别监听 fanout.queue1 和 fanout.queue2。 **.</p> <p>监听的方法，现在应该已经写得滚瓜烂熟了吧，这里就直接贴代码了。<br /> 1、<strong>编写的类记得加 @Component 将这个监听的类注册到 Spring容器中。</strong><br /> 2、<strong>监听哪个queue，那么就写对应的方法，并在方法上方添加@RabbitListener注解，用queues属性标明要监听的queue即可。（如果有多个，那么用 @RabbitListener(queues = {“queueName1”, “queueName2”}）表示即可。</strong></p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Component</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">SpringRabbitListener</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>queues<span class="token operator">=</span><span class="token string">"fanout.queue1"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">listenFanoutQueue1</span><span class="token punctuation">(</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"监听到 fanout.queue1 的消息为：【"</span><span class="token operator">+</span> msg<span class="token operator">+</span><span class="token string">"】"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>queues<span class="token operator">=</span><span class="token string">"fanout.queue2"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">listenFanoutQueue2</span><span class="token punctuation">(</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"监听到 fanout.queue2 的消息为：【"</span><span class="token operator">+</span> msg<span class="token operator">+</span><span class="token string">"】"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p><strong>步骤三、在发布者服务中，编写测试方法，向交换机 exchange.fanout 发送消息。</strong></p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Test</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">testFanoutExchange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//交换机名称</span><span class="token class-name">String</span> exchangeName<span class="token operator">=</span><span class="token string">"exchange.fanout"</span><span class="token punctuation">;</span><span class="token comment">//消息</span><span class="token class-name">String</span> msg<span class="token operator">=</span><span class="token string">"Hello，av8d!"</span><span class="token punctuation">;</span><span class="token comment">//发送消息</span>         rabbitTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span>exchangeName<span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <p>这里的rabbitTemplate.convertAndSend接受三个参数，分别是</p> <pre><code class="prism language-java"><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span><span class="token class-name">String</span> exchange<span class="token punctuation">,</span><span class="token class-name">String</span> routingKey<span class="token punctuation">,</span><span class="token class-name">Object</span> object<span class="token punctuation">)</span></code></pre> <ol> <li><strong>exchange</strong>：交换机的名称</li> <li><strong>routeKey</strong>：routeKey值（还不需要用到，先不管他，给个""）</li> <li><strong>object</strong>：发送的消息</li> </ol> <p>写完测试方法，我们跑一下我们的测试方法，然后看一下我们消费者的控制台如下：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/3c9e4093e92b132336c8853a3e984931.jpg" alt="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）"><br /> 可以看到，只发布了一条消息，但是通过交换机发布给两个Queue后，我们消费者的两个方法都监听到了我们同一条消息。</p> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-3430.htm">关于Spring中@Order注解的使用</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-3736.htm">分布式一致性算法 2PC与3PC</a></p>
+                                                                    </div>
+
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-2535.htm">win11系统磁盘被写保护怎么解除</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-958.htm">解决antdv的table因数据量过大导致的卡顿问题</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-928.htm">css解决高度自适应问题（使用flex）</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-894.htm">C语言实现二叉树的插入和删除</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-876.htm">Spring Boot拦截器示例及源码原理分析</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-865.htm">支持向量机之线性可分向量机_在线工具</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-863.htm">Python笔记，内存管理（2）&#8212;-垃圾回收</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-844.htm">Springmvc记录操作日志到数据库</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-840.htm">Java 18 新增@snipppet标签，注释中写样例代码更舒适了！_在线工具</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-823.htm">Pytorch 加载多gpu模型+解决加载模型测试结果不正确</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-2535.htm" title="win11系统磁盘被写保护怎么解除">win11系统磁盘被写保护怎么解除</a></li>
+                        <li class="py-2"><a href="/html/category/article-1918.htm" title="java基础面试题">java基础面试题</a></li>
+                        <li class="py-2"><a href="/html/category/article-1946.htm" title="dao层和serivce层的作用和区别">dao层和serivce层的作用和区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-1931.htm" title="SpringMVC中MultipartFile转File的两种方式_java">SpringMVC中MultipartFile转File的两种方式_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-3735.htm" title="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）">RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）</a></li>
+                        <li class="py-2"><a href="/html/category/article-3429.htm" title="认证与授权流程与spring boot整合 spring security">认证与授权流程与spring boot整合 spring security</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-1038.htm" title="spring boot 导入导出">spring boot 导入导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1025.htm" title="Spring-RabbitMQ 消费者消息确认案例实践">Spring-RabbitMQ 消费者消息确认案例实践</a></li>
+                        <li class="py-2"><a href="/html/category/article-2830.htm" title="JavaScript定时器的各种案例">JavaScript定时器的各种案例</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">56</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
