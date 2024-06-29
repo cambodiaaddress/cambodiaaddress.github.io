@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-3761.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>OpenFeign调用自定义异常处理 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>OpenFeign调用自定义异常处理</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night-eighties"> <h2><a id="_0" rel="nofollow"></a>问题说明</h2> <p>开发中，A服务调用B服务时，B服务中参数校验未通过抛出了自定义异常，错误码是10001，错误消息是“XXXXX不能为空”，返回到A服务时，A服务的feign异常拦截无法获取到错误码10001。<br /> OpenFeign的FeignException返回的异常信息默认status为500。导致10001code丢失。</p> <h2><a id="_4" rel="nofollow"></a>自定义的业务处理异常</h2> <p>每个服务的自定义异常可能不一样，不过无所谓，主要是异常时获取code和message并透传到前端。</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Data</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">BizException</span><span class="token keyword">extends</span><span class="token class-name">RuntimeException</span><span class="token keyword">implements</span><span class="token class-name">Serializable</span><span class="token punctuation">{<!-- --></span><span class="token keyword">private</span><span class="token keyword">static</span><span class="token keyword">final</span><span class="token keyword">long</span> serialVersionUID<span class="token operator">=</span><span class="token number">1L</span><span class="token punctuation">;</span><span class="token keyword">private</span><span class="token class-name">String</span> code<span class="token punctuation">;</span><span class="token keyword">private</span><span class="token class-name">String</span> message<span class="token punctuation">;</span><span class="token keyword">public</span><span class="token class-name">BizException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token comment">/**      * 抛出时，需指定错误码和错误消息      * @param code      * @param message      */</span><span class="token keyword">public</span><span class="token class-name">BizException</span><span class="token punctuation">(</span><span class="token class-name">String</span> code<span class="token punctuation">,</span><span class="token class-name">String</span> message<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">this</span><span class="token punctuation">.</span>code<span class="token operator">=</span> code<span class="token punctuation">;</span><span class="token keyword">this</span><span class="token punctuation">.</span>message<span class="token operator">=</span> message<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h2><a id="_32" rel="nofollow"></a>自定义异常时返回的错误信息</h2> <p>这是发生异常时，统一返回的数据实体。放在common包下，每个服务公用。</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Data</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">ExceptionInfo</span><span class="token punctuation">{<!-- --></span><span class="token comment">/**      * 异常时间      */</span><span class="token keyword">private</span><span class="token class-name">String</span> timestamp<span class="token punctuation">;</span><span class="token comment">/**      * 自定义异常码      */</span><span class="token keyword">private</span><span class="token class-name">String</span> code<span class="token punctuation">;</span><span class="token comment">/**      * 自定义异常消息      */</span><span class="token keyword">private</span><span class="token class-name">String</span> message<span class="token punctuation">;</span><span class="token comment">/**      * 异常url      */</span><span class="token keyword">private</span><span class="token class-name">String</span> path<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <h2><a id="Feign_61" rel="nofollow"></a>创建Feign异常响应拦截</h2> <p>它也是Http，和处理controller全局异常一样。<br /> 假设现在有个包叫feignimpl，所有的feign接口实现都在这个包下。<br /> 这个是"被调用方"处理本服务如果发生了异常，返回ExceptionInfo实体的json数据。<br /> 上面的例子B服务就是被调用方。</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Slf4j</span><span class="token annotation punctuation">@RestControllerAdvice</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span><span class="token string">"com.demo.center.feignimpl"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">FeignExceptionHandler</span><span class="token punctuation">{<!-- --></span><span class="token comment">//抛出的异常可能是自定义异常，也可能是其他运行时异常</span><span class="token annotation punctuation">@ResponseBody</span><span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">ExceptionInfo</span><span class="token function">handleFeignStatusException</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">,</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span><span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		log<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//必须要设置response的status。不是200就行。</span><span class="token comment">//比如统一约定服务间调用异常为555错误码</span> 		response<span class="token punctuation">.</span><span class="token function">setStatus</span><span class="token punctuation">(</span><span class="token number">555</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//如果是自定义业务异常</span><span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token keyword">instanceof</span><span class="token class-name">BizException</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">BizException</span> bize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token class-name">BizException</span><span class="token punctuation">)</span> e<span class="token punctuation">;</span><span class="token comment">//构建返回实体</span><span class="token class-name">ExceptionInfo</span> ei<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">ExceptionInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//异常时间</span>             ei<span class="token punctuation">.</span><span class="token function">setTimestamp</span><span class="token punctuation">(</span><span class="token string">"时间随便想怎么写就怎么写"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//自定义的错误码</span>             ei<span class="token punctuation">.</span><span class="token function">setCode</span><span class="token punctuation">(</span>bize<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//自定义的错误消息提示</span>             ei<span class="token punctuation">.</span><span class="token function">setMessage</span><span class="token punctuation">(</span>bize<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//请求的URI</span>             ei<span class="token punctuation">.</span><span class="token function">setPath</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> ei<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">else</span><span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token keyword">instanceof</span><span class="token class-name">UserException</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//如果有其他的自定义异常，在这里添加即可</span><span class="token punctuation">}</span><span class="token comment">//如果是其他的运行时异常，可以统一返回"系统异常,请稍后重试"</span><span class="token comment">//或者报警、邮件等其他处理方式</span><span class="token class-name">ExceptionInfo</span> ei<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">ExceptionInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         ei<span class="token punctuation">.</span><span class="token function">setTimestamp</span><span class="token punctuation">(</span><span class="token string">"时间随便想怎么写就怎么写"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         ei<span class="token punctuation">.</span><span class="token function">setCode</span><span class="token punctuation">(</span><span class="token string">"111111"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         ei<span class="token punctuation">.</span><span class="token function">setMessage</span><span class="token punctuation">(</span><span class="token string">"系统异常,请稍后重试"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         ei<span class="token punctuation">.</span><span class="token function">setPath</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> ei<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h2><a id="Feign_108" rel="nofollow"></a>创建Feign异常拦截</h2> <p>这个是调用方的异常拦截，上面的例子A服务时调用方。</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Slf4j</span><span class="token annotation punctuation">@Configuration</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">ExceptionErrorDecoder</span><span class="token keyword">implements</span><span class="token class-name">ErrorDecoder</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@Override</span><span class="token keyword">public</span><span class="token class-name">Exception</span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token class-name">String</span> s<span class="token punctuation">,</span><span class="token class-name">Response</span> response<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">try</span><span class="token punctuation">{<!-- --></span><span class="token keyword">if</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!=</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//会把异常信息转换成字符串，注意断点不要打在这一行，会报IO异常</span><span class="token comment">//断点可以打在它的下一行</span><span class="token class-name">String</span> body<span class="token operator">=</span><span class="token class-name">Util</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">asReader</span><span class="token punctuation">(</span><span class="token class-name">Charset</span><span class="token punctuation">.</span><span class="token function">defaultCharset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//将字符串转换为自定义的异常信息</span><span class="token class-name">ExceptionInfo</span> ei<span class="token operator">=</span><span class="token class-name">GsonUtil</span><span class="token punctuation">.</span><span class="token function">jsonStrToObj</span><span class="token punctuation">(</span>body<span class="token punctuation">,</span><span class="token class-name">ExceptionInfo</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//返回异常信息，随便返回哪个异常都行，主要是将code和message透传到前端</span><span class="token keyword">return</span><span class="token keyword">new</span><span class="token class-name">BizException</span><span class="token punctuation">(</span>ei<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ei<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> ex<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//异常记录日志</span> 			log<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">"Feign异常处理错误："</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">//默认返回"系统异常,请稍后重试"</span><span class="token keyword">return</span><span class="token keyword">new</span><span class="token class-name">BizException</span><span class="token punctuation">(</span><span class="token string">"500"</span><span class="token punctuation">,</span><span class="token string">"系统异常,请稍后重试"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h2><a id="_138" rel="nofollow"></a>最后是返回异常到前端</h2> <p>这个主要是拦截controller层的异常了。</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Slf4j</span><span class="token annotation punctuation">@RestControllerAdvice</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span><span class="token string">"com.demo.center.controller"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">GlobalJsonExceptionController</span><span class="token punctuation">{<!-- --></span><span class="token comment">/**      * ResponseBody 的controller 统一处理异常 自定义异常      * @param e      * @return      */</span><span class="token annotation punctuation">@ResponseBody</span><span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">Response</span><span class="token function">exception</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         log<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token keyword">instanceof</span><span class="token class-name">IllegalArgumentException</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">buildFailed</span><span class="token punctuation">(</span><span class="token class-name">ResultCode</span><span class="token punctuation">.</span>ILLEGAL_PARAM<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token class-name">ResultCode</span><span class="token punctuation">.</span>ILLEGAL_PARAM<span class="token punctuation">.</span><span class="token function">getDesc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">else</span><span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token keyword">instanceof</span><span class="token class-name">BizException</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">buildFailed</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">BizException</span><span class="token punctuation">)</span> e<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">else</span><span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token keyword">instanceof</span><span class="token class-name">MethodArgumentNotValidException</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">BindingResult</span> bindingResult<span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">MethodArgumentNotValidException</span><span class="token punctuation">)</span> e<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBindingResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">FieldError</span><span class="token punctuation">&gt;</span></span> errors<span class="token operator">=</span> bindingResult<span class="token punctuation">.</span><span class="token function">getFieldErrors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//拼接message</span><span class="token class-name">StringJoiner</span> sj<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">StringJoiner</span><span class="token punctuation">(</span><span class="token string">"，"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">FieldError</span> error<span class="token operator">:</span> errors<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>                 sj<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span><span class="token function">getDefaultMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">return</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">buildFailed</span><span class="token punctuation">(</span><span class="token string">"400"</span><span class="token punctuation">,</span> sj<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">buildFailed</span><span class="token punctuation">(</span><span class="token string">"500"</span><span class="token punctuation">,</span><span class="token string">"系统异常,请稍后重试"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-3736.htm">分布式一致性算法 2PC与3PC</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-3762.htm">Pandas（七）——文本数据（Textual Data）</a></p>
+                                                                    </div>
+
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-1030.htm">vue-element-admin模板，点击跳转到另一个页面传参</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1003.htm">Druid数据库连接 | Spring Boot 集成 Druid实现数据库连接和完善的SQL执行监控</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-959.htm">pytorch 多GPU训练的模型在单卡或CPU上加载</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-930.htm">测试es from size error，from + size must be less than or equal to: [10000]异常问题</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-896.htm">Java.UtilsJAVA 8 时间工具类</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-885.htm">Kafka的零拷贝原理解析</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-864.htm">C语言中的零长度数组使用说明</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-832.htm">instanceof实现</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-831.htm">TensorFlow模型保存和提取方法</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-821.htm">IDEA2020配置maven环境</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1028.htm" title="tensorflow根据输入更改tensor shape">tensorflow根据输入更改tensor shape</a></li>
+                        <li class="py-2"><a href="/html/category/article-1035.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/html/category/article-1059.htm" title="TypeError: Cannot read properties of undefined (reading ‘state‘)">TypeError: Cannot read properties of undefined (reading ‘state‘)</a></li>
+                        <li class="py-2"><a href="/html/category/article-1347.htm" title="VUE3setup响应式函数系统API详解">VUE3setup响应式函数系统API详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1027.htm" title="pytorch 保存模型和加载模型">pytorch 保存模型和加载模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
+                        <li class="py-2"><a href="/html/category/article-1327.htm" title="java-websocket断线重连">java-websocket断线重连</a></li>
+                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
+                        <li class="py-2"><a href="/html/category/article-3127.htm" title="vuex配置项、多组件数据共享案例详解">vuex配置项、多组件数据共享案例详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-3761.htm" title="OpenFeign调用自定义异常处理">OpenFeign调用自定义异常处理</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
