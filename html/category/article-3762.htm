@@ -101,6 +101,7 @@ var _hmt = _hmt || [];
                                   				  				  				<div id="content_views" class="markdown_views prism-atelier-sulphurpool-light"> <h1> <a id="_0" rel="nofollow"></a>前言</h1> <ul> <li> <strong>文本数据</strong><br /> 指不能参与算术运算的任何字符，也称为字符型数据。如英文字母、汉字、不作为数值使用的数字(以单引号开头)和其他可输入的字符。</li> <li> <strong>文本数据的特点</strong> </p> <ul> <li> <strong>半结构化</strong><br /> 文本数据既不是完全无结构的也不是完全结构化的。例如文本可能包含结构字段，如标题、作者、出版日期、长度、分类等，也可能包含大量的非结构化的数据，如摘要和内容。</li> <li> <strong>高维</strong><br /> 文本向量的维数一般都可以高达上万维，一般的数据挖掘、数据检索的方法由于计算量过大或代价高昂而不具有可行性。</li> <li> <strong>高数据量</strong><br /> 一般的文本库中都会存在最少数千个文本样本，对这些文本进行预处理、编码、挖掘等处理的工作量是非常庞大的，因而手工方法一般是不可行的。</li> <li> <strong>语义性</strong><br /> 文本数据中存在着一词多义、多词一义，在时间和空间上的上下文相关等情况。</li> </ul> </li> </ul> <hr/> <p>为了迎合Pandas的发展模式，我们全部用<strong>string</strong>来操作字符串。</p> <blockquote> <p><strong>string与object的区别：</strong></p> <ol> <li>字符存取方法（string accessor methods）：<br /> string会返回相应数据的Nullable类型；<br /> object会随缺失值的存在而改变返回类型。</li> <li>某些Series方法不能在string上使用。例如： Series.str.decode()。<br /> 因为存储的是字符串而不是字节</li> <li>string类型在缺失值存储或运算时，类型会广播为pd.NA，而不是浮点型np.nan</li> </ol> </blockquote> <p>既然我们选择了string来操作字符串，那么我们遇到非string类型数据时，必须要先把数据转换为string类型。<br /> string类型的转换分两步走：<strong>先转为str型object，再转为string类型</strong></p> <pre><code class="prism language-python"><span class="token comment">#以整型数据转换为string型举例，其它类型数据(如float型、bool型)的转换类似</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'str'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'string'</span><span class="token punctuation">)</span> </code></pre> <h1> <a id="string_30" rel="nofollow"></a>string的基本语法</h1> <p>string基本语法包括拆分与拼接、替换、子串匹配与提取、过滤、isnumeric方法。</p> <h2> <a id="_32" rel="nofollow"></a>拆分与拼接</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/ce9c40ba3c36bffd80fd9cedefd205d3.jpg" alt="Pandas（七）——文本数据（Textual Data）"></p> <h2> <a id="_34" rel="nofollow"></a>替换</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/899580b69c49a29716c13d98f2e4d002.jpg" alt="Pandas（七）——文本数据（Textual Data）"></p> <h2> <a id="_36" rel="nofollow"></a>子串匹配与提取</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/33bfd675fc6e81a6519981e6f7a19729.jpg" alt="Pandas（七）——文本数据（Textual Data）"></p> <h2> <a id="_38" rel="nofollow"></a>常用字符串方法</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/ea0ada8dab758cff7be91c26f2701aa5.jpg" alt="Pandas（七）——文本数据（Textual Data）"></p> </p></div> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-3761.htm">OpenFeign调用自定义异常处理</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-4073.htm">动态修改springboot中的scheduling(动态修改定时任务执行时间)</a></p>
                                                                     </div>
 
                                                                 <div class="panel panel-default mt-5">
@@ -130,16 +131,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1348.htm" title="PostMan传参给@RequestBody（接受前端参数）的方式">PostMan传参给@RequestBody（接受前端参数）的方式</a></li>
-                        <li class="py-2"><a href="/html/category/article-1032.htm" title="@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验">@NotEmpty、@NotBlank等注解的正确使用 @Validated和@Valid的区别 解决@NotBlank等注解不生效的问题 使用BindingResult进行接口请求参数的统一校验</a></li>
-                        <li class="py-2"><a href="/html/category/article-1059.htm" title="TypeError: Cannot read properties of undefined (reading ‘state‘)">TypeError: Cannot read properties of undefined (reading ‘state‘)</a></li>
+                        <li class="py-2"><a href="/html/category/article-4074.htm" title="win11系统怎么清理c盘垃圾文件">win11系统怎么清理c盘垃圾文件</a></li>
+                        <li class="py-2"><a href="/html/category/article-1931.htm" title="SpringMVC中MultipartFile转File的两种方式_java">SpringMVC中MultipartFile转File的两种方式_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1946.htm" title="dao层和serivce层的作用和区别">dao层和serivce层的作用和区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-1327.htm" title="java-websocket断线重连">java-websocket断线重连</a></li>
                         <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
-                        <li class="py-2"><a href="/html/category/article-3761.htm" title="OpenFeign调用自定义异常处理">OpenFeign调用自定义异常处理</a></li>
-                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1635.htm" title="Vue.js 3.x 中跨层级组件如何传递数据？_在线工具">Vue.js 3.x 中跨层级组件如何传递数据？_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-1358.htm" title="Logback及其MDC功能详解">Logback及其MDC功能详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1932.htm" title="nohup: redirecting stderr to stdout的解决办法">nohup: redirecting stderr to stdout的解决办法</a></li>
-                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-3127.htm" title="vuex配置项、多组件数据共享案例详解">vuex配置项、多组件数据共享案例详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1918.htm" title="java基础面试题">java基础面试题</a></li>
+                        <li class="py-2"><a href="/html/category/article-2245.htm" title="8 高并发解决方案">8 高并发解决方案</a></li>
+                        <li class="py-2"><a href="/html/category/article-2246.htm" title="Java中自定义注解的使用">Java中自定义注解的使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-3429.htm" title="认证与授权流程与spring boot整合 spring security">认证与授权流程与spring boot整合 spring security</a></li>
                     </ul>
     </div>
 </div>
@@ -151,7 +152,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">58</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>

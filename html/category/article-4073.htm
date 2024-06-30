@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-864.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-4073.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>C语言中的零长度数组使用说明 - CambodiaAddress</title>
+    <title>动态修改springboot中的scheduling(动态修改定时任务执行时间) - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>C语言中的零长度数组使用说明</h2>
+                                <h2>动态修改springboot中的scheduling(动态修改定时任务执行时间)</h2>
                             </div>
                         </div>
                     </div>
@@ -98,12 +98,31 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="htmledit_views">                     C语言中的零长度数组用法详解<br /> <br /> &nbsp;&nbsp;&nbsp; 在C语言中允许在结构体和联合体中定义零长度的数组，写法可以是以下两种：<br /> <br /> char p[]或者char p[0]，这个数组定义在结构体或者联合体中，不占用空间大小。<br /> <br /> 这是个广泛使用的常见技巧，常用来构成缓冲区。比起指针，用空数组有这样的优势： &nbsp;<br /> <br /> 1.不需要初始化，数组名直接就是所在的偏移； &nbsp;<br /> <br /> 2.不占任何空间，指针需要占用int长度空间，空数组不占任何空间。 &nbsp;<br /> <br /> &nbsp;&nbsp;&nbsp;&nbsp; “这个数组不占用任何内存”，意味着这样的结构节省空间；“该数组的内存地址就和他后面的元素的地址相同”，意味着无需初始化，数组名就是后面元素的地址，直接就能当做指针使用。<br /> <br /> 这样的写法最适合制作动态buffer。因为可以这样分配空间： &nbsp;<br /> <br /> malloc（sizeof(struct&nbsp; XXX）＋&nbsp; buff_len）； &nbsp;<br /> <br /> 看出来好处没有？直接就把buffer的结构体和缓冲区一块分配了。用起来也非常方便，因为现在kongsuzu其实变成了buff_len长度的数组了。 &nbsp;<br /> <br /> 这样的好处有两点： &nbsp;<br /> <br /> &nbsp;&nbsp;&nbsp; 一次分配解决问题，省了不少麻烦。大家知道为了防止内存泄漏，如果是分两次分配（结构体和缓冲区），那么要是第二次malloc失败了，必须回滚释放第一个分配的结构体。这样带来了编码麻烦。其次，分配了第二个缓冲区以后，如果结构里面用的是指针，还要为这个指针赋值。同样，在free这个buffer的时候，用指针也要两次free。如果用空数组，所有问题一次解决。<br /> <br /> &nbsp;&nbsp;&nbsp; 其次，大家知道小内存的管理是非常困难的，如果用指针，这个malloc分配出来的空间中的struct部分就是小内存了，在系统内存在多了势必严重影响内存管理的性能。要是用空数组把struct和实际数据缓冲区一次分配大块问题，就没有这个问题。 &nbsp;</p> <p> 即使零长度数组的优点如此之多，但是使用的时候也是要倍加小心：<br /> <br /> 1.零长度数组不是所有的c标准都支持，gnu c支持，ANSI C不支持，C++不支持。<br /> <br /> 2.如果某种情况下出现了这个结构体中只有零长度数组一个元素，这个可能会就会导致错误降临。<br /> <br /> 3.零长度数组需要放于结构体的结尾处。                 </div> 			
+                                  				  				  				<div id="content_views" class="htmledit_views"> <pre><code>package org.springblade.timing;   import java.util.Date; import javax.servlet.http.HttpServletRequest; import org.springframework.context.annotation.Lazy; import org.springframework.scheduling.Trigger; import org.springframework.scheduling.TriggerContext; import org.springframework.scheduling.annotation.EnableScheduling; import org.springframework.scheduling.annotation.SchedulingConfigurer; import org.springframework.scheduling.config.ScheduledTaskRegistrar; import org.springframework.scheduling.support.CronTrigger; import org.springframework.stereotype.Component; import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.RequestMapping;  @Lazy(value=false) @Component @EnableScheduling @Controller public class DynamicCronTask implements SchedulingConfigurer {  	public static String cron = "0/10 * * * * ?";  	@RequestMapping("/setDynamicCronTask") 	public String setSpringDynamicCronTask(HttpServletRequest request, String setCron) { 		System.out.println("cron setDynamicCronTaskto:" + setCron); 		cron = setCron; 		System.err.println("cron change to:" + cron); 		return ""; 	} 	@Override 	public void configureTasks(ScheduledTaskRegistrar taskRegister) { 		taskRegister.addTriggerTask(new Runnable() { 			@Override 			public void run() { 				// 逻辑任务  				System.out.println("dynamicCronTask is running..."+taskRegister.getCronTaskList().size()); 			} 		}, new Trigger() { 			@Override 			public Date nextExecutionTime(TriggerContext triggerContext) { 				// 任务触发，可修改任务的执行周期 				CronTrigger trigger = new CronTrigger(cron); 				System.out.println("cron:" + cron); 				Date nextExecutor = trigger.nextExecutionTime(triggerContext); 				return nextExecutor; 			} 		}); 	} } </code></pre> <p>模拟请求：</p> <p>http://localhost:9998/setDynamicCronTask?setCron=0/1 * * * * ?&nbsp;</p> <p>运行结果：</p> <p><img fetchpriority="high" decoding="async" alt="" height="417" src="http://img.555519.xyz/uploads/20230108/d6d063e5efcfe4a5bb09fa591024c176.jpg"></p> </p></div> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-863.htm">Python笔记，内存管理（2）&#8212;-垃圾回收</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-865.htm">支持向量机之线性可分向量机_在线工具</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-3762.htm">Pandas（七）——文本数据（Textual Data）</a></p>
+                                                                        <p>下一个：<a href="/html/category/article-4074.htm">win11系统怎么清理c盘垃圾文件</a></p>
                                                                     </div>
 
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-1012.htm">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1000.htm">@RequestBody接受参数报415错误</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-955.htm">SDDC的Windows初体验-QT篇</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-916.htm">【kafka】一次磁盘故障后消费者无法消费</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-908.htm">Spark Streaming实时流处理项目实战(四)分布式消息队列Kafka</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-903.htm">vue实现暗黑模式</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-888.htm">搭建vue2.x开发环境的步骤与方式</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-860.htm">IndexError: tensors used as indices must be long, byte or bool tensors</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-836.htm">uniapp自定义弹窗组件</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-828.htm">在同一个类中，一个方法调用另外一个有注解（比如@Async，@Transational）的方法，注解失效的原因和解决方法</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
                                                             </div>
                             <div class="col-md-3">
                                 <div class="panel panel-default">
@@ -112,16 +131,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-3736.htm" title="分布式一致性算法 2PC与3PC">分布式一致性算法 2PC与3PC</a></li>
-                        <li class="py-2"><a href="/html/category/article-1337.htm" title="机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
-                        <li class="py-2"><a href="/html/category/article-4073.htm" title="动态修改springboot中的scheduling(动态修改定时任务执行时间)">动态修改springboot中的scheduling(动态修改定时任务执行时间)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1348.htm" title="PostMan传参给@RequestBody（接受前端参数）的方式">PostMan传参给@RequestBody（接受前端参数）的方式</a></li>
-                        <li class="py-2"><a href="/html/category/article-1946.htm" title="dao层和serivce层的作用和区别">dao层和serivce层的作用和区别</a></li>
-                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
+                        <li class="py-2"><a href="/html/category/article-1959.htm" title="实战代码（十）：Springboot RestTemplate连接池">实战代码（十）：Springboot RestTemplate连接池</a></li>
+                        <li class="py-2"><a href="/html/category/article-1031.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                        <li class="py-2"><a href="/html/category/article-1918.htm" title="java基础面试题">java基础面试题</a></li>
                         <li class="py-2"><a href="/html/category/article-3429.htm" title="认证与授权流程与spring boot整合 spring security">认证与授权流程与spring boot整合 spring security</a></li>
-                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-1046.htm" title="如何加快循环操作和Numpy数组运算速度！">如何加快循环操作和Numpy数组运算速度！</a></li>
-                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
+                        <li class="py-2"><a href="/html/category/article-1636.htm" title="模型的威力：基于模型，快速梳理源码_在线工具">模型的威力：基于模型，快速梳理源码_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1348.htm" title="PostMan传参给@RequestBody（接受前端参数）的方式">PostMan传参给@RequestBody（接受前端参数）的方式</a></li>
+                        <li class="py-2"><a href="/html/category/article-1347.htm" title="VUE3setup响应式函数系统API详解">VUE3setup响应式函数系统API详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-2829.htm" title="CSS实现文字垂直居中">CSS实现文字垂直居中</a></li>
                     </ul>
     </div>
 </div>
