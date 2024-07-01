@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-4102.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>图解Redis之数据结构篇压缩列表 - CambodiaAddress</title>
+        <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- off-canvas -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/mobile-menu.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Flat Icon -->
+    <link href="fonts/flaticon/flaticon.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style CSS -->
+    <link href="/assets/addons/xcblog/css/cambodiaaddress/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8022148af1f0848b976ee8f0e7db4477";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <!-- Page Preloader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"></div>
+            </div>
+        </div>
+        <div class="uc-mobile-menu-pusher">
+            <div class="content-wrapper">
+                                <!-- .navbar-top -->
+                <nav class="navbar m-menu navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                                                        <a class="navbar-brand" href="/">Cambodia Address</a>
+                                                    </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="#navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right main-nav">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div>
+                        <!-- .navbar-collapse -->
+                    </div>
+                    <!-- .container -->
+                </nav>
+                <!-- .nav -->
+                <section class="single-page-title single-page-title-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>图解Redis之数据结构篇压缩列表</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- .page-title -->
+                <section class="featured-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ol class="breadcrumb">
+                                  <li><a href="/">首页</a></li>
+                                  <li><a href="/html/category/">文章分类</a></li>
+                                  <li class="active">正文</li>
+                                </ol>
+
+                                  				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown"> <h3 id="前言">前言</h3> <p>&nbsp;&nbsp;&nbsp;&nbsp;同整数集合一样压缩列表也不是基础数据结构，而是 Redis 自己设计的一种数据存储结构。它有点儿类似数组，通过一片连续的内存空间，来存储数据。不过，它跟数组不同的一点是，它允许存储的数据大小不同。</p> <h3 id="一压缩列表">一、压缩列表</h3> <p>&nbsp;&nbsp;&nbsp;&nbsp;听到“压缩”两个字，直观的反应就是节省内存。之所以说这种存储结构节省内存,是相较于数组的存储思路而言的。我们知道,数组要求每个元素的大小相同,如果我们要存储不同长度的字符串,那我们就需要用最大长度的字符串大小作为元素的大小(假设是20个字节)。存储小于 20 个字节长度的字符串的时候，便会浪费部分存储空间。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/23493a58d7110fea466f6270982f1459.jpg" alt="图解Redis之数据结构篇压缩列表"></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;数组的优势占用一片连续的空间可以很好的利用CPU缓存访问数据。如果我们想要保留这种优势，又想节省存储空间我们可以对数组进行压缩。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/529fd504d8db2b7fb1842bff4192df31.jpg" alt="图解Redis之数据结构篇压缩列表"></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是这样有一个问题，我们在遍历它的时候由于不知道每个元素的大小是多少，因此也就无法计算出下一个节点的具体位置。这个时候我们可以给每个节点增加一个lenght的属性。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/d7696476725adc9d150eb144dbc07767.jpg" alt="图解Redis之数据结构篇压缩列表"></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;如此。我们在遍历节点的之后就知道每个节点的长度(占用内存的大小)，就可以很容易计算出下一个节点再内存中的位置。这种结构就像一个简单的压缩列表了。</p> <h3 id="二redis压缩列表">二、Redis压缩列表</h3> <p>&nbsp;&nbsp;&nbsp;&nbsp;压缩列表(zip1ist)是列表和哈希的底层实现之一。</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;当一个列表只包含少量列表项,并且每个列表项要么就是小整数值,要么就是长度比较短的字符串,那么Redis就会使用压缩列表来做列表的底层实现。</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;当一个哈希只包含少量键值对,比且每个键值对的键和值要么就是小整数值,要么就是长度比较短的字符串,那么Redis就会使用压缩列表来做哈希的底层实现。</p> <h4 id="redis压缩列表的构成">2.1 Redis压缩列表的构成</h4> <p>&nbsp;&nbsp;&nbsp;&nbsp;压缩列表是Redis为了节约内存而开发的,是由一系列特殊编码的连续内存块组成的顺序型(sequential)数据结枃。一个压缩列表可以包含任意多个节点(entry),每个节点可以保存一个字节数组或者一个整数值，如下图。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/2e3a44e6d3310a9096106dc3e080bd14.jpg" alt="图解Redis之数据结构篇压缩列表"></p> <p>示例：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/7b1be06f2811457a1025b17bfaa19e1b.jpg" alt="图解Redis之数据结构篇压缩列表"></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;如上图，展示了一个总长为80字节，包含3个节点的压缩列表。如果我们有一个指向压缩列表起始地址的指针p，那么表为节点的地址就是P+60。</p> <h4 id="redis压缩列表节点的构成">2.2 Redis压缩列表节点的构成</h4> <p>&nbsp;&nbsp;&nbsp;&nbsp;每个压缩列表节点可以保存一个字节数组或者一个整数值。其中，字节数组可以是以下三种长度中的一种。</p> <ul> <li>长度小于等于63(2^6-1)字节的字节数组;</li> <li>长度小于等于16383(2^14-1)字节的字节数组</li> <li>长度小于等于4294967295(2^32-1)字节的字节数组</li> </ul> <p>整数值可以是以下6种长度中的一种</p> <ul> <li>4位长,介于0至12之间的无符号整数</li> <li>1字节长的有符号整数</li> <li>3字节长的有符号整数</li> <li>int16_t类型整数</li> <li>int32_t类型整数</li> <li>int64_t类型整数</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/e527f4895dc0f511d1a94857a86c5cc2.jpg" alt="图解Redis之数据结构篇压缩列表"></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;节点的 previous_entry_length属性以字节为单位,记录了压缩列表中前一个节点的长度。 previous_entry_length属性的长度可以是1字节或者5字节。</p> <ul> <li>如果前一节点的长度小于254字节,那么 previous_entry_length属性的长度为1字节，前一节点的长度就保存在这一个字节里面。</li> <li>如果前一节点的长度大于等于254字节,那么 previous_entry_length属性的长度为5字节:其中属性的第一字节会被设置为0xFE(十进制值254),而之后的四个字节则用于保存前一节点的长度.</li> </ul> <p>&nbsp;&nbsp;&nbsp;&nbsp;节点的encoding属性记录了节点的content属性所保存数据的类型以及长度。</p> <ul> <li>一字节、两字节或者五字节长,值的最高位为00、01或者10的是字节数组编码这种编码表示节点的 content属性保存着字节数组,数组的长度由编码除去最高两位之后的其他位记录。</li> <li>一字节长,值的最高位以11开头的是整数编码:这种编码表示节点的content属性保存着整数值,整数值的类型和长度由编码除去最高两位之后的其他位记录。</li> </ul> <p>&nbsp;&nbsp;&nbsp;&nbsp;节点的content属性负责保存节点的值,节点值可以是一个字节数组或者整数,值的类型和长度由节点的encoding属性决定。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/ac08ac4a5647c2f6cde8dd8f49bb46d3.jpg" alt="图解Redis之数据结构篇压缩列表"></p> <ul> <li>编码的最高两位00表示节点保存的是一个字节数组。</li> <li>编码的后六位001011记录了字节数组的长度11。</li> <li>content属性保存着节点的值"hello world"。</li> <li>编码11000000表示节点保存的是一个int16_t类型的整数值;</li> <li>content属性保存着节点的值10086</li> </ul> <h4 id="常用操作的时间复杂度">2.3 常用操作的时间复杂度</h4> <table> <thead> <tr class="header"> <th>操作</th> <th>时间复杂度</th> </tr> </thead> <tbody> <tr class="odd"> <td>创建一个新的压缩列表</td> <td>O(1)</td> </tr> <tr class="even"> <td>创建一个包含给定值的新节点,并将这个新节点添加到压缩列表的表头或者表尾</td> <td>平均O(N)，最坏O(N^2)(可能发生连锁更新)</td> </tr> <tr class="odd"> <td>将包含给定值的新节点插人到给定节点之后</td> <td>平均O(N)，最坏O(N^2)(可能发生连锁更新)</td> </tr> <tr class="even"> <td>返回压缩列表给定索引上的节点</td> <td>O(N)</td> </tr> <tr class="odd"> <td>在压缩列表中査找并返回包含了给定值的节点</td> <td>因为节点的值可能是一个字节数组,所以检查节点值和给定值是否相同的复杂度为O(N),而查找整个列表的复杂度则为(N^2)</td> </tr> <tr class="even"> <td>返回给定节点的下一个节点</td> <td>O(1)</td> </tr> <tr class="odd"> <td>返回给定节点的前一个节点</td> <td>O(1)</td> </tr> <tr class="even"> <td>获取给定节点所保存的值</td> <td>O(1)</td> </tr> <tr class="odd"> <td>从压缩列表中删除给定的节点</td> <td>平均O(N)，最坏O(N^2)(可能发生连锁更新)</td> </tr> <tr class="even"> <td>删除压缩列表在给定索引上的连续多个</td> <td>平均O(N)，最坏O(N^2)(可能发生连锁更新)</td> </tr> <tr class="odd"> <td>返回压缩列表目前占用的内存字节数</td> <td>O(1)</td> </tr> <tr class="even"> <td>返回压缩列表目前包含的节点数量</td> <td>点数量小于65535时为O(1),大于65535时为O(N)</td> </tr> </tbody> </table> <h3 id="本文重点">本文重点</h3> <ul> <li> <p>压缩列表是Redis为节约内存自己设计的一种顺序型数据结构。</p> </li> <li>压缩列表被用作列表键和哈希键的底层实现之一。</li> <li>压缩列表可以包含多个节点,每个节点可以保存一个字节数组或者整数值。</li> <li> <p>添加新节点到压缩列表,或者从压缩列表中删除节点,可能会引发连锁更新操作,但这种操作出现的几率并不高。</p> </li> </ul> <h3 id="参考">参考</h3> <p>《Redis设计与实现》</p> <p>《Redis开发与运维》</p> <p>《Redis官方文档》</p> <h3 id="end-----">-----END-----</h3> </div> <p>转载于:https://www.cnblogs.com/hunternet/p/11306690.html</p> </div> 			
+                                <div class="col-md-12 mt-5">
+                                                                        <p>上一个：<a href="/html/category/article-4101.htm">java利用RestTemplate 发送post请求</a></p>
+                                                                    </div>
+
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-1033.htm">Servlet的url-pattern配置</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1031.htm">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-1004.htm">微服务架构概述(帝炎)</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-966.htm">JavaCV的摄像头实战之七：推流(带声音)</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-932.htm">java list在哪个包_Java 中初始化 List 集合的 N 种方式！</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-928.htm">css解决高度自适应问题（使用flex）</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-881.htm">Runtime: Input type (torch.FloatTensor) and weight type (torch.cuda.FloatTensor) should be the same</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-852.htm">numpy和tensor类型更改（增加或减少）参数维度（reshape）</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-800.htm">SMTP协议解读以及如何使用SMTP协议发送电子邮件</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-796.htm">elemen-ui表格默认样式的修改</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
+                                                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-3128.htm" title="nohup: redirecting stderr to stdout">nohup: redirecting stderr to stdout</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-4102.htm" title="图解Redis之数据结构篇压缩列表">图解Redis之数据结构篇压缩列表</a></li>
+                        <li class="py-2"><a href="/html/category/article-1033.htm" title="Servlet的url-pattern配置">Servlet的url-pattern配置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1347.htm" title="VUE3setup响应式函数系统API详解">VUE3setup响应式函数系统API详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1358.htm" title="Logback及其MDC功能详解">Logback及其MDC功能详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1635.htm" title="Vue.js 3.x 中跨层级组件如何传递数据？_在线工具">Vue.js 3.x 中跨层级组件如何传递数据？_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1945.htm" title="Interlaken协议介绍">Interlaken协议介绍</a></li>
+                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/html/category/article-2535.htm" title="win11系统磁盘被写保护怎么解除">win11系统磁盘被写保护怎么解除</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                                <footer class="footer">
+                    <div class="copyright-section">
+                        <div class="container clearfix">
+                            <span class="copytext">
+                                CambodiaAddress 版权所有 Powered by WordPress
+                            </span>
+                            <ul class="list-inline pull-right">
+                                                                <li><a href="/">首页</a></li>
+                                                                <li><a href="/html/category/">文章分类</a></li>
+                                                                <li><a href="#">关于</a></li>
+                                <li><a href="#">联系</a></li>
+                            </ul>
+                        </div><!-- .container -->
+                    </div><!-- .copyright-section -->
+                </footer>
+                <!-- .footer -->
+            </div>
+            <!-- .content-wrapper -->
+        </div>
+        <!-- .offcanvas-pusher -->
+        <div class="uc-mobile-menu uc-mobile-menu-effect">
+            <button type="button" class="close" aria-hidden="true" data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+            <div>
+                <div>
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .uc-mobile-menu -->
+    </div>
+    <!-- #main-wrapper -->
+    <!-- Script -->
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/smoothscroll.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/mobile-menu.js"></script>
+    <script src="/assets/addons/xcblog/js/frontend/cambodiaaddress/scripts.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
