@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-890.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-4130.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Spring Boot 将第三方依赖和配置文件打包在jar外部并引用 - CambodiaAddress</title>
+    <title>C#二分查找算法_C#教程 - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>Spring Boot 将第三方依赖和配置文件打包在jar外部并引用</h2>
+                                <h2>C#二分查找算法_C#教程</h2>
                             </div>
                         </div>
                     </div>
@@ -98,12 +98,30 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>pom.xml文件中添加</p> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">build</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">plugins</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">plugin</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>maven-jar-plugin<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>2.6<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">configuration</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">archive</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">mainClass</span>&gt;</span>com.esbk.isp.ISPApplication<span class="hljs-tag">&lt;/<span class="hljs-title">mainClass</span>&gt;</span> //指定Springboot程序启动类<span class="hljs-tag">&lt;<span class="hljs-title">addClasspath</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">addClasspath</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">classpathPrefix</span>&gt;</span>lib/<span class="hljs-tag">&lt;/<span class="hljs-title">classpathPrefix</span>&gt;</span> //指定依赖的jar包相对于本程序jar的位置<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">manifestEntries</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">Class-Path</span>&gt;</span>./<span class="hljs-tag">&lt;/<span class="hljs-title">Class-Path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">manifestEntries</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">archive</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">excludes</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">exclude</span>&gt;</span>application*.yml<span class="hljs-tag">&lt;/<span class="hljs-title">exclude</span>&gt;</span> //指定打包时要排除的文件,支持正则<span class="hljs-tag">&lt;/<span class="hljs-title">excludes</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">configuration</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">plugin</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">plugins</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">build</span>&gt;</span></code></pre> <blockquote> <p>把依赖的jar包–&gt;放到和项目打成的jar包同级的lib文件夹下<br /> 把配置文件–&gt;放到和项目打成的jar包同级的文件夹下( 或者统计的config命名的文件夹下 )</p> </blockquote> <p>如果懒得手动把那么多的依赖拷贝出来的话,可以用maven命令导出:DoutputDirectory指定就行</p> <pre class="prettyprint"><code class="hljs tex">mvn dependency:copy-dependencies -DoutputDirectory=C:<span class="hljs-command">\Users</span><span class="hljs-command">\esbk</span><span class="hljs-command">\Desktop</span><span class="hljs-command">\lib</span>  -DincludeScope=runtime</code></pre> <p>最终目录结果<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221201/c7c9e71d27d6fb1dbaf929412a3d327b.jpg" alt="Spring Boot 将第三方依赖和配置文件打包在jar外部并引用"><br /> lib中是第三方依赖的jar,config中是配置文件.而且可执行的程序jar正常运行</p> <p>如果只想排除配置文件或只想配出第三方jar,删除pom中相应的配置即可</p> <p>参考文章:<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://www.cnblogs.com/xiaoqi/p/6955288.html"  rel="nofollow">http://www.cnblogs.com/xiaoqi/p/6955288.html</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.csdn.net/liangwenmail/article/details/72528496"  rel="nofollow">http://blog.csdn.net/liangwenmail/article/details/72528496</a><br /> 感谢以上作者的分享</p> </div> 			
+                                  				  				  				<h3>1、定义：</h3> <p>折半搜索，也称二分查找算法、二分搜索，是一种在有序数组中查找某一特定元素的搜索算法。</p> <p>要计算把目标值插入到该数组中的索引值。最开始的思路：</p> <p>①.先把目标数插入到数组中</p> <p>②.进行排序</p> <p>③.返回索引</p> <h3>2、实现代码：</h3> <div class="ay1code"> <pre class="brush:csharp;">　　public static int process4(int[] arr, int low, int high, int key)  　　{  　　　　int mid = (low + high) / 2;  　　　　if (low &gt; high)  　　　　　　return -1;  　　　　else  　　　　{  　　　　　　if (arr[mid] == key)  　　　　　　　　return mid;  　　　　　　else if (arr[mid] &gt; key)  　　　　　　　　return process4(arr, low, mid - 1, key);  　　　　　　else  　　　　　　　　return process4(arr, mid + 1, high, key);  　　　　}  　　}</pre> </div> 			
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-889.htm">如何阅读一份源代码</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-891.htm">设计模式学习笔记原型模式以及深浅拷贝的区别</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-4129.htm">SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习</a></p>
                                                                     </div>
 
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-1931.htm">SpringMVC中MultipartFile转File的两种方式_java</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-994.htm">java单例模式的8种写法</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-986.htm">Qt QComboBox之setEditable和currentTextChanged及其源码分析</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-964.htm">Java 方法的重载与参数传递详解_java</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-918.htm">【MQTT】mqtt 服务器部署&#8211;go 生产和消费demo</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-896.htm">Java.UtilsJAVA 8 时间工具类</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-838.htm">Java NIO 文件通道 FileChannel 用法_在线工具</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-823.htm">Pytorch 加载多gpu模型+解决加载模型测试结果不正确</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-811.htm">python读取hdfs上的parquet文件以及python访问hdfs HA的三种方法</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-809.htm">ES 文档与索引介绍</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
                                                             </div>
                             <div class="col-md-3">
                                 <div class="panel panel-default">
@@ -112,16 +130,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1347.htm" title="VUE3setup响应式函数系统API详解">VUE3setup响应式函数系统API详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-3127.htm" title="vuex配置项、多组件数据共享案例详解">vuex配置项、多组件数据共享案例详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1043.htm" title="springsecurity 中 核心过滤器和请求">springsecurity 中 核心过滤器和请求</a></li>
-                        <li class="py-2"><a href="/html/category/article-2536.htm" title="java实现线程安全的单例模型">java实现线程安全的单例模型</a></li>
+                        <li class="py-2"><a href="/html/category/article-4129.htm" title="SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习">SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习</a></li>
+                        <li class="py-2"><a href="/html/category/article-1039.htm" title="使用Kotlin实现百思不得姐弹出菜单">使用Kotlin实现百思不得姐弹出菜单</a></li>
+                        <li class="py-2"><a href="/html/category/article-1917.htm" title="css图片上面显示文字">css图片上面显示文字</a></li>
+                        <li class="py-2"><a href="/html/category/article-1044.htm" title="C ++程序，实现布斯的乘法算法来对两个有符号数相乘">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</a></li>
+                        <li class="py-2"><a href="/html/category/article-4102.htm" title="图解Redis之数据结构篇压缩列表">图解Redis之数据结构篇压缩列表</a></li>
+                        <li class="py-2"><a href="/html/category/article-1932.htm" title="nohup: redirecting stderr to stdout的解决办法">nohup: redirecting stderr to stdout的解决办法</a></li>
                         <li class="py-2"><a href="/html/category/article-1635.htm" title="Vue.js 3.x 中跨层级组件如何传递数据？_在线工具">Vue.js 3.x 中跨层级组件如何传递数据？_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-1337.htm" title="机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
-                        <li class="py-2"><a href="/html/category/article-1918.htm" title="java基础面试题">java基础面试题</a></li>
-                        <li class="py-2"><a href="/html/category/article-1036.htm" title="@DateTimeFormat和@JsonFormat使用">@DateTimeFormat和@JsonFormat使用</a></li>
-                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
+                        <li class="py-2"><a href="/html/category/article-3762.htm" title="Pandas（七）——文本数据（Textual Data）">Pandas（七）——文本数据（Textual Data）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2245.htm" title="8 高并发解决方案">8 高并发解决方案</a></li>
+                        <li class="py-2"><a href="/html/category/article-1347.htm" title="VUE3setup响应式函数系统API详解">VUE3setup响应式函数系统API详解</a></li>
                     </ul>
     </div>
 </div>
