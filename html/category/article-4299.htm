@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1347.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-4299.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>VUE3setup响应式函数系统API详解 - CambodiaAddress</title>
+    <title>美丽的茄子花 - CambodiaAddress</title>
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>VUE3setup响应式函数系统API详解</h2>
+                                <h2>美丽的茄子花</h2>
                             </div>
                         </div>
                     </div>
@@ -98,12 +98,30 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="htmledit_views"> <blockquote> <p>Vue3.0提供的一组具有响应式特性的杉树式API，以函数的形式提供<br /> 1、reactive<br /> reactive（）函数接收一个普通对象，返回该普通对象的响应式代理对象<br /> 2、ref<br /> ref（）函数接收一个参数值，返回一个响应式的数据对象。该对象只包含一个指向内部值的.value属性<br /> 3、computed<br /> computed（）函数用来创建计算属性，函数的返回值是一个ref的实例<br /> 4、readonly</p> <p>readonly（）函数接收一个对象（普通或者响应式），返回一个原始对象只读代理对象<br /> 5、watch<br /> watch（）函数用来监听数据的变化，从而出发特定的操作<br /> 6、watchEffect<br /> watchEffect（）函数接收一个函数作为参数，并立即执行该函数，同时响应式追踪其依赖，并在其依赖变更时，重新运行该函数。</p> </blockquote> <p>&nbsp;reactive.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt; 		&lt;p&gt;{<!-- -->{name}}&lt;/p&gt; 		&lt;button @click="name='juju'"&gt;修改name&lt;/button&gt; 	&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	//1、导入reactive响应函数 	import { reactive } from 'vue' 	export default{ 		setup(){ 			//2、创建响应式对象，是一个代理对象 			const data=reactive({ 				name:'htt', 				age:22 			}) 			 			return data 		} 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>ref.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt; 		&lt;!-- 在模板中访问时，无需通过value属性,它会自动展开 --&gt; 		&lt;p&gt;{<!-- -->{ num }}&lt;/p&gt; 		&lt;button @click="change"&gt;修改count&lt;/button&gt; 	&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	//导入ref函数 	import {ref} from 'vue' 	export default{ 		setup(){ 			//创建响应对象 			const num=ref(1) 			console.log(num.value) 			 			const change=()=&gt;{ 				num.value=5 			} 			//setup导出数据都要return，可以是函数，也可以是数据 			return { 				num, 				change 			} 		}, 		//以后经常使用的就是setup，不是data 		data(){ 			return{ 				 			} 		} 		 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>computed.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt; 		&lt;p&gt;{<!-- -->{hg}}&lt;/p&gt; 		&lt;p&gt;{<!-- -->{ss}}&lt;/p&gt; 	&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	import {computed,ref} from 'vue' 	export default{ 		setup(){ 			const hg=ref(1) 			 			//创建一个只读的计算属性 			const ss=computed(()=&gt;{ 				return hg.value+1 			}) 			 			//创建一个可读可写的计算属性 			const pk=computed({ 				get(){ 					return hg.value+1 				}, 				set(hg){ 					hg.value=hg 				} 			}) 			return { 				hg, 				ss, 				pk 			} 		} 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>readonly.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt;&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	import {reactive,readonly} from 'vue' 	export default{ 		setup(){ 			const obj =reactive({conunt:1}) 			 			//代理了响应式对象 			const proxy=readonly(obj) 			 			console.log(obj) 			console.log(proxy) 			//代理只读对象是不允许修改的 			//修改原始对象时代理对象也会响应式变化 		} 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>watch.vue和watchEffect.vue</p> <pre><code>&lt;template&gt; 	&lt;div&gt; 		&lt;!-- 点击之后就停止监视 --&gt; 		&lt;button @click="unwatch"&gt;停止监视&lt;/button&gt; 	&lt;/div&gt; &lt;/template&gt;  &lt;script&gt; 	import {watch,reactive} from 'vue' 	export default{ 		setup(){ 			const state=reactive({count:1}) 			 			 		//监视数据的变化,会返回一个用于取消监视的函数 		//当数据发生改变擦会启动监视，不会立即启动监视 		// const unwatch=watch(() =&gt; 		// 	state.count,(oldValue,newValue)=&gt;{ 		// 	console.log(oldValue,newValue) 		// }) 		//先立即执行传入的函数 		//当函数内依赖的数据发生变化时会再次执行函数 		watchEffect(()=&gt;{ 			console.log(state.count) 		}) 		 		return { 			state, 			unwatch 		} 			 	} &lt;/script&gt;  &lt;style&gt; &lt;/style&gt;</code></pre> <p>App.vue</p> <pre><code> &lt;template&gt; 	&lt;!-- &lt;comp-setup msg="welcome"&gt; 		 	&lt;/comp-setup&gt; --&gt; 	&lt;comp-reactive&gt;&lt;/comp-reactive&gt; 	&lt;comp-ref&gt;&lt;/comp-ref&gt; 	&lt;comp-computed&gt;&lt;/comp-computed&gt; 	&lt;comp-reonly&gt;&lt;/comp-reonly&gt; 	&lt;comp-watch&gt;&lt;/comp-watch&gt; &lt;/template&gt;  &lt;script&gt; /*eslint no-mixed-spaces-and-tabs: ["error", "smart-tabs"]*/ // import CompSetup from './components/setupview' import CompReactive from './components/reactive.vue' import CompRef from './components/ref.vue' import CompComputed from './components/compud.vue' import CompReonly from './components/reonly.vue' import CompWatch from './components/watch.vue' export default {   name: 'App',   components: { 	  // CompSetup, 	  CompReactive, 	  CompRef, 	  CompComputed, 	  CompReonly, 	  CompWatch,   } } &lt;/script&gt;  &lt;style&gt;  &lt;/style&gt;</code></pre> </div> 			
+                                  			<div class="orbui orbui-post orbui-post-01"></script>  <ins class="adsbygoogle"       style="display:block; text-align:center;"       data-ad-layout="in-article"       data-ad-format="fluid"       data-ad-client="ca-pub-6016799283272811"       data-ad-slot="9026798696"></ins>  </script></div>						<p><strong></a>花通常呈紫色，呈现出带有五个尖瓣的星状</a>。</a>的鲜艳色调与</a>突出的黄色雄蕊形成鲜明对比，营造出视觉上引人注</a>整体效果。这朵花的设计既复杂又优雅，证明了大自然的艺术性。</strong></p> <p><img src="https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmeUkgfn6tJuW9Ur281fDXgv8DVLvHrSH6wUNn7MTFEtaH/IMG_4111.JPG"></p> <p><img src="https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmPsZrEvsBy2su9E4kWCh5y9f1hMqg5wWZCRMbfc9YFxwQ/IMG_4110.JPG"></p> <p><img src="https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmQLEGtDM4j9zLVEsdZgqc4b3dBJAv2DPcuyjRuYEv2yyF/IMG_4109.JPG"></p> <p><img src="https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmUakMw88pFi6wsc5H8PQxzg7P5SSJpgL9fWAhHtpMpWp7/IMG_4108.JPG"></p> <p><img src="https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmR31i4XixRRZUD5Gj79zmBD4Czj2ZMLfKa7gyAgK4d2cC/IMG_4113.JPG"></p> <p><img src="https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmWtBwrBVRjHn1Gda2FC9nweYugGK46AbveGoJmPZfXaku/IMG_4112.JPG"></p> <p><strong>茄子花在植物的繁殖周期中起着至关重要的</a>。与茄科的其他成员一样，茄子是自花授粉的。花朵的花药将花粉释放到同一朵花中的柱</a>，促进受精</a>。然而，这些花也会吸引传粉者，如</a>、蝴蝶和其他昆虫，从而</a>异花授粉的机会。</strong></p> 					
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-1338.htm">Kafka启动后进程过一段时间自己消失，问题解决</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-1348.htm">PostMan传参给@RequestBody（接受前端参数）的方式</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-4298.htm">建议穷人养的10种猫布偶（没钱别养布偶）</a></p>
                                                                     </div>
 
+                                                                <div class="panel panel-default mt-5">
+                                    <div class="panel-heading">
+                                        <h3 class="m-0">推荐文章</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="p-0 x-0">
+                                                                                        <li class="py-2"><a href="/html/category/article-3128.htm">nohup: redirecting stderr to stdout</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-2246.htm">Java中自定义注解的使用</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-936.htm">Pytorch：使用data_prefetcher提升数据读取速度【自动将训练数据移动到GPU】</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-913.htm">使用pyspark读取hive数据</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-860.htm">IndexError: tensors used as indices must be long, byte or bool tensors</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-859.htm">Pytorch版本yolov3部分代码语句分析</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-841.htm">Git基础blob对象详解</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-829.htm">os和os.path的常用方法</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-825.htm">Linux中信号量源码的详细解析</a></li>
+                                                                                        <li class="py-2"><a href="/html/category/article-800.htm">SMTP协议解读以及如何使用SMTP协议发送电子邮件</a></li>
+                                                                                    </ul>
+                                    </div>
+                                </div>
                                                             </div>
                             <div class="col-md-3">
                                 <div class="panel panel-default">
@@ -112,16 +130,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1358.htm" title="Logback及其MDC功能详解">Logback及其MDC功能详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-4101.htm" title="java利用RestTemplate 发送post请求">java利用RestTemplate 发送post请求</a></li>
-                        <li class="py-2"><a href="/html/category/article-1357.htm" title="pandas读取csv文件时报错的解决方式，你get到了吗？">pandas读取csv文件时报错的解决方式，你get到了吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1042.htm" title="python PIL Image 图像处理基本操作实例_python">python PIL Image 图像处理基本操作实例_python</a></li>
+                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1946.htm" title="dao层和serivce层的作用和区别">dao层和serivce层的作用和区别</a></li>
+                        <li class="py-2"><a href="/html/category/article-1047.htm" title="rm -rf ./*">rm -rf ./*</a></li>
+                        <li class="py-2"><a href="/html/category/article-2535.htm" title="win11系统磁盘被写保护怎么解除">win11系统磁盘被写保护怎么解除</a></li>
+                        <li class="py-2"><a href="/html/category/article-3127.htm" title="vuex配置项、多组件数据共享案例详解">vuex配置项、多组件数据共享案例详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1037.htm" title="启动zookeeper、kafka报错，sudo java未找到">启动zookeeper、kafka报错，sudo java未找到</a></li>
+                        <li class="py-2"><a href="/html/category/article-1045.htm" title="Spring中@Scheduled功能的使用方法详解_java">Spring中@Scheduled功能的使用方法详解_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1041.htm" title="JavaScript深入理解系列：call与apply">JavaScript深入理解系列：call与apply</a></li>
                         <li class="py-2"><a href="/html/category/article-1945.htm" title="Interlaken协议介绍">Interlaken协议介绍</a></li>
-                        <li class="py-2"><a href="/html/category/article-3735.htm" title="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）">RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1337.htm" title="机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
-                        <li class="py-2"><a href="/html/category/article-1932.htm" title="nohup: redirecting stderr to stdout的解决办法">nohup: redirecting stderr to stdout的解决办法</a></li>
-                        <li class="py-2"><a href="/html/category/article-1327.htm" title="java-websocket断线重连">java-websocket断线重连</a></li>
-                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1049.htm" title="python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境">python怎么进入虚拟环境_Python 中如何使用 virtualenv 管理虚拟环境</a></li>
                     </ul>
     </div>
 </div>
