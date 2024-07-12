@@ -98,7 +98,7 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="htmledit_views"> <p>今天突然想到之前遇到的一个问题，使用vuecli3.0创建的vue项目，刷新页面报404。</p> <p>原因：</p> <p>hash —— 即地址栏 URL 中的 # 符号。比如这个 URL：http://www.abc.com/#/hello hash 的值为 #/hello。它的特点在于：hash 虽然出现在 URL 中，但不会被包括在 HTTP 请求中，对后端完全没有影响，因此改变 hash 不会重新加载页面。（仅 hash 符号之前的内容会被包含在请求中，如 http://www.abc.com，因此对于后端来说，即使没有做到对路由的全覆盖，也不会返回 404 错误）<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jb51.net/article/144341.htm"  rel="nofollow">原链接</a></p> <p>history —— 利用了 HTML5 History Interface 中新增的 pushState() 和 replaceState() 方法。（需要特定浏览器支持）这两个方法应用于浏览器的历史记录栈，在当前已有的 back、forward、go 的基础之上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的 URL，但浏览器不会立即向后端发送请求。（但因为vue应用是一个单页客户端应用，如果后台没有正确的配置，直接访问http://www.abc.com/hello/id就会返回404）</p> <p>解决方式：</p> <p>1）直接修改vueRouter的模式，将其改为hash</p> <pre><code class="language-javascript">export default new Router({      mode: 'hash',      base: process.env.BASE_URL,  })</code></pre> <p>2）模式仍为history，但是需要后台配置nginx</p> <p>推荐参考的nginx配置链接：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/weixin_38023551/article/details/88640939"  rel="nofollow">https://blog.csdn.net/weixin_38023551/article/details/88640939</a></p> <p>在前端主要注意两个地方需要与配置的二级域名一致：</p> <p>这个配置是针对Vue CLI 3.3 以上版本，上边链接里的针对的是之前的版本</p> <p>假如你配置的二级域名为 /student/</p> <pre><code class="language-javascript">export default new Router({      mode: 'hash',      base: '/student/', //这里需要一致  })</code></pre> <pre><code class="language-javascript">module.exports = {      publicPath: process.env.NODE_ENV === 'production' ? './' : '/' //用于放置生成的静态资源     (js、css、img、fonts) 的；（项目打包之后，静态资源会放在这个文件夹下）      assetsDir: '/student/', //这里需要一致  };</code></pre> <p>推荐关于vue.config,js进行配置的文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/u012302552/article/details/81742907"  rel="nofollow">https://blog.csdn.net/u012302552/article/details/81742907</a></p> </p></div> 			
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p>今天突然想到之前遇到的一个问题，使用vuecli3.0创建的vue项目，刷新页面报404。</p> <p>原因：</p> <p>hash —— 即地址栏 URL 中的 # 符号。比如这个 URL：http://www.abc.com/#/hello hash 的值为 #/hello。它的特点在于：hash 虽然出现在 URL 中，但不会被包括在 HTTP 请求中，对后端完全没有影响，因此改变 hash 不会重新加载页面。（仅 hash 符号之前的内容会被包含在请求中，如 http://www.abc.com，因此对于后端来说，即使没有做到对路由的全覆盖，也不会返回 404 错误）原链接</p> <p>history —— 利用了 HTML5 History Interface 中新增的 pushState() 和 replaceState() 方法。（需要特定浏览器支持）这两个方法应用于浏览器的历史记录栈，在当前已有的 back、forward、go 的基础之上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的 URL，但浏览器不会立即向后端发送请求。（但因为vue应用是一个单页客户端应用，如果后台没有正确的配置，直接访问http://www.abc.com/hello/id就会返回404）</p> <p>解决方式：</p> <p>1）直接修改vueRouter的模式，将其改为hash</p> <pre><code class="language-javascript">export default new Router({      mode: 'hash',      base: process.env.BASE_URL,  })</code></pre> <p>2）模式仍为history，但是需要后台配置nginx</p> <p>推荐参考的nginx配置链接：https://blog.csdn.net/weixin_38023551/article/details/88640939</p> <p>在前端主要注意两个地方需要与配置的二级域名一致：</p> <p>这个配置是针对Vue CLI 3.3 以上版本，上边链接里的针对的是之前的版本</p> <p>假如你配置的二级域名为 /student/</p> <pre><code class="language-javascript">export default new Router({      mode: 'hash',      base: '/student/', //这里需要一致  })</code></pre> <pre><code class="language-javascript">module.exports = {      publicPath: process.env.NODE_ENV === 'production' ? './' : '/' //用于放置生成的静态资源     (js、css、img、fonts) 的；（项目打包之后，静态资源会放在这个文件夹下）      assetsDir: '/student/', //这里需要一致  };</code></pre> <p>推荐关于vue.config,js进行配置的文档：https://blog.csdn.net/u012302552/article/details/81742907</p> </p></div> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-979.htm">层次聚类分析及代码实现</a></p>
                                                                         <p>下一个：<a href="/html/category/article-981.htm">vue3-VueRouter使用</a></p>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-3762.htm" title="Pandas（七）——文本数据（Textual Data）">Pandas（七）——文本数据（Textual Data）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1357.htm" title="pandas读取csv文件时报错的解决方式，你get到了吗？">pandas读取csv文件时报错的解决方式，你get到了吗？</a></li>
-                        <li class="py-2"><a href="/html/category/article-4299.htm" title="美丽的茄子花">美丽的茄子花</a></li>
-                        <li class="py-2"><a href="/html/category/article-1918.htm" title="java基础面试题">java基础面试题</a></li>
-                        <li class="py-2"><a href="/html/category/article-4130.htm" title="C#二分查找算法_C#教程">C#二分查找算法_C#教程</a></li>
-                        <li class="py-2"><a href="/html/category/article-1931.htm" title="SpringMVC中MultipartFile转File的两种方式_java">SpringMVC中MultipartFile转File的两种方式_java</a></li>
-                        <li class="py-2"><a href="/html/category/article-4409.htm" title="糟鱼的做法糟鱼(糟鱼的做法最正宗的做法糟鱼的做法)">糟鱼的做法糟鱼(糟鱼的做法最正宗的做法糟鱼的做法)</a></li>
+                        <li class="py-2"><a href="/html/category/article-4074.htm" title="win11系统怎么清理c盘垃圾文件">win11系统怎么清理c盘垃圾文件</a></li>
+                        <li class="py-2"><a href="/html/category/article-1932.htm" title="nohup: redirecting stderr to stdout的解决办法">nohup: redirecting stderr to stdout的解决办法</a></li>
+                        <li class="py-2"><a href="/html/category/article-2829.htm" title="CSS实现文字垂直居中">CSS实现文字垂直居中</a></li>
+                        <li class="py-2"><a href="/html/category/article-4484.htm" title="免费宠物救助站北京（宠物救助站北京电话）">免费宠物救助站北京（宠物救助站北京电话）</a></li>
                         <li class="py-2"><a href="/html/category/article-3735.htm" title="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）">RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1960.htm" title="面试官：请用SQL模拟一个死锁">面试官：请用SQL模拟一个死锁</a></li>
-                        <li class="py-2"><a href="/html/category/article-3128.htm" title="nohup: redirecting stderr to stdout">nohup: redirecting stderr to stdout</a></li>
+                        <li class="py-2"><a href="/html/category/article-4592.htm" title="国内宠物粮食十大厂家有哪些 国内宠物粮食十大厂家有哪些品牌">国内宠物粮食十大厂家有哪些 国内宠物粮食十大厂家有哪些品牌</a></li>
+                        <li class="py-2"><a href="/html/category/article-1358.htm" title="Logback及其MDC功能详解">Logback及其MDC功能详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-4555.htm" title="爱滋病大学生(得艾滋病的大学生)">爱滋病大学生(得艾滋病的大学生)</a></li>
+                        <li class="py-2"><a href="/html/category/article-4329.htm" title="宠物医院好评怎么写简短 宠物医院好评怎么写简短一点">宠物医院好评怎么写简短 宠物医院好评怎么写简短一点</a></li>
+                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
                     </ul>
     </div>
 </div>
@@ -133,7 +133,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

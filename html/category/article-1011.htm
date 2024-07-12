@@ -98,7 +98,7 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h4><a id="git_commit_push__0" rel="nofollow"></a>第一种：当你git commit后 没有push 你想回退</h4> <p>这种情况发生在你的本地代码仓库,可能你add ,commit 以后发现代码有点问题,想要从取消</p> <p><code>git reset ....</code><br /> 如果是撤销某个文件或文件夹：<br /> 首先使用你德使用git status 查看比提交的状态</p> <h4><a id="push_9" rel="nofollow"></a>第二种：当你push后想要回退代码</h4> <p><code>使用 git revert ....</code></p> <p>首先你得使用 Git log 查看提交历史</p> <h3><a id="1git_log___SHA1__13" rel="nofollow"></a>1.不传入任何参数的默认情况下，git log 会按时间先后顺序列出所有的提交，最近的更新排在最上面。 正如你所看到的，这个命令会列出每个提交的 SHA-1 校验和、作者的名字和电子邮件地址、提交时间以及提交说明。</h3> <pre><code>git log -p -2</code></pre> <h4><a id="2__2__17" rel="nofollow"></a>2 .你也可以限制显示的日志条目数量，例如使用 -2 选项来只显示最近的两次提交：</h4> <pre><code>git log -p -2</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/fb4fa86c9fccc6a8cdf002dbbf0e9f37.jpg" alt="常见 几种 git操作代码回退的方法"><br /> 回退使用git revert</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/d66f0e37793ed1414dc856d2da409760.jpg" alt="常见 几种 git操作代码回退的方法"><br /><code>使用git revert 回退 他会把提交的东西全部删除，从文件件里面删除。慎用。一般不提倡使用revert</code></p> <p>第一:</p> <p>上面我们说的如果你已经push到线上代码库, reset 删除指定commit以后,你git push可能导致一大堆冲突.但是revert 并不会.</p> <p>第二:</p> <p>如果在日后现有分支和历史分支需要合并的时候,reset 恢复部分的代码依然会出现在历史分支里.但是revert 方向提交的commit 并不会出现在历史分支里.</p> <p>第三:</p> <p>reset 是在正常的commit历史中,删除了指定的commit,这时 HEAD 是向后移动了,而 revert 是在正常的commit历史中再commit一次,只不过是反向提交,他的 HEAD 是一直向前的.</p> </div> 			
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h4>第一种：当你git commit后 没有push 你想回退</h4> <p>这种情况发生在你的本地代码仓库,可能你add ,commit 以后发现代码有点问题,想要从取消</p> <p><code>git reset ....</code><br /> 如果是撤销某个文件或文件夹：<br /> 首先使用你德使用git status 查看比提交的状态</p> <h4>第二种：当你push后想要回退代码</h4> <p><code>使用 git revert ....</code></p> <p>首先你得使用 Git log 查看提交历史</p> <h3>1.不传入任何参数的默认情况下，git log 会按时间先后顺序列出所有的提交，最近的更新排在最上面。 正如你所看到的，这个命令会列出每个提交的 SHA-1 校验和、作者的名字和电子邮件地址、提交时间以及提交说明。</h3> <pre><code>git log -p -2</code></pre> <h4>2 .你也可以限制显示的日志条目数量，例如使用 -2 选项来只显示最近的两次提交：</h4> <pre><code>git log -p -2</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/fb4fa86c9fccc6a8cdf002dbbf0e9f37.jpg" alt="常见 几种 git操作代码回退的方法"><br /> 回退使用git revert</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/d66f0e37793ed1414dc856d2da409760.jpg" alt="常见 几种 git操作代码回退的方法"><br /><code>使用git revert 回退 他会把提交的东西全部删除，从文件件里面删除。慎用。一般不提倡使用revert</code></p> <p>第一:</p> <p>上面我们说的如果你已经push到线上代码库, reset 删除指定commit以后,你git push可能导致一大堆冲突.但是revert 并不会.</p> <p>第二:</p> <p>如果在日后现有分支和历史分支需要合并的时候,reset 恢复部分的代码依然会出现在历史分支里.但是revert 方向提交的commit 并不会出现在历史分支里.</p> <p>第三:</p> <p>reset 是在正常的commit历史中,删除了指定的commit,这时 HEAD 是向后移动了,而 revert 是在正常的commit历史中再commit一次,只不过是反向提交,他的 HEAD 是一直向前的.</p> </div> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-1010.htm">Redis 数据持久化实践</a></p>
                                                                         <p>下一个：<a href="/html/category/article-1012.htm">【ASP.NET Core】自己编程来生成自签名的服务器证书</a></p>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-2536.htm" title="java实现线程安全的单例模型">java实现线程安全的单例模型</a></li>
-                        <li class="py-2"><a href="/html/category/article-4074.htm" title="win11系统怎么清理c盘垃圾文件">win11系统怎么清理c盘垃圾文件</a></li>
-                        <li class="py-2"><a href="/html/category/article-4408.htm" title="什么牌子女鞋鞋底软(女士鞋底比较软的鞋)">什么牌子女鞋鞋底软(女士鞋底比较软的鞋)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1917.htm" title="css图片上面显示文字">css图片上面显示文字</a></li>
-                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-4556.htm" title="江苏教育报刊社品牌活动社区平台2020（快来看）江苏教育报刊社品牌活动社区平台网站，零度较量，江苏教育新闻网，">江苏教育报刊社品牌活动社区平台2020（快来看）江苏教育报刊社品牌活动社区平台网站，零度较量，江苏教育新闻网，</a></li>
-                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
                         <li class="py-2"><a href="/html/category/article-2245.htm" title="8 高并发解决方案">8 高并发解决方案</a></li>
+                        <li class="py-2"><a href="/html/category/article-4074.htm" title="win11系统怎么清理c盘垃圾文件">win11系统怎么清理c盘垃圾文件</a></li>
+                        <li class="py-2"><a href="/html/category/article-1338.htm" title="Kafka启动后进程过一段时间自己消失，问题解决">Kafka启动后进程过一段时间自己消失，问题解决</a></li>
+                        <li class="py-2"><a href="/html/category/article-4299.htm" title="美丽的茄子花">美丽的茄子花</a></li>
+                        <li class="py-2"><a href="/html/category/article-1358.htm" title="Logback及其MDC功能详解">Logback及其MDC功能详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-4102.htm" title="图解Redis之数据结构篇压缩列表">图解Redis之数据结构篇压缩列表</a></li>
+                        <li class="py-2"><a href="/html/category/article-4129.htm" title="SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习">SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习</a></li>
+                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1945.htm" title="Interlaken协议介绍">Interlaken协议介绍</a></li>
+                        <li class="py-2"><a href="/html/category/article-4130.htm" title="C#二分查找算法_C#教程">C#二分查找算法_C#教程</a></li>
                     </ul>
     </div>
 </div>
@@ -133,7 +133,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

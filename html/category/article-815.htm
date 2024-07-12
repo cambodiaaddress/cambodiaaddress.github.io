@@ -98,7 +98,7 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>OpenSSL编译过程和遇到的问题</p> <h1><a id="OpenSSL_2" rel="nofollow"></a>OpenSSL编译过程和遇到的问题</h1> <p>因为需要用到OpenSSL库所以折腾了好久记录一下如何编译和遇到的一些问题。<br /><strong>一环境准备：</strong><br /> win764位系统。vs2017，先安装perl，下载OpenSSL。</p> <p><strong>二编译</strong><br /> 打开VS2017的编译工具<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221105/6a831c94017c9d60f806bcc8320e3a0c.jpg" alt="OpenSSL编译过程和报错解决">我用的是X64</p> <p>不要使用 x86 和 x64 的交叉命令行工具，<br /> 要编译 x86 版本的 openssl，就使用 x86 版本的命令行工具；<br /> 要编译 x64 版本的 openssl，就使用 x64 版本的命令行工具。</p> <p>（1）进入 openssl 源码路径：cd /d （openssl 1.0.2u 路径）<br /> 编译生成64debug版：<br /> perl Configure debug-VC-WIN64A no-asm --prefix=“D:\openssl-1.0.2l\bin\x64\debug”<br /> 编译生成64release版：<br /> perl Configure VC-WIN64A no-asm --prefix=“D:\openssl-1.0.2l\bin\x64\release”<br /> 再依次执行下面语句：<br /> 1、ms\do_win64a<br /> 2、nmake -f ms\ntdll.mak （如果失败先进入目录D:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build 目录输入vcvars32.bat 回车。执行完再回到原来的目录继续执行其他命令）<br /> 3、nmake -f ms\ntdll.mak test （成功会看到passed all tests）<br /> 4、nmake -f ms\ntdll.mak install<br /> 5、nmake -f ms\ntdll.mak clean<br /> 都成功了就会在"D:\openssl-1.0.2l\bin\x64\release"下看到编译好的文件了。</p> <p>三错误解决<br /> 1、无法解析的外部符号 sha256_block_data_order，该符号在。。。。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221105/d6d8591ee7bc5ceffd4446f8c9d43380.jpg" alt="OpenSSL编译过程和报错解决"><br /> 这个问题在网上看到别说是因为之前编译过了。再次执行nmake -f ms\ntdll.mak clean，再nmake -f ms\ntdll.mak 编译一下就可以了。</p> <p>记录一下，也给其他人参考一下。</p> </div> 			
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>OpenSSL编译过程和遇到的问题</p> <h1>OpenSSL编译过程和遇到的问题</h1> <p>因为需要用到OpenSSL库所以折腾了好久记录一下如何编译和遇到的一些问题。<br /><strong>一环境准备：</strong><br /> win764位系统。vs2017，先安装perl，下载OpenSSL。</p> <p><strong>二编译</strong><br /> 打开VS2017的编译工具<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221105/6a831c94017c9d60f806bcc8320e3a0c.jpg" alt="OpenSSL编译过程和报错解决">我用的是X64</p> <p>不要使用 x86 和 x64 的交叉命令行工具，<br /> 要编译 x86 版本的 openssl，就使用 x86 版本的命令行工具；<br /> 要编译 x64 版本的 openssl，就使用 x64 版本的命令行工具。</p> <p>（1）进入 openssl 源码路径：cd /d （openssl 1.0.2u 路径）<br /> 编译生成64debug版：<br /> perl Configure debug-VC-WIN64A no-asm --prefix=“D:\openssl-1.0.2l\bin\x64\debug”<br /> 编译生成64release版：<br /> perl Configure VC-WIN64A no-asm --prefix=“D:\openssl-1.0.2l\bin\x64\release”<br /> 再依次执行下面语句：<br /> 1、ms\do_win64a<br /> 2、nmake -f ms\ntdll.mak （如果失败先进入目录D:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build 目录输入vcvars32.bat 回车。执行完再回到原来的目录继续执行其他命令）<br /> 3、nmake -f ms\ntdll.mak test （成功会看到passed all tests）<br /> 4、nmake -f ms\ntdll.mak install<br /> 5、nmake -f ms\ntdll.mak clean<br /> 都成功了就会在"D:\openssl-1.0.2l\bin\x64\release"下看到编译好的文件了。</p> <p>三错误解决<br /> 1、无法解析的外部符号 sha256_block_data_order，该符号在。。。。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221105/d6d8591ee7bc5ceffd4446f8c9d43380.jpg" alt="OpenSSL编译过程和报错解决"><br /> 这个问题在网上看到别说是因为之前编译过了。再次执行nmake -f ms\ntdll.mak clean，再nmake -f ms\ntdll.mak 编译一下就可以了。</p> <p>记录一下，也给其他人参考一下。</p> </div> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-814.htm">mysql5.7版本的窗口函数实现</a></p>
                                                                         <p>下一个：<a href="/html/category/article-816.htm">运行时服务(二)、warnings模块</a></p>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1945.htm" title="Interlaken协议介绍">Interlaken协议介绍</a></li>
-                        <li class="py-2"><a href="/html/category/article-2829.htm" title="CSS实现文字垂直居中">CSS实现文字垂直居中</a></li>
+                        <li class="py-2"><a href="/html/category/article-4298.htm" title="建议穷人养的10种猫布偶（没钱别养布偶）">建议穷人养的10种猫布偶（没钱别养布偶）</a></li>
+                        <li class="py-2"><a href="/html/category/article-5575.htm" title="动物医院的英文短语（动物医院的英文短语是什么）">动物医院的英文短语（动物医院的英文短语是什么）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1059.htm" title="TypeError: Cannot read properties of undefined (reading ‘state‘)">TypeError: Cannot read properties of undefined (reading ‘state‘)</a></li>
+                        <li class="py-2"><a href="/html/category/article-4130.htm" title="C#二分查找算法_C#教程">C#二分查找算法_C#教程</a></li>
                         <li class="py-2"><a href="/html/category/article-4328.htm" title="汉字听写大赛过关技巧（中国汉字听写大会）干货满满，">汉字听写大赛过关技巧（中国汉字听写大会）干货满满，</a></li>
-                        <li class="py-2"><a href="/html/category/article-1338.htm" title="Kafka启动后进程过一段时间自己消失，问题解决">Kafka启动后进程过一段时间自己消失，问题解决</a></li>
                         <li class="py-2"><a href="/html/category/article-2830.htm" title="JavaScript定时器的各种案例">JavaScript定时器的各种案例</a></li>
-                        <li class="py-2"><a href="/html/category/article-4409.htm" title="糟鱼的做法糟鱼(糟鱼的做法最正宗的做法糟鱼的做法)">糟鱼的做法糟鱼(糟鱼的做法最正宗的做法糟鱼的做法)</a></li>
-                        <li class="py-2"><a href="/html/category/article-2246.htm" title="Java中自定义注解的使用">Java中自定义注解的使用</a></li>
-                        <li class="py-2"><a href="/html/category/article-4520.htm" title="宠物粮网店名字大全霸气四个字（宠物粮网店名字大全霸气四个字）">宠物粮网店名字大全霸气四个字（宠物粮网店名字大全霸气四个字）</a></li>
-                        <li class="py-2"><a href="/html/category/article-4408.htm" title="什么牌子女鞋鞋底软(女士鞋底比较软的鞋)">什么牌子女鞋鞋底软(女士鞋底比较软的鞋)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1636.htm" title="模型的威力：基于模型，快速梳理源码_在线工具">模型的威力：基于模型，快速梳理源码_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-4591.htm" title="宠物领养证明怎么办理的（宠物领养证明在哪里办理的）">宠物领养证明怎么办理的（宠物领养证明在哪里办理的）</a></li>
+                        <li class="py-2"><a href="/html/category/article-3735.htm" title="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）">RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4129.htm" title="SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习">SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习</a></li>
+                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
                     </ul>
     </div>
 </div>
@@ -133,7 +133,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

@@ -98,7 +98,7 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="htmledit_views"> <p>一般的系统在权限设计上，都会分为角色、权限（RDBC），复杂一点的可能会有用户组、组织之类的概念。</p> <p>用户的权限是写死的，对应于后台的接口或者资源，是没办法改变的，一般不对用户开放修改权限。</p> <p>管理员用户可以通过给角色分配权限的方式，来实现访问控制。</p> <p>所以当我们写过滤器，或者用一些安全框架时（比如Shiro，Spring Security），也需要将可变的“角色”，转化为不可变的“权限”，注入到框架中。</p> <p>具体的可以看我之前写的一篇（Spring Security整合jwt完整版）：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_37855749/article/details/111300906"  rel="nofollow">https://blog.csdn.net/qq_37855749/article/details/111300906</a></p> <p>注入当前用户的权限后，就需要进行访问控制了。</p> <p>常见的做法有</p> <p>1、路径比对</p> <p>之前有个项目用过一次，定义一个过滤器，添加到security的过滤链中，在这个过滤器中做这么一件事：</p> <p>分析当前访问路径所需要的权限，检查当前用户是否具有该权限，做一个对比，根据对比结果来决定当前用户是否可以访问该资源。</p> <p>这种做法的好处是代码的入侵性不高，不需要再每个接口上加注解。但相对来说，显得不那么直观，可读性比较差，所以这次换个方法。</p> <p>2、使用注解的方式</p> <p>SpringSecurity使用注解来控制访问时，需要提前开启这个功能。</p> <p>在配置类上加上注解</p> <pre><code>@Configuration @EnableWebSecurity @EnableGlobalMethodSecurity(prePostEnabled = true) public class SecurityConfig extends WebSecurityConfigurerAdapter {<!-- --></code></pre> <p>在接口中如此使用</p> <pre><code>    /**      * 条件查询      */     @PreAuthorize("hasAuthority('IMPORT:SELECT')")     @ApiOperation(value = "查询")     @GetMapping("/list")     public R&lt;Page&lt;Task&gt;&gt; list(TaskDto taskDto){         //测试阶段，随机生成任务         Random random = new Random();          //todo         int i = random.nextInt(4);         if(i == 2) {             metroServerAdapterService.reloadShelveTask();         }         Page&lt;Task&gt; list = taskService.list(taskDto);         return R.ok(list);     }</code></pre> <p>hasAuthority可以替换成hasRole，虽然可以达到相同的目的，但是在使用的方法上还是有些不同的。</p> <p>hasRole要求内容必须以"ROLE_"开头，也是官方推荐的命名方式，否则没有效果。但是hasAuthority没有限制，数据库中怎样写的，代码里就怎么写。</p> <p>同样的功能的注解为什么要有两个名字呢。或许这么做可能在语义上比较清晰明确一点，将角色与权限这两个概念稍加区分。</p> <p>仔细想一下，确实有些小型的系统或许压根就不需要权限，只有给用户分配角色，没有给角色分配权限这一过程。这样的话，角色也是不可变的，就可以根据角色来做访问控制了。</p> <p>但考虑通用性，个人觉得用hasAuthority就可以了。</p> </div> 			
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p>一般的系统在权限设计上，都会分为角色、权限（RDBC），复杂一点的可能会有用户组、组织之类的概念。</p> <p>用户的权限是写死的，对应于后台的接口或者资源，是没办法改变的，一般不对用户开放修改权限。</p> <p>管理员用户可以通过给角色分配权限的方式，来实现访问控制。</p> <p>所以当我们写过滤器，或者用一些安全框架时（比如Shiro，Spring Security），也需要将可变的“角色”，转化为不可变的“权限”，注入到框架中。</p> <p>具体的可以看我之前写的一篇（Spring Security整合jwt完整版）：https://blog.csdn.net/qq_37855749/article/details/111300906</p> <p>注入当前用户的权限后，就需要进行访问控制了。</p> <p>常见的做法有</p> <p>1、路径比对</p> <p>之前有个项目用过一次，定义一个过滤器，添加到security的过滤链中，在这个过滤器中做这么一件事：</p> <p>分析当前访问路径所需要的权限，检查当前用户是否具有该权限，做一个对比，根据对比结果来决定当前用户是否可以访问该资源。</p> <p>这种做法的好处是代码的入侵性不高，不需要再每个接口上加注解。但相对来说，显得不那么直观，可读性比较差，所以这次换个方法。</p> <p>2、使用注解的方式</p> <p>SpringSecurity使用注解来控制访问时，需要提前开启这个功能。</p> <p>在配置类上加上注解</p> <pre><code>@Configuration @EnableWebSecurity @EnableGlobalMethodSecurity(prePostEnabled = true) public class SecurityConfig extends WebSecurityConfigurerAdapter {<!-- --></code></pre> <p>在接口中如此使用</p> <pre><code>    /**      * 条件查询      */     @PreAuthorize("hasAuthority('IMPORT:SELECT')")     @ApiOperation(value = "查询")     @GetMapping("/list")     public R<Page<Task>> list(TaskDto taskDto){         //测试阶段，随机生成任务         Random random = new Random();          //todo         int i = random.nextInt(4);         if(i == 2) {             metroServerAdapterService.reloadShelveTask();         }         Page<Task> list = taskService.list(taskDto);         return R.ok(list);     }</code></pre> <p>hasAuthority可以替换成hasRole，虽然可以达到相同的目的，但是在使用的方法上还是有些不同的。</p> <p>hasRole要求内容必须以"ROLE_"开头，也是官方推荐的命名方式，否则没有效果。但是hasAuthority没有限制，数据库中怎样写的，代码里就怎么写。</p> <p>同样的功能的注解为什么要有两个名字呢。或许这么做可能在语义上比较清晰明确一点，将角色与权限这两个概念稍加区分。</p> <p>仔细想一下，确实有些小型的系统或许压根就不需要权限，只有给用户分配角色，没有给角色分配权限这一过程。这样的话，角色也是不可变的，就可以根据角色来做访问控制了。</p> <p>但考虑通用性，个人觉得用hasAuthority就可以了。</p> </div> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-989.htm">[Redis] Redis实战</a></p>
                                                                         <p>下一个：<a href="/html/category/article-991.htm">Golang 实现 Redis(10): 本地原子性事务_在线工具</a></p>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-2829.htm" title="CSS实现文字垂直居中">CSS实现文字垂直居中</a></li>
-                        <li class="py-2"><a href="/html/category/article-1917.htm" title="css图片上面显示文字">css图片上面显示文字</a></li>
-                        <li class="py-2"><a href="/html/category/article-4129.htm" title="SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习">SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习</a></li>
+                        <li class="py-2"><a href="/html/category/article-4074.htm" title="win11系统怎么清理c盘垃圾文件">win11系统怎么清理c盘垃圾文件</a></li>
+                        <li class="py-2"><a href="/html/category/article-1945.htm" title="Interlaken协议介绍">Interlaken协议介绍</a></li>
+                        <li class="py-2"><a href="/html/category/article-4449.htm" title="全国兽药30强企业 全国兽药30强企业排名">全国兽药30强企业 全国兽药30强企业排名</a></li>
+                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-3735.htm" title="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）">RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）</a></li>
+                        <li class="py-2"><a href="/html/category/article-3736.htm" title="分布式一致性算法 2PC与3PC">分布式一致性算法 2PC与3PC</a></li>
+                        <li class="py-2"><a href="/html/category/article-3430.htm" title="关于Spring中@Order注解的使用">关于Spring中@Order注解的使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1918.htm" title="java基础面试题">java基础面试题</a></li>
                         <li class="py-2"><a href="/html/category/article-4484.htm" title="免费宠物救助站北京（宠物救助站北京电话）">免费宠物救助站北京（宠物救助站北京电话）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1050.htm" title="JDK8默认垃圾回收器详解">JDK8默认垃圾回收器详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-4329.htm" title="宠物医院好评怎么写简短 宠物医院好评怎么写简短一点">宠物医院好评怎么写简短 宠物医院好评怎么写简短一点</a></li>
-                        <li class="py-2"><a href="/html/category/article-1051.htm" title="FeignClient参数">FeignClient参数</a></li>
-                        <li class="py-2"><a href="/html/category/article-4102.htm" title="图解Redis之数据结构篇压缩列表">图解Redis之数据结构篇压缩列表</a></li>
-                        <li class="py-2"><a href="/html/category/article-4520.htm" title="宠物粮网店名字大全霸气四个字（宠物粮网店名字大全霸气四个字）">宠物粮网店名字大全霸气四个字（宠物粮网店名字大全霸气四个字）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1358.htm" title="Logback及其MDC功能详解">Logback及其MDC功能详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1636.htm" title="模型的威力：基于模型，快速梳理源码_在线工具">模型的威力：基于模型，快速梳理源码_在线工具</a></li>
                     </ul>
     </div>
 </div>
@@ -133,7 +133,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

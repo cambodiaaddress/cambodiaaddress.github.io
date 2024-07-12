@@ -98,7 +98,7 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h1><a id="cssflex_0" rel="nofollow"></a>css解决高度自适应问题（使用flex）</h1> <p>这篇文章通过flex来解决高度自适应问题，纯用css，还是昨天这个例子<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/ff2374fff204f7ff8f24bb8536e62b51.jpg" alt="css解决高度自适应问题（使用flex）"><br /> 需求和上篇文章一样，这里再重复一遍</p> <h1><a id="_5" rel="nofollow"></a>需求：</h1> <ol> <li>这个矩形的高度和浏览器窗口的高度相同，不能出现纵向滚动条；</li> <li>绿色部分高度固定，比如50px；</li> <li>紫色部分填充剩余的高度；</li> </ol> <p>html结构如下：</p> <pre><code>&lt;div id="root"&gt;   &lt;header&gt;    test   &lt;/header&gt;   &lt;main&gt;      content   &lt;/main&gt; &lt;/div&gt;</code></pre> <p>首先要定义一个弹性容器，然后根据需求我们得知弹性盒子中内容是纵向排列，高度占满全屏，这里我们height用100vh，（注意：height:100%等同于height:100vh，但是前者div不会撑开）</p> <p>接下来直接上css代码</p> <pre><code> body {       margin: 0;       padding: 0;     }     #root {       display: flex;       flex-direction: column;       height: 100vh;     }      header {       height: 50px;       flex: 0 0 auto;       background: orange;     }      main {       flex-grow: 1;       background-color: blueviolet;     }</code></pre> <p>ok了，写这篇文章，是因为之前项目中遇到一个这么要死的布局，被需求三弄的头痛，后面在一个大佬的指点下选择了flex，所以作为一个小小的编程技巧留用。</p> <p>另外补充一下flex的桃园三兄弟之flex-grow、flex-shrink、flex-basis详解（这是别人博客里面看到，个人觉得蛮好理解弄过来的，这里只给定义解释，具体实例，还请参考：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/m0_37058714/article/details/80765562"  rel="nofollow">https://blog.csdn.net/m0_37058714/article/details/80765562</a>）</p> <h1><a id="flexgrowflexshrinkflexbasis_54" rel="nofollow"></a>flex-grow、flex-shrink、flex-basis三个属性的作用：</h1> <p>在flex布局中，父元素在不同宽度下，子元素是如何分配父元素空间的。</p> <p>(注意：这三个属性都是在子元素上设置的，下面小编要讲的是父元素，指以flex布局的元素(display:flex))</p> <p>小编这里先教一下大家如何快速记住这三个属性：</p> <ol> <li>flex-basis （首先是 flex-basis ，basis英文意思是&lt;主要成分&gt;，所以他和width放在一起时,肯定把width干掉，basis遇到width时就会说我才是最主要的成分，你是次要成分，所以见到我的时候你要靠边站。）</li> <li>flex-grow（其次是 flex-grow，grow英文意思是&lt;扩大，扩展，增加&gt;,这就代表当父元素的宽度大于子元素宽度之和时，并且父元素有剩余，这时，flex-grow就会说我要成长，我要长大，怎么样才能成长呢，当然是分享父元素的空间了。见下面第二个属性的内容<br /> ）</li> <li>flex-shrink（最后是 flex-shrink， shrink英文意思是&lt;收缩，&gt;，这就代表当父元素的宽度小于子元素宽度之和时，并且超出了父元素的宽度，这时，flex-shrink就会说外面的世界太苦了，我还是回到父亲的怀抱中去吧！因此，flex-shrink就会按照一定的比例进行收缩。）</li> </ol> </div> 			
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h1>css解决高度自适应问题（使用flex）</h1> <p>这篇文章通过flex来解决高度自适应问题，纯用css，还是昨天这个例子<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/ff2374fff204f7ff8f24bb8536e62b51.jpg" alt="css解决高度自适应问题（使用flex）"><br /> 需求和上篇文章一样，这里再重复一遍</p> <h1>需求：</h1> <ol> <li>这个矩形的高度和浏览器窗口的高度相同，不能出现纵向滚动条；</li> <li>绿色部分高度固定，比如50px；</li> <li>紫色部分填充剩余的高度；</li> </ol> <p>html结构如下：</p> <pre><code><div id="root">   <header>    test   </header>   <main>      content   </main> </div></code></pre> <p>首先要定义一个弹性容器，然后根据需求我们得知弹性盒子中内容是纵向排列，高度占满全屏，这里我们height用100vh，（注意：height:100%等同于height:100vh，但是前者div不会撑开）</p> <p>接下来直接上css代码</p> <pre><code> body {       margin: 0;       padding: 0;     }     #root {       display: flex;       flex-direction: column;       height: 100vh;     }      header {       height: 50px;       flex: 0 0 auto;       background: orange;     }      main {       flex-grow: 1;       background-color: blueviolet;     }</code></pre> <p>ok了，写这篇文章，是因为之前项目中遇到一个这么要死的布局，被需求三弄的头痛，后面在一个大佬的指点下选择了flex，所以作为一个小小的编程技巧留用。</p> <p>另外补充一下flex的桃园三兄弟之flex-grow、flex-shrink、flex-basis详解（这是别人博客里面看到，个人觉得蛮好理解弄过来的，这里只给定义解释，具体实例，还请参考：https://blog.csdn.net/m0_37058714/article/details/80765562）</p> <h1>flex-grow、flex-shrink、flex-basis三个属性的作用：</h1> <p>在flex布局中，父元素在不同宽度下，子元素是如何分配父元素空间的。</p> <p>(注意：这三个属性都是在子元素上设置的，下面小编要讲的是父元素，指以flex布局的元素(display:flex))</p> <p>小编这里先教一下大家如何快速记住这三个属性：</p> <ol> <li>flex-basis （首先是 flex-basis ，basis英文意思是<主要成分>，所以他和width放在一起时,肯定把width干掉，basis遇到width时就会说我才是最主要的成分，你是次要成分，所以见到我的时候你要靠边站。）</li> <li>flex-grow（其次是 flex-grow，grow英文意思是<扩大，扩展，增加>,这就代表当父元素的宽度大于子元素宽度之和时，并且父元素有剩余，这时，flex-grow就会说我要成长，我要长大，怎么样才能成长呢，当然是分享父元素的空间了。见下面第二个属性的内容<br /> ）</li> <li>flex-shrink（最后是 flex-shrink， shrink英文意思是<收缩，>，这就代表当父元素的宽度小于子元素宽度之和时，并且超出了父元素的宽度，这时，flex-shrink就会说外面的世界太苦了，我还是回到父亲的怀抱中去吧！因此，flex-shrink就会按照一定的比例进行收缩。）</li> </ol> </div> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-927.htm">CommonsCollection6反序列化链学习</a></p>
                                                                         <p>下一个：<a href="/html/category/article-929.htm">Spring Security核心类详解</a></p>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-4484.htm" title="免费宠物救助站北京（宠物救助站北京电话）">免费宠物救助站北京（宠物救助站北京电话）</a></li>
-                        <li class="py-2"><a href="/html/category/article-4298.htm" title="建议穷人养的10种猫布偶（没钱别养布偶）">建议穷人养的10种猫布偶（没钱别养布偶）</a></li>
-                        <li class="py-2"><a href="/html/category/article-4129.htm" title="SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习">SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习</a></li>
-                        <li class="py-2"><a href="/html/category/article-1052.htm" title="Spring AOP打通两个切面之间的通信详解">Spring AOP打通两个切面之间的通信详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-4073.htm" title="动态修改springboot中的scheduling(动态修改定时任务执行时间)">动态修改springboot中的scheduling(动态修改定时任务执行时间)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1917.htm" title="css图片上面显示文字">css图片上面显示文字</a></li>
-                        <li class="py-2"><a href="/html/category/article-4328.htm" title="汉字听写大赛过关技巧（中国汉字听写大会）干货满满，">汉字听写大赛过关技巧（中国汉字听写大会）干货满满，</a></li>
-                        <li class="py-2"><a href="/html/category/article-1338.htm" title="Kafka启动后进程过一段时间自己消失，问题解决">Kafka启动后进程过一段时间自己消失，问题解决</a></li>
+                        <li class="py-2"><a href="/html/category/article-1059.htm" title="TypeError: Cannot read properties of undefined (reading ‘state‘)">TypeError: Cannot read properties of undefined (reading ‘state‘)</a></li>
+                        <li class="py-2"><a href="/html/category/article-3736.htm" title="分布式一致性算法 2PC与3PC">分布式一致性算法 2PC与3PC</a></li>
+                        <li class="py-2"><a href="/html/category/article-1959.htm" title="实战代码（十）：Springboot RestTemplate连接池">实战代码（十）：Springboot RestTemplate连接池</a></li>
+                        <li class="py-2"><a href="/html/category/article-4130.htm" title="C#二分查找算法_C#教程">C#二分查找算法_C#教程</a></li>
                         <li class="py-2"><a href="/html/category/article-1327.htm" title="java-websocket断线重连">java-websocket断线重连</a></li>
-                        <li class="py-2"><a href="/html/category/article-3735.htm" title="RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）">RabbitMQ第三个实操小案例——发布者/订阅者（Publish/Subscribe）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2829.htm" title="CSS实现文字垂直居中">CSS实现文字垂直居中</a></li>
+                        <li class="py-2"><a href="/html/category/article-5576.htm" title="国产狗粮排名前十品牌（国产狗粮品牌排行榜）">国产狗粮排名前十品牌（国产狗粮品牌排行榜）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2246.htm" title="Java中自定义注解的使用">Java中自定义注解的使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1347.htm" title="VUE3setup响应式函数系统API详解">VUE3setup响应式函数系统API详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1348.htm" title="PostMan传参给@RequestBody（接受前端参数）的方式">PostMan传参给@RequestBody（接受前端参数）的方式</a></li>
                     </ul>
     </div>
 </div>
@@ -133,7 +133,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

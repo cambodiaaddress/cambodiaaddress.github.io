@@ -98,7 +98,7 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<p>在这次的Java 18中，新增了一个<code>@snipppet</code>标签，主要用于JavaDoc中需要放示例代码的场景。其实在Java 18之前，已经有一个<code>@code</code>标签，可以用于在JavaDoc中编写小段的代码内容，比如在之前介绍<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.bilibili.com/video/BV1bF411M7df"  target="_blank"  rel="nofollow">Simple Web Server</a>视频中，提到的这段样例代码，就是用<code>@code</code>标签来写的：</p> <pre><code class="language-java"> * &lt;p&gt; Example of a simple file server:  * &lt;pre&gt;{@code  *    var addr = new InetSocketAddress(8080);  *    var server = SimpleFileServer.createFileServer(addr, Path.of("/some/path"), OutputLevel.INFO);  *    server.start();  * }&lt;/pre&gt; </code></pre> <p>虽然以前版本已经有类似功能，但依然还有各种各样的缺点，所以这次的<code>@snipppet</code>标签就在这些方面做了增强：</p> <ul> <li>有效性检查，比如：当我们的样例代码中包含部分语法错误的时候，将会出现错误提示</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/f10deb89f373be7a322548bc79ae4b42.jpg" alt="Java 18 新增@snipppet标签，注释中写样例代码更舒适了！_在线工具"></p> <ul> <li>语法高亮，如下图所示，使用<code>@snippet</code>的时候，IDE已经可以支持高亮，更有利于编辑，对比下<code>@code</code>的 内容，编辑的时候就没那么舒服了</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/2a9a2978e9834482dff5a257c38eff8c.jpg" alt="Java 18 新增@snipppet标签，注释中写样例代码更舒适了！_在线工具"></p> <ul> <li>代码编辑时的IDE支持也有了很大的提升，以往使用<code>@code</code>来编辑代码的时候基本就是当纯文本来编辑的，而现在在使用<code>@snippet</code>的时候，IDE给出了更多更好的支持，比如大家最喜欢的代码提示：</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/961571b19e18249ea763e77df2fc4286.jpg" alt="Java 18 新增@snipppet标签，注释中写样例代码更舒适了！_在线工具"></p> <p>所以，这个功能DD觉得还是非常有用的，尤其是对于一些写框架和SDK的小伙伴（毕竟对JavaDoc的要求高）。</p> <p>本篇内容对应视频已完成录制，点击查看：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.bilibili.com/video/BV1cZ4y1y7cj/"  target="_blank"  rel="nofollow">Java 18 新特性：@snipppet标签</a></p> <p>如果您学习过程中如遇困难？可以加入我们超高质量的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.didispace.com/join-group-spring/index.html"  target="_blank"  rel="nofollow">技术交流群</a>，参与交流与讨论，更好的学习与进步！另外，不要走开，关注我！持续更新Java新特性教程！</p> <blockquote> <p>欢迎关注我的公众号：程序猿DD。第一时间了解前沿行业消息、分享深度技术干货、获取优质学习资源</p> </blockquote> 			
+                                  				  				  				<p>在这次的Java 18中，新增了一个<code>@snipppet</code>标签，主要用于JavaDoc中需要放示例代码的场景。其实在Java 18之前，已经有一个<code>@code</code>标签，可以用于在JavaDoc中编写小段的代码内容，比如在之前介绍Simple Web Server视频中，提到的这段样例代码，就是用<code>@code</code>标签来写的：</p> <pre><code class="language-java"> * <p> Example of a simple file server:  * <pre>{@code  *    var addr = new InetSocketAddress(8080);  *    var server = SimpleFileServer.createFileServer(addr, Path.of("/some/path"), OutputLevel.INFO);  *    server.start();  * }</pre> </code></pre> <p>虽然以前版本已经有类似功能，但依然还有各种各样的缺点，所以这次的<code>@snipppet</code>标签就在这些方面做了增强：</p> <ul> <li>有效性检查，比如：当我们的样例代码中包含部分语法错误的时候，将会出现错误提示</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/f10deb89f373be7a322548bc79ae4b42.jpg" alt="Java 18 新增@snipppet标签，注释中写样例代码更舒适了！_在线工具"></p> <ul> <li>语法高亮，如下图所示，使用<code>@snippet</code>的时候，IDE已经可以支持高亮，更有利于编辑，对比下<code>@code</code>的 内容，编辑的时候就没那么舒服了</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/2a9a2978e9834482dff5a257c38eff8c.jpg" alt="Java 18 新增@snipppet标签，注释中写样例代码更舒适了！_在线工具"></p> <ul> <li>代码编辑时的IDE支持也有了很大的提升，以往使用<code>@code</code>来编辑代码的时候基本就是当纯文本来编辑的，而现在在使用<code>@snippet</code>的时候，IDE给出了更多更好的支持，比如大家最喜欢的代码提示：</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/961571b19e18249ea763e77df2fc4286.jpg" alt="Java 18 新增@snipppet标签，注释中写样例代码更舒适了！_在线工具"></p> <p>所以，这个功能DD觉得还是非常有用的，尤其是对于一些写框架和SDK的小伙伴（毕竟对JavaDoc的要求高）。</p> <p>本篇内容对应视频已完成录制，点击查看：Java 18 新特性：@snipppet标签</p> <p>如果您学习过程中如遇困难？可以加入我们超高质量的技术交流群，参与交流与讨论，更好的学习与进步！另外，不要走开，关注我！持续更新Java新特性教程！</p> <blockquote> <p>欢迎关注我的公众号：程序猿DD。第一时间了解前沿行业消息、分享深度技术干货、获取优质学习资源</p> </blockquote> 			
                                 <div class="col-md-12 mt-5">
                                                                         <p>上一个：<a href="/html/category/article-839.htm">Goland内置类型error报红问题解决（Unresolved type ‘error‘）</a></p>
                                                                         <p>下一个：<a href="/html/category/article-841.htm">Git基础blob对象详解</a></p>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-4129.htm" title="SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习">SpringBoot-2-3-x分层构建Docker镜像实践，docker教程学习</a></li>
-                        <li class="py-2"><a href="/html/category/article-4329.htm" title="宠物医院好评怎么写简短 宠物医院好评怎么写简短一点">宠物医院好评怎么写简短 宠物医院好评怎么写简短一点</a></li>
-                        <li class="py-2"><a href="/html/category/article-3430.htm" title="关于Spring中@Order注解的使用">关于Spring中@Order注解的使用</a></li>
-                        <li class="py-2"><a href="/html/category/article-1635.htm" title="Vue.js 3.x 中跨层级组件如何传递数据？_在线工具">Vue.js 3.x 中跨层级组件如何传递数据？_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-1059.htm" title="TypeError: Cannot read properties of undefined (reading ‘state‘)">TypeError: Cannot read properties of undefined (reading ‘state‘)</a></li>
-                        <li class="py-2"><a href="/html/category/article-1060.htm" title="已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)">已解决：TypeError: Cannot read properties of undefined (reading ‘value‘)</a></li>
                         <li class="py-2"><a href="/html/category/article-4448.htm" title="包含生产动物疫苗的上市公司有哪些企业的词条">包含生产动物疫苗的上市公司有哪些企业的词条</a></li>
                         <li class="py-2"><a href="/html/category/article-2829.htm" title="CSS实现文字垂直居中">CSS实现文字垂直居中</a></li>
-                        <li class="py-2"><a href="/html/category/article-1348.htm" title="PostMan传参给@RequestBody（接受前端参数）的方式">PostMan传参给@RequestBody（接受前端参数）的方式</a></li>
-                        <li class="py-2"><a href="/html/category/article-4298.htm" title="建议穷人养的10种猫布偶（没钱别养布偶）">建议穷人养的10种猫布偶（没钱别养布偶）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4102.htm" title="图解Redis之数据结构篇压缩列表">图解Redis之数据结构篇压缩列表</a></li>
+                        <li class="py-2"><a href="/html/category/article-3762.htm" title="Pandas（七）——文本数据（Textual Data）">Pandas（七）——文本数据（Textual Data）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4484.htm" title="免费宠物救助站北京（宠物救助站北京电话）">免费宠物救助站北京（宠物救助站北京电话）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1337.htm" title="机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性">机器学习笔记 十五：随机森林（Random Forest）评估机器学习模型的特征重要性</a></li>
+                        <li class="py-2"><a href="/html/category/article-1338.htm" title="Kafka启动后进程过一段时间自己消失，问题解决">Kafka启动后进程过一段时间自己消失，问题解决</a></li>
+                        <li class="py-2"><a href="/html/category/article-1357.htm" title="pandas读取csv文件时报错的解决方式，你get到了吗？">pandas读取csv文件时报错的解决方式，你get到了吗？</a></li>
+                        <li class="py-2"><a href="/html/category/article-5576.htm" title="国产狗粮排名前十品牌（国产狗粮品牌排行榜）">国产狗粮排名前十品牌（国产狗粮品牌排行榜）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1328.htm" title="vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具">vue2.x版本中computed和watch的使用入门详解-关联和区别_在线工具</a></li>
                     </ul>
     </div>
 </div>
@@ -133,7 +133,7 @@ var _hmt = _hmt || [];
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
