@@ -2,12 +2,13 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-1024.htm" />
+        <link rel="canonical" href="https://cambodiaaddress.github.io/html/category/article-7541.htm" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>mybatis 加载配置文件的方法（两种方式） - CambodiaAddress</title>
+    <title>广州宠物救助电话（广州 宠物救助电话）</title>
+        <meta name="description" content="摘要：       今天给各位分享广州宠物救助电话的知识，其中也会对广州 宠物救助电话进行解释，如果能碰巧解决你现在面临的问题，别忘了关注本站，现在开始吧！本文目录一览：1、广州有没有收留宠物的地方." />
         <link rel="icon" href="/assets/addons/xcblog/img/cambodiaaddress/favicon.ico" type="image/x-icon"/>
     <!-- web-fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
@@ -82,7 +83,7 @@ var _hmt = _hmt || [];
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>mybatis 加载配置文件的方法（两种方式）</h2>
+                                <h2>广州宠物救助电话（广州 宠物救助电话）</h2>
                             </div>
                         </div>
                     </div>
@@ -98,10 +99,9 @@ var _hmt = _hmt || [];
                                   <li class="active">正文</li>
                                 </ol>
 
-                                  				  				  				<p><strong>一. 使用sqlSessionFactory 的 mapperLocations 进行加载,</strong></p> <pre>&lt;!-- SessionFactory --&gt;   &lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" scope="singleton"&gt;   &lt;property name="dataSource" ref="dataSource" /&gt;   &lt;property name="configLocation" value="classpath:mybatis-config.xml" /&gt;   &lt;!-- 映射文件路径,可以集中写到一个地方,也可以与dao写到一个地方,支持多个路径,支持通配符--&gt;   &lt;property name="mapperLocations" value="classpath:mapper/*.xml,classpath:com/sunny/shop/*/dao/*.xml"&gt;&lt;/property&gt;   &lt;/bean&gt;</pre> <p>此种方法可以使用通配符, 可以指定位置, 可以使用多个位置,</p> <p><strong>二. 使用MapperScannerConfigurer进行扫描</strong></p> <pre>&lt;!-- 扫描指定包下的所有接口,创建代理类,如果mysql的配置文件名与接口名相同的话,可以不用一一配置 --&gt;   &lt;bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"&gt;    &lt;property name="basePackage" value="com.sunny.shop" /&gt;    &lt;property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"&gt;&lt;/property&gt;  &lt;/bean&gt;</pre> <p>此种方法可以扫描指定包下的接口, 如果需要扫描配置文件, 则配置文件须与对应的DAO接口处于同一目录, 且名字必须相同</p> <p><strong>三.配置 mybatis 的 mapper</strong></p> <pre>&lt;mappers&gt;   &lt;!-- 既可写映射文件, 也可写对应的接口 --&gt;       &lt;!--&lt;mapper resource="com/mybatis/student/StudentMapper.xml" /&gt;    &lt;mapper resource="com/mybatis/classes/ClassesMapper.xml" /&gt;     &lt;mapper class="com.sunny.shop.user.dao.UserDao" /&gt;    --&gt;   &lt;/mappers&gt;</pre> <p>前两种都是在spring的配置文件中配置的, 在 mybatis 的配置文件中配置 &lt;mappers&gt;节点</p> <p><strong>PS：下面给大家介绍下mybatis 加载配置文件的两种方式</strong></p> <pre>package com.atguigu.day03_mybaits.test; import java.io.IOException; import java.io.InputStream; import java.io.Reader; import org.apache.ibatis.io.Resources; import org.apache.ibatis.session.SqlSession; import org.apache.ibatis.session.SqlSessionFactory; import org.apache.ibatis.session.SqlSessionFactoryBuilder; public class Test { public static void test1(){ ///加载mybatis的配置文件（它也加载关联的映射文件） String str="conf.xml"; InputStream is=Test.class.getClassLoader().getResourceAsStream(str); //构建sqlSession的工厂 SqlSessionFactory factory=new SqlSessionFactoryBuilder().build(is); SqlSession session=factory.openSession(); //映射sql的标识字符串,是在影射文件中找到namespace+“”+select中的id String statement="com.atguigu.day03_mybaits.userMapper.getUser"; //执行查询返回一个唯一user对象的sql User user=session.selectOne(statement, 1); System.out.println(user); } public static void test2() throws IOException{ ///加载mybatis的配置文件（它也加载关联的映射文件） String resource = "conf.xml";  //加载mybatis的配置文件（它也加载关联的映射文件） Reader reader = Resources.getResourceAsReader(resource);  //构建sqlSession的工厂 SqlSessionFactory factory=new SqlSessionFactoryBuilder().build(reader); SqlSession session=factory.openSession(); //映射sql的标识字符串,是在影射文件中找到namespace+“”+select中的id String statement="com.atguigu.day03_mybaits.userMapper.getUser"; //执行查询返回一个唯一user对象的sql User user=session.selectOne(statement, 2); System.out.println(user); } public static void main(String[] args) throws IOException { test1(); test2(); } }</pre> <p><strong>总结</strong></p> <p>以上所述是小编给大家介绍的mybatis 加载配置文件的方法（两种方式），希望对大家有所帮助，如果大家有任何疑问请给我留言，小编会及时回复大家的。在此也非常感谢大家对网站的支持！</p> 			
+                                    <div class="article-zhaiyao">       <strong><img src="http://www.to3158.cn/zb_users/theme/koilee/style/images/favicon_example.ico" alt="广州宠物救助电话（广州 宠物救助电话）">摘要：</strong>       今天给各位分享广州宠物救助电话的知识，其中也会对广州 宠物救助电话进行解释，如果能碰巧解决你现在面临的问题，别忘了关注本站，现在开始吧！本文目录一览：1、广州有没有收留宠物的地方...    </div>    <p>今天给各位分享广州宠物救助电话的知识，其中也会对广州 宠物救助电话进行解释，如果能碰巧解决你现在面临的问题，别忘了关注本站，现在开始吧！</p><div style="text-align:center;"><img style="max-width: 100%;" alt="广州宠物救助电话（广州 宠物救助电话）" src="https://img2.baidu.com/it/u=1159618693,4146174518&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"></div><div><div style="color:#999;text-align:center;">（图片来源网络，侵删）</div></div><h2>本文目录一览：</h2><ul><li style='margin-bottom: 3px;list-style: none'> 1、广州有没有收留宠物的地方 </li> <li style='margin-bottom: 3px;list-style: none'> 2、广州市有专收养流浪狗的的地方或部门吗? </li> <li style='margin-bottom: 3px;list-style: none'> 3、广州哪里有流浪猫,流浪狗收容所? </li> <li style='margin-bottom: 3px;list-style: none'> 4、哪里可以领养狗狗? </li> </ul><h2 id='广州有没有收留宠物的地方'>广州有没有收留宠物的地方</h2> <p>广州有多个收留宠物的地方，包括：广州市“善慈爱护动物中心”：位于广州市花都区新中路6之7-8号，是广州首个非营利的民间宠物救护中心，旨在收容、救护被虐待、残害、遗弃或走失的宠物，并开展领养流浪宠物工作。</p><p>宠物收容所广州市政府设立了多个宠物收容所，旨在为流浪猫流浪狗提供安全的收容空间。市民可以将自己发现的流浪猫送到收容所，同时也可以通过领养的方式为这些可爱的小动物提供一个幸福的家。</p><p>广州市回收刺猬宠物的地方在花鸟市场。根据查询相关资料显示，广州的花鸟市场有宠物、植物动物售卖。其中也可以对宠物进行回收，刺猬可以在花鸟市场回收售卖。</p><h2 id='广州市有专收养流浪狗的的地方或部门吗?'>广州市有专收养流浪狗的的地方或部门吗?</h2> <p>1、宠物收容所广州市政府设立了多个宠物收容所，旨在为流浪猫流浪狗提供安全的收容空间。市民可以将自己发现的流浪猫送到收容所，同时也可以通过领养的方式为这些可爱的小动物提供一个幸福的家。</p><div style="text-align:center;"><img style="max-width: 100%;" alt="广州宠物救助电话（广州 宠物救助电话）" src="https://img0.baidu.com/it/u=1084630328,1114286904&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=666"></div><div><div style="color:#999;text-align:center;">（图片来源网络，侵删）</div></div><p>2、流浪狗归城市的城管、环保或动物管理部门管辖，具体部门可能因地区而异。一般来说，可以拨打当地政府或相关部门的服务热线，向相关工作人员进行咨询，或者在当地相关网站或媒体上查找相关信息。</p><p>3、很多宠物店都会收容流浪猫狗的，像光景宠物医院等，地址： 越秀区德政北路邮局旁，电话： 020-83354809，如果是流浪猫，也可以求助于熙熙森林论坛上的猫友，她们都很热心的。</p><h2 id='广州哪里有流浪猫,流浪狗收容所?'>广州哪里有流浪猫,流浪狗收容所?</h2> <p>广州市有多个收留宠物的地方，其中包括政府有关部门和民间组织。</p><p>很多宠物店都会收容流浪猫狗的，像光景宠物医院等，地址： 越秀区德政北路邮局旁，电话： 020-83354809，如果是流浪猫，也可以求助于熙熙森林论坛上的猫友，她们都很热心的。</p><div style="text-align:center;"><img style="max-width: 100%;" alt="广州宠物救助电话（广州 宠物救助电话）" src="https://img2.baidu.com/it/u=1243458348,1042112029&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=666"></div><div><div style="color:#999;text-align:center;">（图片来源网络，侵删）</div></div><p>宠物收容所广州市政府设立了多个宠物收容所，旨在为流浪猫流浪狗提供安全的收容空间。市民可以将自己发现的流浪猫送到收容所，同时也可以通过领养的方式为这些可爱的小动物提供一个幸福的家。</p><p>海珠区土华救助站那里就收了很多猫和狗，但是，收留的太多了，那里的经济压力很大，都是靠人捐助救济，如果你让让这两只猫过好一点，最好别送救助站，顶多就在同城网或赶集网上发发贴，把它送人。</p><p>广州市有专门收养流浪狗的地方的。可以到救助站进行救助或与救助站的负责GG联系，电话13119548704温先生。</p><p>，每月将领养的狗故事或照片，发上网一次；6，要告诉自己的狗友，我的狗是在私宠之家领养的流浪狗 7，一旦发现不科学喂养和无狗狗福利，我们有权收回该犬只送给其他适合的人领养。</p><h2 id='哪里可以领养狗狗?'>哪里可以领养狗狗?</h2> <p>可以在以下地方收养狗狗：动物收容所：每个城市都有动物收容所，它们通常会收养无家可归的狗狗，有些也会有特定品种的狗狗。</p><p>领养中心：一些领养中心专门致力于帮助流浪狗狗找到新的家庭。你可以将狗狗送到这些中心，他们会为狗狗提供临时住所，并努力为他们找到一个温暖的家。 寻找新主人：你也可以自己寻找新的主人来领养狗狗。</p><p>领养狗狗可以通过流浪动物救助站、宠物医院、网上救助信息、养狗的朋友等途径领养。</p><p>领养狗狗的方式有很多，以下是一些常见的途径：当地动物收容所或救助组织：可以通过当地的动物收容所或救助组织领养狗狗，这些组织通常会提供基本的免疫接种和体检等服务。</p><p>网上免费领养狗狗是靠谱的。可以去北京领养日、宠安家领养平台、狗民网领养平台、宠物领养网或者当地的小动物保护机构领养狗狗。需要注意的是，在领养狗狗之前需要甄别一下领养网站是否存在欺骗行为。</p><p>领养狗狗可以选择去宠物救助中心或动物保护组织领养。宠物救助中心常常收容流浪狗和被遗弃的狗狗，提供给有爱心的人领养。宠物救助中心一般会给狗狗做一个体检，也会让你和狗狗进行互动，以便更好的了解狗狗的行为和需求。</p><p>广州宠物救助电话的介绍就聊到这里吧，感谢你花时间阅读本站内容，更多关于广州 宠物救助电话、广州宠物救助电话的信息别忘了在本站进行查找喔。</p>  
                                 <div class="col-md-12 mt-5">
-                                                                        <p>上一个：<a href="/html/category/article-1023.htm">在C ++中替换后检查Word是否有效</a></p>
-                                                                        <p>下一个：<a href="/html/category/article-1025.htm">Spring-RabbitMQ 消费者消息确认案例实践</a></p>
+                                                                        <p>上一个：<a href="/html/category/article-7540.htm">吧台凳哪个品牌好(吧台椅十大品牌)</a></p>
                                                                     </div>
 
                                                             </div>
@@ -112,16 +112,16 @@ var _hmt = _hmt || [];
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-6575.htm" title="宠物食品代理怎么做的（宠物食品代工需要什么手续）">宠物食品代理怎么做的（宠物食品代工需要什么手续）</a></li>
-                        <li class="py-2"><a href="/html/category/article-6574.htm" title="宠物救助站上海（宠物救助站上海地址）">宠物救助站上海（宠物救助站上海地址）</a></li>
                         <li class="py-2"><a href="/html/category/article-6199.htm" title="猫咪驱虫一般多少钱一次啊（猫驱虫一次要多少钱）">猫咪驱虫一般多少钱一次啊（猫驱虫一次要多少钱）</a></li>
                         <li class="py-2"><a href="/html/category/article-6198.htm" title="动物注射疫苗后过敏反应的处理方法是什么（动物注射疫苗后过敏反应的处理方法是什么意思）">动物注射疫苗后过敏反应的处理方法是什么（动物注射疫苗后过敏反应的处理方法是什么意思）</a></li>
-                        <li class="py-2"><a href="/html/category/article-5575.htm" title="动物医院的英文短语（动物医院的英文短语是什么）">动物医院的英文短语（动物医院的英文短语是什么）</a></li>
-                        <li class="py-2"><a href="/html/category/article-6066.htm" title="宠物粮怎样跑销售 宠物粮销售渠道">宠物粮怎样跑销售 宠物粮销售渠道</a></li>
+                        <li class="py-2"><a href="/html/category/article-7034.htm" title="宠物店的狗粮能买吗（宠物店的狗粮能买吗现在）">宠物店的狗粮能买吗（宠物店的狗粮能买吗现在）</a></li>
                         <li class="py-2"><a href="/html/category/article-6023.htm" title="动物医院诊疗许可证办理条件有哪些规定（动物诊疗许可证办理动物医院）">动物医院诊疗许可证办理条件有哪些规定（动物诊疗许可证办理动物医院）</a></li>
-                        <li class="py-2"><a href="/html/category/article-6758.htm" title="有回收狗的地方吗（狗回收中心）">有回收狗的地方吗（狗回收中心）</a></li>
-                        <li class="py-2"><a href="/html/category/article-6942.htm" title="广州南沙湿地春节活动有哪些景点(广州南沙湿地春节活动有哪些地方)">广州南沙湿地春节活动有哪些景点(广州南沙湿地春节活动有哪些地方)</a></li>
-                        <li class="py-2"><a href="/html/category/article-6666.htm" title="护肤品牌排行榜10强有哪些（护肤品牌排名榜）">护肤品牌排行榜10强有哪些（护肤品牌排名榜）</a></li>
+                        <li class="py-2"><a href="/html/category/article-7172.htm" title="金福珠（举重妖精金福珠图片）">金福珠（举重妖精金福珠图片）</a></li>
+                        <li class="py-2"><a href="/html/category/article-7541.htm" title="广州宠物救助电话（广州 宠物救助电话）">广州宠物救助电话（广州 宠物救助电话）</a></li>
+                        <li class="py-2"><a href="/html/category/article-7540.htm" title="吧台凳哪个品牌好(吧台椅十大品牌)">吧台凳哪个品牌好(吧台椅十大品牌)</a></li>
+                        <li class="py-2"><a href="/html/category/article-7081.htm" title="动物疫苗法律法规知识培训（动物疫苗法案）">动物疫苗法律法规知识培训（动物疫苗法案）</a></li>
+                        <li class="py-2"><a href="/html/category/article-5934.htm" title="猫三联疫苗需要多少钱（猫三联疫苗要打几针 多少钱一次）">猫三联疫苗需要多少钱（猫三联疫苗要打几针 多少钱一次）</a></li>
+                        <li class="py-2"><a href="/html/category/article-7173.htm" title="绿联和零度的手机壳哪个好用(绿联和零度的手机壳哪个好一点)">绿联和零度的手机壳哪个好用(绿联和零度的手机壳哪个好一点)</a></li>
                     </ul>
     </div>
 </div>
